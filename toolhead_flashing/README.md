@@ -5,7 +5,7 @@ The following should be taken as an overall guide on what you are going to be ac
 
 **PLEASE DO NOT TAKE THE SCREENSHOTS/CONFIGURATIONS ON THIS PAGE EXACTLY AS WRTTEN AS THEY MAY NOT BE COMPATIBLE WITH YOUR PARTICULAR MAINBOARD**
 
-You will need to adapt the below instructions so they cover *your* board's specicific configuration. There are also some included configurations for specific popular boards in the https://github.com/Esoterical/voron_canbus/tree/main/mainboard_flashing/canboot and https://github.com/Esoterical/voron_canbus/tree/main/mainboard_flashing/non_canboot folders.
+You will need to adapt the below instructions so they cover *your* board's specicific configuration. There are also some included configurations for specific popular boards in the https://github.com/Esoterical/voron_canbus/tree/main/toolhead_flashing/canboot and https://github.com/Esoterical/voron_canbus/tree/main/toolhead_flashing/non_canboot folders.
 
 
 Before doing anything it is good to have some dependencies installed. Do this by running these on your Pi:
