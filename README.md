@@ -1,3 +1,14 @@
+Before we start a big thanks has to go to the #can_bus_depot thread on the Voron discord. A wealth of information from some very clever people.
+If you have any of the following combinations of hardware, please look at these existing specific guides:
+
+Octopus (in CAN bridge mode) and SB2040: https://github.com/akhamar/voron_canbus_octopus_sb2040 by @MastahFR
+
+BTT U2C and EBB36: https://github.com/EricZimmerman/VoronTools/blob/main/EBB_CAN.md by @EricZimmerman
+
+SKR Pico in can bridge mode: https://github.com/eschlenz/3D-Printing-Public/blob/main/skr_pico_canboot_canbus.md by @eschlenz
+
+and many others.
+
 ## Generalised CANBus guide
 
 So you want to use Canbus on your printer? There are plenty of guides around but usually they are guides on a specific hardware configuration. This guide hopes to generalise some of the steps to help anyone get started on their CAN journey with a printer.
