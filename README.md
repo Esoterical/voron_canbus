@@ -91,7 +91,9 @@ One you have a functioning CAN network on your printer, you can proceed to flash
 To wire up your toolhead refer to manufacturer guides but the overall process is hooking up 24v and Gnd back to your 24v PSU, and then connecting CANH and CANL to the CANH and CANL of your CAN adapter (either dedicated USB Can devcie, or a USB-CAN-Bridge mainboard). CANH goes to CANH, CANL goes to CANL.
 
 Once you have klipper installed on your toolhead, and it is all wired up correctly, you can run a canbus query command:
+
 `~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0`
+
 which should show a can UUID for each CAN device (a USB-CAN-Bridge mode mainboard will show as a CAN device) as well as the unique ID of the device:
 
 ![image](https://user-images.githubusercontent.com/124253477/221332914-c612d996-f9c3-444d-aa41-22b8eda96eba.png)
