@@ -41,7 +41,7 @@ The "allow-hotplug" helps the CAN nodes come back online when doing a "firmware_
 To complement a high bitrate, setting a high transmit queue length "txqueuelen" of 1024 helps minimise "Timer too close" errors.
 The "pre-up" stuff isn't really necessary. It may help with the Pi's functionality if the link isn't online yet but if this is omitted it shouldn't matter.
 
-Once the can0 file is created just reboot the Pi and move on to the next step.
+Once the can0 file is created just reboot the Pi with a `sudo reboot` and move on to the next step.
 
 #  Your main CAN network adapter
 
@@ -61,9 +61,43 @@ The BTT U2C V2.1 was released with bad firmware which although would show up to 
 
 # Klipper USB to CAN bus bridge
 
-The second way of setting up a CAN network is to use the printer mainboard itself as a CAN adapter. This is acheived through Klippers "USB-CAN-Bridge mode". In order for this to work you need to have a compatible MCU on the mainboard (A lot of the popular STM32 chips works, as well as the RP2040), and either a dedicated "CAN" port on the motherboard or at least a way of accessing the CAN pins that you configure for klipper.
+The second way of setting up a CAN network is to use the printer mainboard itself as a CAN adapter. 
+
+**If you are using a dedicated CAN adapter as above then you don't need this step. Your mainboard will be flashed the same as any other "normal" klipper install**
+
+This is acheived through Klippers "USB-CAN-Bridge mode". In order for this to work you need to have a compatible MCU on the mainboard (A lot of the popular STM32 chips works, as well as the RP2040), and either a dedicated "CAN" port on the motherboard or at least a way of accessing the CAN pins that you configure for klipper.
 
 Some mainboards (like the BTT Octopus) have a CAN Transceiver built in so they will output CAN signals directly from a dedicated port (the Octopus has an RJ11 port for this purpose). Other compatible boards may have a port on their board labelled as CAN but only output serial (Tx Rx) signals. These boards can still be run as USB-CAN-Bridge mode but will require an additional CAN Transceiver module (such as the SN65HVD230). These can be cheaply purchased from Amazon or eBay or AliExpress. Other boards may yet not have any dedicated CAN port, but still have a compatible MCU and have compatible CAN pins that you can access (the SKR Mini E3 V3 can be run in USB-CAN-Bridge mode if you use the PB8/PB9 pins on the EXP1 header that is normally used for an LCD screen).
 
-More specific instructions
+More specific instructions refer to https://github.com/Esoterical/voron_canbus/tree/main/mainboard_flashing
+
+Once you have klipper firmware flashed to your mainboard, with the USB-CAN-Bridge mode enabled, it should show up to your Pi as a "Geschwister Schneider CAN adapter" if you run an `lsusb`
+![image](https://user-images.githubusercontent.com/124253477/221329262-d8758abd-62cb-4bb6-9b4f-7bc0f615b5de.png)
+If you run an `ifconfig` command you should also see a can0 interface.
+![image](https://user-images.githubusercontent.com/124253477/221329326-efa1437e-839d-4a6b-9648-89412791b819.png)
+
+The takeaway is that if you go down the mainboard USB-CAN-Bridge route, then you *need* to have klipper firmware flashed to the mainboard before attempting any further CAN installs/troubleshooting.
+
+# CAN on a toolhead
+
+One you have a functioning CAN network on your printer, you can proceed to flashing klipper to your toolhead of choice. Refer to https://github.com/Esoterical/voron_canbus/tree/main/toolhead_flashing for more information on how to flash the toolhead.
+
+To wire up your toolhead refer to manufacturer guides but the overall process is hooking up 24v and Gnd back to your 24v PSU, and then connecting CANH and CANL to the CANH and CANL of your CAN adapter (either dedicated USB Can devcie, or a USB-CAN-Bridge mainboard). CANH goes to CANH, CANL goes to CANL.
+
+Once you have klipper installed on your toolhead, and it is all wired up correctly, you can run a canbus query command:
+`~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0`
+which should show a can UUID for each CAN device (a USB-CAN-Bridge mode mainboard will show as a CAN device) as well as the unique ID of the device:
+![image](https://user-images.githubusercontent.com/124253477/221332914-c612d996-f9c3-444d-aa41-22b8eda96eba.png)
+
+You will then use this uuid in your printer.cfg for the [mcu] section of your device
+![image](https://user-images.githubusercontent.com/124253477/221332943-57a65a4e-f3ab-484c-8ac5-a2b35366e34f.png)
+(This is my Spider mainboard running in USB-CAN-Bridge mode, and my EBB36 toolhead)
+
+# Configuration
+
+If you have completed the above and have the canbus uuid of your CAN device in your printer.cfg, then everything else is just a case of setting up the required pins with the toolhead MCU name prefixed to the pin name. See https://www.klipper3d.org/Config_Reference.html#mcu-my_extra_mcu for information.
+Most toolheads will have a sample.cfg on their github, so it's usually a simple case of copy-pasting the required information from the sample into your own printer.cfg.
+
+
+
 
