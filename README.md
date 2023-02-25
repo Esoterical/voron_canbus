@@ -41,11 +41,9 @@ This will open (or create if it doesn't exist) a file called 'can0' in which you
   allow-hotplug can0
     iface can0 can static
     bitrate 1000000
-    up ifconfig $IFACE txqueuelen 1024
-    pre-up ip link set can0 type can bitrate 1000000
-    pre-up ip link set can0 txqueuelen 1024
+    up ip link set can0 txqueuelen 1024
   ```
-![image](https://user-images.githubusercontent.com/124253477/221327711-1d68b5b6-3ad8-472c-88ba-761991bfcd7f.png)
+![image](https://user-images.githubusercontent.com/124253477/221378593-9a0fcdb5-082c-454e-94bd-08a6dc449d34.png)
 
 The "allow-hotplug" helps the CAN nodes come back online when doing a "firmware_restart" within Klipper.
 "bitrate" dictates the speed at which your CAN network runs at. Kevin O'Connor (of Klipper fame) recommends a 1M speed for this to help with high-bandwidth and timing-critical operations (ADXL Shaper calibration and mesh probing for example). 
