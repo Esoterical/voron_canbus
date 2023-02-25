@@ -125,7 +125,9 @@ One the flash has been completed you can run the `python3 ~/CanBoot/scripts/flas
 # If you don't have CanBOOT installed
 
 To flash, connect your toolhead board to the Pi via USB and put it into DFU/BOOT mode (your toolhead board user manual should have instructions on doing this).
+
 **STM32 based board:**
+
 To confirm it's in DFU mode you can run the command `dfu-util -l` and it will show any devices connected to your Pi in DFU mode.
 
 ![image](https://user-images.githubusercontent.com/124253477/221337550-560128dd-b5fd-41ba-8881-48d24b2215ef.png)
@@ -133,6 +135,7 @@ To confirm it's in DFU mode you can run the command `dfu-util -l` and it will sh
 > Note the address of the usb device => 0483:df11
 
 **RP2040 based boards:**
+
 To confirm it's in BOOT mode, run an `lsusb` command and you should see the device as a "Raspberry Pi boot" device (or similar)
 
 ![image](https://user-images.githubusercontent.com/124253477/221344712-500b3c36-8e96-4f23-88ed-5e13ee79535f.png)
