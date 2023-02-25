@@ -48,7 +48,6 @@ This will open (or create if it doesn't exist) a file called 'can0' in which you
 The "allow-hotplug" helps the CAN nodes come back online when doing a "firmware_restart" within Klipper.
 "bitrate" dictates the speed at which your CAN network runs at. Kevin O'Connor (of Klipper fame) recommends a 1M speed for this to help with high-bandwidth and timing-critical operations (ADXL Shaper calibration and mesh probing for example). 
 To complement a high bitrate, setting a high transmit queue length "txqueuelen" of 1024 helps minimise "Timer too close" errors.
-The "pre-up" stuff isn't really necessary. It may help with the Pi's functionality if the link isn't online yet but if this is omitted it shouldn't matter.
 
 Once the can0 file is created just reboot the Pi with a `sudo reboot` and move on to the next step.
 
@@ -57,6 +56,8 @@ Once the can0 file is created just reboot the Pi with a `sudo reboot` and move o
 To actually create a CAN network in your system, your Pi needs some sort of device to act as a CAN adapter (think of it like a USB network card, or USB wifi dongle). The simplest plug-and-play option is to use a dedicated USB to Can device such as the BigTreeTech U2C or the Mellow Fly UTOC (other devices exist as well). The second "cheaper" option is to actually utilise your printer mainboard (ie. Octopus or Spider board) to function as a usb-can bridge for klipper. We'll cover both options, but you only need to choose one.
 
 # Dedicated USB CAN device
+
+**IF YOU HAVE A BTT U2C V2.1 THEN PLEASE FLASH IT WITH THE LATEST VERSION OF V2 FIRMWARE FROM THE GITHUB AS THE SHIPPED FIRMWARE MAY HAVE BUGS https://github.com/bigtreetech/U2C**
 
 If you want to use a dedicated USB CAN devcice, then it should be as  simple as plugging it in to your Pi via USB. ***You shouldn't have to flash anything to this U2C/UTOC/etc device first, they are meant to come pre-installed with the necessary firmware. They do NOT run Klipper***. You can test if it is working by running an `lsusb` command (from an SSH terminal to your pi). Most common USB CAN devices will show up as a "Geschwister Schneider CAN adapter" when they are working properly:
 
@@ -67,8 +68,11 @@ You can also check by running an 'interface config' command `ifconfig`. If the U
 ![image](https://user-images.githubusercontent.com/124253477/221329326-efa1437e-839d-4a6b-9648-89412791b819.png)
 
 **A note on edge cases**
+
 If you plug in your USB CAN adapter and you *don't* see the expected results from an `lsusb` or `ifconfig`, then the firmware on your device may have issues. If this is the case then it's worth going to the Github page of your device as they usually have the stock firmware and flashing instructions there.
+
 **A note on the note**
+
 The BTT U2C V2.1 was released with bad firmware which although would show up to the above tests it would make issues show up down the line. If you have a v2.1 of the U2C then flash the latest V2 firmware from the github https://github.com/bigtreetech/U2C
 
 # Klipper USB to CAN bus bridge
