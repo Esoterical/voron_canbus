@@ -39,6 +39,40 @@ You want the Processor, Clock Reference, and Application Start offset to be set 
 
 ![image](https://user-images.githubusercontent.com/124253477/221333924-0a4d3c28-d084-4f8c-b93f-0670114bd090.png)
 
+Compile the firmware with `make`. You will now have a canboot.bin at in your ~/CanBoot/out/canboot.bin.
+
+To flash, connect your mainboard to the Pi via USB then put the mainboard into DFU mode (your mainboard user manual should have instructions on doing this).
+To confirm it's in DFU mode you can run the command `dfu-util -l` and it will show any devices connected to your Pi in DFU mode.
+
+![image](https://user-images.githubusercontent.com/124253477/221337550-560128dd-b5fd-41ba-8881-48d24b2215ef.png)
+
+> Note the address of *Internal Flash* => 0x08000000
+>
+> Note the address of the usb device => 0483:df11
+
+You can then flash the CanBOOT firmware to your mainboard by running
+```
+cd ~/CanBoot
+make flash FLASH_DEVICE=0483:df11
+```
+
+where the FLASH_DEVICE ID is the same as you grabbed from the `dfu-util -l` command.
+
+As you are installing CanBOOT onto the mainboard that you are also going to use for USB-CAN-Bridge mode klipper, you still will *not* have a working CAN network at this stage. You can flash klipper to your mainboard via CanBOOT, but in reality it is flashing over USB and not flashing over CAN.
+
+Flashing klipper via CanBOOT will be covered shortly.
+
+# Installing USB-CAN-Bridge Klipper
+
+Move into the klipper directory on the Pi by running:
+`cd ~/klipper`
+Then go into the klipper configuration menu by running:
+`make menuconfig`
+
+You want the Processor and Clock Reference to be set as per whatever board you are running. Set Communication interface to 'USB to CAN bus bridge' then set the CAN Bus interface to use the pins that are specific to your mainboard. Also set the CAN bus speed to the same as the speed in your can0 file. In this guide it is set to 1000000.
+**NOTE: The Bootloader offset will be determined by if you are using a bootloader or not.
+
+
 
 
 
