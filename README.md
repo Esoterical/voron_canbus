@@ -54,5 +54,16 @@ If you want to use a dedicated USB CAN devcice, then it should be as  simple as 
 You can also check by running an 'interface config' command `ifconfig`. If the USB CAN device is up and happy (and you have created the can0 file above) then you will see a can0 interface:
 ![image](https://user-images.githubusercontent.com/124253477/221329326-efa1437e-839d-4a6b-9648-89412791b819.png)
 
+**A note on edge cases**
+If you plug in your USB CAN adapter and you *don't* see the expected results from an `lsusb` or `ifconfig`, then the firmware on your device may have issues. If this is the case then it's worth going to the Github page of your device as they usually have the stock firmware and flashing instructions there.
+**A note on the note**
+The BTT U2C V2.1 was released with bad firmware which although would show up to the above tests it would make issues show up down the line. If you have a v2.1 of the U2C then flash the latest V2 firmware from the github https://github.com/bigtreetech/U2C
 
+# Klipper USB to CAN bus bridge
+
+The second way of setting up a CAN network is to use the printer mainboard itself as a CAN adapter. This is acheived through Klippers "USB-CAN-Bridge mode". In order for this to work you need to have a compatible MCU on the mainboard (A lot of the popular STM32 chips works, as well as the RP2040), and either a dedicated "CAN" port on the motherboard or at least a way of accessing the CAN pins that you configure for klipper.
+
+Some mainboards (like the BTT Octopus) have a CAN Transceiver built in so they will output CAN signals directly from a dedicated port (the Octopus has an RJ11 port for this purpose). Other compatible boards may have a port on their board labelled as CAN but only output serial (Tx Rx) signals. These boards can still be run as USB-CAN-Bridge mode but will require an additional CAN Transceiver module (such as the SN65HVD230). These can be cheaply purchased from Amazon or eBay or AliExpress. Other boards may yet not have any dedicated CAN port, but still have a compatible MCU and have compatible CAN pins that you can access (the SKR Mini E3 V3 can be run in USB-CAN-Bridge mode if you use the PB8/PB9 pins on the EXP1 header that is normally used for an LCD screen).
+
+More specific instructions
 
