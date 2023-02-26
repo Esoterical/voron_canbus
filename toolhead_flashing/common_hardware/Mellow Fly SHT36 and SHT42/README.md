@@ -11,6 +11,6 @@
 
 ![image](https://user-images.githubusercontent.com/124253477/221396331-f32caaac-89a2-4d85-8b88-259681912662.png)
 
-# Sample Config
+# Sample Configuration
 
-A sample config containing pin names can be found at http://mellow.klipper.cn/#/board/fly_sht36_42/cfg
+A sample config file can be found athttp://mellow.klipper.cn/#/board/fly_sht36_42/cfg
