@@ -10,4 +10,6 @@
 
 ![image](https://user-images.githubusercontent.com/124253477/221396552-1c495fc2-30be-4bdd-9ac3-430da804bf17.png)
 
+# Sample Configuration
 
+A sample config file can be found at https://mellow.klipper.cn/#/board/fly_sht_v2/cfg
