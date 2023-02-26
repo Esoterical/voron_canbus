@@ -11,3 +11,6 @@
 
 ![image](https://user-images.githubusercontent.com/124253477/221396331-f32caaac-89a2-4d85-8b88-259681912662.png)
 
+# Notes
+
+More informatin, including pinouts, can be found on the Mellow Fly website http://mellow.klipper.cn/#/board/fly_sht36_42/
