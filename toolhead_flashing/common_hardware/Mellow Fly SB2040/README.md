@@ -11,3 +11,7 @@
 # Klipper when **NOT** using CanBOOT
 
 ![image](https://user-images.githubusercontent.com/124253477/221348953-de98e788-734d-4e34-b9dd-1b2a0e99607c.png)
+
+# Sample Config
+
+A sample config file can be found at https://mellow.klipper.cn/#/board/fly_sb2040/cfg
