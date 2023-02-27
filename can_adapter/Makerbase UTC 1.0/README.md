@@ -60,7 +60,8 @@ mkdir build
 cd build  
 cmake .. -DCMAKE_TOOLCHAIN_FILE=../cmake/gcc-arm-none-eabi-8-2019-q3-update.cmake  
 make budgetcan_fw  
-now plugin your UTC in boot mode and type  
+
+now plugin your UTC in boot mode and type:  
 make flash-budgetcan_fw  
 
 After that you can reset your UTC and you can setup your can-bus similarly to a U2C or
