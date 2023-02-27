@@ -58,8 +58,7 @@ cd ~/candleLight_fw
 git checkout multichannel  
 mkdir build  
 cd build  
-cmake .. -DCMAKE_TOOLCHAIN_FILE=../cmake/gcc-arm-none-eabi-8-2019-q3-  
-update.cmake  
+cmake .. -DCMAKE_TOOLCHAIN_FILE=../cmake/gcc-arm-none-eabi-8-2019-q3-update.cmake  
 make budgetcan_fw  
 now plugin your UTC in boot mode and type  
 make flash-budgetcan_fw  
