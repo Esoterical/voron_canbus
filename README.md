@@ -57,7 +57,7 @@ To actually create a CAN network in your system, your Pi needs some sort of devi
 
 # Dedicated USB CAN device
 
-**IF YOU HAVE A BTT U2C V2.1 THEN PLEASE FLASH IT WITH THE LATEST VERSION OF V2 FIRMWARE FROM THE GITHUB AS THE SHIPPED FIRMWARE MAY HAVE BUGS https://github.com/bigtreetech/U2C**
+**IF YOU HAVE A BTT U2C V2.1 THEN PLEASE FLASH IT WITH THE LATEST VERSION OF V2 FIRMWARE FROM THE GITHUB AS THE SHIPPED FIRMWARE MAY HAVE BUGS https://github.com/Esoterical/voron_canbus/tree/main/can_adapter/BigTreeTech%20U2C%20v2.1**
 
 If you want to use a dedicated USB CAN devcice, then it should be as  simple as plugging it in to your Pi via USB. ***You shouldn't have to flash anything to this U2C/UTOC/etc device first, they are meant to come pre-installed with the necessary firmware. They do NOT run Klipper***. You can test if it is working by running an `lsusb` command (from an SSH terminal to your pi). Most common USB CAN devices will show up as a "Geschwister Schneider CAN adapter" when they are working properly:
 
@@ -73,7 +73,7 @@ If you plug in your USB CAN adapter and you *don't* see the expected results fro
 
 **A note on the note**
 
-The BTT U2C V2.1 was released with bad firmware which although would show up to the above tests it would make issues show up down the line. If you have a v2.1 of the U2C then flash the latest V2 firmware from the github https://github.com/bigtreetech/U2C
+The BTT U2C V2.1 was released with bad firmware which although would show up to the above tests it would make issues show up down the line. If you have a v2.1 of the U2C then please follow the instructions here: https://github.com/Esoterical/voron_canbus/tree/main/can_adapter/BigTreeTech%20U2C%20v2.1
 
 # Klipper USB to CAN bus bridge
 
