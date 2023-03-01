@@ -14,4 +14,8 @@
 
 # Sample Config
 
-A sample config file can be found at https://mellow.klipper.cn/#/board/fly_sb2040/cfg
+A sample config file can be found at https://mellow-3d.github.io/fly-sb2040_klipper_config.html
+
+# More Info
+
+https://mellow-3d.github.io/fly-sb2040_v1_general.html
