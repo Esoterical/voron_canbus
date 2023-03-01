@@ -13,4 +13,4 @@
 
 # Sample Configuration
 
-A sample config file can be found athttp://mellow.klipper.cn/#/board/fly_sht36_42/cfg
+A sample config file can be found at https://mellow-3d.github.io/fly-sht36_klipper_config.html
