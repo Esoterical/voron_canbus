@@ -90,11 +90,11 @@ Run this command to install klipper firmware via canboot via USB. Use the device
 `python3 ~/CanBoot/scripts/flash_can.py -f ~/klipper/out/klipper.bin -d /dev/serial/by-id/usb-CanBoot_stm32f446xx_37001A001851303439363932-if00`
 
 
-# If you are running a stock bootloader and flashing via SD card
+# If you are running a stock bootloader and flashing via SD card INSTEAD of CanBOOT
 
 Simply follow the mainboard user manual to copy the ~/klipper/out/klipper.bin file to an SD card (renaming it if needed) and flash the mainboard as per user manual.
 
-# If you are flashing via DFU mode
+# If you are flashing via DFU mode (no CanBOOT or stock bootloader)
 
 To flash, connect your mainboard to the Pi via USB then put the mainboard into DFU mode (your mainboard user manual should have instructions on doing this).
 To confirm it's in DFU mode you can run the command `dfu-util -l` and it will show any devices connected to your Pi in DFU mode.
