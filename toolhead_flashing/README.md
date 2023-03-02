@@ -10,9 +10,9 @@ You will need to adapt the below instructions so they cover *your* board's speci
 
 Before doing anything it is good to have some dependencies installed. Do this by running these on your Pi:
 ```
-apt update
-apt upgrade
-apt install python3 python3-pip python3-can
+sudo apt update
+sudo apt upgrade
+sudo apt install python3 python3-pip python3-can
 pip3 install pyserial
 ```
 
