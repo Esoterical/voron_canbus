@@ -12,7 +12,7 @@ Before doing anything it is good to have some dependencies installed. Do this by
 ```
 sudo apt update
 sudo apt upgrade
-sodu apt install python3 python3-pip python3-can
+sudo apt install python3 python3-pip python3-can
 pip3 install pyserial
 ```
 
