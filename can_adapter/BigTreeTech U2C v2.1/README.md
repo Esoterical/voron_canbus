@@ -1,7 +1,9 @@
 
-The U2C came stock with bad firmware that would cause flashing problems down the line. A fixed firmware has been added to BTT github https://github.com/bigtreetech/U2C/tree/master/firmware
+The U2C came stock with bad firmware that would cause flashing problems down the line. A fixed firmware can be downloaded from:  
+https://github.com/Arksine/CanBoot/files/10410265/G0B1_U2C_V2.zip  
+(you can read about the error at https://github.com/Arksine/CanBoot/issues/44)
 
-Download the "U2C_V2_STM32G0B1.bin" file to your home directory (/home/pi/U2C_V2_STM32G0B1.bin). Then press the boot button on the U2C while plugging it in to your Pi to put it into DFU mode.
+Download the .zip file, then extract the G0B1_U2C_V2.bin file and upload the file to your home directory (/home/pi/G0B1_U2C_V2.bin). Then press the boot button on the U2C while plugging it in to your Pi to put it into DFU mode.
 
 ![image](https://user-images.githubusercontent.com/124253477/221551674-3e5754de-5965-40fa-8474-cde8f5790fc5.png)
 
@@ -11,7 +13,7 @@ Confirm it is connected in DFU mode by running `dfu-util -l`. You should see the
 
 If you can see it there then just run this command to flash the fixed firmware to the U2C:
 
-`dfu-util -D ~/U2C_V2_STM32G0B1.bin -a 0 -s 0x08000000:leave`
+`dfu-util -D ~/G0B1_U2C_V2.bin -a 0 -s 0x08000000:leave`
 
 ![image](https://user-images.githubusercontent.com/124253477/221552152-89f14967-b807-4e54-9159-003b19eed784.png)
 
