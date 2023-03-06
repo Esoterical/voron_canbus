@@ -85,6 +85,8 @@ Run an `ls /dev/serial/by-id/` and take note of the CanBoot device that it shows
 
 ![image](https://user-images.githubusercontent.com/124253477/221342447-a98e6bee-050b-4f82-a4cb-1265e92d0752.png)
 
+If the above command didn't show a 'canboot' device, or threw a "no such file or directory" error, then quickly double-click the RESET button on your mainboard and run the command again. Until you get a result from a `ls /dev/serial/by-id/` there is no point doing further steps below.
+
 Run this command to install klipper firmware via canboot via USB. Use the device ID you just retrieved in the above ls command.
 
 `python3 ~/CanBoot/scripts/flash_can.py -f ~/klipper/out/klipper.bin -d /dev/serial/by-id/usb-CanBoot_stm32f446xx_37001A001851303439363932-if00`
