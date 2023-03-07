@@ -65,6 +65,8 @@ As you are installing CanBOOT onto the mainboard that you are also going to use 
 
 Flashing klipper via CanBOOT will be covered shortly.
 
+
+
 # Installing USB-CAN-Bridge Klipper
 
 Move into the klipper directory on the Pi by running:
@@ -79,7 +81,7 @@ You want the Processor and Clock Reference to be set as per whatever board you a
 Once you have the firmware configured, run a `make clean` to make sure there are no old files hanging around, then `make` to compile the firmware. It will save the firmware to ~/klipper/out/klipper.bin
 
 
-# If you have CanBOOT installed
+## If you have CanBOOT installed
 
 Run an `ls /dev/serial/by-id/` and take note of the CanBoot device that it shows:
 
@@ -92,11 +94,11 @@ Run this command to install klipper firmware via canboot via USB. Use the device
 `python3 ~/CanBoot/scripts/flash_can.py -f ~/klipper/out/klipper.bin -d /dev/serial/by-id/usb-CanBoot_stm32f446xx_37001A001851303439363932-if00`
 
 
-# If you are running a stock bootloader and flashing via SD card INSTEAD of CanBOOT
+## If you are running a stock bootloader and flashing via SD card INSTEAD of CanBOOT
 
 Simply follow the mainboard user manual to copy the ~/klipper/out/klipper.bin file to an SD card (renaming it if needed) and flash the mainboard as per user manual.
 
-# If you are flashing via DFU mode (no CanBOOT or stock bootloader)
+## If you are flashing via DFU mode (no CanBOOT or stock bootloader)
 
 To flash, connect your mainboard to the Pi via USB then put the mainboard into DFU mode (your mainboard user manual should have instructions on doing this).
 To confirm it's in DFU mode you can run the command `dfu-util -l` and it will show any devices connected to your Pi in DFU mode.
@@ -113,7 +115,7 @@ make flash FLASH_DEVICE=0483:df11
 
 where the FLASH_DEVICE ID is the address of the USB device you noted down from the `dfu-util -l` command.
 
-# Klipper is now installed
+## Klipper is now installed
 
 This should have now installed klipper firmware to your mainboard. You can verify by running `lsusb` and you should see a "Geschwister Schneider CAN adapter" or similar device.
 
@@ -134,7 +136,66 @@ Use this UUID in the [mcu] section of your printer.cfg in order for Klipper (on 
 
 
 
+# UPDATING
 
+## Updating CanBOOT
+
+You should never really have to update your CanBOOT on the mainboard. Even if you wish to change your CanBUS speeds you don't need to change CanBOOT **On the Mainboard** as it only communicates via USB and not via CAN.
+
+However, if you need to update CanBOOT for whatever reason, then:  
+Change to your CanBoot directory with `cd ~/CanBoot`  
+then go into the CanBoot firmware config menu with `make menuconfig`  
+This time **make sure "Build CanBoot deployment application" is configured** with the properly bootloader offset (same as the "Application start offset" that is relevant for your mainboard). Make sure all the rest of your settings are correct for your mainboard.
+
+![image](https://user-images.githubusercontent.com/124253477/223301620-c1fd3d16-04e3-49ce-8d48-5498811f4c46.png)
+
+This time when you run `make`, along with the normal canboot.bin file it will also generate a deployer.bin file. This deployer.bin is a fancy little tool that uses the existing bootloader (canboot, or stock, or whatever) to "update" itself into the canboot you just compiled.
+
+So to update your canboot, you just need to flash this deployer.bin file via your existing canboot (in a very similar way you would flash klipper via canboot).
+
+If you already have a functioning CAN setup, and your [mcu] canbus_uuid is in your printer.cfg, then you can force CanBOOT to reboot into canboot mode by running:
+
+`python3 ~/CanBoot/scripts/flash_can.py -i can0 -u yourmainboarduuid -r`
+
+![image](https://user-images.githubusercontent.com/124253477/223303347-385ec07c-5211-42d3-b985-4dc38c2864ec.png)
+
+If you don't have the UUID (or something has gone wrong with the klipper firmware and your mainboard is hung) then you can also double-press the RESET button on your mainboard to force CanBOOT to reboot into canboot mode.
+
+You can verify it is in the proper mode by running `ls /dev/serial/by-id`. If you see a "usb-CanBoot-......" device then it is good to go.
+
+![image](https://user-images.githubusercontent.com/124253477/223303596-f7709d3c-d652-401c-959d-560381a39cff.png)
+
+Once you are at this stage you can flash the deployer.bin by running:
+
+`python3 ~/CanBoot/scripts/flash_can.py -f ~/CanBoot/out/deployer.bin -d /dev/serial/by-id/usb-CanBoot_stm32f446xx_37001A001851303439363932-if00`
+
+and your CanBoot should update.
+
+![image](https://user-images.githubusercontent.com/124253477/223303940-e7c19b00-04bb-47b3-9230-458e9f2de251.png)
+
+## Updating Klipper Firmware via CanBOOT
+
+To update Klipper, first compile the new Klipper firmware by running the same way you did in the "Installing USB-CAN-Bridge Klipper" section above, but with your new settings (if you are changing settings). Then you need to get CanBOOT back into canboot mode.
+
+If you already have a functioning CAN setup, and your [mcu] canbus_uuid is in your printer.cfg, then you can force CanBOOT to reboot into canboot mode by running:
+
+`python3 ~/CanBoot/scripts/flash_can.py -i can0 -u yourmainboarduuid -r`
+
+![image](https://user-images.githubusercontent.com/124253477/223303347-385ec07c-5211-42d3-b985-4dc38c2864ec.png)
+
+If you don't have the UUID (or something has gone wrong with the klipper firmware and your mainboard is hung) then you can also double-press the RESET button on your mainboard to force CanBOOT to reboot into canboot mode.
+
+You can verify it is in the proper mode by running `ls /dev/serial/by-id`. If you see a "usb-CanBoot-......" device then it is good to go.
+
+![image](https://user-images.githubusercontent.com/124253477/223303596-f7709d3c-d652-401c-959d-560381a39cff.png)
+
+Then you can run the same command you used to initially flash Klipper:
+
+`python3 ~/CanBoot/scripts/flash_can.py -f ~/klipper/out/klipper.bin -d /dev/serial/by-id/usb-CanBoot_stm32f446xx_37001A001851303439363932-if00`
+
+## Updating Klipper Firmware via other methods
+
+Updating klipper via SD card flash or straight DFU mode is the exact same as initially installing it as outlined in the main Installing section above.
 
 
 
