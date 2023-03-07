@@ -165,6 +165,70 @@ You can now run the Klipper canbus query to retrieve the canbus_uuid of your too
 Use this UUID in the [mcu] section of your printer.cfg in order for Klipper (on Pi) to connect to the toolhead board.
 
 
+# UPDATING
+
+If you are planning on updating both CanBOOT and Klipper (ie. for changing CAN speeds) then it's recommended to update CanBOOT first. Otherwise you may get stuck in a situation where you need to connect your toolhead back up via USB and flash as if from scratch.
+
+## Updating CanBOOT
+
+Change to your CanBoot directory with `cd ~/CanBoot`  
+then go into the CanBoot firmware config menu with `make menuconfig`  
+This time **make sure "Build CanBoot deployment application" is configured** with the properly bootloader offset (same as the "Application start offset" that is relevant for your mainboard). Make sure all the rest of your settings are correct for your mainboard.
+
+![image](https://user-images.githubusercontent.com/124253477/223301620-c1fd3d16-04e3-49ce-8d48-5498811f4c46.png)
+
+This time when you run `make`, along with the normal canboot.bin file it will also generate a deployer.bin file. This deployer.bin is a fancy little tool that uses the existing bootloader (canboot, or stock, or whatever) to "update" itself into the canboot you just compiled.
+
+So to update your canboot, you just need to flash this deployer.bin file via your existing canboot (in a very similar way you would flash klipper via canboot).
+
+If you already have a functioning CAN setup, and your [mcu toolhead] canbus_uuid is in your printer.cfg, then you can force CanBOOT to reboot into canboot mode by running:
+
+`python3 ~/CanBoot/scripts/flash_can.py -i can0 -u yourtoolheaduuid -r`
+
+![image](https://user-images.githubusercontent.com/124253477/223307559-1da6a2dd-d572-456c-9ee6-0565e9192fea.png)
+
+If you don't have the UUID (or something has gone wrong with the klipper firmware and your toolboard is hung) then you can also double-press the RESET button on your mainboard to force CanBOOT to reboot into canboot mode.
+
+You can verify it is in the proper mode by running `python3 ~/CanBoot/scripts/flash_can.py -q`. If you see a "Detected UUID: xxxxxxxxx, Application: CanBoot" device then it is good to go.
+
+![image](https://user-images.githubusercontent.com/124253477/223307593-b96dc642-9fa0-494b-93b8-a155d14bb535.png)
+
+Once you are at this stage you can flash the deployer.bin by running:
+
+`python3 ~/CanBoot/scripts/flash_can.py -i can0 -u b6d9de35f24f -f ~/CanBoot/out/deployer.bin`
+
+and your CanBoot should update.
+
+
+## Updating Klipper Firmware via CanBOOT
+
+To update Klipper, first compile the new Klipper firmware by running the same way you did in the "Installing Klipper" section above, but with your new settings (if you are changing settings). Then you need to get CanBOOT back into canboot mode.
+
+If you already have a functioning CAN setup, and your [mcu toolhead] canbus_uuid is in your printer.cfg, then you can force CanBOOT to reboot into canboot mode by running:
+
+`python3 ~/CanBoot/scripts/flash_can.py -i can0 -u yourtoolheaduuid -r`
+
+![image](https://user-images.githubusercontent.com/124253477/223307559-1da6a2dd-d572-456c-9ee6-0565e9192fea.png)
+
+If you don't have the UUID (or something has gone wrong with the klipper firmware and your toolboard is hung) then you can also double-press the RESET button on your mainboard to force CanBOOT to reboot into canboot mode.
+
+You can verify it is in the proper mode by running `python3 ~/CanBoot/scripts/flash_can.py -q`. If you see a "Detected UUID: xxxxxxxxx, Application: CanBoot" device then it is good to go.
+
+![image](https://user-images.githubusercontent.com/124253477/223307593-b96dc642-9fa0-494b-93b8-a155d14bb535.png)
+
+Then you can run the same command you used to initially flash Klipper:
+
+`python3 ~/CanBoot/scripts/flash_can.py -i can0 -u b6d9de35f24f -f ~/klipper/out/klipper.bin`
+
+One the flash has been completed you can run the `python3 ~/CanBoot/scripts/flash_can.py -i can0 -q` command again. This time you should see the same UUID but with "Application: Klipper" instead of "Application: CanBoot"
+
+![image](https://user-images.githubusercontent.com/124253477/221346236-5633f522-97b6-43e7-a675-82f3e483e3a4.png)
+
+
+## Updating Klipper Firmware via other methods
+
+If you don't use CanBOOT, then updating klipper is the same process as a first-time flash as outlined in the above "If you don't have CanBOOT installed" section.
+
 
 
 
