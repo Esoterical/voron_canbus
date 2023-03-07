@@ -78,7 +78,7 @@ make flash FLASH_DEVICE=2e8a:0003
 
 where the FLASH_DEVICE ID is what you noted down from the `lsusb` command.
 
-# Hooray
+## CanBOOT is now installed
 
 CanBOOT should now be successfully flashed. Take your toolhead out of DFU mode (it might require removing jumpers and rebooting, or just rebooting).
 
@@ -107,7 +107,7 @@ You want the Processor and Clock Reference to be set as per whatever board you a
 Once you have the firmware configured, run a `make clean` to make sure there are no old files hanging around, then `make` to compile the firmware. It will save the firmware to ~/klipper/out/klipper.bin
 
 
-# If you have CanBOOT installed
+## If you have CanBOOT installed
 
 Run a `python3 ~/CanBoot/scripts/flash_can.py -i can0 -q` and take note of the CanBoot device that it shows:
 
@@ -124,7 +124,7 @@ One the flash has been completed you can run the `python3 ~/CanBoot/scripts/flas
 ![image](https://user-images.githubusercontent.com/124253477/221346236-5633f522-97b6-43e7-a675-82f3e483e3a4.png)
 
 
-# If you don't have CanBOOT installed
+## If you don't have CanBOOT installed
 
 To flash, connect your toolhead board to the Pi via USB and put it into DFU/BOOT mode (your toolhead board user manual should have instructions on doing this).
 
@@ -154,7 +154,7 @@ make flash FLASH_DEVICE=0483:df11
 
 where the FLASH_DEVICE ID is the address of the USB device you noted down above.
 
-# Klipper is now installed
+## Klipper is now installed
 
 You can now run the Klipper canbus query to retrieve the canbus_uuid of your toolhead board:
 
