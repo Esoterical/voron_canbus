@@ -1,4 +1,6 @@
 
+NOTE the 120R resistor on the SB2209. This Jumper is needed as is the matching jumper on your mainboard.
+
 # CanBOOT Config
 
 ![image](https://user-images.githubusercontent.com/124253477/221349624-69abcf3e-dfd8-48d0-b4f6-0ebd620f6b42.png)
