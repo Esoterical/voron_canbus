@@ -62,6 +62,10 @@ dfu-util -R -a 0 -s 0x08000000:force:mass-erase:leave -D ~/CanBoot/out/canboot.b
 
 where the --dfuse-address is the *Internal Flash* and the -d is the USB Device ID is the that you grabbed from the `dfu-util -l` command.
 
+If the result shows an "Error during download get_status" or something, but above it it still has "File downloaded successfullY" then it still flashed OK and you can ignore that error.
+
+![image](https://user-images.githubusercontent.com/124253477/225469341-46f3478a-aa96-4378-8d73-96faa90d561c.png)
+
 **RP2040 based boards:**
 
 To confirm it's in BOOT mode, run an `lsusb` command and you should see the device as a "Raspberry Pi boot" device (or similar)
@@ -77,6 +81,10 @@ make flash FLASH_DEVICE=2e8a:0003
 ```
 
 where the FLASH_DEVICE ID is what you noted down from the `lsusb` command.
+
+If the result shows an "Error during download get_status" or something, but above it it still has "File downloaded successfullY" then it still flashed OK and you can ignore that error.
+
+![image](https://user-images.githubusercontent.com/124253477/225469341-46f3478a-aa96-4378-8d73-96faa90d561c.png)
 
 ## CanBOOT is now installed
 
