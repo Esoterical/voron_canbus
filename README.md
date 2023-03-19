@@ -43,8 +43,11 @@ This will open (or create if it doesn't exist) a file called 'can0' in which you
     bitrate 1000000
     up ip link set can0 txqueuelen 1024
   ```
+ 
 ![image](https://user-images.githubusercontent.com/124253477/221378593-9a0fcdb5-082c-454e-94bd-08a6dc449d34.png)
 
+Press Ctrl+X to save the can0 file.
+ 
 The "allow-hotplug" helps the CAN nodes come back online when doing a "firmware_restart" within Klipper.
 "bitrate" dictates the speed at which your CAN network runs at. Kevin O'Connor (of Klipper fame) recommends a 1M speed for this to help with high-bandwidth and timing-critical operations (ADXL Shaper calibration and mesh probing for example). 
 To complement a high bitrate, setting a high transmit queue length "txqueuelen" of 1024 helps minimise "Timer too close" errors.
