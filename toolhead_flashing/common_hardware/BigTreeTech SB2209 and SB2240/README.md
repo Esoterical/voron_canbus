@@ -1,5 +1,16 @@
 
-NOTE the 120R resistor on the SB2209. This Jumper is needed as is the matching jumper on your mainboard.
+# DFU mode
+1.  Add a jumper as shown in the image below so the board can be powered via a USB connection
+    ![image](https://user-images.githubusercontent.com/124253477/226155311-c90b3571-72db-4f77-8b35-5e825cba9937.png)
+
+2. Connect your device to your Pi via USB
+3. Press and hold the `RESET` and `BOOT` buttons down (button locations shown in step 1)
+    1. Release `RESET` button
+    2. Release `BOOT` button
+4. The device should now be in DFU mode. Verify this via the `lsusb` command, which should look something like this:
+    ```
+    Bus 001 Device 005: ID 0483:df11 STMicroelectronics STM Device in DFU Mode
+    ```
 
 # CanBOOT Config
 
