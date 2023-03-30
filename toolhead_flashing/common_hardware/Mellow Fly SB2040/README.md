@@ -7,7 +7,7 @@ To put the SB2040 into boot mode (for initial flashing), unplug any USB and CAN 
 
 # CanBOOT Config
 
-![image](https://user-images.githubusercontent.com/124253477/221348610-0bff3f39-e340-46a7-b1ef-15a35013247e.png)
+![image](https://user-images.githubusercontent.com/124253477/228765757-5a8bab71-6f57-4467-8400-4bbb9d37e2f6.png)
 
 # Klipper when using CanBOOT
 
