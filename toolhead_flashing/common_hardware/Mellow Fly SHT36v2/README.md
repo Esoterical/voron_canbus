@@ -1,6 +1,9 @@
+*Note, SHT-36 V2 units shipped before 2022-10-18 will use the GD32F103 CPU, later shipments will use the APM32F072 CPU. The settings are exactly the same except for the processor model. Make sure the chosen processor model STM32F072 or STM32F103 matches with your board*
+
+
 # CanBOOT Config
 
-![image](https://user-images.githubusercontent.com/124253477/228767268-01536175-1b44-4429-86f5-3780f6c30c21.png)
+![image](https://user-images.githubusercontent.com/124253477/228767706-e14d572a-b0de-4445-9c7c-11276fc8c4a7.png)
 
 # Klipper when using CanBOOT
 
