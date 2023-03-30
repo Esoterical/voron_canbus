@@ -1,7 +1,7 @@
 
 # CanBOOT Config
 
-![image](https://user-images.githubusercontent.com/124253477/228766385-77a014f9-f4f4-4173-84d9-3d615bf297ac.png)
+![image](https://user-images.githubusercontent.com/124253477/228767194-0ee2d789-13b2-44f4-99aa-f0a7f750c99c.png)
 
 # Klipper when using CanBOOT
 
