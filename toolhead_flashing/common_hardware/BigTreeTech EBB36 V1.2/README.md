@@ -13,7 +13,7 @@
 
 # CanBOOT Config
 
-![image](https://user-images.githubusercontent.com/124253477/221349624-69abcf3e-dfd8-48d0-b4f6-0ebd620f6b42.png)
+![image](https://user-images.githubusercontent.com/124253477/228764838-d75c7bc4-a27f-4c3a-b6c8-ef0e78f49f4f.png)
 
 
 # Klipper when using CanBOOT
