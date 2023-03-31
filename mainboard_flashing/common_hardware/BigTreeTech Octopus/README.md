@@ -1,3 +1,10 @@
+# DFU Mode
+
+To put the octopus into DFU mode you need to put in the boot jumper (purple) and press the reset button (green). The blue is for the "power over USB" jumper and isn't needed if you already have 24v hooked up to the octopus.
+
+![image](https://user-images.githubusercontent.com/124253477/229234235-345ff23e-cc9e-4d61-ab7e-3df27dda1eb5.png)
+
+
 **The BTT Octopus comes in many variations of MCU chip. Make sure you pick the correct config for the MCU chip you have**
 
 # STM32F446
