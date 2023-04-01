@@ -55,8 +55,6 @@ To confirm it's in DFU mode you can run the command `dfu-util -l` and it will sh
 
 You can then flash the CanBOOT firmware to your toolhead board by running
 ```
-cd ~/CanBoot
-make
 dfu-util -R -a 0 -s 0x08000000:force:mass-erase:leave -D ~/CanBoot/out/canboot.bin -d 0483:df11
 ```
 
