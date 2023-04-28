@@ -2,6 +2,9 @@
 
 TEMPFILE=sendit
 
+if ! which nc >/dev/null; then
+    sudo apt install netcat
+fi
 
 
 echo "================================\nOS Details\n================================\nDistro:" >> $TEMPFILE
@@ -25,5 +28,5 @@ lsusb >>$TEMPFILE
 
 echo "Please post the following link to Discord https://discord.gg/voron #can_bus_depot:"
 
-cat $TEMPFILE | (exec 3<>/dev/tcp/termbin.com/9999; cat >&3; cat <&3; exec 3<&-)
+cat $TEMPFILE | nc termbin.com 9999
 rm $TEMPFILE
