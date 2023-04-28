@@ -25,5 +25,5 @@ lsusb >>$TEMPFILE
 
 echo "Please post the following link to Discord https://discord.gg/voron #can_bus_depot:"
 
-cat $TEMPFILE | tb
+cat $TEMPFILE | (exec 3<>/dev/tcp/termbin.com/9999; cat >&3; cat <&3; exec 3<&-)
 rm $TEMPFILE
