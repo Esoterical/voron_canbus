@@ -2,7 +2,7 @@
 
 TEMPFILE=sendit
 
-alias tb="(exec 3<>/dev/tcp/termbin.com/9999; cat >&3; cat <&3; exec 3<&-)"
+
 
 echo "================================\nOS Details\n================================\nDistro:" >> $TEMPFILE
 echo "$(cat /etc/*-release)\n" >> $TEMPFILE
