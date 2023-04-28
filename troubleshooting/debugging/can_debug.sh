@@ -25,5 +25,6 @@ lsusb >>$TEMPFILE
 
 echo "Please post the following link to Discord https://discord.gg/voron #can_bus_depot:"
 
+# This abomination is a 'pure-bash' way of implementing netcat. https://github.com/solusipse/fiche#pure-bash-alternative-to-netcat
 cat $TEMPFILE | (exec 3<>/dev/tcp/termbin.com/9999; cat >&3; cat <&3; exec 3<&-)
 rm $TEMPFILE
