@@ -2,6 +2,8 @@
 
 TEMPFILE=sendit
 
+alias tb="(exec 3<>/dev/tcp/termbin.com/9999; cat >&3; cat <&3; exec 3<&-)"
+
 echo "================================\nOS Details\n================================\nDistro:" >> $TEMPFILE
 echo "$(cat /etc/*-release)\n" >> $TEMPFILE
 
@@ -23,5 +25,5 @@ lsusb >>$TEMPFILE
 
 echo "Please post the following link to Discord https://discord.gg/voron #can_bus_depot:"
 
-cat $TEMPFILE | nc termbin.com 9999
+cat $TEMPFILE | tb
 rm $TEMPFILE
