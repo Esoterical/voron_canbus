@@ -12,7 +12,7 @@ This guide assumes you have a Klipper installation after release 188, not all th
 One way to configure this is as follows (a complete example configuration will be included at the end):
 
 * Turn off interpolation, as this interferes with autotuning. `interpolate: False`
-* Configure the run current to the maximum continuous rating of your motor. That will not actually be used most of the time, but the driver must know what it is. `run_current: 1.0`
+* Configure the run current to about 60% of the maximum continuous rating of your motor. That will not actually be used most of the time, but the driver must know what it is. `run_current: 0.6`
 * `rref: 12000` because that is the value of the resistor on the BTT board.
 * We want to be in stealthChop mode all the time, therefore `stealthchop_threshold: 99999`
 * Now we configure a set of driver hardware registers:
@@ -29,9 +29,9 @@ One way to configure this is as follows (a complete example configuration will b
   * `driver_PWM_OFS: 40` This should be calculated for your particular motor, but this is a sensible default for most pancake extruder steppers.
   * `driver_PWM_REG: 15` This sets the autotuning rate to maximum.
   * `driver_PWM_LIM: 12` This sets the mode-switching current jerk compensation to minimum. This may not be strictly necessary.
-  * `driver_SGT: 35` This may need adjusted for your particular setup, more on this later. This setting is the stallguard threshold, also used for sensorless homing, but on the TMC 2240 it also controls the sensitivity of the autotuning process
-  * `driver_SEMIN: 3` Sets the lower end of the current band for current autotuning. This may not be strictly necessary.
-  * `driver_SEMAX: 3` Sets the lower end of the current band for current autotuning. This may not be strictly necessary.
+  * `driver_SGT: 35` This may need adjusted for your particular setup, more on this later. This setting is the stallguard threshold, also used for sensorless homing, but on the TMC 2240 it also controls the sensitivity of the autotuning process. Especially, increasing this value can lower the driver temperature (the range is -64 to +63).
+  * `driver_SEMIN: 2` Sets the lower end of the current band for current autotuning. This may not be strictly necessary.
+  * `driver_SEMAX: 8` Sets the upper end of the current band for current autotuning. This may not be strictly necessary.
 
 ## Extra configuration by GCODE macro
 
@@ -42,21 +42,27 @@ Now, some of the registers we need to change cannot be written from the configur
 gcode:
   # Enable accurate stall current measurement
   SET_TMC_FIELD STEPPER=extruder FIELD=pwm_meas_sd_enable VALUE=1
+  SET_TMC_FIELD STEPPER=extruder FIELD=sg4_filt_en VALUE=1
   # Set the StealthChop stall detection threshold (may not be completely necessary)
-  SET_TMC_FIELD STEPPER=extruder FIELD=SG4_THRS VALUE=180
+  SET_TMC_FIELD STEPPER=extruder FIELD=SG4_THRS VALUE=10
+  # Set the hold current to zero, and completely switch off the motor when it is not in use
+  SET_TMC_FIELD STEPPER=extruder FIELD=IHOLD VALUE=0
+  SET_TMC_FIELD STEPPER=extruder FIELD=freewheel VALUE=1
   # Set the max expected velocity to a value such that we are unlikely to switch to fullstepping except during a very fast retraction or prime
   SET_TMC_FIELD STEPPER=extruder FIELD=THIGH VELOCITY=50
-  # Never use CoolStep, this is an extruder, we will never be moving fast enough for it to work
-  SET_TMC_FIELD STEPPER=extruder FIELD=TCOOLTHRS VALUE=0
+  # Use CoolStep, but we need a certain step frequency for it to work
+  SET_TMC_FIELD STEPPER=extruder FIELD=TCOOLTHRS VALUE=4000
   # But do switch to PWM autotuning when at high flow
   SET_TMC_FIELD STEPPER=extruder FIELD=TPWMTHRS VELOCITY=1
+  # Allow the motor to freewheel when not in use, means it runs cooler
+  SET_TMC_FIELD STEPPER=extruder FIELD=freewheel VALUE=1
   # Set the temperature prewarning to something reasonable. Cosmetic, Klipper does nothing with this
   SET_TMC_FIELD STEPPER=extruder FIELD=OVERTEMPPREWARNING_VTH VALUE=2885 # 7.7 * 100 C + 2038
   # The following is absolutely critical: set the overvoltage snubber to a sensible voltage.
   # This should be set to about 0.8 V above your power supply's idle voltage.
   # Your PSU voltage can be read from the TMC 2240 by issuing a GCODE command:
   # DUMP_TMC stepper=extruder register=ADC_VSUPPLY_AIN
-  # The voltage is the value of adc_vsupply divided by 0.00732
+  # The voltage is the value of adc_vsupply times by 0.009732
   {% set v = (24.7/0.009732)|int %}
   SET_TMC_FIELD STEPPER=extruder FIELD=OVERVOLTAGE_VTH VALUE={ v }
 ```
@@ -159,7 +165,7 @@ spi_software_miso_pin: sb2240:PB2
 interpolate: False
 #   If true, enable step interpolation (the driver will internally
 #   step at a rate of 256 micro-steps). The default is True.
-run_current: 1.0
+run_current: 0.6
 #   The amount of current (in amps RMS) to configure the driver to use
 #   during stepper movement. This parameter must be provided.
 # hold_current: 0.12
@@ -197,10 +203,10 @@ driver_PWM_GRAD: 12
 driver_PWM_OFS: 40
 driver_PWM_REG: 15
 driver_PWM_LIM: 12
-driver_SGT: 35
-driver_SEMIN: 3
+driver_SGT: 30
+driver_SEMIN: 2
 #driver_SEUP: 3
-driver_SEMAX: 3
+driver_SEMAX: 8
 #driver_SEDN: 2
 #driver_SEIMIN: 0
 #driver_SFILT: 1
@@ -223,10 +229,12 @@ diag0_pin: sb2240:PB3
 [gcode_macro configure_extruder]
 gcode:
   SET_TMC_FIELD STEPPER=extruder FIELD=pwm_meas_sd_enable VALUE=1
-  #SET_TMC_FIELD STEPPER=extruder FIELD=freewheel VALUE=1
-  SET_TMC_FIELD STEPPER=extruder FIELD=SG4_THRS VALUE=180
+  SET_TMC_FIELD STEPPER=extruder FIELD=sg4_filt_en VALUE=1
+  SET_TMC_FIELD STEPPER=extruder FIELD=freewheel VALUE=1
+  SET_TMC_FIELD STEPPER=extruder FIELD=SG4_THRS VALUE=10
+  SET_TMC_FIELD STEPPER=extruder FIELD=IHOLD VALUE=0
   SET_TMC_FIELD STEPPER=extruder FIELD=THIGH VELOCITY=50
-  SET_TMC_FIELD STEPPER=extruder FIELD=TCOOLTHRS VALUE=0
+  SET_TMC_FIELD STEPPER=extruder FIELD=TCOOLTHRS VALUE=4000
   SET_TMC_FIELD STEPPER=extruder FIELD=TPWMTHRS VELOCITY=1
   SET_TMC_FIELD STEPPER=extruder FIELD=OVERTEMPPREWARNING_VTH VALUE=2885 # 7.7 * 100 C + 2038
   {% set v = (24.7/0.009732)|int %}
