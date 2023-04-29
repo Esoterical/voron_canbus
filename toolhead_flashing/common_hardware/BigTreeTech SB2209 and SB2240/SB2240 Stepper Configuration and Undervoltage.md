@@ -137,7 +137,7 @@ min_extrude_temp: 170
 #   The minimum temperature (in Celsius) at which extruder move
 #   commands may be issued. The default is 170 Celsius.
 min_temp: 0
-max_temp: 480
+max_temp: 300
 
 [tmc2240 extruder]
 cs_pin: sb2240:PA15
