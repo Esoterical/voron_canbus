@@ -2,6 +2,8 @@
 
 # Checks for nc command and installs modern version of netcat on Debian based systems if not found.
 if ! command -v nc > /dev/null 2>&1 ; then
+    echo "NetCat not found on system"
+    echo "Installing Netcat with 'sudo apt install netcat-openbsd'"
     sudo apt install netcat-openbsd
 fi
 
