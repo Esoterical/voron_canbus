@@ -1,9 +1,13 @@
 
-The U2C came stock with bad firmware that would cause flashing problems down the line. A fixed firmware can be downloaded from:  
-https://github.com/Arksine/CanBoot/files/10410265/G0B1_U2C_V2.zip  
+The U2C came stock with bad firmware that would cause flashing problems down the line. I have copied a fixed version of the firmware here, you can download it to your pi by running:
+```
+cd ~/
+wget https://github.com/Esoterical/voron_canbus/raw/main/can_adapter/BigTreeTech%20U2C%20v2.1/G0B1_U2C_V2.bin
+```
+
 (you can read about the error at https://github.com/Arksine/CanBoot/issues/44)
 
-Download the .zip file, then extract the G0B1_U2C_V2.bin file and upload the file to your home directory (/home/pi/G0B1_U2C_V2.bin). Then press the boot button on the U2C while plugging it in to your Pi to put it into DFU mode.
+If you used the wget link the firmware should now be in your home directory. Press the boot button on the U2C while plugging it in to your Pi to put it into DFU mode.
 
 ![image](https://user-images.githubusercontent.com/124253477/221551674-3e5754de-5965-40fa-8474-cde8f5790fc5.png)
 
