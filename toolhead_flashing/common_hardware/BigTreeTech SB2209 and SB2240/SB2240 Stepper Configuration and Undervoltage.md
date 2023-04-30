@@ -62,7 +62,8 @@ gcode:
   # This should be set to about 0.8 V above your power supply's idle voltage.
   # Your PSU voltage can be read from the TMC 2240 by issuing a GCODE command:
   # DUMP_TMC stepper=extruder register=ADC_VSUPPLY_AIN
-  # The voltage is the value of adc_vsupply times by 0.009732
+  # The voltage is the value of adc_vsupply multiplied by 0.009732
+  # It is also possible to use adc_vsupply + 82 here, which works out to be the same.
   {% set v = (24.7/0.009732)|int %}
   SET_TMC_FIELD STEPPER=extruder FIELD=OVERVOLTAGE_VTH VALUE={ v }
 ```
