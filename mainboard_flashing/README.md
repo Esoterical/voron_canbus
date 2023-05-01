@@ -39,6 +39,8 @@ You want the Processor, Clock Reference, and Application Start offset to be set 
 
 ![image](https://user-images.githubusercontent.com/124253477/221333924-0a4d3c28-d084-4f8c-b93f-0670114bd090.png)
 
+Press Q to quit the menu (it will ask to save, choose yes).
+
 Compile the firmware with `make`. You will now have a canboot.bin at in your ~/CanBoot/out/canboot.bin.
 
 To flash, connect your mainboard to the Pi via USB then put the mainboard into DFU mode (your mainboard user manual should have instructions on doing this).
