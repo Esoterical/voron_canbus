@@ -13,6 +13,7 @@ DISTRO="$(cat /etc/*-release)"
 KERNEL="$(uname -a)"
 IPA="$(ip a)"
 LSUSB="$(lsusb)"
+BITVERSION="$(getconf LONG_BIT)" bit
 
 # Identification of directories pertainent to CAN fw compilation files.
 CANBOOTDIR="/home/$USER/CanBoot/"
