@@ -13,7 +13,7 @@ DISTRO="$(cat /etc/*-release)"
 KERNEL="$(uname -a)"
 IPA="$(ip a)"
 LSUSB="$(lsusb)"
-BITVERSION="$(getconf LONG_BIT)" bit
+BITVERSION="$(getconf LONG_BIT)" 
 
 # Identification of directories pertainent to CAN fw compilation files.
 CANBOOTDIR="/home/$USER/CanBoot/"
@@ -48,7 +48,7 @@ if [ -d ${KLIPPERDIR} ]; then
 fi
 
 # Formatting outpur
-TXT_OS="${PRETTY_LINE_BRK}\nOS\n${PRETTY_LINE_BRK}\n\nDistro:\n${DISTRO}\n\nKernel:\n${KERNEL}"
+TXT_OS="${PRETTY_LINE_BRK}\nOS\n${PRETTY_LINE_BRK}\n\nDistro:\n${DISTRO}\n\nKernel:\n${KERNEL}\n\nBits:\n${BITVERSION}"
 TXT_NET="\n\n${PRETTY_LINE_BRK}\nNetwork\n${PRETTY_LINE_BRK}\n\ncan0:\n${NETWORK}\n\nip a:\n${IPA}"
 TXT_USB="\n\n${PRETTY_LINE_BRK}\nUSB\n${PRETTY_LINE_BRK}\n\nlsusb:\n${LSUSB}"
 TXT_CAN="\n\n${PRETTY_LINE_BRK}\nCanBoot\n${PRETTY_LINE_BRK}\n\nCanBoot Directory: ${CANFND}"
