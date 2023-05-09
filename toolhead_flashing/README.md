@@ -179,7 +179,7 @@ If you are planning on updating both CanBOOT and Klipper (ie. for changing CAN s
 
 Change to your CanBoot directory with `cd ~/CanBoot`  
 then go into the CanBoot firmware config menu with `make menuconfig`  
-This time **make sure "Build CanBoot deployment application" is configured** with the properly bootloader offset (same as the "Application start offset" that is relevant for your mainboard). Make sure all the rest of your settings are correct for your mainboard.
+This time **make sure "Build CanBoot deployment application" is configured** with the properly bootloader offset (same as the "Application start offset" that is relevant for your toolhead). Make sure all the rest of your settings are correct for your toolhead.
 
 ![image](https://user-images.githubusercontent.com/124253477/223301620-c1fd3d16-04e3-49ce-8d48-5498811f4c46.png)
 
@@ -193,7 +193,7 @@ If you already have a functioning CAN setup, and your [mcu toolhead] canbus_uuid
 
 ![image](https://user-images.githubusercontent.com/124253477/223307559-1da6a2dd-d572-456c-9ee6-0565e9192fea.png)
 
-If you don't have the UUID (or something has gone wrong with the klipper firmware and your toolboard is hung) then you can also double-press the RESET button on your mainboard to force CanBOOT to reboot into canboot mode.
+If you don't have the UUID (or something has gone wrong with the klipper firmware and your toolboard is hung) then you can also double-press the RESET button on your toolhead to force CanBOOT to reboot into canboot mode.
 
 You can verify it is in the proper mode by running `python3 ~/CanBoot/scripts/flash_can.py -q`. If you see a "Detected UUID: xxxxxxxxx, Application: CanBoot" device then it is good to go.
 
@@ -216,7 +216,7 @@ If you already have a functioning CAN setup, and your [mcu toolhead] canbus_uuid
 
 ![image](https://user-images.githubusercontent.com/124253477/223307559-1da6a2dd-d572-456c-9ee6-0565e9192fea.png)
 
-If you don't have the UUID (or something has gone wrong with the klipper firmware and your toolboard is hung) then you can also double-press the RESET button on your mainboard to force CanBOOT to reboot into canboot mode.
+If you don't have the UUID (or something has gone wrong with the klipper firmware and your toolboard is hung) then you can also double-press the RESET button on your toolhead to force CanBOOT to reboot into canboot mode.
 
 You can verify it is in the proper mode by running `python3 ~/CanBoot/scripts/flash_can.py -q`. If you see a "Detected UUID: xxxxxxxxx, Application: CanBoot" device then it is good to go.
 
