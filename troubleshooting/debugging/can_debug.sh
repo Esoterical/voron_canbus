@@ -71,4 +71,4 @@ TXT_KLP="\n\n${PRETTY_LINE_BRK}\nKlipper\n${PRETTY_LINE_BRK}\n\nKlipper Director
 echo "Please post the following link to Discord https://discord.gg/voron #can_bus_depot:"
 
 # Sending to termbin and obtaining link.
-echo "${TXT_OS} ${TXT_NET} ${TXT_USB} ${TXT_CAN} ${TXT_KLP}" | nc termbin.com 9999
+echo "${TXT_OS} ${TXT_NET} ${TXT_USB} ${TXT_LOG} ${TXT_CAN} ${TXT_KLP}" | nc termbin.com 9999
