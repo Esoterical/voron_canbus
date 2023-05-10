@@ -22,6 +22,10 @@ CANFND="NOT Found"
 KLIPPERDIR="/home/$USER/klipper/"
 KLIPPERFND="NOT Found"
 
+PRNTDATA="/home/$USER/printer_data/logs"
+PRNTDATAFND="NOT Found"
+grep "MCU 'mcu' config" ~/printer_data/logs/klippy.log | tail -1
+
 # Checking Linux Network configuration.
 if [ -f /etc/network/interfaces.d/can0 ]; then
     NETWORK=$(cat /etc/network/interfaces.d/can0)
@@ -47,10 +51,19 @@ if [ -d ${KLIPPERDIR} ]; then
     fi
 fi
 
+# Retrieving mcu info from klippy log
+if [ -d ${PRNTDATA} ]; then
+    if [ -f ${KLIPPERDIR}/klippy.log ]; then 
+        PRNTDATAFND="Found\n\nKlippy Log:\n$(grep "MCU 'mcu' config" ~/printer_data/logs/klippy.log | tail -1)"
+    else
+        PRNTDATAFND="Found\n\nKlippy Log: Not Found"
+    fi
+fi
 # Formatting outpur
 TXT_OS="${PRETTY_LINE_BRK}\nOS\n${PRETTY_LINE_BRK}\n\nDistro:\n${DISTRO}\n\nKernel:\n${KERNEL}\n\nBits:\n${BITVERSION}"
 TXT_NET="\n\n${PRETTY_LINE_BRK}\nNetwork\n${PRETTY_LINE_BRK}\n\ncan0:\n${NETWORK}\n\nip a:\n${IPA}"
 TXT_USB="\n\n${PRETTY_LINE_BRK}\nUSB\n${PRETTY_LINE_BRK}\n\nlsusb:\n${LSUSB}"
+TXT_LOG="\n\n${PRETTY_LINE_BRK}\nMCU\n${PRETTY_LINE_BRK}\n\nMCU Info: ${PRINTDATAFND}"
 TXT_CAN="\n\n${PRETTY_LINE_BRK}\nCanBoot\n${PRETTY_LINE_BRK}\n\nCanBoot Directory: ${CANFND}"
 TXT_KLP="\n\n${PRETTY_LINE_BRK}\nKlipper\n${PRETTY_LINE_BRK}\n\nKlipper Directory: ${KLIPPERFND}"
 
