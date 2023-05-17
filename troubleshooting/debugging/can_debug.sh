@@ -59,6 +59,7 @@ if [ -d ${PRNTDATA} ]; then
         KLIPPERCFG="$(tac ~/printer_data/logs/klippy.log | awk '/=======================/&&++k==1,/===== Config file =====/' | tac)" 
     else
         PRNTDATAFND="Found\n\nKlippy Log: Not Found"
+        KLIPPERCFG="Found\n\nKlippy Log: Not Found"
     fi
 fi
 # Formatting outpur
