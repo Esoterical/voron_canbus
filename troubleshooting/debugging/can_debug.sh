@@ -69,7 +69,7 @@ TXT_CANQ="\n\n${PRETTY_LINE_BRK}\nCANQuery\n${PRETTY_LINE_BRK}\n\nCANBus Query:\
 TXT_LOG="\n\n${PRETTY_LINE_BRK}\nMCU\n${PRETTY_LINE_BRK}\n\nMCUInfo:\n${PRNTDATAFND}"
 TXT_CAN="\n\n${PRETTY_LINE_BRK}\nCanBoot\n${PRETTY_LINE_BRK}\n\nCanBoot Directory: ${CANFND}"
 TXT_KLP="\n\n${PRETTY_LINE_BRK}\nKlipper\n${PRETTY_LINE_BRK}\n\nKlipper Directory: ${KLIPPERFND}"
-TXT_ALLKLPPY="\n\n${PRETTY_LINE_BRK}\nEntireKlippy\n${PRETTY_LINE_BRK}\n\nKlippy.log: ${ENTIREKLIPPY}"
+TXT_ALLKLPPY="\n\n${PRETTY_LINE_BRK}\nEntireKlippy\n${PRETTY_LINE_BRK}\n\n${ENTIREKLIPPY}"
 
 # Reminding user of nice place to get help and letting them know the termbin link.
 echo "Please post the following link to Discord https://discord.gg/voron #can_bus_depot:"
