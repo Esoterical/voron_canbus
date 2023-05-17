@@ -1,5 +1,7 @@
 #!/bin/sh
 
+#Credit to @Stu#7589 for the original idea and script
+
 # Checks for nc command and installs modern version of netcat on Debian based systems if not found.
 if ! command -v nc > /dev/null 2>&1 ; then
     echo "NetCat not found on system"
