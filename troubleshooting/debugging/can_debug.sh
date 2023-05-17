@@ -56,7 +56,7 @@ fi
 if [ -d ${PRNTDATA} ]; then
     if [ -f ${PRNTDATA}/klippy.log ]; then 
         PRNTDATAFND="Found\n\nKlippy Log:\n$(grep "MCU 'mcu' config" ~/printer_data/logs/klippy.log | tail -1)"
-        ENTIREKLIPPY="$(cat ~/printer_data/logs/klippy.log)" 
+        #ENTIREKLIPPY="$(cat ~/printer_data/logs/klippy.log)" 
     else
         PRNTDATAFND="Found\n\nKlippy Log: Not Found"
     fi
@@ -69,10 +69,11 @@ TXT_CANQ="\n\n${PRETTY_LINE_BRK}\nCANQuery\n${PRETTY_LINE_BRK}\n\nCANBus Query:\
 TXT_LOG="\n\n${PRETTY_LINE_BRK}\nMCU\n${PRETTY_LINE_BRK}\n\nMCUInfo:\n${PRNTDATAFND}"
 TXT_CAN="\n\n${PRETTY_LINE_BRK}\nCanBoot\n${PRETTY_LINE_BRK}\n\nCanBoot Directory: ${CANFND}"
 TXT_KLP="\n\n${PRETTY_LINE_BRK}\nKlipper\n${PRETTY_LINE_BRK}\n\nKlipper Directory: ${KLIPPERFND}"
-TXT_ALLKLPPY="\n\n${PRETTY_LINE_BRK}\nEntireKlippy\n${PRETTY_LINE_BRK}\n\n${ENTIREKLIPPY}"
+#TXT_ALLKLPPY="\n\n${PRETTY_LINE_BRK}\nEntireKlippy\n${PRETTY_LINE_BRK}\n\n${ENTIREKLIPPY}"
+
 
 # Reminding user of nice place to get help and letting them know the termbin link.
 echo "Please post the following link to Discord https://discord.gg/voron #can_bus_depot:"
 
 # Sending to termbin and obtaining link.
-echo "${TXT_OS} ${TXT_NET} ${TXT_USB} $TXT_CANQ ${TXT_LOG} ${TXT_CAN} ${TXT_KLP} ${TXT_ALLKLPPY}" | nc termbin.com 9999
+echo "${TXT_OS} ${TXT_NET} ${TXT_USB} $TXT_CANQ ${TXT_LOG} ${TXT_CAN} ${TXT_KLP}" | nc termbin.com 9999
