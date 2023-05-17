@@ -14,6 +14,7 @@ KERNEL="$(uname -a)"
 IPA="$(ip a)"
 LSUSB="$(lsusb)"
 BITVERSION="$(getconf LONG_BIT)" 
+CANQUERY="$(~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0)"
 
 # Identification of directories pertainent to CAN fw compilation files.
 CANBOOTDIR="/home/$USER/CanBoot/"
@@ -63,6 +64,7 @@ fi
 TXT_OS="${PRETTY_LINE_BRK}\nOS\n${PRETTY_LINE_BRK}\n\nDistro:\n${DISTRO}\n\nKernel:\n${KERNEL}\n\nBits:\n${BITVERSION}"
 TXT_NET="\n\n${PRETTY_LINE_BRK}\nNetwork\n${PRETTY_LINE_BRK}\n\ncan0:\n${NETWORK}\n\nip a:\n${IPA}"
 TXT_USB="\n\n${PRETTY_LINE_BRK}\nUSB\n${PRETTY_LINE_BRK}\n\nlsusb:\n${LSUSB}"
+TXT_CANQ="\n\n${PRETTY_LINE_BRK}\nCANQuery\n${PRETTY_LINE_BRK}\n\nCANBus Query:\n${CANQUERY}"
 TXT_LOG="\n\n${PRETTY_LINE_BRK}\nMCU\n${PRETTY_LINE_BRK}\n\nMCUInfo:\n${PRNTDATAFND}"
 TXT_CAN="\n\n${PRETTY_LINE_BRK}\nCanBoot\n${PRETTY_LINE_BRK}\n\nCanBoot Directory: ${CANFND}"
 TXT_KLP="\n\n${PRETTY_LINE_BRK}\nKlipper\n${PRETTY_LINE_BRK}\n\nKlipper Directory: ${KLIPPERFND}"
@@ -71,4 +73,4 @@ TXT_KLP="\n\n${PRETTY_LINE_BRK}\nKlipper\n${PRETTY_LINE_BRK}\n\nKlipper Director
 echo "Please post the following link to Discord https://discord.gg/voron #can_bus_depot:"
 
 # Sending to termbin and obtaining link.
-echo "${TXT_OS} ${TXT_NET} ${TXT_USB} ${TXT_LOG} ${TXT_CAN} ${TXT_KLP}" | nc termbin.com 9999
+echo "${TXT_OS} ${TXT_NET} ${TXT_USB} $TXT_CANQ ${TXT_LOG} ${TXT_CAN} ${TXT_KLP}" | nc termbin.com 9999
