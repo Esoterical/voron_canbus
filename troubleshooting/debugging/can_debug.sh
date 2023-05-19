@@ -14,6 +14,7 @@ PRETTY_LINE_BRK="===============================================================
 DISTRO="$(cat /etc/*-release)"
 KERNEL="$(uname -a)"
 IPA="$(ip a)"
+CANSTATS="$(ip -details -statistics link show can0)"
 LSUSB="$(lsusb)"
 BITVERSION="$(getconf LONG_BIT)" 
 CANQUERY="$(~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0)"
@@ -66,7 +67,7 @@ if [ -d ${PRNTDATA} ]; then
 fi
 # Formatting outpur
 TXT_OS="${PRETTY_LINE_BRK}\nOS\n${PRETTY_LINE_BRK}\n\nDistro:\n${DISTRO}\n\nKernel:\n${KERNEL}\n\nBits:\n${BITVERSION}"
-TXT_NET="\n\n${PRETTY_LINE_BRK}\nNetwork\n${PRETTY_LINE_BRK}\n\ncan0:\n${NETWORK}\n\nip a:\n${IPA}"
+TXT_NET="\n\n${PRETTY_LINE_BRK}\nNetwork\n${PRETTY_LINE_BRK}\n\ncan0:\n${NETWORK}\n\nip a:\n${IPA}\n\ncan0 ifstats:\n${CANSTATS}"
 TXT_USB="\n\n${PRETTY_LINE_BRK}\nUSB\n${PRETTY_LINE_BRK}\n\nlsusb:\n${LSUSB}"
 TXT_CANQ="\n\n${PRETTY_LINE_BRK}\nCANQuery\n${PRETTY_LINE_BRK}\n\nCANBus Query:\n${CANQUERY}"
 TXT_LOG="\n\n${PRETTY_LINE_BRK}\nMCU\n${PRETTY_LINE_BRK}\n\nMCUInfo:\n${PRNTDATAFND}"
