@@ -1,6 +1,6 @@
 # CanBOOT Config
 
-![image](https://user-images.githubusercontent.com/124253477/221387703-db414f10-e0c9-4b81-93f6-306a0de92d2e.png)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/2bcacb62-eb25-47ef-818c-de6506d94dee)
 
 # Klipper USB-CAN-Bridge when using CanBOOT or stock bootloader
 
