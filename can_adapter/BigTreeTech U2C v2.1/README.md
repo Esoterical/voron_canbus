@@ -9,7 +9,7 @@ wget https://github.com/Esoterical/voron_canbus/raw/main/can_adapter/BigTreeTech
 
 If you used the wget link the firmware should now be in your home directory. Press the boot button on the U2C while plugging it in to your Pi to put it into DFU mode.
 
-![image](https://user-images.githubusercontent.com/124253477/221551674-3e5754de-5965-40fa-8474-cde8f5790fc5.png)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/ad3a5d48-fc30-4dea-9b9e-96fb1eec37e3)
 
 Confirm it is connected in DFU mode by running `dfu-util -l`. You should see the devive:
 
