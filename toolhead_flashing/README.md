@@ -90,11 +90,11 @@ CanBOOT should now be successfully flashed. Take your toolhead out of DFU mode (
 
 Wire up your toolhead power (24v and gnd) and CAN (CANH/CANL) wires, then the following command to see if the toolhead board is on the CAN network and waiting in CanBOOT mode
 
-`python3 ~/CanBoot/scripts/flash_can.py -i can0 -q`
+`~/klippy-env/bin/python3 ~/klipper/scripts/canbus_query.py can0`
 
-You should see a "Detected UUID" with "Application: CanBoot"
+You should see a "Found UUID" with "Application: CanBoot"
 
-![image](https://user-images.githubusercontent.com/124253477/221345166-bd920eef-8ce9-48ff-9f31-8ebe8da48225.png)
+![image](https://github.com/Esoterical/voron_canbus/assets/2089/47589b13-1543-4eae-ba44-59c5761e4d75)
 
 If you see the above, take note of the UUID and move on to flashing Klipper to the toolhead board.
 
