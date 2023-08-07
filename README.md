@@ -39,7 +39,7 @@ This step usually comes later, but as it is common across all different variants
 This will open (or create if it doesn't exist) a file called 'can0' in which you need to enter the following information:
   ```
   allow-hotplug can0
-    iface can0 can static
+  iface can0 can static
     bitrate 1000000
     up ip link set can0 txqueuelen 1024
   ```
