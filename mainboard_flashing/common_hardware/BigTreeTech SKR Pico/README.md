@@ -1,13 +1,13 @@
 
-# CanBOOT Config
+# Katapult Config
 
 ![image](https://user-images.githubusercontent.com/124253477/221390508-c6fdd63a-f4af-46e1-b100-ee90dd723bf8.png)
 
-# Klipper USB-CAN-Bridge when using CanBOOT or stock bootloader
+# Klipper USB-CAN-Bridge when using Katapult or stock bootloader
 
 ![image](https://user-images.githubusercontent.com/124253477/221390518-b7f15c58-6beb-43bd-a47b-d6823956e997.png)
 
-# Klipper USB-CAN-Bridge when **NOT** using CanBOOT or stock bootloader
+# Klipper USB-CAN-Bridge when **NOT** using Katapult or stock bootloader
 
 ![image](https://user-images.githubusercontent.com/124253477/221390533-cdc390ca-eaaf-4771-a9b7-cad1d2cbfaee.png)
 

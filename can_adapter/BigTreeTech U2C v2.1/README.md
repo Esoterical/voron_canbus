@@ -5,7 +5,7 @@ cd ~/
 wget https://github.com/Esoterical/voron_canbus/raw/main/can_adapter/BigTreeTech%20U2C%20v2.1/G0B1_U2C_V2.bin
 ```
 
-(you can read about the error at https://github.com/Arksine/CanBoot/issues/44)
+(you can read about the error at https://github.com/Arksine/katapult/issues/44)
 
 If you used the wget link the firmware should now be in your home directory. Press the boot button on the U2C while plugging it in to your Pi to put it into DFU mode.
 

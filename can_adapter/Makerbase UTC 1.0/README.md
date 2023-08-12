@@ -17,13 +17,13 @@ Identify the SWD header on your board, highlighted below:
 
 ![image](https://user-images.githubusercontent.com/124253477/221704780-4e5a6603-b258-4876-9fb6-516029574300.png)
 
-Note that Pin 1 is on the top right.  
-You want to connect to your STLink it like such:  
-Pin 1: SWDIO  
-Pin 2: +3.3V  
-Pin 3: SWCLK  
-Pin 4: Ground  
-Pin 5: Reset  
+Note that Pin 1 is on the top right.
+You want to connect to your STLink it like such:
+Pin 1: SWDIO
+Pin 2: +3.3V
+Pin 3: SWCLK
+Pin 4: Ground
+Pin 5: Reset
 Once that is all connected. Connect your STLink device to your USB port and open up
 STM32CubeProgrammer. Set the interface to ST-Link, setup the configuration like
 below, and hit connect. If you’ve never connected this STLink before, reset mode is the
@@ -51,23 +51,23 @@ CandleLight is better for this sort of thing. We will be using marckleinebudde�
 multichannel fork – note that it is still a WIP fork, so there may be bugs, but it seems to
 work well enough for our purposes
 
-cd ~ 
-sudo apt-get install gcc-arm-none-eabi  
-git clone https://github.com/marckleinebudde/candleLight_fw  
-cd ~/candleLight_fw  
-git checkout multichannel  
-mkdir build  
-cd build  
-cmake .. -DCMAKE_TOOLCHAIN_FILE=../cmake/gcc-arm-none-eabi-8-2019-q3-update.cmake  
-make budgetcan_fw  
+cd ~
+sudo apt-get install gcc-arm-none-eabi
+git clone https://github.com/marckleinebudde/candleLight_fw
+cd ~/candleLight_fw
+git checkout multichannel
+mkdir build
+cd build
+cmake .. -DCMAKE_TOOLCHAIN_FILE=../cmake/gcc-arm-none-eabi-8-2019-q3-update.cmake
+make budgetcan_fw
 
-now plugin your UTC in boot mode and type:  
-make flash-budgetcan_fw  
+now plugin your UTC in boot mode and type:
+make flash-budgetcan_fw
 
 After that you can reset your UTC and you can setup your can-bus similarly to a U2C or
-UTOC setup.  
+UTOC setup.
 If you do wish to use klipper instead of CandelLight, you can use the following settings
-for CanBoot and klipper respectively
+for katapult and klipper respectively
 
 ![image](https://user-images.githubusercontent.com/124253477/221706131-6c538194-5a92-42e4-8078-e6ae88f78028.png)
 
