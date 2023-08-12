@@ -117,17 +117,17 @@ Once you have the firmware configured, run a `make clean` to make sure there are
 
 ## If you have Katapult installed
 
-Run a `python3 ~/katapult/scripts/flash_can.py -i can0 -q` and take note of the Katapult device that it shows:
+Run a `python3 ~/katapult/scripts/flashtool.py -i can0 -q` and take note of the Katapult device that it shows:
 
 ![image](https://user-images.githubusercontent.com/124253477/221345166-bd920eef-8ce9-48ff-9f31-8ebe8da48225.png)
 
 Then run the following command to install klipper firmware via Katapult. Use the UUID you just retrieved in the above query.
 
-`python3 ~/katapult/scripts/flash_can.py -i can0 -u b6d9de35f24f -f ~/klipper/out/klipper.bin`
+`python3 ~/katapult/scripts/flashtool.py -i can0 -u b6d9de35f24f -f ~/klipper/out/klipper.bin`
 
-where the "-u" ID is what you found from the "flash_can.py -i can0 -q" query.
+where the "-u" ID is what you found from the "flashtool.py -i can0 -q" query.
 
-One the flash has been completed you can run the `python3 ~/katapult/scripts/flash_can.py -i can0 -q` command again. This time you should see the same UUID but with "Application: Klipper" instead of "Application: Katapult"
+One the flash has been completed you can run the `python3 ~/katapult/scripts/flashtool.py -i can0 -q` command again. This time you should see the same UUID but with "Application: Klipper" instead of "Application: Katapult"
 
 ![image](https://user-images.githubusercontent.com/124253477/221346236-5633f522-97b6-43e7-a675-82f3e483e3a4.png)
 
@@ -188,19 +188,19 @@ So to update your Katapult, you just need to flash this deployer.bin file via yo
 
 If you already have a functioning CAN setup, and your [mcu toolhead] canbus_uuid is in your printer.cfg, then you can force Katapult to reboot into Katapult mode by running:
 
-`python3 ~/katapult/scripts/flash_can.py -i can0 -u yourtoolheaduuid -r`
+`python3 ~/katapult/scripts/flashtool.py -i can0 -u yourtoolheaduuid -r`
 
 ![image](https://user-images.githubusercontent.com/124253477/223307559-1da6a2dd-d572-456c-9ee6-0565e9192fea.png)
 
 If you don't have the UUID (or something has gone wrong with the klipper firmware and your toolboard is hung) then you can also double-press the RESET button on your toolhead to force Katapult to reboot into Katapult mode.
 
-You can verify it is in the proper mode by running `python3 ~/katapult/scripts/flash_can.py -q`. If you see a "Detected UUID: xxxxxxxxx, Application: Katapult" device then it is good to go.
+You can verify it is in the proper mode by running `python3 ~/katapult/scripts/flashtool.py -q`. If you see a "Detected UUID: xxxxxxxxx, Application: Katapult" device then it is good to go.
 
 ![image](https://user-images.githubusercontent.com/124253477/223307593-b96dc642-9fa0-494b-93b8-a155d14bb535.png)
 
 Once you are at this stage you can flash the deployer.bin by running:
 
-`python3 ~/katapult/scripts/flash_can.py -i can0 -u b6d9de35f24f -f ~/katapult/out/deployer.bin`
+`python3 ~/katapult/scripts/flashtool.py -i can0 -u b6d9de35f24f -f ~/katapult/out/deployer.bin`
 
 and your Katapult should update.
 
@@ -210,21 +210,21 @@ To update Klipper, first compile the new Klipper firmware by running the same wa
 
 If you already have a functioning CAN setup, and your [mcu toolhead] canbus_uuid is in your printer.cfg, then you can force Katapult to reboot into Katapult mode by running:
 
-`python3 ~/katapult/scripts/flash_can.py -i can0 -u yourtoolheaduuid -r`
+`python3 ~/katapult/scripts/flashtool.py -i can0 -u yourtoolheaduuid -r`
 
 ![image](https://user-images.githubusercontent.com/124253477/223307559-1da6a2dd-d572-456c-9ee6-0565e9192fea.png)
 
 If you don't have the UUID (or something has gone wrong with the klipper firmware and your toolboard is hung) then you can also double-press the RESET button on your toolhead to force Katapult to reboot into Katapult mode.
 
-You can verify it is in the proper mode by running `python3 ~/katapult/scripts/flash_can.py -q`. If you see a "Detected UUID: xxxxxxxxx, Application: Katapult" device then it is good to go.
+You can verify it is in the proper mode by running `python3 ~/katapult/scripts/flashtool.py -q`. If you see a "Detected UUID: xxxxxxxxx, Application: Katapult" device then it is good to go.
 
 ![image](https://user-images.githubusercontent.com/124253477/223307593-b96dc642-9fa0-494b-93b8-a155d14bb535.png)
 
 Then you can run the same command you used to initially flash Klipper:
 
-`python3 ~/katapult/scripts/flash_can.py -i can0 -u b6d9de35f24f -f ~/klipper/out/klipper.bin`
+`python3 ~/katapult/scripts/flashtool.py -i can0 -u b6d9de35f24f -f ~/klipper/out/klipper.bin`
 
-One the flash has been completed you can run the `python3 ~/katapult/scripts/flash_can.py -i can0 -q` command again. This time you should see the same UUID but with "Application: Klipper" instead of "Application: Katapult"
+One the flash has been completed you can run the `python3 ~/katapult/scripts/flashtool.py -i can0 -q` command again. This time you should see the same UUID but with "Application: Klipper" instead of "Application: Katapult"
 
 ![image](https://user-images.githubusercontent.com/124253477/221346236-5633f522-97b6-43e7-a675-82f3e483e3a4.png)
 

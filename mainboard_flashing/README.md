@@ -97,7 +97,7 @@ If the above command didn't show a 'katapult' device, or threw a "no such file o
 
 Run this command to install klipper firmware via Katapult via USB. Use the device ID you just retrieved in the above ls command.
 
-`python3 ~/katapult/scripts/flash_can.py -f ~/klipper/out/klipper.bin -d /dev/serial/by-id/usb-katapult_stm32f446xx_37001A001851303439363932-if00`
+`python3 ~/katapult/scripts/flashtool.py -f ~/klipper/out/klipper.bin -d /dev/serial/by-id/usb-katapult_stm32f446xx_37001A001851303439363932-if00`
 
 ## If you are running a stock bootloader and flashing via SD card INSTEAD of Katapult
 
@@ -158,7 +158,7 @@ So to update your Katapult, you just need to flash this deployer.bin file via yo
 
 If you already have a functioning CAN setup, and your [mcu] canbus_uuid is in your printer.cfg, then you can force Katapult to reboot into Katapult mode by running:
 
-`python3 ~/katapult/scripts/flash_can.py -i can0 -u yourmainboarduuid -r`
+`python3 ~/katapult/scripts/flashtool.py -i can0 -u yourmainboarduuid -r`
 
 ![image](https://user-images.githubusercontent.com/124253477/223303347-385ec07c-5211-42d3-b985-4dc38c2864ec.png)
 
@@ -170,7 +170,7 @@ You can verify it is in the proper mode by running `ls /dev/serial/by-id`. If yo
 
 Once you are at this stage you can flash the deployer.bin by running:
 
-`python3 ~/katapult/scripts/flash_can.py -f ~/katapult/out/deployer.bin -d /dev/serial/by-id/usb-katapult_stm32f446xx_37001A001851303439363932-if00`
+`python3 ~/katapult/scripts/flashtool.py -f ~/katapult/out/deployer.bin -d /dev/serial/by-id/usb-katapult_stm32f446xx_37001A001851303439363932-if00`
 
 and your Katapult should update.
 
@@ -182,7 +182,7 @@ To update Klipper, first compile the new Klipper firmware by running the same wa
 
 If you already have a functioning CAN setup, and your [mcu] canbus_uuid is in your printer.cfg, then you can force Katapult to reboot into Katapult mode by running:
 
-`python3 ~/katapult/scripts/flash_can.py -i can0 -u yourmainboarduuid -r`
+`python3 ~/katapult/scripts/flashtool.py -i can0 -u yourmainboarduuid -r`
 
 ![image](https://user-images.githubusercontent.com/124253477/223303347-385ec07c-5211-42d3-b985-4dc38c2864ec.png)
 
@@ -194,7 +194,7 @@ You can verify it is in the proper mode by running `ls /dev/serial/by-id`. If yo
 
 Then you can run the same command you used to initially flash Klipper:
 
-`python3 ~/katapult/scripts/flash_can.py -f ~/klipper/out/klipper.bin -d /dev/serial/by-id/usb-katapult_stm32f446xx_37001A001851303439363932-if00`
+`python3 ~/katapult/scripts/flashtool.py -f ~/klipper/out/klipper.bin -d /dev/serial/by-id/usb-katapult_stm32f446xx_37001A001851303439363932-if00`
 
 ## Updating Klipper Firmware via other methods
 
