@@ -15,6 +15,7 @@ sudo apt upgrade
 sudo apt install python3 python3-pip python3-can
 pip3 install pyserial
 ```
+**It looks like the pip3 command may not be needed on latest versions of raspiOS (Bookworm). If you get "error: externally-managed-environment" then just move on and it'll probably be fine**
 
 As mentioned in the main guide, you can either use CanBOOT on your toolhead to facilitate flashing over CAN, or you can go without and have the board boot straight into klipper.
 
