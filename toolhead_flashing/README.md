@@ -95,7 +95,7 @@ Katapult should now be successfully flashed. Take your toolhead out of DFU mode 
 
 Wire up your toolhead power (24v and gnd) and CAN (CANH/CANL) wires, then the following command to see if the toolhead board is on the CAN network and waiting in Katapult mode
 
-`~/klippy-env/bin/python3 ~/klipper/scripts/canbus_query.py can0`
+`python3 ~/katapult/scripts/flashtool.py -i can0 -q`
 
 You should see a "Found UUID" with "Application: Katapult"
 
