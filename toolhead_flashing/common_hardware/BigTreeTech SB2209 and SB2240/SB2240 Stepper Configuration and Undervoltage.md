@@ -35,7 +35,7 @@ One way to configure this is as follows (a complete example configuration will b
 
 ## Extra configuration by GCODE macro
 
-Now, some of the registers we need to change cannot be written from the configuration, so we need a gcode macro. This must be called from your `PRINT_START`, or before any other use of the extruder.
+Certain registers that require modification cannot be altered through the configuration settings. Consequently, we must employ a Gcode macro for this purpose. It should be invoked either during the `PRINT_START` event or prior to any other utilization of the extruder. Alternatively, you can execute this macro during Klipper's startup using the `delayed_gcode` feature.
 
 ```
 [gcode_macro configure_extruder]
@@ -66,6 +66,12 @@ gcode:
   # It is also possible to use adc_vsupply + 82 here, which works out to be the same.
   {% set v = (24.7/0.009732)|int %}
   SET_TMC_FIELD STEPPER=extruder FIELD=OVERVOLTAGE_VTH VALUE={ v }
+
+
+[delayed_gcode configure_extruder_startup]
+initial_duration: 1
+gcode:
+        configure_extruder
 ```
 
 ## Hotend configuration
@@ -240,4 +246,9 @@ gcode:
   SET_TMC_FIELD STEPPER=extruder FIELD=OVERTEMPPREWARNING_VTH VALUE=2885 # 7.7 * 100 C + 2038
   {% set v = (24.7/0.009732)|int %}
   SET_TMC_FIELD STEPPER=extruder FIELD=OVERVOLTAGE_VTH VALUE={ v }
+
+[delayed_gcode configure_extruder_startup]
+initial_duration: 1
+gcode:
+        configure_extruder
 ```
