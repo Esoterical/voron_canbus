@@ -12,17 +12,17 @@
     Bus 001 Device 005: ID 0483:df11 STMicroelectronics STM Device in DFU Mode
     ```
 
-# CanBOOT Config
+# Katapult Config
 
 ![image](https://user-images.githubusercontent.com/124253477/228764307-36da2c3a-393d-43d9-b370-4eb31d231c27.png)
 
 
-# Klipper when using CanBOOT
+# Klipper when using Katapult
 
 ![image](https://user-images.githubusercontent.com/124253477/221349102-cd2f4060-9c29-44aa-b722-9883262b2fc3.png)
 
 
-# Klipper when **NOT** using CanBOOT
+# Klipper when **NOT** using Katapult
 
 ![image](https://user-images.githubusercontent.com/124253477/221349111-570dedac-fa9b-4706-b0d3-3bbc773461f0.png)
 

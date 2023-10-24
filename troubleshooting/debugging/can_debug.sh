@@ -16,11 +16,11 @@ KERNEL="$(uname -a)"
 IPA="$(ip a)"
 CANSTATS="$(ip -details -statistics link show can0)"
 LSUSB="$(lsusb)"
-BITVERSION="$(getconf LONG_BIT)" 
+BITVERSION="$(getconf LONG_BIT)"
 CANQUERY="$(~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0)"
 
 # Identification of directories pertainent to CAN fw compilation files.
-CANBOOTDIR="/home/$USER/CanBoot/"
+KATAPULTDIR="/home/$USER/katapult/"
 CANFND="NOT Found"
 
 KLIPPERDIR="/home/$USER/klipper/"
@@ -38,17 +38,17 @@ else
 fi
 
 # Retrieving bootloader compilation configuration.
-if [ -d ${CANBOOTDIR} ]; then
-    if [ -f ${CANBOOTDIR}/.config ]; then 
-        CANFND="Found\n\nCanBoot Config:\n$(cat ${CANBOOTDIR}/.config)"
+if [ -d ${KATAPULTDIR} ]; then
+    if [ -f ${KATAPULTDIR}/.config ]; then
+        CANFND="Found\n\nKatapult Config:\n$(cat ${KATAPULTDIR}/.config)"
     else
-        CANFND="Found\n\nCanBoot Make Config: Not Found"
+        CANFND="Found\n\nKatapult Make Config: Not Found"
     fi
 fi
 
 # Retrieving klipper firmware compilation configuration.
 if [ -d ${KLIPPERDIR} ]; then
-    if [ -f ${KLIPPERDIR}/.config ]; then 
+    if [ -f ${KLIPPERDIR}/.config ]; then
         KLIPPERFND="Found\n\nKlipper Config:\n$(cat ${KLIPPERDIR}/.config)"
     else
         KLIPPERFND="Found\n\nKlipper Make Config: Not Found"
@@ -57,9 +57,9 @@ fi
 
 # Retrieving mcu info from klippy log
 if [ -d ${PRNTDATA} ]; then
-    if [ -f ${PRNTDATA}/klippy.log ]; then 
+    if [ -f ${PRNTDATA}/klippy.log ]; then
         PRNTDATAFND="Found\n\nKlippy Log:\n$(grep "MCU 'mcu' config" ~/printer_data/logs/klippy.log | tail -1)"
-        KLIPPERCFG="$(tac ~/printer_data/logs/klippy.log | awk '/=======================/&&++k==1,/===== Config file =====/' | tac)" 
+        KLIPPERCFG="$(tac ~/printer_data/logs/klippy.log | awk '/=======================/&&++k==1,/===== Config file =====/' | tac)"
     else
         PRNTDATAFND="Found\n\nKlippy Log: Not Found"
         KLIPPERCFG="Found\n\nKlippy Log: Not Found"
@@ -71,7 +71,7 @@ TXT_NET="\n\n${PRETTY_LINE_BRK}\nNetwork\n${PRETTY_LINE_BRK}\n\ncan0:\n${NETWORK
 TXT_USB="\n\n${PRETTY_LINE_BRK}\nUSB\n${PRETTY_LINE_BRK}\n\nlsusb:\n${LSUSB}"
 TXT_CANQ="\n\n${PRETTY_LINE_BRK}\nCANQuery\n${PRETTY_LINE_BRK}\n\nCANBus Query:\n${CANQUERY}"
 TXT_LOG="\n\n${PRETTY_LINE_BRK}\nMCU\n${PRETTY_LINE_BRK}\n\nMCUInfo:\n${PRNTDATAFND}"
-TXT_CAN="\n\n${PRETTY_LINE_BRK}\nCanBoot\n${PRETTY_LINE_BRK}\n\nCanBoot Directory: ${CANFND}"
+TXT_CAN="\n\n${PRETTY_LINE_BRK}\nKatapult\n${PRETTY_LINE_BRK}\n\nKatapult Directory: ${CANFND}"
 TXT_KLP="\n\n${PRETTY_LINE_BRK}\nKlipper\n${PRETTY_LINE_BRK}\n\nKlipper Directory: ${KLIPPERFND}"
 TXT_CFG="\n\n${PRETTY_LINE_BRK}\nKlipperConfig\n${PRETTY_LINE_BRK}\n\n${KLIPPERCFG}"
 
