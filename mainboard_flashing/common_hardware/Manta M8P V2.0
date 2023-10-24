@@ -1,0 +1,33 @@
+BTT Manta M8P V2.0 with CB1 CM4
+IMPORTANT note - you will need to add a jumper to the 120R (J14) on both the mainboard and the CAN toolhead.
+STM32H723
+CanBOOT Config (note this just uses the default USB communication interface)
+
+
+Micro-controller ARchitecture (STMicroelectronics STM32)--->
+Processor model (STM32H723)--->
+Build Katapult deployment application (Do not build)--->
+Clock Reference (25 MHz cristal)--->
+Application start offset (128KiB offset)--->
+USB ids --->
+() GPIO pins to set on bootloader entry
+[*] Support bootloader entry on rapid double click of reset button
+[ ] Enable bootloader entry on button (or gpio) state
+[*] Enable Status LED
+(PA13) Status LED GPIO Pin
+
+
+Klipper Config uses USB-CAN-Bridge
+[*] Enable extral low-level configuation options
+ Micro-controller Architecture (STMicroelectronics STM32)  --->
+    Processor model (STM32H723)  --->
+    Bootloader offset (128KiB bootloader (SKR SE BX v2.0))  --->
+    Clock Reference (25 MHz crystal)  --->
+    Communication interface (USB to CAN bus bridge (USB on PA11/PA12))  --->
+    CAN bus interface (CAN bus (on PD0/PD1))  --->
+    USB ids  --->
+(1000000) CAN bus speed
+(PA13) GPIO pins to set at micro-controller startup
+
+IMPORTANT NOTE :
+When following the Esoterical tutorial, I found that after following it to the end, I had to reflash the Canboot and Klipper again....
