@@ -16,4 +16,4 @@ If it shows up to an `lsusb` but an `ip link show can0` shows "Device can0 does 
 
 Check that the Pi-to-mainboard USB cable hasn't come loose or anything, and that the mainboard is actually powered up. An `lsusb` should show the mainboard up as a can adapter device. If it's not showing as a can adapter device then do an `ls /dev/serial/by-id`. If you see your mainboard there then either it's still in Katapult mode, or you haven't flashed usb-can-bridge klipper to it (or the flash didn't take). If that is the case then reflash your mainboard as per the voron_canbus/mainboard_flashing instructions and take extra care that the klipper `make menuconfig` settings are 100% correct for your board.
 
-[Return to Troubleshooting](https://github.com/Esoterical/voron_canbus/tree/main/troubleshooting)
+[Return to Troubleshooting](../)
