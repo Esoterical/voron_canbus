@@ -4,19 +4,8 @@ So, you've followed the instructions but things just aren't working they way the
 
 There won't be any particular order to the sections. Maybe I'll make it flow better in the future, maybe not.
 
-## No CAN network when running a query or flash attempt
-
-If you run a `python3 ~/katapult/scripts/flashtool.py -i can0 -q` or `~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0` or are trying to flash a device with a command like `python3 ~/katapult/scripts/flashtool.py -i can0 -u b6d9de35f24f -f ~/klipper/out/klipper.bin` but you are seeing an error along the lines of "unable to bind socket to can0" or "failed to transmit, network is down" then your can0 "interface" on your Pi isn't running.
-
-![image](https://user-images.githubusercontent.com/124253477/235117239-009ab013-d9ba-4524-81d4-a73c8990c2a7.png)
-
-First thing to check is your `/etc/network/interfaces.d/can0` file. Make sure it exists and you have no typos in it.
-
-### Seperate USB-CAN adapter (U2C/UTOC/etc.)
-
-If you are using a seprate USB to CAN adapter (U2C/UTOC/etc.) then double check that the USB cable connecting the devices is plugged in and not loose. If you _never_ get a response to a query (ie. the can0 interface has never shown at all) then you may have a dodgy USB cable. I have personally seen a handful of usb-c cables that don't actually have the data pins hooked up (they are power only). If the adapter doesn't show to an `lsusb` then your cable is probably dodgy.
-
-If it shows up to an `lsusb` but an `ip link show can0` shows "Device can0 does not exist" then you might have a bad firmware or something on your device. Reflash it with the appropriate firmware either from a manufacturer github repository or other source (like candlelight). If there are instructions back on the voron_canbus/can_adapter folder then follow those.
+No can0 network when flashing
+If you see something like "unable to bind socket to can0" when attempting to flash, read [here](../no_can0.md)
 
 ### USB-CAN-Bridge mode mainboard
 
