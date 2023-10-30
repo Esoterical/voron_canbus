@@ -52,5 +52,23 @@ If you have a PT100 or PT1000 sensor and a board with the MAX31865 chip make sur
 
 If none of these options helped then make sure your thermistor hasn't broken a wire or crimp, and also have a look at your klippy.log and it'll tell you exactly what temperature sensor is the one with issues. Maybe it's not even your hotend thermistor, and maybe you've bumped loose your bed thermsitor or something.
 
+### "MCU: Unable to connect"
+
+Klipper won't start, and you get the error "MCU'yourMCUname': Unable to connect"
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/491e4654-981b-4a8b-be36-6d65c907fa95)
+
+I'm going to assume you have looked at the above steps and your config file has all the correct UUID values against the correct MCU section. If that is the case then we need to check a few things.
+
+First: run an `ip a` on your Pi and make sure it shows a can0 interface. If you don't see a can0 interface listed then check through the [can0 troubleshooting steps](./no_can0.md)
+
+If the can0 network shows up fine, then we need to see if your device is actually online proplerly. We don't want Klipper actually attempting to start at this point, so the easiest way is to rename your `printer.cfg` to `printer.old` or something, then shudown your pi with `sudo shutdown now` then turn off **all** the power to your printer. Wait 30 seconds or so then turn it back on. After a minute or two your Pi should be online again so SSH back in and run `~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0` to do a query of all canbus devices. 
+
+If no UUIDs show up (or you get only the mainboard UUID and not your toolhead) then check the [no UUID troubleshooting steps](./no_uuid.md). 
+
+If your toolhead UUID shows up but it says `Application: Katapult` (or `Application: Canboot`) then your toolhead is on the CAN network but is in bootloader mode. Continue flashing with the toolhead flashing guide, starting at the ["Installing Klipper" section](../toolhead_flashing#installing-klipper).
+
+If all your devices show up fine, and show `Application: Klipper` as they should, then rename your `printer.old` file back to `printer.cfg` and do a firmware restart. It might be that it all just works now and it needed a power cycle. If it still doesn't work then you may have an error in your printer.cfg (the mainboard UUID and toolhead UUID being swapped around is a common one). Go back to the **MCU** section above.
+
 
 [Return to Troubleshooting](./)
