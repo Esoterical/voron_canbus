@@ -5,7 +5,7 @@ So, you've followed the instructions but things just aren't working they way the
 There won't be any particular order to the sections. Maybe I'll make it flow better in the future, maybe not.
 
 No can0 network when flashing
-If you see something like "unable to bind socket to can0" when attempting to flash, read [here](../no_can0.md)
+If you see something like "unable to bind socket to can0" when attempting to flash, read [here](/no_can0.md)
 
 ### USB-CAN-Bridge mode mainboard
 
