@@ -14,3 +14,20 @@ If you see something like "unable to bind socket to can0" when attempting to fla
 So you're can0 interface is online, but a query returns no UUIDs? read [here](./no_uuid.md)
 
 
+### Klipper won't start
+
+You have everything flashed fine, and the UUID's all showed up, but klipper refuses to start, read [here](./klipper_fail_to_start.md)
+
+
+### Timeout during homing/probing
+
+Klipper starts, but sometimes during a homing command or levelling/bed mesh Klipper will halt with "Timeout during homing/probing", read [here](./timeout_during_homing_probing.md)
+
+### Lost connection to MCU
+
+Klipper was running, maybe even printing for a while, but all of a sudden it failed mid print with "Lost connection to MCU" error, read [here](./lost_connection_to_mcu.md)
+
+
+### Timer too close
+
+Sometimes it prints fine, sometimes it fails with "Timer too close" error, read [here](./timer_too_close.md)
