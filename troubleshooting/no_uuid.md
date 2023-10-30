@@ -14,3 +14,5 @@ I'm going to assume you are using Katapult from this point on. If this had the c
 If it's sitting in Katapult but you still can't see a UUID then your problem is likely down to wiring. Check that you have the 120ohm resistor/jumper in at both ends (some mainboards like the Octopus have the resistor prebuilt, no jumper needed). If you hook the CAN wires up, then use a multimeter in resistance mode and measure across the CanH and CanL wires at **one** end (eg. at the maibnoard/adapter end) you should see a resistance of around 60 ohms. This is because you will have two 120ohm resistors in parallel, and this ends up being 60 ohms of resistance (parallel resistor values are a bit weird like that, google it if you don't belive me).
 
 If you see the 60ohms then you know both resistors are in circuit and also your wires are connected (no breaks). If still no UUID then swap your CanH and CanL wires around as this is a _very_ common mistake to make.
+
+[Return to Troubleshooting](./)
