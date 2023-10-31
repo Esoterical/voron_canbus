@@ -20,8 +20,9 @@ To put the SB2040 into boot mode (for initial flashing), unplug any USB and CAN 
 
 # Sample Config
 
-A sample config file can be found at https://mellow-3d.github.io/fly-sb2040_klipper_config.html
+A sample config file can be found at https://mellow-3d.github.io/fly_sb2040_v1_klipper_config.html
+
 
 # More Info
 
-https://mellow-3d.github.io/fly-sb2040_v1_general.html
+https://mellow-3d.github.io/fly_sb2040_v1_general.html
