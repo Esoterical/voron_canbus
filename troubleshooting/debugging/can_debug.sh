@@ -16,7 +16,7 @@ KERNEL="$(uname -a)"
 IPA="$(ip a)"
 CANSTATS="$(ip -details -statistics link show can0)"
 LSUSB="$(lsusb)"
-BITVERSION="$(getconf LONG_BIT)"
+# BITVERSION="$(getconf LONG_BIT)"
 CANQUERY="$(~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0)"
 
 # Identification of directories pertainent to CAN fw compilation files.
@@ -42,10 +42,14 @@ fi
 if [ -d ${KATAPULTDIR} ]; then
     if [ -f ${KATAPULTDIR}/.config ]; then
         CANFND="Found\n\nKatapult Config:\n$(cat ${KATAPULTDIR}/.config)"
-    elif [ -f ${CANBOOTDIR}/.config ]; then
-        CANFND="Found\n\nCanboot Config:\n$(cat ${CANBOOTDIR}/.config)"
     else
         CANFND="Found\n\nKatapult Make Config: Not Found"
+    fi
+elif [ -d ${CANBOOTDIR} ]; then
+    if [ -f ${CANBOOTDIR}/.config ]; then
+        CANFND="Found\n\nCanBoot Config:\n$(cat ${CANBOOTDIR}/.config)"
+    else
+        CANFND="Found\n\nCanBoot Make Config: Not Found"
     fi
 fi
 
@@ -69,7 +73,8 @@ if [ -d ${PRNTDATA} ]; then
     fi
 fi
 # Formatting outpur
-TXT_OS="${PRETTY_LINE_BRK}\nOS\n${PRETTY_LINE_BRK}\n\nDistro:\n${DISTRO}\n\nKernel:\n${KERNEL}\n\nBits:\n${BITVERSION}"
+#TXT_OS="${PRETTY_LINE_BRK}\nOS\n${PRETTY_LINE_BRK}\n\nDistro:\n${DISTRO}\n\nKernel:\n${KERNEL}\n\nBits:\n${BITVERSION}"
+TXT_OS="${PRETTY_LINE_BRK}\nOS\n${PRETTY_LINE_BRK}\n\nDistro:\n${DISTRO}\n\nKernel:\n${KERNEL}"
 TXT_NET="\n\n${PRETTY_LINE_BRK}\nNetwork\n${PRETTY_LINE_BRK}\n\ncan0:\n${NETWORK}\n\nip a:\n${IPA}\n\ncan0 ifstats:\n${CANSTATS}"
 TXT_USB="\n\n${PRETTY_LINE_BRK}\nUSB\n${PRETTY_LINE_BRK}\n\nlsusb:\n${LSUSB}"
 TXT_CANQ="\n\n${PRETTY_LINE_BRK}\nCANQuery\n${PRETTY_LINE_BRK}\n\nCANBus Query:\n${CANQUERY}"
