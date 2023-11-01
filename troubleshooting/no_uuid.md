@@ -15,7 +15,7 @@ I'm going to assume you are using Katapult from this point on. If this had the c
 
 If it's sitting in Katapult but you still can't see a UUID then your problem is likely down to wiring. 
 
-First thing **Shut down the Pi with `sudo shutdown now` and then power off the whole printer. There needs to be no power before testing further** 
+First thing **Shut down the Pi with `sudo shutdown now` and then power off the whole printer. There needs to be no power before testing further.** 
 
 Now, check that you have the 120ohm resistor/jumper in at both ends (some mainboards like the Octopus have the resistor prebuilt, no jumper needed). If you hook the CAN wires up, then use a multimeter in resistance mode and measure across the CanH and CanL wires at **one** end (eg. at the mainboard/adapter end) you should see a resistance of around 60 ohms. This is because you will have two 120ohm resistors in parallel, and this ends up being 60 ohms of resistance (parallel resistor values are a bit weird like that, google it if you don't belive me).
 
