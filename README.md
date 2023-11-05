@@ -1,4 +1,4 @@
-Before we start a big thanks has to go to the #can_bus_depot thread on the Voron discord. A wealth of information from some very clever people.
+Before we start a big thanks has to go to the #mcu_toolhead_boards thread on the Voron discord. A wealth of information from some very clever people.
 If you have any of the following combinations of hardware, please look at these existing specific guides:
 
 Octopus (in CAN bridge mode) and SB2040: https://github.com/akhamar/voron_canbus_octopus_sb2040 by @MastahFR
