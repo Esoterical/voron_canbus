@@ -28,12 +28,27 @@ On to actual troubleshooting. I've found the best place to start with something 
   ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/08d74420-1ef5-4223-9e4e-1c735ee70574)
 
 
-Now do some more homing and probing. If it's rock solid now, great! Feel free to adjust homing speeds and/or microsteps incrementally until you've reached a limit.
-If the above still doesn't fix it (and by "fix it" I mean "never happens" not just making it happen less) then the
+Now do some more homing and probing. If it's rock solid now, great! Go through the steps in reverse order (re-enable crowsnest, plug in USB one at a time, change microsteps, etc) until you start seeing it time out again. This way you should be able to either track down the single culprit or at least find the limits of what your Pi can handle.
 
+If the above still doesn't fix it (and by "fix it" I mean "never happens" not just making it happen less) then the next thing I would do is to actually change the klipper homing timeing threshold. This is a bit "hacky", but I've found it necessary on certain boards (I had to do it on my pi3b, nothing else would solve the problem).
+
+By default, Klipper uses a 25ms window for homing actions. This is set by the `TRSYNC_TIMEOUT` entry in the klipper `mcu.py` file. To check if yours is still the default run:
+
+`cat klipper/klippy/mcu.py | grep "TRSYNC_TIMEOUT ="`
+
+if it shows TRSYNC_TIMEOUT=0.025 then it is still the default setting.
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/8ae18275-a606-47e1-86c1-f2b53d54e9a9)
+
+To change this to 50ms run the command:
 
 `sed -i 's\TRSYNC_TIMEOUT = 0.025\TRSYNC_TIMEOUT = 0.05\g' ~/klipper/klippy/mcu.py`
-`cat klipper/klippy/mcu.py | grep "TRSYNC_TIMEOUT ="`
+
+Then confirm it by running `cat klipper/klippy/mcu.py | grep "TRSYNC_TIMEOUT ="` again. If the change has been set reboot the Pi with `sudo reboot`.
+
+I've found a 50ms timeout window got rid of all my "timeout during homing probe" errors with seemingly no loss in probing or homing accuracy. 
+
+**Note** as I said this is still a bit of a hacky workaround. Doing this will mark your klipper install as "dirty" in your mainsail update manager (all it means is there is a file that is different to what is in github, which is true because we just changed it) and whenever you update klipper it will overwrite this to default. So if you update klipper and find the timeouts returning just run `sed -i 's\TRSYNC_TIMEOUT = 0.025\TRSYNC_TIMEOUT = 0.05\g' ~/klipper/klippy/mcu.py` and reboot.
 
 
 [Return to Troubleshooting](./)
