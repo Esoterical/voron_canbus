@@ -13,13 +13,18 @@ With that out of the way, this kind of problem is usually the cause of your Pi n
 On to actual troubleshooting. I've found the best place to start with something like this is to use a bunch of "known good" settings. For homing/probing timeouts that means minimising CAN traffic by lowering stepper motor microsteps and the homing speed.
 
 - Set **all** microstep settings in your printer.cfg to 16. This value is found in the `[stepper_ ]` sections for X/Y/Z (probably multiple Z motors, you need to change each one) and also your `[extruder]` section.
+  
   ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/12fe8458-664c-4a50-86e7-b20845e9a579)
+  
 - Set the homing speeds to fairly low. 20mm/s for X/Y, 10mm/s for Z. Yes this may be painful but it's just testing at the moment. Once you've "fixed" the problem feel free to adjust these back up.
-- Make sure your CAN speed is set to 1M and txqueuelen is set to 1024 (see the [main page](.../#can0-file-can-speeds-and-transmit-queue-length) on how to set this)
+- Make sure your CAN speed is set to 1M and txqueuelen is set to 1024 (see the [main page](../#can0-file-can-speeds-and-transmit-queue-length) on how to set this)
 - Unplug any extra USB devices from your pi. Maybe LEDs, maybe cameras. Anything USB can be drawing power and using processing time so lets remove it all for testing
 - If using crowsnest for your camera, stop the crowsnest service completely. Easy to do in mainsail, just press the button:
+  
   ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/c0555deb-9cb9-44b5-9679-43500659b2d6)
+  
   or you can run `sudo service crowsnest stop` on the Pi and this will also stop the crowsnest service
+  
   ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/08d74420-1ef5-4223-9e4e-1c735ee70574)
 
 
