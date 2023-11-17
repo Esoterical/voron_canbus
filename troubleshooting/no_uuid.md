@@ -20,15 +20,20 @@ I'm going to assume you are using Katapult from this point on. If this had the c
 
 ### Wiring
 
-If it's sitting in Katapult but you still can't see a UUID then your problem is likely down to wiring. 
+If it's sitting in Katapult but you still can't see a UUID then your problem is likely down to wiring. (Thanks to @drachenkaetzchen for the much better writeup than my original one)
 
-First thing **Shut down the Pi with `sudo shutdown now` and then power off the whole printer. There needs to be no power before testing further.** 
+- First thing **Shut down the Pi with `sudo shutdown now` and then power off the whole printer. There needs to be no power before testing further.** 
 
-Now, check that you have the 120ohm resistor/jumper in at both ends (some mainboards like the Octopus have the resistor prebuilt, no jumper needed). If you hook the CAN wires up, then use a multimeter in resistance mode and measure across the CanH and CanL wires at **one** end (eg. at the mainboard/adapter end) you should see a resistance of around 60 ohms. This is because you will have two 120ohm resistors in parallel, and this ends up being 60 ohms of resistance (parallel resistor values are a bit weird like that, google it if you don't belive me).
+- Each side of the CAN Bus needs the 120 Ohm resistor in place. Ensure you got the appropriate jumpers set. The Octopus is an exception, it has no jumper, the 120 Ohm resistor is always present.
 
-If you see the 60ohms then you know both resistors are in circuit and also your wires are connected (no breaks). If still no UUID then swap your CanH and CanL wires around as this is a _very_ common mistake to make.
+- For all following measurements, your printer must be powered off.
 
-If you only see 120ohms and you are **sure** the jumpers are in both ends, then you have a break in your CAN wire(s). Broken wire, or bad crimp, or a pin not seated in a connector properly. Either way, you need to check your wires again.
+- Ensure using a multimeter in continuity mode that CAN_L from one side actually ends up on CAN_L on the other side. Same for CAN_H. Remove all termination resistors for that. If one of your boards has a fixed       120 Ohm resistor, remove the jumper on the other board. Then use your multimeter in Ohms mode to measure from one side to the other, you should read close to 0 ohms. If you read 120 Ohms, you probably have         swapped CAN_L and CAN_H
+
+- With everything connected, measure resistance between CAN_L and CAN_H. You should read 60 Ohms (2x 120 Ohm in parallel = 60 Ohms). If you get 120 Ohm, then there might be a break in the wire or you forgot to set   the jumper
+
+- If you suspect that CAN_L or CAN_H might be broken, measure in resistance mode (not continuity!) between CAN_L on one board with CAN_L on the other board. If you get 240 Ohms, then there's a break in CAN_L.       Repeat the measurement for CAN_H
+
 
 ### can0 Interface
 
