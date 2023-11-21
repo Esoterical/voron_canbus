@@ -1,5 +1,7 @@
 # BTT Manta M8P with CB1 v1.1
-## IMPORTANT note - you will need to add a jumper to the 120R (J14) on both the mainboard and the CAN toolhead.
+## IMPORTANT note - you will need to add a jumper to the 120R on both the mainboard and the CAN toolhead.
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/ec122029-4909-4c1d-bfa0-a77cce646ef2)
+
 
 # STM32G0B1
 
