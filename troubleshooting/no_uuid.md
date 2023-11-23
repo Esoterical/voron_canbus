@@ -60,7 +60,7 @@ Usually it is in the rc.local file. Run:
 
 `sudo nano /etc/rc.local`
 
-and if you see any lines referecing "can0" then put a # at the start of the line to comment it out (or delete the whole line), then reboot and canbus query once again. HOpefully it's all good at this point.
+and if you see any lines referecing "can0" then put a # at the start of the line to comment it out (or delete the whole line), then reboot and canbus query once again. Hopefully it's all good at this point.
 
 If the rc.local file *isn't* the problem, but you still get post-boot no UUIDs but you *do* get UUIDs after manually setting the can0 speed with the commands, then the overriding "script" is somewhere else. As linux has a bunch of different ways to change settings after a boot it is hard to cover all of them here. Just take the information you have now figured out (something is changing my can0 speed afterboot, it isn't the rc.local file) and ask your favourite helpers/discord channels/forums/wherever.
 
