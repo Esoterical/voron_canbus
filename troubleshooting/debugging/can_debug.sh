@@ -85,7 +85,7 @@ TXT_CFG="\n\n${PRETTY_LINE_BRK}\nKlipperConfig\n${PRETTY_LINE_BRK}\n\n${KLIPPERC
 
 
 # Reminding user of nice place to get help and letting them know the termbin link.
-echo "Please post the following link to Discord https://discord.gg/voron #can_bus_depot:"
+echo "The following link will have your information:"
 
 # Sending to termbin and obtaining link.
 echo "${TXT_OS} ${TXT_NET} ${TXT_USB} $TXT_CANQ ${TXT_LOG} ${TXT_CAN} ${TXT_KLP} ${TXT_CFG}" | nc termbin.com 9999
