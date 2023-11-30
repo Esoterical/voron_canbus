@@ -10,7 +10,7 @@ To put the octopus into DFU mode you need to put in the boot jumper (purple) and
 # STM32F446
 ## Katapult Config
 
-![image](https://user-images.githubusercontent.com/124253477/221378011-0d10ed13-a789-4390-a275-394358423f24.png)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/673ce3c6-5bd7-48a8-bcd4-99aeefb0f0a2)
 
 ## Klipper USB-CAN-Bridge when using Katapult or stock bootloader
 
@@ -24,7 +24,7 @@ To put the octopus into DFU mode you need to put in the boot jumper (purple) and
 # STM32F429
 ## Katapult Config
 
-![image](https://user-images.githubusercontent.com/124253477/221378344-0b34301c-8927-4bb0-b05b-90eeb9ba623a.png)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/41d4bfe5-ed20-4956-93fd-cb3b99250aae)
 
 ## Klipper USB-CAN-Bridge when using Katapult or stock bootloader
 
@@ -38,7 +38,7 @@ To put the octopus into DFU mode you need to put in the boot jumper (purple) and
 # STM32F407
 ## Katapult Config
 
-![image](https://user-images.githubusercontent.com/124253477/221378446-5693153d-0b8f-4fa5-988e-6e4e2b8b3485.png)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/ec17d20a-2aba-4cc5-809f-aa1748a76a63)
 
 ## Klipper USB-CAN-Bridge when using Katapult or stock bootloader
 
@@ -52,7 +52,7 @@ To put the octopus into DFU mode you need to put in the boot jumper (purple) and
 # STM32H723
 ## Katapult Config
 
-![image](https://user-images.githubusercontent.com/124253477/221378486-b40ba07e-38fb-4e4d-90ed-97a7df56b7d6.png)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/e9850f4a-d4d9-438b-8b95-3fd21cd790d8)
 
 ## Klipper USB-CAN-Bridge when using Katapult or stock bootloader
 
