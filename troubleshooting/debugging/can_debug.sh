@@ -21,13 +21,17 @@ LSUSB="$(lsusb)"
 CANQUERY="$(~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0)"
 
 
+# List of systemd filess.
+SYSTEMD="$(ls /etc/systemd/network)"
+
+# Contents of rc.local
+RCLOCAL="$(cat /etc/rc.local)"
+
 # Identification of directories pertainent to CAN fw compilation files.
 KATAPULTDIR="/home/$USER/katapult/"
 CANBOOTDIR="/home/$USER/CanBoot/"
 CANFND="NOT Found"
 
-# List of systemd filess.
-SYSTEMD="$(ls /etc/systemd/network)"
 
 
 KLIPPERDIR="/home/$USER/klipper/"
@@ -83,6 +87,7 @@ fi
 TXT_OS="${PRETTY_LINE_BRK}\nOS\n${PRETTY_LINE_BRK}\n\nDistro:\n${DISTRO}\n\nKernel:\n${KERNEL}"
 TXT_NET="\n\n${PRETTY_LINE_BRK}\nNetwork\n${PRETTY_LINE_BRK}\n\nInterface Services:\n${IFACESERVICE}\n\ncan0:\n${NETWORK}\n\nip a:\n${IPA}\n\ncan0 ifstats:\n${CANSTATS}" 
 TXT_SYSD="\n\n${PRETTY_LINE_BRK}\nSystemd Network Files\n${PRETTY_LINE_BRK}\n\n${SYSTEMD}"
+TXT_RCL="\n\n${PRETTY_LINE_BRK}\nrc.local contents\n${PRETTY_LINE_BRK}\n\n${RCLOCAL}"
 TXT_USB="\n\n${PRETTY_LINE_BRK}\nUSB\n${PRETTY_LINE_BRK}\n\nlsusb:\n${LSUSB}"
 TXT_CANQ="\n\n${PRETTY_LINE_BRK}\nCANQuery\n${PRETTY_LINE_BRK}\n\nCANBus Query:\n${CANQUERY}"
 TXT_LOG="\n\n${PRETTY_LINE_BRK}\nMCU\n${PRETTY_LINE_BRK}\n\nMCUInfo:\n${PRNTDATAFND}"
