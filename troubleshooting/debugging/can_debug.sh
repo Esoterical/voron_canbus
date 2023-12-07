@@ -13,11 +13,13 @@ fi
 PRETTY_LINE_BRK="================================================================"
 DISTRO="$(cat /etc/*-release)"
 KERNEL="$(uname -a)"
+IFACESERVICE="$(ls /etc/network)"
 IPA="$(ip a)"
 CANSTATS="$(ip -d -s link show can0)"
 LSUSB="$(lsusb)"
 # BITVERSION="$(getconf LONG_BIT)"
 CANQUERY="$(~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0)"
+
 
 # Identification of directories pertainent to CAN fw compilation files.
 KATAPULTDIR="/home/$USER/katapult/"
@@ -79,8 +81,8 @@ fi
 # Formatting outpur
 #TXT_OS="${PRETTY_LINE_BRK}\nOS\n${PRETTY_LINE_BRK}\n\nDistro:\n${DISTRO}\n\nKernel:\n${KERNEL}\n\nBits:\n${BITVERSION}"
 TXT_OS="${PRETTY_LINE_BRK}\nOS\n${PRETTY_LINE_BRK}\n\nDistro:\n${DISTRO}\n\nKernel:\n${KERNEL}"
-TXT_NET="\n\n${PRETTY_LINE_BRK}\nNetwork\n${PRETTY_LINE_BRK}\n\ncan0:\n${NETWORK}\n\nip a:\n${IPA}\n\ncan0 ifstats:\n${CANSTATS}"
-TXT_SYSD="\n\n${PRETTY_LINE_BRK}\nSystemd\n${PRETTY_LINE_BRK}\n\n${SYSTEMD}"
+TXT_NET="\n\n${PRETTY_LINE_BRK}\nNetwork\n${PRETTY_LINE_BRK}\n\nInterface Services:\n${IFACESERVICE}\n\ncan0:\n${NETWORK}\n\nip a:\n${IPA}\n\ncan0 ifstats:\n${CANSTATS}" 
+TXT_SYSD="\n\n${PRETTY_LINE_BRK}\nSystemd Network Files\n${PRETTY_LINE_BRK}\n\n${SYSTEMD}"
 TXT_USB="\n\n${PRETTY_LINE_BRK}\nUSB\n${PRETTY_LINE_BRK}\n\nlsusb:\n${LSUSB}"
 TXT_CANQ="\n\n${PRETTY_LINE_BRK}\nCANQuery\n${PRETTY_LINE_BRK}\n\nCANBus Query:\n${CANQUERY}"
 TXT_LOG="\n\n${PRETTY_LINE_BRK}\nMCU\n${PRETTY_LINE_BRK}\n\nMCUInfo:\n${PRNTDATAFND}"
