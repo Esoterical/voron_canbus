@@ -11,13 +11,13 @@ If you used the wget link the firmware should now be in your home directory. Pre
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/ad3a5d48-fc30-4dea-9b9e-96fb1eec37e3)
 
-Confirm it is connected in DFU mode by running `dfu-util -l`. You should see the devive:
+Confirm it is connected in DFU mode by running `sudo dfu-util -l`. You should see the devive:
 
 ![image](https://user-images.githubusercontent.com/124253477/221551890-3205eafb-9f16-41b5-8020-ebb1ebbf5ded.png)
 
 If you can see it there then just run this command to flash the fixed firmware to the U2C:
 
-`dfu-util -D ~/G0B1_U2C_V2.bin -a 0 -s 0x08000000:leave`
+`sudo dfu-util -D ~/G0B1_U2C_V2.bin -a 0 -s 0x08000000:leave`
 
 ![image](https://user-images.githubusercontent.com/124253477/221552152-89f14967-b807-4e54-9159-003b19eed784.png)
 
