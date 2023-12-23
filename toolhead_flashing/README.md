@@ -85,9 +85,10 @@ make flash FLASH_DEVICE=2e8a:0003
 
 where the FLASH_DEVICE ID is what you noted down from the `lsusb` command.
 
-If the result shows an "Error during download get_status" or something, but above it it still has "File downloaded successfullY" then it still flashed OK and you can ignore that error.
+It should look something like this if the download was successfull
 
-![image](https://user-images.githubusercontent.com/124253477/225469341-46f3478a-aa96-4378-8d73-96faa90d561c.png)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/34c4ca36-d03d-4eb3-a426-8be7751602fc)
+
 
 ## Katapult is now installed
 
