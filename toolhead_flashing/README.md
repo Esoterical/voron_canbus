@@ -59,7 +59,7 @@ To confirm it's in DFU mode you can run the command `dfu-util -l` and it will sh
 You can then flash the Katapult firmware to your toolhead board by running
 
 ```
-dfu-util -R -a 0 -s 0x08000000:force:mass-erase:leave -D ~/katapult/out/katapult.bin -d 0483:df11
+sudo dfu-util -R -a 0 -s 0x08000000:force:mass-erase:leave -D ~/katapult/out/katapult.bin -d 0483:df11
 ```
 
 where the --dfuse-address is the _Internal Flash_ and the -d is the USB Device ID is the that you grabbed from the `dfu-util -l` command.
