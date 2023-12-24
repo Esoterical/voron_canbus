@@ -48,7 +48,7 @@ Press Q to quit the menu (it will ask to save, choose yes).
 Compile the firmware with `make`. You will now have a katapult.bin at in your ~/katapult/out/katapult.bin.
 
 To flash, connect your mainboard to the Pi via USB then put the mainboard into DFU mode (your mainboard user manual should have instructions on doing this).
-To confirm it's in DFU mode you can run the command `dfu-util -l` and it will show any devices connected to your Pi in DFU mode.
+To confirm it's in DFU mode you can run the command `sudo dfu-util -l` and it will show any devices connected to your Pi in DFU mode.
 
 ![image](https://user-images.githubusercontent.com/124253477/221337550-560128dd-b5fd-41ba-8881-48d24b2215ef.png)
 
@@ -64,7 +64,7 @@ make
 sudo dfu-util -R -a 0 -s 0x08000000:force:mass-erase:leave -D ~/katapult/out/katapult.bin -d 0483:df11
 ```
 
-where the --dfuse-address is the _Internal Flash_ and the -d is the USB Device ID is the that you grabbed from the `dfu-util -l` command.
+where the --dfuse-address is the _Internal Flash_ and the -d is the USB Device ID is the that you grabbed from the `sudo dfu-util -l` command.
 
 If the result shows an "Error during download get_status" or something, but above it it still has "File downloaded successfullY" then it still flashed OK and you can ignore that error.
 
@@ -108,7 +108,7 @@ Simply follow the mainboard user manual to copy the ~/klipper/out/klipper.bin fi
 ## If you are flashing via DFU mode (no Katapult or stock bootloader)
 
 To flash, connect your mainboard to the Pi via USB then put the mainboard into DFU mode (your mainboard user manual should have instructions on doing this).
-To confirm it's in DFU mode you can run the command `dfu-util -l` and it will show any devices connected to your Pi in DFU mode.
+To confirm it's in DFU mode you can run the command `sudo dfu-util -l` and it will show any devices connected to your Pi in DFU mode.
 
 ![image](https://user-images.githubusercontent.com/124253477/221337550-560128dd-b5fd-41ba-8881-48d24b2215ef.png)
 
@@ -121,7 +121,7 @@ cd ~/klipper
 make flash FLASH_DEVICE=0483:df11
 ```
 
-where the FLASH_DEVICE ID is the address of the USB device you noted down from the `dfu-util -l` command.
+where the FLASH_DEVICE ID is the address of the USB device you noted down from the `sudo dfu-util -l` command.
 
 ## Klipper is now installed
 
