@@ -48,7 +48,7 @@ To flash, connect your toolhead board to the Pi via USB then put the toolhead bo
 
 **STM32 based board:**
 
-To confirm it's in DFU mode you can run the command `dfu-util -l` and it will show any devices connected to your Pi in DFU mode.
+To confirm it's in DFU mode you can run the command `sudo dfu-util -l` and it will show any devices connected to your Pi in DFU mode.
 
 ![image](https://user-images.githubusercontent.com/124253477/221337550-560128dd-b5fd-41ba-8881-48d24b2215ef.png)
 
@@ -62,7 +62,7 @@ You can then flash the Katapult firmware to your toolhead board by running
 sudo dfu-util -R -a 0 -s 0x08000000:force:mass-erase:leave -D ~/katapult/out/katapult.bin -d 0483:df11
 ```
 
-where the --dfuse-address is the _Internal Flash_ and the -d is the USB Device ID is the that you grabbed from the `dfu-util -l` command.
+where the --dfuse-address is the _Internal Flash_ and the -d is the USB Device ID is the that you grabbed from the `sudo dfu-util -l` command.
 
 If the result shows an "Error during download get_status" or something, but above it it still has "File downloaded successfullY" then it still flashed OK and you can ignore that error.
 
@@ -139,7 +139,7 @@ To flash, connect your toolhead board to the Pi via USB and put it into DFU/BOOT
 
 **STM32 based board:**
 
-To confirm it's in DFU mode you can run the command `dfu-util -l` and it will show any devices connected to your Pi in DFU mode.
+To confirm it's in DFU mode you can run the command `sudo dfu-util -l` and it will show any devices connected to your Pi in DFU mode.
 
 ![image](https://user-images.githubusercontent.com/124253477/221337550-560128dd-b5fd-41ba-8881-48d24b2215ef.png)
 
