@@ -102,4 +102,4 @@ TXT_CFG="\n\n${PRETTY_LINE_BRK}\nKlipperConfig\n${PRETTY_LINE_BRK}\n\n${KLIPPERC
 echo "The following link will have your information:"
 
 # Sending to termbin and obtaining link.
-echo "${TXT_OS} ${TXT_NET} ${TXT_SYSD} ${TXT_RCL} ${TXT_USB} ${TXT_BYID} $TXT_CANQ ${TXT_LOG} ${TXT_CAN} ${TXT_KLP} ${TXT_CFG}" | nc termbin.com 9999
+echo "${TXT_OS} ${TXT_NET} ${TXT_SYSD} ${TXT_RCL} ${TXT_USB} ${TXT_BYID} ${TXT_CANQ} ${TXT_LOG} ${TXT_CAN} ${TXT_KLP} ${TXT_CFG}" | nc termbin.com 9999
