@@ -17,7 +17,7 @@ IFACESERVICE="$(ls /etc/network)"
 IPA="$(ip a)"
 CANSTATS="$(ip -d -s link show can0)"
 LSUSB="$(lsusb)"
-BYID="$(ls /dev/serial/by-id)"
+BYID="$(ls -l /dev/serial/by-id | awk -F' ' '{print $9,$10,$11}')"
 # BITVERSION="$(getconf LONG_BIT)"
 CANQUERY="$(~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0)"
 
