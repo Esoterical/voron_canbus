@@ -17,6 +17,7 @@ IFACESERVICE="$(ls /etc/network)"
 IPA="$(ip a)"
 CANSTATS="$(ip -d -s link show can0)"
 LSUSB="$(lsusb)"
+BYID="$(ls -l /dev/serial/by-id)"
 # BITVERSION="$(getconf LONG_BIT)"
 CANQUERY="$(~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0)"
 
@@ -89,6 +90,7 @@ TXT_NET="\n\n${PRETTY_LINE_BRK}\nNetwork\n${PRETTY_LINE_BRK}\n\nInterface Servic
 TXT_SYSD="\n\n${PRETTY_LINE_BRK}\nSystemd Network Files\n${PRETTY_LINE_BRK}\n\n${SYSTEMD}"
 TXT_RCL="\n\n${PRETTY_LINE_BRK}\nrc.local contents\n${PRETTY_LINE_BRK}\n\n${RCLOCAL}"
 TXT_USB="\n\n${PRETTY_LINE_BRK}\nUSB\n${PRETTY_LINE_BRK}\n\nlsusb:\n${LSUSB}"
+TXT_BYID="\n\n${PRETTY_LINE_BRK}\nDev Serial By-ID\n${PRETTY_LINE_BRK}\n\nlsusb:\n${BYID}"
 TXT_CANQ="\n\n${PRETTY_LINE_BRK}\nCANQuery\n${PRETTY_LINE_BRK}\n\nCANBus Query:\n${CANQUERY}"
 TXT_LOG="\n\n${PRETTY_LINE_BRK}\nMCU\n${PRETTY_LINE_BRK}\n\nMCUInfo:\n${PRNTDATAFND}"
 TXT_CAN="\n\n${PRETTY_LINE_BRK}\nKatapult\n${PRETTY_LINE_BRK}\n\nKatapult Directory: ${CANFND}"
@@ -100,4 +102,4 @@ TXT_CFG="\n\n${PRETTY_LINE_BRK}\nKlipperConfig\n${PRETTY_LINE_BRK}\n\n${KLIPPERC
 echo "The following link will have your information:"
 
 # Sending to termbin and obtaining link.
-echo "${TXT_OS} ${TXT_NET} ${TXT_SYSD} ${TXT_RCL} ${TXT_USB} $TXT_CANQ ${TXT_LOG} ${TXT_CAN} ${TXT_KLP} ${TXT_CFG}" | nc termbin.com 9999
+echo "${TXT_OS} ${TXT_NET} ${TXT_SYSD} ${TXT_RCL} ${TXT_USB} ${TXT_BYID} $TXT_CANQ ${TXT_LOG} ${TXT_CAN} ${TXT_KLP} ${TXT_CFG}" | nc termbin.com 9999
