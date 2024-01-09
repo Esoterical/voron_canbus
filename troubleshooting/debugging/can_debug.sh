@@ -11,8 +11,10 @@ fi
 
 # Definition of commands to be be run to obtain relavent information regarding CAN bus configuration.
 PRETTY_LINE_BRK="================================================================"
+MODEL="$(cat /sys/firmware/devicetree/base/model)"
 DISTRO="$(cat /etc/*-release)"
 KERNEL="$(uname -a)"
+UPTIME="$(uptime)"
 IFACESERVICE="$(ls /etc/network)"
 IPA="$(ip a)"
 CANSTATS="$(ip -d -s link show can0)"
@@ -85,7 +87,7 @@ if [ -d ${PRNTDATA} ]; then
 fi
 # Formatting outpur
 #TXT_OS="${PRETTY_LINE_BRK}\nOS\n${PRETTY_LINE_BRK}\n\nDistro:\n${DISTRO}\n\nKernel:\n${KERNEL}\n\nBits:\n${BITVERSION}"
-TXT_OS="${PRETTY_LINE_BRK}\nOS\n${PRETTY_LINE_BRK}\n\nDistro:\n${DISTRO}\n\nKernel:\n${KERNEL}"
+TXT_OS="${PRETTY_LINE_BRK}\nOS\n${PRETTY_LINE_BRK}\n\nModel:\n${MODEL}\n\nDistro:\n${DISTRO}\n\nKernel:\n${KERNEL}\n\nUptime:\n${UPTIME}"
 TXT_NET="\n\n${PRETTY_LINE_BRK}\nNetwork\n${PRETTY_LINE_BRK}\n\nInterface Services:\n${IFACESERVICE}\n\ncan0:\n${NETWORK}\n\nip a:\n${IPA}\n\ncan0 ifstats:\n${CANSTATS}" 
 TXT_SYSD="\n\n${PRETTY_LINE_BRK}\nSystemd Network Files\n${PRETTY_LINE_BRK}\n\n${SYSTEMD}"
 TXT_RCL="\n\n${PRETTY_LINE_BRK}\nrc.local contents\n${PRETTY_LINE_BRK}\n\n${RCLOCAL}"
