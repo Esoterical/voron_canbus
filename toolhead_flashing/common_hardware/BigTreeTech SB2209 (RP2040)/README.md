@@ -11,18 +11,18 @@ Plug a USB cable from the pi to the SB2209 then hold down the BOOT button, breif
 
 
 
-# CanBOOT Config
+# Katapult Config
 
-![image](https://github.com/Esoterical/voron_canbus/assets/124253477/4a0e1807-5ead-4117-92a8-2015a381d7f1)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/385cf2be-e3a2-4b74-8eaa-824c91d442f7)
 
 
-# Klipper when using CanBOOT
+# Klipper when using Katapult
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/aac98e3a-472f-4934-9000-13de6e66849e)
 
 
 
-# Klipper when **NOT** using CanBOOT
+# Klipper when **NOT** using Katapult
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/72c34057-2c5e-46ff-9d87-05dddf013b27)
 
