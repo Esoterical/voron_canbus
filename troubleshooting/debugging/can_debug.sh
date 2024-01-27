@@ -17,7 +17,7 @@ echo "https://github.com/Esoterical/voron_canbus/blob/main/troubleshooting/debug
 echo
 
 while true; do
-    read -p "Do you wish to run this program? (yes/no) " yn
+    read -p "Do you wish to run this program? (yes/no) " yn < /dev/tty
     case $yn in
         [Yy]* ) break;;
         [Nn]* ) exit;;
