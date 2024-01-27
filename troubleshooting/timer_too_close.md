@@ -1,4 +1,4 @@
-#Timer Too Close
+# Timer Too Close
 
 This error tends to be a "catch all" for a bunch of different causes. Because the problems are so many I'm just going to start cataloguing real-world examples of where users have had TTC erros and what the cause ended up being.
 
