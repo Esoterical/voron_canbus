@@ -19,5 +19,3 @@ Check that the Pi-to-mainboard USB cable hasn't come loose or anything, and that
 [Return to Troubleshooting](./)
 
 
-
-Something something rc.local

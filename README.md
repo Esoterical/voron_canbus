@@ -30,7 +30,13 @@ You may have seen other guides have installing Katapult/CanBOOT onto devices as 
 
 # can0 file, CAN Speeds, and Transmit Queue Length
 
-This step usually comes later, but as it is common across all different variants we may as well get it done first. In order to dictate the speed at which your CAN network runs at you will need to create (or modify) a "can0" file on your Pi. This is what will tell linux "Hey, you now have a new network interface called can0 that you can send CAN traffic over". To do this first SSH to your Pi and run the command:
+This step usually comes later, but as it is common across all different variants we may as well get it done first. In order to dictate the speed at which your CAN network runs at you will need to create (or modify) a "can0" file on your Pi. This is what will tell linux "Hey, you now have a new network interface called can0 that you can send CAN traffic over". The approach needed here heavily depends on the network stack of your Pi. Raspbian and older version of Debian typically use ifupdown, but newer versions of non-raspbian Debian use netplan, which by default uses systemd-networkd under the hood.
+
+To test if your system uses networkd, try running `networkctl`. If the command is not available, gives an error or no link output, you're probably still using ifupdown. If it does give you meaningful output (typically at least an `ether` and `wlan` link), you're using systemd-networkd. To be safe it's easiest to just follow both the "ifupdown" **and** the "systemd-networkd" instructions. You can have both set up and your Pi will just use the configuration that is relevant to your system.
+
+To set everything up, SSH into your pi and run the commands needed for your network setup:
+
+## ifupdown
   ```
   sudo nano /etc/network/interfaces.d/can0
   ```
@@ -53,6 +59,34 @@ The "allow-hotplug" helps the CAN nodes come back online when doing a "firmware_
 To complement a high bitrate, setting a high transmit queue length "txqueuelen" of 1024 helps minimise "Timer too close" errors.
 
 Once the can0 file is created just reboot the Pi with a `sudo reboot` and move on to the next step.
+
+## systemd-networkd (netplan)
+  ```
+  sudo nano /etc/systemd/network/10-can.link
+  ```
+This will open (or create if it doesn't exist) a file called `10-can.link` in which you need to enter the following information:
+  ```
+  [Match]
+  Type=can
+
+  [Link]
+  TransmitQueueLength=1024
+  ```
+Press Ctrl+X to save the file.
+
+To set the bitrate, we need to create another file in the same directory:
+  ```
+  sudo nano /etc/systemd/network/25-can.network
+  ```
+This creates a network file, that networkd will then use to automatically set up the network with. Because of how networkd works, "hotplugging" is baked in.
+Enter the following in the network-file and close it with Ctrl+X:
+  ```
+  [Match]
+  Name=can*
+
+  [CAN]
+  BitRate=1M
+  ```
 
 #  Your main CAN network adapter
 

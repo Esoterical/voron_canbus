@@ -25,7 +25,7 @@ Klipper starts, but sometimes during a homing command or levelling/bed mesh Klip
 
 ### Lost connection to MCU
 
-Klipper was running, maybe even printing for a while, but all of a sudden it failed mid print with "Lost connection to MCU" error, read [here](./lost_connection_to_mcu.md)
+Klipper was running, maybe even printing for a while, but all of a sudden it failed mid print with "Lost connection to MCU" error, read [here](./lost_communication_to_mcu.md)
 
 
 ### Timer too close

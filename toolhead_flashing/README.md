@@ -48,7 +48,7 @@ To flash, connect your toolhead board to the Pi via USB then put the toolhead bo
 
 **STM32 based board:**
 
-To confirm it's in DFU mode you can run the command `dfu-util -l` and it will show any devices connected to your Pi in DFU mode.
+To confirm it's in DFU mode you can run the command `sudo dfu-util -l` and it will show any devices connected to your Pi in DFU mode.
 
 ![image](https://user-images.githubusercontent.com/124253477/221337550-560128dd-b5fd-41ba-8881-48d24b2215ef.png)
 
@@ -59,10 +59,10 @@ To confirm it's in DFU mode you can run the command `dfu-util -l` and it will sh
 You can then flash the Katapult firmware to your toolhead board by running
 
 ```
-dfu-util -R -a 0 -s 0x08000000:force:mass-erase:leave -D ~/katapult/out/katapult.bin -d 0483:df11
+sudo dfu-util -R -a 0 -s 0x08000000:force:mass-erase:leave -D ~/katapult/out/katapult.bin -d 0483:df11
 ```
 
-where the --dfuse-address is the _Internal Flash_ and the -d is the USB Device ID is the that you grabbed from the `dfu-util -l` command.
+where the --dfuse-address is the _Internal Flash_ and the -d is the USB Device ID is the that you grabbed from the `sudo dfu-util -l` command.
 
 If the result shows an "Error during download get_status" or something, but above it it still has "File downloaded successfullY" then it still flashed OK and you can ignore that error.
 
@@ -85,9 +85,10 @@ make flash FLASH_DEVICE=2e8a:0003
 
 where the FLASH_DEVICE ID is what you noted down from the `lsusb` command.
 
-If the result shows an "Error during download get_status" or something, but above it it still has "File downloaded successfullY" then it still flashed OK and you can ignore that error.
+It should look something like this if the download was successfull
 
-![image](https://user-images.githubusercontent.com/124253477/225469341-46f3478a-aa96-4378-8d73-96faa90d561c.png)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/34c4ca36-d03d-4eb3-a426-8be7751602fc)
+
 
 ## Katapult is now installed
 
@@ -138,7 +139,7 @@ To flash, connect your toolhead board to the Pi via USB and put it into DFU/BOOT
 
 **STM32 based board:**
 
-To confirm it's in DFU mode you can run the command `dfu-util -l` and it will show any devices connected to your Pi in DFU mode.
+To confirm it's in DFU mode you can run the command `sudo dfu-util -l` and it will show any devices connected to your Pi in DFU mode.
 
 ![image](https://user-images.githubusercontent.com/124253477/221337550-560128dd-b5fd-41ba-8881-48d24b2215ef.png)
 
