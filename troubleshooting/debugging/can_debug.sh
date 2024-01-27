@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #Credit to @bolliostu for the original idea and script
-#Credit to @dormouse for the disclaimer
+#Credit to @dormouse for the disclaimer and spelling
 
 echo "*************"
 echo "* Attention *"
@@ -10,7 +10,7 @@ echo
 echo "This script will run a series of diagnostic commands to gather configuration"
 echo "information about this host and upload it to a public site where it may be"
 echo "viewed by others. It will contain no personal information."
-echo "It may also be necessary to install an additional pacakge"
+echo "It may also be necessary to install an additional package"
 echo "to help facilitate this task."
 echo "You can view this script at:"
 echo "https://github.com/Esoterical/voron_canbus/blob/main/troubleshooting/debugging/can_debug.sh"
