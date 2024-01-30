@@ -113,7 +113,7 @@ Then go into the klipper configuration menu by running:
 
 You want the Processor and Clock Reference to be set as per whatever board you are running. Set Communication interface to 'CAN bus' with the pins that are specific to your toolhead board. Also set the CAN bus speed to the same as the speed in your can0 file. In this guide it is set to 1000000.
 
-**NOTE: The Bootloader offset will be determined by if you are using a bootloader or not. If you are using Katapult then set the bootloader offset to the same you sset it when building the Katapult firmware. If you are going to run without a bootloader then set the bootloader offset to "No Bootloader"**
+**NOTE: The Bootloader offset will be determined by if you are using a bootloader or not. If you are using Katapult then set the bootloader offset to the same you set it when building the Katapult firmware. If you are going to run without a bootloader then set the bootloader offset to "No Bootloader"**
 
 Once you have the firmware configured, run a `make clean` to make sure there are no old files hanging around, then `make` to compile the firmware. It will save the firmware to ~/klipper/out/klipper.bin
 
@@ -208,7 +208,18 @@ and your Katapult should update.
 
 ## Updating Klipper Firmware via Katapult
 
-To update Klipper, first compile the new Klipper firmware by running the same way you did in the "Installing Klipper" section above, but with your new settings (if you are changing settings). Then you need to get Katapult back into Katapult mode.
+To update Klipper, you first need to compile a new klipper.bin with the correct settings.
+
+Move into the klipper directory on the Pi by running:
+`cd ~/klipper`
+Then go into the klipper configuration menu by running:
+`make menuconfig`
+
+You can find screenshots of settings for comomon toolheads in the [commmon_hardware](./common_hardware) folder.
+
+You want the Processor and Clock Reference to be set as per whatever board you are running. Set Communication interface to 'CAN bus' with the pins that are specific to your toolhead board. Also set the CAN bus speed to the same as the speed in your can0 file. In this guide it is set to 1000000.
+
+Once you have the firmware configured, hit Q to save and quit from the makemenu screen, then run a `make clean` to make sure there are no old files hanging around, then `make` to compile the firmware. It will save the firmware to ~/klipper/out/klipper.bin
 
 If you already have a functioning CAN setup, and your [mcu toolhead] canbus_uuid is in your printer.cfg, then you can force Katapult to reboot into Katapult mode by running:
 
