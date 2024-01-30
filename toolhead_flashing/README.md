@@ -208,6 +208,8 @@ and your Katapult should update.
 
 ## Updating Klipper Firmware via Katapult
 
+**Step 1**
+
 To update Klipper, you first need to compile a new klipper.bin with the correct settings.
 
 Move into the klipper directory on the Pi by running:
@@ -221,6 +223,8 @@ You want the Processor and Clock Reference to be set as per whatever board you a
 
 Once you have the firmware configured, hit Q to save and quit from the makemenu screen, then run a `make clean` to make sure there are no old files hanging around, then `make` to compile the firmware. It will save the firmware to ~/klipper/out/klipper.bin
 
+**Step 2**
+
 If you already have a functioning CAN setup, and your [mcu toolhead] canbus_uuid is in your printer.cfg, then you can force Katapult to reboot into Katapult mode by running:
 
 `python3 ~/katapult/scripts/flashtool.py -i can0 -u yourtoolheaduuid -r`
@@ -229,11 +233,15 @@ If you already have a functioning CAN setup, and your [mcu toolhead] canbus_uuid
 
 If will probably say "Flash success" **THIS IS NOT ACTUALLY FLASHING ANYTHING, YOU NEED TO CONTINUE WITH THE STEPS BELOW**
 
+**Step 3**
+
 If you don't have the UUID (or something has gone wrong with the klipper firmware and your toolboard is hung) then you can also double-press the RESET button on your toolhead to force Katapult to reboot into Katapult mode.
 
 You can verify it is in the proper mode by running `python3 ~/katapult/scripts/flashtool.py -q`. If you see a "Detected UUID: xxxxxxxxx, Application: Katapult" device then it is good to go.
 
 ![image](https://user-images.githubusercontent.com/124253477/223307593-b96dc642-9fa0-494b-93b8-a155d14bb535.png)
+
+**Step4**
 
 Then you can run the same command you used to initially flash Klipper:
 
@@ -242,6 +250,10 @@ Then you can run the same command you used to initially flash Klipper:
 One the flash has been completed you can run the `python3 ~/katapult/scripts/flashtool.py -i can0 -q` command again. This time you should see the same UUID but with "Application: Klipper" instead of "Application: Katapult"
 
 ![image](https://user-images.githubusercontent.com/124253477/221346236-5633f522-97b6-43e7-a675-82f3e483e3a4.png)
+
+If you can't connect to your tooolhead after these steps (assuming all the ouputs look similar in success to the screenshots) then there is a good chance your klipper.bin settings were incorrect. Go back to Step 1 and check *all* the settings in the `make menuconfig` screen then recompile with `make clean` and `make`.
+
+Then double-click the reset button on your toolhead to kick it back to katapult mode then go from Step 3.
 
 ## Updating Klipper Firmware via other methods
 
