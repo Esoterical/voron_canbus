@@ -18,8 +18,6 @@ As mentioned in the main guide, you can either use Katapult on your toolhead to 
 
 # Installing Katapult
 
-(The following is a lot of copy-paste from MastahFR's excellent "Octopus and SB2040" install guide https://github.com/akhamar/voron_canbus_octopus_sb2040. Give all kudus to them)
-
 First you need to clone the Katapult repo onto your pi. Run the following commands to clone the repo:
 
 ```
