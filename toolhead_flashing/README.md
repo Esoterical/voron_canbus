@@ -38,9 +38,11 @@ make menuconfig
 
 You will need to adapt the below instructions so they cover _your_ board's specicific configuration. You can find screenshots of settings for common toolheads in the [commmon_hardware](./common_hardware) folder.
 
-If your board doesn't exist in the common_hardware folder already, then you want the Processor, Clock Reference, and Application Start offset to be set as per whatever board you are running. You can leave the  "Build Katapult deployment application" set or not set (it makes not difference at this flashing stage, it's only for updating), and make sure "Communication Interface" is set to USB. Also make sure the "Support bootloader entry on rapid double click of reset button" is marked. It makes it so a double press of the reset button will force the board into Katapult mode. Makes re-flashing after a mistake a lot easier.
+If your board doesn't exist in the common_hardware folder already, then you want the Processor, Clock Reference, and Application Start offset to be set as per whatever board you are running. You can leave the  "Build Katapult deployment application" set or not set (it makes not difference at this flashing stage, it's only for updating), and make sure "Communication Interface" is set to "CAN Bus" with the correct pins for your toolhead board. Also make sure the "Support bootloader entry on rapid double click of reset button" is marked. It makes it so a double press of the reset button will force the board into Katapult mode. Makes re-flashing after a mistake a lot easier. Lastly, setting the Status LED GPIO Pin won't affect how katapult functions, but it will give a nice visual indicator (of an LED flashing on and off once a second) on the toolhead to show the board is sitting in Katapult mode.
 
-![image](https://user-images.githubusercontent.com/124253477/221349624-69abcf3e-dfd8-48d0-b4f6-0ebd620f6b42.png)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/4f56422c-c451-4036-afc1-c67475ecd380)
+
+
 
 Compile the firmware with `make`. You will now have a katapult.bin (or katapult.uf2) in your ~/katapult/out/ directory.
 
@@ -122,7 +124,7 @@ Then go into the klipper configuration menu by running:
 Again, if your mainboard is already in [commmon_hardware](./common_hardware) then you can copy the Klipper settings from there. 
 
 
-Otherwise, you want the Processor and Clock Reference to be set as per whatever board you are running. Set Communication interface to 'USB to CAN bus bridge' then set the CAN Bus interface to use the pins that are specific to your mainboard. Also set the CAN bus speed to the same as the speed in your can0 file. In this guide it is set to 1000000.
+Otherwise, you want the Processor and Clock Reference to be set as per whatever board you are running. Set Communication interface to"CAN Bus" with the correct pins for your toolhead board. Also set the CAN bus speed to the same as the speed in your can0 file. In this guide it is set to 1000000.
 
 
 Once you have the firmware configured, run a `make clean` to make sure there are no old files hanging around, then `make` to compile the firmware. It will save the firmware to ~/klipper/out/klipper.bin
