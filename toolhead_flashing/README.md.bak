@@ -46,9 +46,9 @@ Compile the firmware with `make`. You will now have a katapult.bin (or katapult.
 
 To flash, connect your toolhead board to the Pi via USB then put the toolhead board into DFU/BOOT mode (your toolhead board user manual should have instructions on doing this).
 
-If your toolhead board uses an STM32 based MCU use [these flashing steps](##STM32-based-boards)
+If your toolhead board uses an STM32 based MCU use [these flashing steps](#stm32-based-boards)
 
-If your toolhead board uses an RP2040 MCU, use [these flashing steps](##RP2040-based-boards)
+If your toolhead board uses an RP2040 MCU, use [these flashing steps](#rp2040-based-boards)
 
 ## STM32 based boards
 

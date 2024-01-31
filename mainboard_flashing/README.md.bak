@@ -88,8 +88,6 @@ Again, if your mainboard is already in [commmon_hardware](./common_hardware) the
 
 Otherwise, you want the Processor and Clock Reference to be set as per whatever board you are running. Set Communication interface to 'USB to CAN bus bridge' then set the CAN Bus interface to use the pins that are specific to your mainboard. Also set the CAN bus speed to the same as the speed in your can0 file. In this guide it is set to 1000000.
 
-**NOTE: The Bootloader offset will be determined by if you are using a bootloader or not. If you are keeping the stock bootloader, or have installed Katapult, then set the bootloader offset to the recommendation in the manual. If you are going to run without a bootloader then set the bootloader offset to "No Bootloader"**
-
 Once you have the firmware configured, run a `make clean` to make sure there are no old files hanging around, then `make` to compile the firmware. It will save the firmware to ~/klipper/out/klipper.bin
 
 ## Using Katapult to flash Klipper
