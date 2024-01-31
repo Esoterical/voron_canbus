@@ -12,7 +12,7 @@ If you have a mainboard running USB-CAN-Bridge mode klipper, go to [here](#updat
 
 ## Updating Mainboard Katapult
 
-This is only if you need to update katapult as well. If you are just doing a Klipper firmware update (because you update Klipper on your Pi and now it is yelling at you or something) then skip to [here](#updating-mainboard-klipper)
+This is only if you need to update katapult as well. If you are just doing a Klipper firmware update (because you updated Klipper on your Pi and now it is yelling at you or something) then skip to [here](#updating-mainboard-klipper)
 
 You should never really have to update your Katapult on the mainboard. Even if you wish to change your CanBUS speeds you don't need to change Katapult **On the Mainboard** as it only communicates via USB and not via CAN.
 
@@ -115,7 +115,7 @@ If you are planning on updating both Katapult and Klipper (ie. for changing CAN 
 
 ## Updating Toolhead Katapult
 
-This is only if you need to update katapult as well. If you are just doing a Klipper firmware update (because you update Klipper on your Pi and now it is yelling at you or something) then skip to [here](#updating-toolhead-klipper)
+This is only if you need to update katapult as well. If you are just doing a Klipper firmware update (because you updated Klipper on your Pi and now it is yelling at you or something) then skip to [here](#updating-toolhead-klipper)
 
 **Step 1**
 
