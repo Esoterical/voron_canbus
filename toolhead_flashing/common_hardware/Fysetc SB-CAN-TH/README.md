@@ -14,14 +14,9 @@ Once it shows as a DFU you can flash to it. Once finished flashing disconnect bo
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/ece9bd34-5165-4864-ba95-73e8b1846f94)
 
 
-# Klipper when using Katapult
+# Klipper Config
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/b38f1af9-cf9b-4173-9e30-06e0e0aa1d76)
-
-
-# Klipper when **NOT** using Katapult
-
-![image](https://github.com/Esoterical/voron_canbus/assets/124253477/b89b23eb-f59a-4c1d-b23d-c6108d129ae9)
 
 # Sample Configuration
 
