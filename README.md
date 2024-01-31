@@ -41,10 +41,9 @@ If this is a fresh build click [here](./Getting_Started.md) to start your journe
 
 If you are just updating an existing already-working CANBus system, click [here](./Updating.md) for steps on how to update the firmware on your boards.
 
-# Configuration
+# HELP!
 
-If you have completed the above and have the canbus uuid of your CAN device in your printer.cfg, then everything else is just a case of setting up the required pins with the toolhead MCU name prefixed to the pin name. See https://www.klipper3d.org/Config_Reference.html#mcu-my_extra_mcu for information.
-Most toolheads will have a sample.cfg on their github, so it's usually a simple case of copy-pasting the required information from the sample into your own printer.cfg.
+If you are just getting stuck, or you had a working CANBus system that is now not working, have a look at the [troubleshooting section](./troubleshooting) for information that may help.
 
 
 
