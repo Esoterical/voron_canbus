@@ -13,14 +13,9 @@ The ERCF should now show up to an `lsusb` command as Pi RP2 Boot device:
 
 ![image](./img/canboot.png)
 
-# Klipper when using Katapult
+# Klipper Config
 
 ![image](./img/klipper-canboot.png)
-
-
-# Klipper when **NOT** using Katapult
-
-![image](./img/klipper-only.png)
 
 # Sample Config
 
