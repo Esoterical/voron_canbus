@@ -22,3 +22,7 @@ If you plug in your USB CAN adapter and you *don't* see the expected results fro
 
 The BTT U2C V2.1 was released with bad firmware which although would show up to the above tests it would make issues show up down the line. If you have a v2.1 of the U2C then please follow the instructions here: https://github.com/Esoterical/voron_canbus/tree/main/can_adapter/BigTreeTech%20U2C%20v2.1
 
+
+# Next Step
+
+Once you have confirmed you can see your can0 interface, continue [here](./toolhead_flashing) for instructions on flashing your toolhead for use with Canbus.

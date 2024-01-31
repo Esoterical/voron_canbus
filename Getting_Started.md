@@ -1,4 +1,4 @@
-## Getting Started
+# Getting Started
 
 # can0 file, CAN Speeds, and Transmit Queue Length
 

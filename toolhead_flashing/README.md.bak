@@ -4,8 +4,6 @@ The following should be taken as an overall guide on what you are going to be ac
 
 **PLEASE DO NOT TAKE THE SCREENSHOTS/CONFIGURATIONS ON THIS PAGE EXACTLY AS WRTTEN AS THEY MAY NOT BE COMPATIBLE WITH YOUR PARTICULAR MAINBOARD**
 
-You will need to adapt the below instructions so they cover _your_ board's specicific configuration. There are also some included configurations for specific popular boards in the https://github.com/Esoterical/voron_canbus/tree/main/toolhead_flashing/common_hardware folder.
-
 Before doing anything it is good to have some dependencies installed. Do this by running these on your Pi:
 
 ```
@@ -38,7 +36,9 @@ cd ~/katapult
 make menuconfig
 ```
 
-You want the Processor, Clock Reference, and Application Start offset to be set as per whatever board you are running. Make sure "Communication Interface" is set to "CAN bus" with the appropriate pins for your board. Also make sure the "Support bootloader entry on rapid double click of reset button" is marked. It makes it so a double press of the reset button will force the board into Katapult mode. Makes re-flashing after a mistake a lot easier.
+You will need to adapt the below instructions so they cover _your_ board's specicific configuration. You can find screenshots of settings for comomon toolheads in the [commmon_hardware](./common_hardware) folder.
+
+If your board doesn't exist in the common_hardware folder already, then you want the Processor, Clock Reference, and Application Start offset to be set as per whatever board you are running. Keep the "Build Katapult deployment application" to (do not build), and make sure "Communication Interface" is set to USB. Also make sure the "Support bootloader entry on rapid double click of reset button" is marked. It makes it so a double press of the reset button will force the board into Katapult mode. Makes re-flashing after a mistake a lot easier.
 
 ![image](https://user-images.githubusercontent.com/124253477/221349624-69abcf3e-dfd8-48d0-b4f6-0ebd620f6b42.png)
 
@@ -46,7 +46,11 @@ Compile the firmware with `make`. You will now have a katapult.bin (or katapult.
 
 To flash, connect your toolhead board to the Pi via USB then put the toolhead board into DFU/BOOT mode (your toolhead board user manual should have instructions on doing this).
 
-**STM32 based board:**
+If your toolhead board uses an STM32 based MCU use [these flashing steps](##STM32-based-boards)
+
+If your toolhead board uses an RP2040 MCU, use [these flashing steps](##RP2040-based-boards)
+
+## STM32 based boards
 
 To confirm it's in DFU mode you can run the command `sudo dfu-util -l` and it will show any devices connected to your Pi in DFU mode.
 
@@ -68,7 +72,10 @@ If the result shows an "Error during download get_status" or something, but abov
 
 ![image](https://user-images.githubusercontent.com/124253477/225469341-46f3478a-aa96-4378-8d73-96faa90d561c.png)
 
-**RP2040 based boards:**
+[Katapult is now installed, click here](##Katapult-is-now-installed)
+
+
+## RP2040 based boards
 
 To confirm it's in BOOT mode, run an `lsusb` command and you should see the device as a "Raspberry Pi boot" device (or similar)
 
@@ -89,6 +96,7 @@ It should look something like this if the download was successfull
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/34c4ca36-d03d-4eb3-a426-8be7751602fc)
 
+[Katapult is now installed, click here](##Katapult-is-now-installed)
 
 ## Katapult is now installed
 
@@ -111,13 +119,13 @@ Move into the klipper directory on the Pi by running:
 Then go into the klipper configuration menu by running:
 `make menuconfig`
 
-You want the Processor and Clock Reference to be set as per whatever board you are running. Set Communication interface to 'CAN bus' with the pins that are specific to your toolhead board. Also set the CAN bus speed to the same as the speed in your can0 file. In this guide it is set to 1000000.
+Again, if your mainboard is already in [commmon_hardware](./common_hardware) then you can copy the Klipper settings from there. 
 
-**NOTE: The Bootloader offset will be determined by if you are using a bootloader or not. If you are using Katapult then set the bootloader offset to the same you sset it when building the Katapult firmware. If you are going to run without a bootloader then set the bootloader offset to "No Bootloader"**
+Otherwise, you want the Processor and Clock Reference to be set as per whatever board you are running. Set Communication interface to 'USB to CAN bus bridge' then set the CAN Bus interface to use the pins that are specific to your mainboard. Also set the CAN bus speed to the same as the speed in your can0 file. In this guide it is set to 1000000.
 
 Once you have the firmware configured, run a `make clean` to make sure there are no old files hanging around, then `make` to compile the firmware. It will save the firmware to ~/klipper/out/klipper.bin
 
-## If you have Katapult installed
+## Using Katapult to flash Klipper
 
 Run a `python3 ~/katapult/scripts/flashtool.py -i can0 -q` and take note of the Katapult device that it shows:
 
@@ -133,36 +141,8 @@ One the flash has been completed you can run the `python3 ~/katapult/scripts/fla
 
 ![image](https://user-images.githubusercontent.com/124253477/221346236-5633f522-97b6-43e7-a675-82f3e483e3a4.png)
 
-## If you don't have Katapult installed
 
-To flash, connect your toolhead board to the Pi via USB and put it into DFU/BOOT mode (your toolhead board user manual should have instructions on doing this).
-
-**STM32 based board:**
-
-To confirm it's in DFU mode you can run the command `sudo dfu-util -l` and it will show any devices connected to your Pi in DFU mode.
-
-![image](https://user-images.githubusercontent.com/124253477/221337550-560128dd-b5fd-41ba-8881-48d24b2215ef.png)
-
-> Note the address of the usb device => 0483:df11
-
-**RP2040 based boards:**
-
-To confirm it's in BOOT mode, run an `lsusb` command and you should see the device as a "Raspberry Pi boot" device (or similar)
-
-![image](https://user-images.githubusercontent.com/124253477/221344712-500b3c36-8e96-4f23-88ed-5e13ee79535f.png)
-
-> Note the address of the usb device => 2e8a:0003
-
-Then simply run the following commands to change to the klipper directory then flash the toolhead board.
-
-```
-cd ~/klipper
-make flash FLASH_DEVICE=0483:df11
-```
-
-where the FLASH_DEVICE ID is the address of the USB device you noted down above.
-
-## Klipper is now installed
+# Klipper is now installed
 
 You can now run the Klipper canbus query to retrieve the canbus_uuid of your toolhead board:
 
@@ -171,6 +151,8 @@ You can now run the Klipper canbus query to retrieve the canbus_uuid of your too
 ![image](https://user-images.githubusercontent.com/124253477/221332914-c612d996-f9c3-444d-aa41-22b8eda96eba.png)
 
 Use this UUID in the [mcu] section of your printer.cfg in order for Klipper (on Pi) to connect to the toolhead board.
+
+
 
 # UPDATING
 
