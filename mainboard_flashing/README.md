@@ -4,8 +4,6 @@ The following should be taken as an overall guide on what you are going to be ac
 
 **PLEASE DO NOT TAKE THE SCREENSHOTS/CONFIGURATIONS ON THIS PAGE EXACTLY AS WRTTEN AS THEY MAY NOT BE COMPATIBLE WITH YOUR PARTICULAR MAINBOARD**
 
-You will need to adapt the below instructions so they cover _your_ board's specicific configuration. There are also some included configurations for specific popular boards in the https://github.com/Esoterical/voron_canbus/tree/main/mainboard_flashing/common_hardware folder.
-
 Before doing anything it is good to have some dependencies installed. Do this by running these on your Pi:
 
 ```
@@ -21,7 +19,7 @@ As mentioned in the main guide, you can either use Katapult on your mainboard to
 
 # Installing Katapult
 
-(The following is a lot of copy-paste from MastahFR's excellent "Octopus and SB2040" install guide https://github.com/akhamar/voron_canbus_octopus_sb2040. Give all kudus to them)
+(The following is a lot of copy-paste from MastahFR's excellent ["Octopus and SB2040" install guide](https://github.com/akhamar/voron_canbus_octopus_sb2040). Give all kudus to them)
 
 First you need to clone the Katapult repo onto your pi. Run the following commands to clone the repo:
 
@@ -39,7 +37,10 @@ cd ~/katapult
 make menuconfig
 ```
 
-You want the Processor, Clock Reference, and Application Start offset to be set as per whatever board you are running. Keep the "Build Katapult deployment application" to (do not build), and make sure "Communication Interface" is set to USB. Also make sure the "Support bootloader entry on rapid double click of reset button" is marked. It makes it so a double press of the reset button will force the board into Katapult mode. Makes re-flashing after a mistake a lot easier.
+
+You will need to adapt the below instructions so they cover _your_ board's specicific configuration. You can find screenshots of settings for comomon toolheads in the [commmon_hardware](./common_hardware) folder.
+
+If your board doesn't exist in the common_hardware folder already, then you want the Processor, Clock Reference, and Application Start offset to be set as per whatever board you are running. Set the "Build Katapult deployment application" (this is really only for updating but doesn't hurt having it enabled at this stage), and make sure "Communication Interface" is set to USB. Also make sure the "Support bootloader entry on rapid double click of reset button" is marked. It makes it so a double press of the reset button will force the board into Katapult mode. Makes re-flashing after a mistake a lot easier.
 
 ![image](https://user-images.githubusercontent.com/124253477/221333924-0a4d3c28-d084-4f8c-b93f-0670114bd090.png)
 
@@ -83,13 +84,13 @@ Move into the klipper directory on the Pi by running:
 Then go into the klipper configuration menu by running:
 `make menuconfig`
 
-You want the Processor and Clock Reference to be set as per whatever board you are running. Set Communication interface to 'USB to CAN bus bridge' then set the CAN Bus interface to use the pins that are specific to your mainboard. Also set the CAN bus speed to the same as the speed in your can0 file. In this guide it is set to 1000000.
+Again, if your mainboard is already in [commmon_hardware](./common_hardware) then you can copy the Klipper settings from there. 
 
-**NOTE: The Bootloader offset will be determined by if you are using a bootloader or not. If you are keeping the stock bootloader, or have installed Katapult, then set the bootloader offset to the recommendation in the manual. If you are going to run without a bootloader then set the bootloader offset to "No Bootloader"**
+Otherwise, you want the Processor and Clock Reference to be set as per whatever board you are running. Set Communication interface to 'USB to CAN bus bridge' then set the CAN Bus interface to use the pins that are specific to your mainboard. Also set the CAN bus speed to the same as the speed in your can0 file. In this guide it is set to 1000000.
 
 Once you have the firmware configured, run a `make clean` to make sure there are no old files hanging around, then `make` to compile the firmware. It will save the firmware to ~/klipper/out/klipper.bin
 
-## If you have Katapult installed
+## Using Katapult to flash Klipper
 
 Run an `ls /dev/serial/by-id/` and take note of the Katapult device that it shows:
 
@@ -101,27 +102,6 @@ Run this command to install klipper firmware via Katapult via USB. Use the devic
 
 `python3 ~/katapult/scripts/flashtool.py -f ~/klipper/out/klipper.bin -d /dev/serial/by-id/usb-katapult_stm32f446xx_37001A001851303439363932-if00`
 
-## If you are running a stock bootloader and flashing via SD card INSTEAD of Katapult
-
-Simply follow the mainboard user manual to copy the ~/klipper/out/klipper.bin file to an SD card (renaming it if needed) and flash the mainboard as per user manual.
-
-## If you are flashing via DFU mode (no Katapult or stock bootloader)
-
-To flash, connect your mainboard to the Pi via USB then put the mainboard into DFU mode (your mainboard user manual should have instructions on doing this).
-To confirm it's in DFU mode you can run the command `sudo dfu-util -l` and it will show any devices connected to your Pi in DFU mode.
-
-![image](https://user-images.githubusercontent.com/124253477/221337550-560128dd-b5fd-41ba-8881-48d24b2215ef.png)
-
-> Note the address of the usb device => 0483:df11
-
-Then simply run the following commands to change to the klipper directory then flash the mainboard.
-
-```
-cd ~/klipper
-make flash FLASH_DEVICE=0483:df11
-```
-
-where the FLASH_DEVICE ID is the address of the USB device you noted down from the `sudo dfu-util -l` command.
 
 ## Klipper is now installed
 
@@ -141,63 +121,7 @@ You can now run the Klipper canbus query to retrieve the canbus_uuid of your mai
 
 Use this UUID in the [mcu] section of your printer.cfg in order for Klipper (on Pi) to connect to the mainboard.
 
-# UPDATING
+# Next Step
 
-## Updating Katapult
+Now that your mainboard is fully flashed, and you have a working can0 CANBus network, the next step is to [flash your toolhead board](../toolhead_flashing).
 
-You should never really have to update your Katapult on the mainboard. Even if you wish to change your CanBUS speeds you don't need to change Katapult **On the Mainboard** as it only communicates via USB and not via CAN.
-
-However, if you need to update Katapult for whatever reason, then:
-Change to your Katapult directory with `cd ~/katapult`
-then go into the Katapult firmware config menu with `make menuconfig`
-This time **make sure "Build Katapult deployment application" is configured** with the properly bootloader offset (same as the "Application start offset" that is relevant for your mainboard). Make sure all the rest of your settings are correct for your mainboard.
-
-![image](https://user-images.githubusercontent.com/124253477/223301620-c1fd3d16-04e3-49ce-8d48-5498811f4c46.png)
-
-This time when you run `make`, along with the normal katapult.bin file it will also generate a deployer.bin file. This deployer.bin is a fancy little tool that uses the existing bootloader (Katapult, or stock, or whatever) to "update" itself into the Katapult you just compiled.
-
-So to update your Katapult, you just need to flash this deployer.bin file via your existing Katapult (in a very similar way you would flash klipper via Katapult).
-
-If you already have a functioning CAN setup, and your [mcu] canbus_uuid is in your printer.cfg, then you can force Katapult to reboot into Katapult mode by running:
-
-`python3 ~/katapult/scripts/flashtool.py -i can0 -u yourmainboarduuid -r`
-
-![image](https://user-images.githubusercontent.com/124253477/223303347-385ec07c-5211-42d3-b985-4dc38c2864ec.png)
-
-If you don't have the UUID (or something has gone wrong with the klipper firmware and your mainboard is hung) then you can also double-press the RESET button on your mainboard to force Katapult to reboot into Katapult mode.
-
-You can verify it is in the proper mode by running `ls /dev/serial/by-id`. If you see a "usb-katapult-......" device then it is good to go.
-
-![image](https://user-images.githubusercontent.com/124253477/223303596-f7709d3c-d652-401c-959d-560381a39cff.png)
-
-Once you are at this stage you can flash the deployer.bin by running:
-
-`python3 ~/katapult/scripts/flashtool.py -f ~/katapult/out/deployer.bin -d /dev/serial/by-id/usb-katapult_stm32f446xx_37001A001851303439363932-if00`
-
-and your Katapult should update.
-
-![image](https://user-images.githubusercontent.com/124253477/223303940-e7c19b00-04bb-47b3-9230-458e9f2de251.png)
-
-## Updating Klipper Firmware via Katapult
-
-To update Klipper, first compile the new Klipper firmware by running the same way you did in the "Installing USB-CAN-Bridge Klipper" section above, but with your new settings (if you are changing settings). Then you need to get Katapult back into Katapult mode.
-
-If you already have a functioning CAN setup, and your [mcu] canbus_uuid is in your printer.cfg, then you can force Katapult to reboot into Katapult mode by running:
-
-`python3 ~/katapult/scripts/flashtool.py -i can0 -u yourmainboarduuid -r`
-
-![image](https://user-images.githubusercontent.com/124253477/223303347-385ec07c-5211-42d3-b985-4dc38c2864ec.png)
-
-If you don't have the UUID (or something has gone wrong with the klipper firmware and your mainboard is hung) then you can also double-press the RESET button on your mainboard to force Katapult to reboot into Katapult mode.
-
-You can verify it is in the proper mode by running `ls /dev/serial/by-id`. If you see a "usb-katapult-......" device then it is good to go.
-
-![image](https://user-images.githubusercontent.com/124253477/223303596-f7709d3c-d652-401c-959d-560381a39cff.png)
-
-Then you can run the same command you used to initially flash Klipper:
-
-`python3 ~/katapult/scripts/flashtool.py -f ~/klipper/out/klipper.bin -d /dev/serial/by-id/usb-katapult_stm32f446xx_37001A001851303439363932-if00`
-
-## Updating Klipper Firmware via other methods
-
-Updating klipper via SD card flash or straight DFU mode is the exact same as initially installing it as outlined in the main Installing section above.
