@@ -16,14 +16,10 @@
 ![image](https://user-images.githubusercontent.com/124253477/228764838-d75c7bc4-a27f-4c3a-b6c8-ef0e78f49f4f.png)
 
 
-# Klipper when using Katapult
+# Klipper Config
 
 ![image](https://user-images.githubusercontent.com/124253477/221349102-cd2f4060-9c29-44aa-b722-9883262b2fc3.png)
 
-
-# Klipper when **NOT** using Katapult
-
-![image](https://user-images.githubusercontent.com/124253477/221349111-570dedac-fa9b-4706-b0d3-3bbc773461f0.png)
 
 # Sample Configuration
 
