@@ -2,7 +2,7 @@
 
 ![image](https://user-images.githubusercontent.com/124253477/221387924-afb1784e-823b-48b4-a5d4-3ea08cd09071.png)
 
-# Klipper USB-CAN-Bridge when using Katapult
+# Klipper USB-CAN-Bridge Config
 
 ![image](https://user-images.githubusercontent.com/124253477/221387939-22b5a327-af94-4337-b952-849758bec999.png)
 
