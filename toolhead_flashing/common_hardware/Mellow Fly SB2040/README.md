@@ -9,14 +9,9 @@ To put the SB2040 into boot mode (for initial flashing), unplug any USB and CAN 
 
 ![image](https://user-images.githubusercontent.com/124253477/228765757-5a8bab71-6f57-4467-8400-4bbb9d37e2f6.png)
 
-# Klipper when using Katapult
+# Klipper Config
 
 ![image](https://user-images.githubusercontent.com/124253477/221348650-b9f2749e-0f3b-44b4-b34a-a57bd8beb706.png)
-
-
-# Klipper when **NOT** using Katapult
-
-![image](https://user-images.githubusercontent.com/124253477/221348953-de98e788-734d-4e34-b9dd-1b2a0e99607c.png)
 
 # Sample Config
 
