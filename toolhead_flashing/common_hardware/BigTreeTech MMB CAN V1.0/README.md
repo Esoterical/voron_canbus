@@ -17,14 +17,9 @@
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/649a5bb8-f35f-42fc-b643-02341e1f4d05)
 
 
-# Klipper when using Katapult
+# Klipper Config
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/ef7f82f2-b5b9-469d-b1aa-9bad94a4c949)
-
-
-# Klipper when **NOT** using Katapult
-
-![image](https://github.com/Esoterical/voron_canbus/assets/124253477/473c6d0f-dde6-4df6-be50-b0645d02cafd)
 
 
 # Sample Configuration
