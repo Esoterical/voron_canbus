@@ -35,11 +35,11 @@ To actually create a CAN network in your system, your Pi needs some sort of devi
 
 # New build
 
-Head to [getting_started](./getting_started.md) to start your journey.
+If this is a fresh build click [here](./Getting_Started.md) to start your journey.
 
 # Updating
 
-If you are just updating an existing already-working CANBus system, click [here](./updating.md) for steps on how to update the firmware on your boards.
+If you are just updating an existing already-working CANBus system, click [here](./Updating.md) for steps on how to update the firmware on your boards.
 
 # Configuration
 
