@@ -123,10 +123,6 @@ You can now run the Klipper canbus query to retrieve the canbus_uuid of your mai
 
 Use this UUID in the [mcu] section of your printer.cfg in order for Klipper (on Pi) to connect to the mainboard.
 
-# Next Step
-
-Now that your mainboard is fully flashed, and you have a working can0 CANBus network, the next step is to [flash your toolhead board](../toolhead_flashing).
-
 # UPDATING
 
 ## Updating Katapult
