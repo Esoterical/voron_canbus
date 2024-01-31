@@ -72,7 +72,7 @@ If the result shows an "Error during download get_status" or something, but abov
 
 ![image](https://user-images.githubusercontent.com/124253477/225469341-46f3478a-aa96-4378-8d73-96faa90d561c.png)
 
-[Katapult is now installed, click here](##Katapult-is-now-installed)
+Katapult is now installed, [click here](#katapult-is-now-installed) for the next steps.
 
 
 ## RP2040 based boards
@@ -96,7 +96,7 @@ It should look something like this if the download was successfull
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/34c4ca36-d03d-4eb3-a426-8be7751602fc)
 
-[Katapult is now installed, click here](##Katapult-is-now-installed)
+Katapult is now installed, [click here](#katapult-is-now-installed) for the next steps.
 
 ## Katapult is now installed
 
