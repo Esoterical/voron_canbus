@@ -25,7 +25,7 @@ then go into the Katapult firmware config menu with `make menuconfig`
 
 This time **make sure "Build Katapult deployment application" is configured** with the properly bootloader offset (same as the "Application start offset" that is relevant for your mainboard). Make sure all the rest of your settings are correct for your mainboard.
 
-You can find screenshots of settings for comomon toolheads in the [mainboard_flashing/commmon_hardware](../mainboard_flashing/common_hardware) folder, but once again, **make sure "Build Katapult deployment application" is set**
+You can find screenshots of settings for comomon toolheads in the [mainboard_flashing/commmon_hardware](./mainboard_flashing/common_hardware) folder, but once again, **make sure "Build Katapult deployment application" is set**
 
 If your board doesn't exist in the common_hardware folder already, then you want the Processor, Clock Reference, and Application Start offset to be set as per whatever board you are running. Set the "Build Katapult deployment application", and make sure "Communication Interface" is set to USB. Also make sure the "Support bootloader entry on rapid double click of reset button" is marked. It makes it so a double press of the reset button will force the board into Katapult mode. Makes re-flashing after a mistake a lot easier.
 
@@ -88,6 +88,8 @@ If you already have a functioning CAN setup, and your [mcu] canbus_uuid is in yo
 
 ![image](https://user-images.githubusercontent.com/124253477/223303347-385ec07c-5211-42d3-b985-4dc38c2864ec.png)
 
+If will probably say "Flash success" **THIS IS NOT ACTUALLY FLASHING ANYTHING, YOU NEED TO CONTINUE WITH THE STEPS BELOW**
+
 **Step 3**
 
 If you don't have the UUID (or something has gone wrong with the klipper firmware and your mainboard is hung) then you can also double-press the RESET button on your mainboard to force Katapult to reboot into Katapult mode.
@@ -121,7 +123,7 @@ Change to your Katapult directory with `cd ~/katapult`
 then go into the Katapult firmware config menu with `make menuconfig`
 This time **make sure "Build Katapult deployment application" is configured** with the properly bootloader offset (same as the "Application start offset" that is relevant for your toolhead). Make sure all the rest of your settings are correct for your toolhead.
 
-You can find screenshots of settings for comomon toolheads in the [toolhead_flashing/commmon_hardware](../mainboard_flashing/common_hardware) folder, but once again, **make sure "Build Katapult deployment application" is set**
+You can find screenshots of settings for comomon toolheads in the [toolhead_flashing/commmon_hardware](./toolhead_flashing/common_hardware) folder, but once again, **make sure "Build Katapult deployment application" is set**
 
 
 ![image](https://user-images.githubusercontent.com/124253477/223301620-c1fd3d16-04e3-49ce-8d48-5498811f4c46.png)
@@ -137,6 +139,8 @@ If you already have a functioning CAN setup, and your [mcu toolhead] canbus_uuid
 `python3 ~/katapult/scripts/flashtool.py -i can0 -u yourtoolheaduuid -r`
 
 ![image](https://user-images.githubusercontent.com/124253477/223307559-1da6a2dd-d572-456c-9ee6-0565e9192fea.png)
+
+If will probably say "Flash success" **THIS IS NOT ACTUALLY FLASHING ANYTHING, YOU NEED TO CONTINUE WITH THE STEPS BELOW**
 
 **Step 3**
 
