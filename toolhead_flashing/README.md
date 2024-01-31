@@ -152,5 +152,9 @@ You can now run the Klipper canbus query to retrieve the canbus_uuid of your too
 
 Use this UUID in the [mcu] section of your printer.cfg in order for Klipper (on Pi) to connect to the toolhead board.
 
+# Next Step
+
+Congratulations! Everything is now flashed. Time to move on to the [final steps](../Final_Steps.md).
+
 
 
