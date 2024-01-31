@@ -1,6 +1,6 @@
-#Updating
+# Updating
 
-captain_update.gif
+![captain_update](https://github.com/Esoterical/voron_canbus/assets/124253477/d0fd2280-c8de-4861-9c23-0d82787af777)
 
 Did you update the Klipper on your Pi, and now it is yelling at you about MCU version being out of date? Or maybe you just want to update the firmware on your boards for the latest features (or fixes). Either way, just follow these steps and it should be pretty painless.
 
