@@ -65,7 +65,7 @@ and your Katapult should update.
 
 ## Updating Mainboard Klipper
 
-*Step 1**
+**Step 1**
 
 To update Klipper, you first need to compile a new klipper.bin with the correct settings.
 
@@ -74,7 +74,7 @@ Move into the klipper directory on the Pi by running:
 Then go into the klipper configuration menu by running:
 `make menuconfig`
 
-You can find screenshots of settings for comomon toolheads in the [mainboard_flashing/commmon_hardware](../mainboard_flashing/common_hardware) folder.
+You can find screenshots of settings for comomon toolheads in the [mainboard_flashing/commmon_hardware](./mainboard_flashing/common_hardware) folder.
 
 Otherwise, you want the Processor and Clock Reference to be set as per whatever board you are running. Set Communication interface to 'USB to CAN bus bridge' then set the CAN Bus interface to use the pins that are specific to your mainboard. Also set the CAN bus speed to the same as the speed in your can0 file. In this guide it is set to 1000000.
 
@@ -169,7 +169,7 @@ Move into the klipper directory on the Pi by running:
 Then go into the klipper configuration menu by running:
 `make menuconfig`
 
-You can find screenshots of settings for comomon toolheads in the [commmon_hardware](./common_hardware) folder.
+You can find screenshots of settings for comomon toolheads in the [toolhead_flashing/commmon_hardware](./toolhead_flashing/common_hardware) folder.
 
 You want the Processor and Clock Reference to be set as per whatever board you are running. Set Communication interface to 'CAN bus' with the pins that are specific to your toolhead board. Also set the CAN bus speed to the same as the speed in your can0 file. In this guide it is set to 1000000.
 
