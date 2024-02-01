@@ -1,3 +1,7 @@
+# 120 ohm Termination Resistor
+
+There is a permanent 120 ohm termination resistor soldered to the board, no need to add a jumper to enable it and also no ability to disable it.
+
 # DFU Mode
 
 To put the octopus into DFU mode you need to put in the boot jumper (purple) and press the reset button (green). The blue is for the "power over USB" jumper and isn't needed if you already have 24v hooked up to the octopus.
