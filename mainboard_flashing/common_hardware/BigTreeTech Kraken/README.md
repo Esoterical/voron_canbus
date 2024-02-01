@@ -1,3 +1,9 @@
+# 120 ohm Termination Resistor
+
+The header for the 120R termination resistor is circled in purple
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/915d6855-088a-4137-896c-78737cb08925)
+
 # DFU Mode
 
 To put the Kraken into DFU mode, hold the BOOT0 button and while still holding press and release the RESET button. Then count to 5 and release the BOOT0 button.
