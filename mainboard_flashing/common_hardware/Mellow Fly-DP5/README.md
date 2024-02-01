@@ -1,3 +1,10 @@
+# 120 ohm Termination Resistor
+
+The header for the 120R termination resistor is circled in purple
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/9f1bdf13-b8f5-4ab2-b661-7ada729f2ad0)
+
+
 # DFU Mode
 
 To put the FLY-DP5 into DFU mode, hold the BOOT button and while still holding press and release the RESET button. Then count to 5 and release the BOOT button.
