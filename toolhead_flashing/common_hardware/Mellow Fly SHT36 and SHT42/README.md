@@ -1,3 +1,9 @@
+# 120 ohm Termination Resistor
+
+The header for the termination resistor is circled in purple. You need to jumper *both* the header pairs
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/b546bbc3-60c3-459e-b309-4e2d007bfbc7)
+
 
 # DFU Mode
 1.  Add a jumper as shown in the image below to enable DFU mode
