@@ -1,3 +1,10 @@
+# 120 ohm Termination Resistor
+
+The header for the 120R termination resistor is circled in purple
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/b9199bf6-b27a-4d84-8c14-4b167c941fab)
+
+
 # Katapult Config
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/2bcacb62-eb25-47ef-818c-de6506d94dee)
