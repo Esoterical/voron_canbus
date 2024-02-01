@@ -1,3 +1,10 @@
+# 120 ohm Termination Resistor
+
+The header for the 120R termination resistor is circled in purple
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/1e359304-b00f-4e93-a877-5b60beaa5249)
+
+
 # DFU Mode
 1.  Add a jumper as shown in the image below so the board can be powered via a USB connection
     ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/c5f00b2a-c6dc-4f80-b9aa-4b963d21a580)
