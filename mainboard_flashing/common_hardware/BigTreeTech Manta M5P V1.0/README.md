@@ -1,3 +1,10 @@
+# 120 ohm Termination Resistor
+
+The header for the 120R termination resistor is circled in purple
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/d6c1aec5-ec9d-4fab-8e01-40a233039aa4)
+
+
 # DFU Mode
 
 To put the Manta M5P V1.0 into DFU mode, hold the BOOT0 button and while still holding press and release the RESET button. Then count to 5 and release the BOOT0 button.
