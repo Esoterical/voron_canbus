@@ -1,3 +1,8 @@
+# 120 ohm Termination Resistor
+
+There is a permanent 120 ohm termination resistor soldered to the board, no need to add a jumper to enable it and also no ability to disable it.
+
+
 # DFU Mode
 
 To put the Spider 3.0 into DFU mode, hold the BT0 button and while still holding press and release the RST button. Then count to 5 and release the BT0 button.
