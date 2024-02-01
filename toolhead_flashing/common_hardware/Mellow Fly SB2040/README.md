@@ -1,3 +1,10 @@
+# 120 ohm Termination Resistor
+
+The header for the 120R termination resistor is circled in purple
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/87099ccc-7012-4d90-9147-eec3207b29ff)
+
+
 # BOOT Mode
 
 To put the SB2040 into boot mode (for initial flashing), unplug any USB and CAN cables from the SB2040, then hold the BOOT button. While continuing to hold the BOOT button plug in the USB cable from the Pi to the SB2040. Keep holding the BOOT button for a few more second, then release. The SB2040 should now show up to an `lsusb` command as Pi RP2 Boot device:
