@@ -1,3 +1,7 @@
+# 120 ohm Termination Resistor
+
+As the SKR Pico requires an [external CAN transciever](#ransceiver) there is no built in 120ohm resistor on the Pico itself. The transceiver you use will likely have the 120r resistor hard soldered already, but some may have jumpers or solder pads to add/remove it from the circuit.
+
 
 # Katapult Config
 
@@ -7,7 +11,7 @@
 
 ![image](https://user-images.githubusercontent.com/124253477/221390518-b7f15c58-6beb-43bd-a47b-d6823956e997.png)
 
-# NOTES
+# Transceiver
 You will need a seperate CAN Transceiver board, such as the SN65VHD230:
 
 ![image](https://user-images.githubusercontent.com/124253477/221390554-0cf82868-2157-4f14-bdcf-168e59c8f22d.png)
