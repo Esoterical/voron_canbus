@@ -1,5 +1,10 @@
-# BOOT Mode
+# 120 ohm Termination Resistor
 
+The header for the 120R termination resistor is circled in purple
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/7f9863d3-9593-49d6-bf4c-34ba3d47a687)
+
+# BOOT Mode
 
 To put the SB2209 into boot mode (for initial flashing), unplug any USB and CAN cables from the SB2040, then put the 5v jumper in place so the board can receive power over the USB connection:
 
