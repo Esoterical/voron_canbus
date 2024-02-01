@@ -1,3 +1,12 @@
+# 120 ohm Termination Resistor
+
+The Fysetc SB-CAN-TH v1.1 has no resistor nor any provisions for adding one.
+
+The Fysetc SB-Can-TH v1.3B has header for the 120R termination resistor which is circled in purple
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/592d4dd6-429b-4833-b3f7-2b78d34fa2be)
+
+
 # DFU Mode
 
 1. Power on your Pi
