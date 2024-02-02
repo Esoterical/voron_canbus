@@ -9,13 +9,28 @@ The Fysetc SB-Can-TH v1.3B has header for the 120R termination resistor which is
 
 # DFU Mode
 
-1. Power on your Pi
-2. Disconnect the 24v CAN wires from the SB-CAN-TH as well as the USB cable (if connected) and wait at least 5 seconds
-3. Connect the USB cable from Pi to SB-CAN-TH
-4. Plug in the SB-CAN-TH 24v CAN wires to power the board
-5. Run `dfu-util -l` on the Pi to confirm the SB-CAN-TH is showing up as a DFU device
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/dda93dd3-bdc8-4d8f-be9b-45658668bfe1)
 
-Once it shows as a DFU you can flash to it. Once finished flashing disconnect both USB **and** the 24v power wires, wait 5 seconds, then plug in *only* the 24v/Ground/CAN wires (no USB)
+## For V1.1
+
+1. Power *off* your whole printer (at the wall)
+2. Connect SB-CAN-TH Micro-USB to Pi USB-A
+3. Power on your printer
+4. Run `lsusb` to check if the SB-CAN-TH shows in DFU mode. If not, go back to step 1.
+5. If it shows as a DFU device in `lsusb` you can continue with the flashing steps
+6. After flashing, power down the whole printer, remove the USB cable, connect all the CAN cables, then power on the printer.
+
+
+## For V1.3
+
+1. Power *off* your whole printer (at the wall)
+2. Connect SB-CAN-TH Micro-USB to Pi USB-A
+3. Power on your printer, wait for the Pi to be fully booted
+4. Hold the reset button on the SB-CAN-TH for 2 seconds then release it.
+5. Run `lsusb` to check if the SB-CAN-TH shows in DFU mode. If not, go back to step 1.
+6. If it shows as a DFU device in `lsusb` you can continue with the flashing steps
+7. After flashing, power down the whole printer, remove the USB cable, connect all the CAN cables, then power on the printer.
+
 
 
 # Katapult Config
