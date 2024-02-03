@@ -114,9 +114,22 @@ python3 ~/katapult/scripts/flashtool.py -i can0 -q
 
 You should see a "Found UUID" with "Application: Katapult"
 
-![image](https://github.com/Esoterical/voron_canbus/assets/2089/47589b13-1543-4eae-ba44-59c5761e4d75)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/ff9dcbb3-0456-4d87-8091-41d5d6050c02)
 
 If you see the above, take note of the UUID and move on to flashing Klipper to the toolhead board.
+
+---------
+<p align="center">
+  <img src="https://github.com/Esoterical/voron_canbus/assets/124253477/36065239-009c-4195-8e13-a43959acac7b" />
+</p>
+
+If you do *not* see a UUID here with "Application: Katapult" (if you are using usb-can-bridge mainboard then you may see your Mainboard UUID with "application:klipper", **this is different and not what we are looking for**) then go back to the [Installing Katapult](#installing-katapult) section and try again, making sure the Katapult `make menuconfig` settings are *absolutely* correct for your toolhead board.
+
+If you still don't see the "Application:Katapult" after going through the Katapult flashing steps again, check the [no_uuid troubleshooting](../troubleshooting/no_uuid.md) page for things to try.
+
+**DO NOT CONTINUE** until you can see your toolhead UUID with "application:katapult" when running `python3 ~/katapult/scripts/flashtool.py -i can0 -q`
+
+---------
 
 # Installing Klipper
 
