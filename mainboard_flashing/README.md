@@ -1,4 +1,4 @@
-# General Info
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/782a44b4-9684-4e99-9aac-e8efa0d68c8b)# General Info
 
 The following should be taken as an overall guide on what you are going to be achieving.
 
@@ -71,7 +71,25 @@ If the result shows an "Error during download get_status" or something, but abov
 
 ![image](https://user-images.githubusercontent.com/124253477/225469341-46f3478a-aa96-4378-8d73-96faa90d561c.png)
 
-Katapult should now be successfully flashed. Take your mainboard out of DFU mode (it might require removing jumpers and rebooting, or just rebooting).
+Katapult should now be successfully flashed. Take your mainboard out of DFU mode (it might require removing jumpers and rebooting, or just rebooting). Check that Katapult is installed and by running 
+
+```
+ls /dev/serial/by-id
+```
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/1e9f0f7c-ada3-490b-bd62-bde25b67c362)
+
+You should see a "usb-katapult_..." device there.
+
+---------
+<p align="center">
+  <img src="https://github.com/Esoterical/voron_canbus/assets/124253477/36065239-009c-4195-8e13-a43959acac7b" />
+</p>
+
+If you do *not* see a Katapult device listed in your /dev/serial/by-id, or if you get a `cannot access '/dev/serial/by-id': No such file or directory` then your mainboard *isn't* currently sitting in Katapult mode. Double-click the reset button on your mainboard then `ls /dev/serial/by-id` again. If you still don't see a Katapult device then either the flash didn't work or you had incorrect settings in the Katapult `make menuconfig` screen. Go [back](#installing-katapult) and try again.
+
+---------
+
 
 As you are installing Katapult onto the mainboard that you are also going to use for USB-CAN-Bridge mode klipper, you still will _not_ have a working CAN network at this stage. You can flash klipper to your mainboard via Katapult, but in reality it is flashing over USB and not flashing over CAN.
 
@@ -109,9 +127,24 @@ This should have now installed klipper firmware to your mainboard. You can verif
 
 ![image](https://user-images.githubusercontent.com/124253477/221329262-d8758abd-62cb-4bb6-9b4f-7bc0f615b5de.png)
 
-You can also check by running an 'interface config' command `ifconfig`. If the USB-CAN-Bridge klipper is up and happy (and you have created the can0 file mentioned in the main page) then you will see a can0 interface:
+Check that the can0 interface is up by running `ip -s -d link show can0` . If everything is correct you will see somethign like this:
 
-![image](https://user-images.githubusercontent.com/124253477/221329326-efa1437e-839d-4a6b-9648-89412791b819.png)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/1c1c807f-5654-44fb-b0a9-c59e3e43f60a)
+
+You see a can0 interface, the "qlen" will be 1024, and the bitrate will be 1000000
+
+
+---------
+<p align="center">
+  <img src="https://github.com/Esoterical/voron_canbus/assets/124253477/36065239-009c-4195-8e13-a43959acac7b" />
+</p>
+
+If the `ip -s -d link show can0` command returns an error (eg. "Device can0 does not exist) then reboot your Pi with `sudo reboot now` and once the Pi is back up check `ip -s -d link show can0` again. If you still get the error then your mainboard isn't showing as a CAN adapter and you need to go back to the [Installing USB-CAN-Bridge Klipper](#installing-usb-can-bridge-klipper) and try again, making sure the Klipper `make menuconfig` settings are absolutely correct.
+
+
+If the can0 network shows up, but the qlen *isn't* 1024 or the bitrate *isn't* 1000000 then go back to [Getting_Started](./Getting_Started.md) and check the can0 file settigns in both the ifupdown section and the netplan section.
+
+---------
 
 You can now run the Klipper canbus query to retrieve the canbus_uuid of your mainboard:
 

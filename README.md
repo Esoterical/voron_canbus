@@ -33,6 +33,14 @@ You may have seen other guides have installing Katapult/CanBOOT onto devices as 
 
 To actually create a CAN network in your system, your Pi needs some sort of device to act as a CAN adapter (think of it like a USB network card, or USB wifi dongle). The simplest plug-and-play option is to use a dedicated USB to Can device such as the BigTreeTech U2C, Mellow Fly UTOC, Fysetc UCAN, etc. (other devices exist as well). The second "cheaper" option is to actually utilise your printer mainboard (ie. Octopus or Spider board) to function as a usb-can bridge for klipper. We'll cover both options, but you only need to choose one.
 
+# Checkpoints
+
+Throughout this guide you will notice stop signs:
+
+![Stop_sign_small](https://github.com/Esoterical/voron_canbus/assets/124253477/bcb8b993-4edd-4482-b0af-64942b02ce9b)
+
+These denote sections where you need to do a final check before proceeding. If you do not get the same results as outlined in these STOP sections, *do not* go further. Continuing on to subsequent sections when the section you are on isn't set up correctly will just either not work or cause confusing issues.
+
 # New build
 
 If this is a fresh build click [here](./Getting_Started.md) to start your journey.
