@@ -129,7 +129,7 @@ Then go into the klipper configuration menu by running:
 make menuconfig
 ```
 
-Again, if your mainboard is already in [commmon_hardware](./common_hardware) then you can copy the Klipper settings from there. 
+Again, if your toolhead is already in [commmon_hardware](./common_hardware) then you can copy the Klipper settings from there. 
 
 
 Otherwise, you want the Processor and Clock Reference to be set as per whatever board you are running. Set Communication interface to"CAN Bus" with the correct pins for your toolhead board. Also set the CAN bus speed to the same as the speed in your can0 file. In this guide it is set to 1000000.
