@@ -1,4 +1,4 @@
-# General Info
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/782a44b4-9684-4e99-9aac-e8efa0d68c8b)# General Info
 
 The following should be taken as an overall guide on what you are going to be achieving.
 
@@ -71,7 +71,25 @@ If the result shows an "Error during download get_status" or something, but abov
 
 ![image](https://user-images.githubusercontent.com/124253477/225469341-46f3478a-aa96-4378-8d73-96faa90d561c.png)
 
-Katapult should now be successfully flashed. Take your mainboard out of DFU mode (it might require removing jumpers and rebooting, or just rebooting).
+Katapult should now be successfully flashed. Take your mainboard out of DFU mode (it might require removing jumpers and rebooting, or just rebooting). Check that Katapult is installed and by running 
+
+```
+ls /dev/serial/by-id
+```
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/1e9f0f7c-ada3-490b-bd62-bde25b67c362)
+
+You should see a "usb-katapult_..." device there.
+
+---------
+<p align="center">
+  <img src="https://github.com/Esoterical/voron_canbus/assets/124253477/36065239-009c-4195-8e13-a43959acac7b" />
+</p>
+
+If you do *not* see a Katapult device listed in your /dev/serial/by-id, or if you get a `cannot access '/dev/serial/by-id': No such file or directory` then your mainboard *isn't* currently sitting in Katapult mode. Double-click the reset button on your mainboard then `ls /dev/serial/by-id` again. If you still don't see a Katapult device then either the flash didn't work or you had incorrect settings in the Katapult `make menuconfig` screen. Go [back](#knstalling-katapult) and try again.
+
+---------
+
 
 As you are installing Katapult onto the mainboard that you are also going to use for USB-CAN-Bridge mode klipper, you still will _not_ have a working CAN network at this stage. You can flash klipper to your mainboard via Katapult, but in reality it is flashing over USB and not flashing over CAN.
 
