@@ -80,10 +80,6 @@ The same can be said for dedicated USB CAN adapters (like the U2C). Most will ha
 
 You can find information and diagrams on the 120 ohm termination resistor placement for boards in the mainbard [common_hardware](./mainboard_flashing/common_hardware) folder.
 
-<a href="./mainboard_flashing/common_hardware" target="_blank">test</a> 
-
-<a href="https://google.com" target="_blank">test</a>
-
 ## Toolhead
 
 Nearly all Toolheads will have a two-pin header (sometimes labelled 120R) that you can put a jumper on to bring the 120 ohm resistor into the circuit.
