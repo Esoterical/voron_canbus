@@ -1,6 +1,7 @@
 # Updating
 
-![image](https://github.com/Esoterical/voron_canbus/assets/124253477/764bf744-7ac3-4955-9cd2-c4d82ceb8df9)
+![captain_update](https://github.com/Esoterical/voron_canbus/assets/124253477/2b35e7a5-d2b7-4f50-9db7-5e4202ad85ed)
+
 
 Did you update the Klipper on your Pi, and now it is yelling at you about MCU version being out of date? Or maybe you just want to update the firmware on your boards for the latest features (or fixes). Either way, just follow these steps and it should be pretty painless.
 
@@ -104,7 +105,7 @@ Then you can run the same command you used to initially flash Klipper:
 
 `python3 ~/katapult/scripts/flashtool.py -f ~/klipper/out/klipper.bin -d /dev/serial/by-id/usb-katapult_stm32f446xx_37001A001851303439363932-if00`
 
-If you can't connect to your tooolhead after these steps (assuming all the ouputs look similar in success to the screenshots) then there is a good chance your klipper.bin settings were incorrect. Go back to Step 1 and check *all* the settings in the `make menuconfig` screen then recompile with `make clean` and `make`.
+If an `lsusb` doesn't show up your mainboard as a CAN adapter (or if `ip a` doesn't show your can0 network), or if the can0 network shows fine but you can't connect to your tooolhead that was previously working (and that you haven't flashed anything new to yet) then there is a good chance your klipper.bin settings were incorrect. Go back to Step 1 and check *all* the settings in the `make menuconfig` screen then recompile with `make clean` and `make`.
 
 Then double-click the reset button on your toolhead to kick it back to katapult mode then go from Step 3.
 

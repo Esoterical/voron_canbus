@@ -1,21 +1,22 @@
+# 120 ohm Termination Resistor
+
+As the Spider v1.0 requires an [external CAN transciever](#transceiver) there is no built in 120ohm resistor on the Spider itself. The transceiver you use will likely have the 120r resistor hard soldered already, but some may have jumpers or solder pads to add/remove it from the circuit.
 
 # Katapult Config
 
 ![image](https://user-images.githubusercontent.com/124253477/221349790-d073d222-1061-4c81-a7eb-796a8693b621.png)
 
-# Klipper USB-CAN-Bridge when using Katapult or stock bootloader
+# Klipper USB-CAN-Bridge Config
 
 ![image](https://user-images.githubusercontent.com/124253477/221349817-d7381c21-fecc-4111-a34b-bf0522cd456e.png)
 
-# Klipper USB-CAN-Bridge when **NOT** using Katapult or stock bootloader
 
-![image](https://user-images.githubusercontent.com/124253477/221349849-b78db57a-fe2d-461e-a026-10112071a60e.png)
+# Transceiver
+You will need a seperate CAN Transceiver board, such as the TJA1050:
 
-# NOTES
-You will need a seperate CAN Transceiver board, such as the SN65VHD230:
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/2df10f80-8239-4368-9aa4-e1abe9ded541)
 
-![image](https://user-images.githubusercontent.com/124253477/221390554-0cf82868-2157-4f14-bdcf-168e59c8f22d.png)
 
-The Can Rx and Can Tx will be connected to the PD0 and PD1 port (which is labelled as the CAN port). You can also hook up the Gnd and 5v from this port to the transceiver board (don't worry the SN65VHD230 may be marked as 3.3v but it can handle up to 6V on the Vin)
+The Can Rx and Can Tx will be connected to the PD0 and PD1 port (which is labelled as the CAN port). You can also hook up the Gnd and 5v from this port to the transceiver board.
 
 ![image](https://user-images.githubusercontent.com/124253477/221392367-bc3c2d55-2869-4d79-9610-3f2bb0bf41dc.png)

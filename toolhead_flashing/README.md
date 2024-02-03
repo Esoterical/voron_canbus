@@ -18,8 +18,6 @@ As mentioned in the main guide, you can either use Katapult on your toolhead to 
 
 # Installing Katapult
 
-(The following is a lot of copy-paste from MastahFR's excellent "Octopus and SB2040" install guide https://github.com/akhamar/voron_canbus_octopus_sb2040. Give all kudus to them)
-
 First you need to clone the Katapult repo onto your pi. Run the following commands to clone the repo:
 
 ```
@@ -36,11 +34,13 @@ cd ~/katapult
 make menuconfig
 ```
 
-You will need to adapt the below instructions so they cover _your_ board's specicific configuration. You can find screenshots of settings for comomon toolheads in the [commmon_hardware](./common_hardware) folder.
+You will need to adapt the below instructions so they cover _your_ board's specicific configuration. You can find screenshots of settings for common toolheads in the [commmon_hardware](./common_hardware) folder.
 
-If your board doesn't exist in the common_hardware folder already, then you want the Processor, Clock Reference, and Application Start offset to be set as per whatever board you are running. Keep the "Build Katapult deployment application" to (do not build), and make sure "Communication Interface" is set to USB. Also make sure the "Support bootloader entry on rapid double click of reset button" is marked. It makes it so a double press of the reset button will force the board into Katapult mode. Makes re-flashing after a mistake a lot easier.
+If your board doesn't exist in the common_hardware folder already, then you want the Processor, Clock Reference, and Application Start offset to be set as per whatever board you are running. You can leave the  "Build Katapult deployment application" set or not set (it makes not difference at this flashing stage, it's only for updating), and make sure "Communication Interface" is set to "CAN Bus" with the correct pins for your toolhead board. Also make sure the "Support bootloader entry on rapid double click of reset button" is marked. It makes it so a double press of the reset button will force the board into Katapult mode. Makes re-flashing after a mistake a lot easier. Lastly, setting the Status LED GPIO Pin won't affect how katapult functions, but it will give a nice visual indicator (of an LED flashing on and off once a second) on the toolhead to show the board is sitting in Katapult mode.
 
-![image](https://user-images.githubusercontent.com/124253477/221349624-69abcf3e-dfd8-48d0-b4f6-0ebd620f6b42.png)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/4f56422c-c451-4036-afc1-c67475ecd380)
+
+
 
 Compile the firmware with `make`. You will now have a katapult.bin (or katapult.uf2) in your ~/katapult/out/ directory.
 
@@ -52,7 +52,11 @@ If your toolhead board uses an RP2040 MCU, use [these flashing steps](#rp2040-ba
 
 ## STM32 based boards
 
-To confirm it's in DFU mode you can run the command `sudo dfu-util -l` and it will show any devices connected to your Pi in DFU mode.
+To confirm it's in DFU mode you can run the command 
+```
+sudo dfu-util -l
+```
+ and it will show any devices connected to your Pi in DFU mode.
 
 ![image](https://user-images.githubusercontent.com/124253477/221337550-560128dd-b5fd-41ba-8881-48d24b2215ef.png)
 
@@ -72,7 +76,7 @@ If the result shows an "Error during download get_status" or something, but abov
 
 ![image](https://user-images.githubusercontent.com/124253477/225469341-46f3478a-aa96-4378-8d73-96faa90d561c.png)
 
-[Katapult is now installed, click here](##Katapult-is-now-installed)
+Katapult is now installed, [click here](#katapult-is-now-installed) for the next steps.
 
 
 ## RP2040 based boards
@@ -96,7 +100,7 @@ It should look something like this if the download was successfull
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/34c4ca36-d03d-4eb3-a426-8be7751602fc)
 
-[Katapult is now installed, click here](##Katapult-is-now-installed)
+Katapult is now installed, [click here](#katapult-is-now-installed) for the next steps.
 
 ## Katapult is now installed
 
@@ -104,7 +108,9 @@ Katapult should now be successfully flashed. Take your toolhead out of DFU mode 
 
 Wire up your toolhead power (24v and gnd) and CAN (CANH/CANL) wires, then the following command to see if the toolhead board is on the CAN network and waiting in Katapult mode
 
-`python3 ~/katapult/scripts/flashtool.py -i can0 -q`
+```
+python3 ~/katapult/scripts/flashtool.py -i can0 -q
+```
 
 You should see a "Found UUID" with "Application: Katapult"
 
@@ -115,31 +121,53 @@ If you see the above, take note of the UUID and move on to flashing Klipper to t
 # Installing Klipper
 
 Move into the klipper directory on the Pi by running:
-`cd ~/klipper`
+```
+cd ~/klipper
+```
 Then go into the klipper configuration menu by running:
-`make menuconfig`
+```
+make menuconfig
+```
 
-Again, if your mainboard is already in [commmon_hardware](./common_hardware) then you can copy the Klipper settings from there. 
+Again, if your toolhead is already in [commmon_hardware](./common_hardware) then you can copy the Klipper settings from there. 
 
 
-Otherwise, you want the Processor and Clock Reference to be set as per whatever board you are running. Set Communication interface to 'USB to CAN bus bridge' then set the CAN Bus interface to use the pins that are specific to your mainboard. Also set the CAN bus speed to the same as the speed in your can0 file. In this guide it is set to 1000000.
+Otherwise, you want the Processor and Clock Reference to be set as per whatever board you are running. Set Communication interface to"CAN Bus" with the correct pins for your toolhead board. Also set the CAN bus speed to the same as the speed in your can0 file. In this guide it is set to 1000000.
 
 
-Once you have the firmware configured, run a `make clean` to make sure there are no old files hanging around, then `make` to compile the firmware. It will save the firmware to ~/klipper/out/klipper.bin
+Once you have the firmware configured, run a 
+```
+make clean
+```
+to make sure there are no old files hanging around, then 
+```
+make
+```
+to compile the firmware. It will save the firmware to ~/klipper/out/klipper.bin
 
 ## Using Katapult to flash Klipper
 
-Run a `python3 ~/katapult/scripts/flashtool.py -i can0 -q` and take note of the Katapult device that it shows:
+Run: 
+```
+python3 ~/katapult/scripts/flashtool.py -i can0 -q
+```
+and take note of the Katapult device that it shows:
 
 ![image](https://user-images.githubusercontent.com/124253477/221345166-bd920eef-8ce9-48ff-9f31-8ebe8da48225.png)
 
 Then run the following command to install klipper firmware via Katapult. Use the UUID you just retrieved in the above query.
 
-`python3 ~/katapult/scripts/flashtool.py -i can0 -u b6d9de35f24f -f ~/klipper/out/klipper.bin`
+```
+python3 ~/katapult/scripts/flashtool.py -i can0 -u b6d9de35f24f -f ~/klipper/out/klipper.bin
+```
 
 where the "-u" ID is what you found from the "flashtool.py -i can0 -q" query.
 
-One the flash has been completed you can run the `python3 ~/katapult/scripts/flashtool.py -i can0 -q` command again. This time you should see the same UUID but with "Application: Klipper" instead of "Application: Katapult"
+One the flash has been completed you can run the 
+```
+python3 ~/katapult/scripts/flashtool.py -i can0 -q
+```
+command again. This time you should see the same UUID but with "Application: Klipper" instead of "Application: Katapult"
 
 ![image](https://user-images.githubusercontent.com/124253477/221346236-5633f522-97b6-43e7-a675-82f3e483e3a4.png)
 
@@ -148,7 +176,9 @@ One the flash has been completed you can run the `python3 ~/katapult/scripts/fla
 
 You can now run the Klipper canbus query to retrieve the canbus_uuid of your toolhead board:
 
-`~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0`
+```
+~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0
+```
 
 ![image](https://user-images.githubusercontent.com/124253477/221332914-c612d996-f9c3-444d-aa41-22b8eda96eba.png)
 
@@ -171,19 +201,27 @@ So to update your Katapult, you just need to flash this deployer.bin file via yo
 
 If you already have a functioning CAN setup, and your [mcu toolhead] canbus_uuid is in your printer.cfg, then you can force Katapult to reboot into Katapult mode by running:
 
-`python3 ~/katapult/scripts/flashtool.py -i can0 -u yourtoolheaduuid -r`
+```
+python3 ~/katapult/scripts/flashtool.py -i can0 -u yourtoolheaduuid -r
+```
 
 ![image](https://user-images.githubusercontent.com/124253477/223307559-1da6a2dd-d572-456c-9ee6-0565e9192fea.png)
 
 If you don't have the UUID (or something has gone wrong with the klipper firmware and your toolboard is hung) then you can also double-press the RESET button on your toolhead to force Katapult to reboot into Katapult mode.
 
-You can verify it is in the proper mode by running `python3 ~/katapult/scripts/flashtool.py -q`. If you see a "Detected UUID: xxxxxxxxx, Application: Katapult" device then it is good to go.
+You can verify it is in the proper mode by running 
+```
+python3 ~/katapult/scripts/flashtool.py -q
+```
+ If you see a "Detected UUID: xxxxxxxxx, Application: Katapult" device then it is good to go.
 
 ![image](https://user-images.githubusercontent.com/124253477/223307593-b96dc642-9fa0-494b-93b8-a155d14bb535.png)
 
 Once you are at this stage you can flash the deployer.bin by running:
 
-`python3 ~/katapult/scripts/flashtool.py -i can0 -u b6d9de35f24f -f ~/katapult/out/deployer.bin`
+```
+python3 ~/katapult/scripts/flashtool.py -i can0 -u b6d9de35f24f -f ~/katapult/out/deployer.bin
+```
 
 and your Katapult should update.
 
@@ -208,7 +246,9 @@ Once you have the firmware configured, hit Q to save and quit from the makemenu 
 
 If you already have a functioning CAN setup, and your [mcu toolhead] canbus_uuid is in your printer.cfg, then you can force Katapult to reboot into Katapult mode by running:
 
-`python3 ~/katapult/scripts/flashtool.py -i can0 -u yourtoolheaduuid -r`
+```
+python3 ~/katapult/scripts/flashtool.py -i can0 -u yourtoolheaduuid -r
+```
 
 ![image](https://user-images.githubusercontent.com/124253477/223307559-1da6a2dd-d572-456c-9ee6-0565e9192fea.png)
 

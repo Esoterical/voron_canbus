@@ -1,3 +1,8 @@
+# 120 ohm Termination Resistor
+
+There is a permanent 120 ohm termination resistor soldered to the board, no need to add a jumper to enable it and also no ability to disable it.
+
+
 # DFU Mode
 
 To put the Spider 3.0 into DFU mode, hold the BT0 button and while still holding press and release the RST button. Then count to 5 and release the BT0 button.
@@ -8,10 +13,7 @@ To put the Spider 3.0 into DFU mode, hold the BT0 button and while still holding
 
 ![image](https://user-images.githubusercontent.com/124253477/221349790-d073d222-1061-4c81-a7eb-796a8693b621.png)
 
-# Klipper USB-CAN-Bridge when using Katapult or stock bootloader
+# Klipper USB-CAN-Bridge Config
 
 ![image](https://user-images.githubusercontent.com/124253477/221349817-d7381c21-fecc-4111-a34b-bf0522cd456e.png)
 
-# Klipper USB-CAN-Bridge when **NOT** using Katapult or stock bootloader
-
-![image](https://user-images.githubusercontent.com/124253477/221349849-b78db57a-fe2d-461e-a026-10112071a60e.png)

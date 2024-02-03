@@ -1,3 +1,9 @@
+# 120 ohm Termination Resistor
+
+The header for the 120R termination resistor is circled in purple
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/2eddc105-c64f-4d00-9b8d-6f0ba0c23a82)
+
 
 # DFU mode
 1.  Add a jumper as shown in the image below so the board can be powered via a USB connection
@@ -17,14 +23,9 @@
 ![image](https://user-images.githubusercontent.com/124253477/228764307-36da2c3a-393d-43d9-b370-4eb31d231c27.png)
 
 
-# Klipper when using Katapult
+# Klipper Config
 
 ![image](https://user-images.githubusercontent.com/124253477/221349102-cd2f4060-9c29-44aa-b722-9883262b2fc3.png)
-
-
-# Klipper when **NOT** using Katapult
-
-![image](https://user-images.githubusercontent.com/124253477/221349111-570dedac-fa9b-4706-b0d3-3bbc773461f0.png)
 
 # Sample Configuration
 

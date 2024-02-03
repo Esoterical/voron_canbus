@@ -1,5 +1,19 @@
+# 120 ohm Termination Resistor
 
-The U2C came stock with bad firmware that would cause flashing problems down the line. I have copied a fixed version of the firmware here, you can download it to your pi by running:
+The header for the 120R termination resistor is circled in purple
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/c7044a7f-db00-42a1-b75f-c449c44a13ca)
+
+# Wiring
+
+![CANbus_U2C_Pinout_on_Power_Connector](https://github.com/Esoterical/voron_canbus/assets/124253477/57a4a525-31ea-4565-ad69-6bb50510c090)
+
+
+# Bad Firmware
+
+The U2C came stock with bad firmware that would cause flashing problems down the line. This was mainly back in early 2023 so if you have purchased a board *recently* this may not be an issue, but flashing this firmware can't hurt anyway and is very simple to do.
+
+I have copied a fixed version of the firmware here, you can download it to your pi by running:
 ```
 cd ~/
 wget https://github.com/Esoterical/voron_canbus/raw/main/can_adapter/BigTreeTech%20U2C%20v2.1/G0B1_U2C_V2.bin

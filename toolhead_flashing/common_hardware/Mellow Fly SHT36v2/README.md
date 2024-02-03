@@ -1,5 +1,12 @@
 *Note, SHT-36 V2 units shipped before 2022-10-18 will use the GD32F103 CPU, later shipments will use the APM32F072 CPU. The settings are exactly the same except for the processor model. Make sure the chosen processor model STM32F072 or STM32F103 matches with your board*
 
+# 120 ohm Termination Resistor
+
+The header for the 120R termination resistor is circled in purple
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/18e2c705-41be-4d99-a1c3-7ebcc2c76751)
+
+
 # DFU Mode
 1.  Add a jumper as shown in the image below to enable DFU mode
   
@@ -15,13 +22,9 @@
 
 ![image](https://user-images.githubusercontent.com/124253477/228767706-e14d572a-b0de-4445-9c7c-11276fc8c4a7.png)
 
-# Klipper when using Katapult
+# Klipper Config
 
 ![image](https://user-images.githubusercontent.com/124253477/221396540-52695957-90f7-4f01-9d7d-130a76a81ee8.png)
-
-# Klipper when **NOT** using Katapult
-
-![image](https://user-images.githubusercontent.com/124253477/221396552-1c495fc2-30be-4bdd-9ac3-430da804bf17.png)
 
 # Sample Configuration
 

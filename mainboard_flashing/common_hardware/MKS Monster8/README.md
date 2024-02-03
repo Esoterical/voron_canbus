@@ -1,18 +1,14 @@
+# 120 ohm Termination Resistor
+
+There is a permanent 120 ohm termination resistor soldered to the board, no need to add a jumper to enable it and also no ability to disable it.
+
 # Katapult Config
 
 ![image](https://user-images.githubusercontent.com/124253477/221387924-afb1784e-823b-48b4-a5d4-3ea08cd09071.png)
 
-# Klipper USB-CAN-Bridge when using Katapult
+# Klipper USB-CAN-Bridge Config
 
 ![image](https://user-images.githubusercontent.com/124253477/221387939-22b5a327-af94-4337-b952-849758bec999.png)
-
-# Klipper USB-CAN-Bridge when using STOCK bootloader
-
-![image](https://user-images.githubusercontent.com/124253477/221387879-2563d531-a111-4f51-8baa-86f25b0644fa.png)
-
-# Klipper USB-CAN-Bridge when **NOT** using Katapult or stock bootloader
-
-![image](https://user-images.githubusercontent.com/124253477/221387882-2a315259-3623-4168-b4c4-39ad98ef6b37.png)
 
 
 # NOTE ON ENABLING CAN

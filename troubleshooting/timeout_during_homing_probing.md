@@ -17,7 +17,7 @@ On to actual troubleshooting. I've found the best place to start with something 
   ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/12fe8458-664c-4a50-86e7-b20845e9a579)
   
 - Set the homing speeds to fairly low. 20mm/s for X/Y, 10mm/s for Z. Yes this may be painful but it's just testing at the moment. Once you've "fixed" the problem feel free to adjust these back up.
-- Make sure your CAN speed is set to 1M and txqueuelen is set to 1024 (see the [main page](../#can0-file-can-speeds-and-transmit-queue-length) on how to set this)
+- Make sure your CAN speed is set to 1M and txqueuelen is set to 1024 (see the [Getting_Started](../Getting_Started.md) page on how to set this)
 - Unplug any extra USB devices from your pi. Maybe LEDs, maybe cameras. Anything USB can be drawing power and using processing time so lets remove it all for testing
 - If using crowsnest for your camera, stop the crowsnest service completely. Easy to do in mainsail, just press the button:
   

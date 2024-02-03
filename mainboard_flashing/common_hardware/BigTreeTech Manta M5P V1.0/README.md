@@ -1,3 +1,10 @@
+# 120 ohm Termination Resistor
+
+The header for the 120R termination resistor is circled in purple
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/d6c1aec5-ec9d-4fab-8e01-40a233039aa4)
+
+
 # DFU Mode
 
 To put the Manta M5P V1.0 into DFU mode, hold the BOOT0 button and while still holding press and release the RESET button. Then count to 5 and release the BOOT0 button.
@@ -10,11 +17,9 @@ To put the Manta M5P V1.0 into DFU mode, hold the BOOT0 button and while still h
 
 ![image](https://user-images.githubusercontent.com/124253477/235831073-92c31a1a-d252-4deb-9f94-e4f2e755881d.png)
 
-# Klipper USB-CAN-Bridge when using Katapult or stock bootloader
+# Klipper USB-CAN-Bridge Config
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/39486ecf-b895-47c5-8a2f-c707fa29e180)
 
-# Klipper USB-CAN-Bridge when **NOT** using Katapult or stock bootloader
 
-![image](https://github.com/Esoterical/voron_canbus/assets/124253477/f2feb121-4638-4007-b82d-cebcf84c0e11)
 

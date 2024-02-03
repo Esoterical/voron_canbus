@@ -1,3 +1,7 @@
+# 120 ohm Termination Resistor
+
+There is a permanent 120 ohm termination resistor soldered to the board, no need to add a jumper to enable it and also no ability to disable it.
+
 # BOOT Mode
 
 To put the ERCF into boot mode (for initial flashing), unplug any USB and CAN cables from the ERCF, then hold the BOOT button. While continuing to hold the BOOT button plug in the USB cable from the Pi to the ERCF. Keep holding the BOOT button for a few more second, then release.
@@ -13,14 +17,9 @@ The ERCF should now show up to an `lsusb` command as Pi RP2 Boot device:
 
 ![image](./img/canboot.png)
 
-# Klipper when using Katapult
+# Klipper Config
 
 ![image](./img/klipper-canboot.png)
-
-
-# Klipper when **NOT** using Katapult
-
-![image](./img/klipper-only.png)
 
 # Sample Config
 

@@ -40,9 +40,9 @@ make menuconfig
 
 You will need to adapt the below instructions so they cover _your_ board's specicific configuration. You can find screenshots of settings for comomon toolheads in the [commmon_hardware](./common_hardware) folder.
 
-If your board doesn't exist in the common_hardware folder already, then you want the Processor, Clock Reference, and Application Start offset to be set as per whatever board you are running. Set the "Build Katapult deployment application" (this is really only for updating but doesn't hurt having it enabled at this stage), and make sure "Communication Interface" is set to USB. Also make sure the "Support bootloader entry on rapid double click of reset button" is marked. It makes it so a double press of the reset button will force the board into Katapult mode. Makes re-flashing after a mistake a lot easier.
+If your board doesn't exist in the common_hardware folder already, then you want the Processor, Clock Reference, and Application Start offset to be set as per whatever board you are running. Set the "Build Katapult deployment application" (this is really only for updating but doesn't hurt having it enabled at this stage), and make sure "Communication Interface" is set to USB. Also make sure the "Support bootloader entry on rapid double click of reset button" is marked. It makes it so a double press of the reset button will force the board into Katapult mode. Makes re-flashing after a mistake a lot easier. Lastly, setting the Status LED GPIO Pin won't affect how katapult functions, but it will give a nice visual indicator (of an LED flashing on and off once a second) on the toolhead to show the board is sitting in Katapult mode.
 
-![image](https://user-images.githubusercontent.com/124253477/221333924-0a4d3c28-d084-4f8c-b93f-0670114bd090.png)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/5434691f-2d97-4d75-9067-d7501c2a2214)
 
 Press Q to quit the menu (it will ask to save, choose yes).
 
@@ -94,13 +94,13 @@ Once you have the firmware configured, run a `make clean` to make sure there are
 
 Run an `ls /dev/serial/by-id/` and take note of the Katapult device that it shows:
 
-![image](https://user-images.githubusercontent.com/124253477/221342447-a98e6bee-050b-4f82-a4cb-1265e92d0752.png)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/f836fa8d-fb26-4ccd-b1e1-50f010596852)
 
 If the above command didn't show a 'katapult' device, or threw a "no such file or directory" error, then quickly double-click the RESET button on your mainboard and run the command again. Until you get a result from a `ls /dev/serial/by-id/` there is no point doing further steps below.
 
 Run this command to install klipper firmware via Katapult via USB. Use the device ID you just retrieved in the above ls command.
 
-`python3 ~/katapult/scripts/flashtool.py -f ~/klipper/out/klipper.bin -d /dev/serial/by-id/usb-katapult_stm32f446xx_37001A001851303439363932-if00`
+`python3 ~/katapult/scripts/flashtool.py -f ~/klipper/out/klipper.bin -d /dev/serial/by-id/usb-katapult_your_board_id`
 
 
 ## Klipper is now installed

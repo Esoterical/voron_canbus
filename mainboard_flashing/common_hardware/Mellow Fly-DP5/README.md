@@ -1,3 +1,10 @@
+# 120 ohm Termination Resistor
+
+The header for the 120R termination resistor is circled in purple
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/9f1bdf13-b8f5-4ab2-b661-7ada729f2ad0)
+
+
 # DFU Mode
 
 To put the FLY-DP5 into DFU mode, hold the BOOT button and while still holding press and release the RESET button. Then count to 5 and release the BOOT button.
@@ -12,13 +19,11 @@ To put the FLY-DP5 into DFU mode, hold the BOOT button and while still holding p
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/ee04bdb5-164d-4475-83a0-e675626c7a0a)
 
 
-# Klipper USB-CAN-Bridge when using Katapult or stock bootloader
+# Klipper USB-CAN-Bridge Config
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/d1dfe729-eba7-457b-8c3f-4a0c3b80aec0)
 
 
-# Klipper USB-CAN-Bridge when **NOT** using Katapult or stock bootloader
 
-![image](https://github.com/Esoterical/voron_canbus/assets/124253477/b7bcdc4b-6ff7-4e58-b3b3-7604604145db)
 
 

@@ -2,9 +2,7 @@
 
 # can0 file, CAN Speeds, and Transmit Queue Length
 
-In order to dictate the speed at which your CAN network runs at you will need to create (or modify) a "can0" file on your Pi. This is what will tell linux "Hey, you now have a new network interface called can0 that you can send CAN traffic over". The approach needed here heavily depends on the network stack of your Pi. Raspbian and older version of Debian typically use ifupdown, but newer versions of non-raspbian Debian use netplan, which by default uses systemd-networkd under the hood.
-
-To test if your system uses networkd, try running `networkctl`. If the command is not available, gives an error or no link output, you're probably still using ifupdown. If it does give you meaningful output (typically at least an `ether` and `wlan` link), you're using systemd-networkd. To be safe it's easiest to just follow both the "ifupdown" **and** the "systemd-networkd" instructions. You can have both set up and your Pi will just use the configuration that is relevant to your system.
+In order to dictate the speed at which your CAN network runs at you will need to create (or modify) a "can0" file on your Pi. This is what will tell linux "Hey, you now have a new network interface called can0 that you can send CAN traffic over". The approach needed here heavily depends on the network stack of your Pi. Raspbian and older version of Debian typically use ifupdown, but some newer distros (Ubuntu, other single-board-computer distros) use netplan, which by default uses systemd-networkd under the hood. To be safe it's easiest to just follow both the "ifupdown" **and** the "systemd-networkd" instructions. You can have both set up and your Pi will just use the configuration that is relevant to your system.
 
 To set everything up, SSH into your pi and run the commands needed for your network setup:
 
@@ -60,6 +58,33 @@ Enter the following in the network-file and close it with Ctrl+X:
   BitRate=1M
   ```
   
+# 120R Termination Resistors
+
+A CANBus expects both ends of the CanH/CanL wire run to be terminated with a 120 ohm resistor bridging the High and Low wires. Your CAN board will almost certainly have provisions for this somewhere.
+
+**Note**
+
+You want to have **two** of these termination resistors in your CANBus circuit. **No more, No less**. Running with too many connected can be just as bad as running with none.
+
+Now, ideally these resistors are placed at the very start and end of your CAN network, but in reality the scale we are working with on 3d printers is so small compared to what CANBus is designed for it ends up not really mattering in practice.
+
+If you only have a single USB CAN adapter (or usb-can-bridge mainboard) and a single toolhead, then just have the 120R on each. If you are running multiple toolheads (eg. in an IDEX setup) running back to the same source (eg. a U2C), then have the jumpers on each toolhead and **not** on the "source" board.
+
+If your setup is all randomly connected, then just pick the two "most edge" boards in the system to have the 120 ohm resistors on.
+
+## CAN Adapter/Mainboard
+
+Some boards (Like the BTT Octopus) have the 120 ohm resistor permenantly connceted across the CanH/L wires, so nothing you need to do there. Others will have a two-pin header (sometimes labelled "120R") that you can put a jumper on and this will bring the termination resistor into the circuit.
+
+The same can be said for dedicated USB CAN adapters (like the U2C). Most will have a a header that you can put a jumper on to enable the resistor.
+
+You can find information and diagrams on the 120 ohm termination resistor placement for boards in the mainbard [common_hardware](./mainboard_flashing/common_hardware) folder.
+
+## Toolhead
+
+Nearly all Toolheads will have a two-pin header (sometimes labelled 120R) that you can put a jumper on to bring the 120 ohm resistor into the circuit.
+
+You can find information and diagrams on the 120 ohm termination resistor placement for boards in the toolhead [common_hardware](./toolhead_flashing/common_hardware) folder.
   
 
 # Next Step
