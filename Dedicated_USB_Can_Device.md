@@ -32,7 +32,7 @@ If you plug in your USB CAN adapter and you *don't* see the expected results fro
 
 **A note on the note**
 
-The BTT U2C V2.1 was released with bad firmware which although would show up to the above tests it would make issues show up down the line. If you have a v2.1 of the U2C then please follow the instructions [here](../can_adapter/BigTreeTech%20U2C%20v2.1).
+The BTT U2C V2.1 was released with bad firmware which although would show up to the above tests it would make issues show up down the line. If you have a v2.1 of the U2C then please follow the instructions [here](./can_adapter/BigTreeTech%20U2C%20v2.1).
 
 
 # Next Step
