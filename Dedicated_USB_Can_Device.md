@@ -7,7 +7,7 @@ If you want to use a dedicated USB CAN devcice, then it should be as  simple as 
 ![image](https://user-images.githubusercontent.com/124253477/222042688-10fa6fdb-8c0a-4142-8c40-0d93ef4fc4bd.png)
 
 
-A better check is by running `ip -s -d link show can0` . If everything is correct you will see somethign like this:
+A better check is by running `ip -s -d link show can0` . If everything is correct you will see something like this:
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/1c1c807f-5654-44fb-b0a9-c59e3e43f60a)
 
