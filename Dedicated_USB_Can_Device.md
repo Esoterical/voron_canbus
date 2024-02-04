@@ -28,7 +28,7 @@ If the can0 network shows up, but the qlen *isn't* 1024 or the bitrate *isn't* 1
 
 **A note on edge cases**
 
-If you plug in your USB CAN adapter and you *don't* see the expected results from an `lsusb` or `ifconfig`, then the firmware on your device may have issues. If this is the case then it's worth going to the Github page of your device as they usually have the stock firmware and flashing instructions there.
+If you plug in your USB CAN adapter and you *don't* see the expected results from an `lsusb`, then the firmware on your device may have issues. If this is the case then it's worth going to the Github page of your device as they usually have the stock firmware and flashing instructions there.
 
 **A note on the note**
 
