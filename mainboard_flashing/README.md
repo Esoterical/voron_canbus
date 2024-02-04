@@ -1,4 +1,4 @@
-![image](https://github.com/Esoterical/voron_canbus/assets/124253477/782a44b4-9684-4e99-9aac-e8efa0d68c8b)# General Info
+# General Info
 
 The following should be taken as an overall guide on what you are going to be achieving.
 
