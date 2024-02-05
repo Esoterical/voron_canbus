@@ -8,11 +8,10 @@ Did you update the Klipper on your Pi, and now it is yelling at you about MCU ve
 Before doing anything, you need to pull the latest Katapult down from Git so just so all the following tools are *definitely* available. You may already have the latest Katapult stuff, but running the Git commands again won't hurt.
 
 ```
-cd ~
-git clone https://github.com/Arksine/katapult
+cd ~ && ls katapult &> /dev/null && (cd ~/katapult && git pull) || git clone https://github.com/Arksine/katapult
 ```
 
-This will make sure you have the `~/katapult` folder in your home directory.
+This command will download Katapult from github if you don't already have it, or it will update it to the latest if you do already have it.
 
 If during the following steps you see "Application:CanBoot" instead of "Application:Katapult" then don't worry, Canboot was just renamed to Katapult but all the Katapult tools/queries will still "talk" to Canboot perfectly fine. You don't need to update a working CanBoot bootloader.
 
