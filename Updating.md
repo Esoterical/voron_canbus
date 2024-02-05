@@ -5,6 +5,17 @@
 
 Did you update the Klipper on your Pi, and now it is yelling at you about MCU version being out of date? Or maybe you just want to update the firmware on your boards for the latest features (or fixes). Either way, just follow these steps and it should be pretty painless.
 
+Before doing anything, you need to pull the latest Katapult down from Git so just so all the following tools are *definitely* available. You may already have the latest Katapult stuff, but running the Git commands again won't hurt.
+
+```
+cd ~
+git clone https://github.com/Arksine/katapult
+```
+
+This will make sure you have the `~/katapult` folder in your home directory.
+
+If during the following steps you see "Application:CanBoot" instead of "Application:Katapult" then don't worry, Canboot was just renamed to Katapult but all the Katapult tools/queries will still "talk" to Canboot perfectly fine. You don't need to update a working CanBoot bootloader.
+
 If you only have a CAN Toolhead (ie. if you are running a USB Canbus adapter like a U2C or a UTOC) then go straight [here](#updating-your-toolhead).
 
 If you have a mainboard running USB-CAN-Bridge mode klipper, go to [here](#updating-your-mainboard)
