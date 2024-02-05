@@ -163,11 +163,16 @@ to compile the firmware. It will save the firmware to ~/klipper/out/klipper.bin
 
 ## Using Katapult to flash Klipper
 
-Run: 
+Stop the Klipper service on the Pi by running:
+
+```
+sudo service klipper stop
+```
+
+Run the following query command and take note of the Katapult device that it shows:
 ```
 python3 ~/katapult/scripts/flashtool.py -i can0 -q
 ```
-and take note of the Katapult device that it shows:
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/ff9dcbb3-0456-4d87-8091-41d5d6050c02)
 
@@ -211,6 +216,12 @@ You can now run the Klipper canbus query to retrieve the canbus_uuid of your too
 ![image](https://user-images.githubusercontent.com/124253477/221332914-c612d996-f9c3-444d-aa41-22b8eda96eba.png)
 
 Use this UUID in the [mcu] section of your printer.cfg in order for Klipper (on Pi) to connect to the toolhead board.
+
+Start the Klipper service on the Pi again by running:
+
+```
+sudo service klipper start
+```
 
 # Next Step
 
