@@ -18,14 +18,13 @@ As mentioned in the main guide, you can either use Katapult on your toolhead to 
 
 # Installing Katapult
 
-First you need to clone the Katapult repo onto your pi. Run the following commands to clone the repo:
+First you need to clone the Katapult repo onto your pi. Run the following commands to clone (or update) the repo:
 
 ```
-cd ~
-git clone https://github.com/Arksine/katapult
+test -e ~/katapult && (cd ~/katapult && git pull) || (cd ~ && git clone https://github.com/Arksine/katapult) ; cd ~
 ```
 
-This will clone the Katapult repo into a new folder in your home directory called "katapult".
+This will clone the Katapult repo into a new folder in your home directory called "katapult" if you don't already have it, or it will update your Katapult folder to the latest version if you did already have it.
 
 To configure the Katapult firmware, run these commands to change into the katapult directory and then modify the firmware menu:
 
