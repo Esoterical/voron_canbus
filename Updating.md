@@ -93,9 +93,17 @@ Once you have the firmware configured, hit Q to save and quit from the makemenu 
 
 **Step 2**
 
+First, stop the Klipper service on the Pi by running:
+
+```
+sudo service klipper stop
+````
+
 If you already have a functioning CAN setup, and your [mcu] canbus_uuid is in your printer.cfg, then you can force Katapult to reboot into Katapult mode by running:
 
-`python3 ~/katapult/scripts/flashtool.py -i can0 -u yourmainboarduuid -r`
+```
+python3 ~/katapult/scripts/flashtool.py -i can0 -u yourmainboarduuid -r
+```
 
 ![image](https://user-images.githubusercontent.com/124253477/223303347-385ec07c-5211-42d3-b985-4dc38c2864ec.png)
 
@@ -113,11 +121,13 @@ You can verify it is in the proper mode by running `ls /dev/serial/by-id`. If yo
 
 Then you can run the same command you used to initially flash Klipper:
 
-`python3 ~/katapult/scripts/flashtool.py -f ~/klipper/out/klipper.bin -d /dev/serial/by-id/usb-katapult_stm32f446xx_37001A001851303439363932-if00`
+```
+python3 ~/katapult/scripts/flashtool.py -f ~/klipper/out/klipper.bin -d /dev/serial/by-id/usb-katapult_yourmainboardusbid
+```
 
-If an `lsusb` doesn't show up your mainboard as a CAN adapter (or if `ip a` doesn't show your can0 network), or if the can0 network shows fine but you can't connect to your tooolhead that was previously working (and that you haven't flashed anything new to yet) then there is a good chance your klipper.bin settings were incorrect. Go back to Step 1 and check *all* the settings in the `make menuconfig` screen then recompile with `make clean` and `make`.
+**If** an `lsusb` doesn't show up your mainboard as a CAN adapter (or if `ip a` doesn't show your can0 network), or if the can0 network shows fine but you can't connect to your tooolhead that was previously working (and that you haven't flashed anything new to yet) then there is a good chance your klipper.bin settings were incorrect. Go back to Step 1 and check *all* the settings in the `make menuconfig` screen then recompile with `make clean` and `make`, and hen double-click the reset button on your toolhead to kick it back to katapult mode then go from Step 3.
 
-Then double-click the reset button on your toolhead to kick it back to katapult mode then go from Step 3.
+However, **if** the `lsusb` and `ip a` show the correct things then your mainboard is now updated, run `sudo service klipper start` to start the klipper service on your Pi again.
 
 
 # Updating your Toolhead
@@ -188,9 +198,17 @@ Once you have the firmware configured, hit Q to save and quit from the makemenu 
 
 **Step 2**
 
+First, stop the Klipper service on the Pi by running:
+
+```
+sudo service klipper stop
+````
+
 If you already have a functioning CAN setup, and your [mcu toolhead] canbus_uuid is in your printer.cfg, then you can force Katapult to reboot into Katapult mode by running:
 
-`python3 ~/katapult/scripts/flashtool.py -i can0 -u yourtoolheaduuid -r`
+```
+python3 ~/katapult/scripts/flashtool.py -i can0 -u yourtoolheaduuid -r
+```
 
 ![image](https://user-images.githubusercontent.com/124253477/223307559-1da6a2dd-d572-456c-9ee6-0565e9192fea.png)
 
@@ -208,13 +226,14 @@ You can verify it is in the proper mode by running `python3 ~/katapult/scripts/f
 
 Then you can run the same command you used to initially flash Klipper:
 
-`python3 ~/katapult/scripts/flashtool.py -i can0 -u b6d9de35f24f -f ~/klipper/out/klipper.bin`
+```
+python3 ~/katapult/scripts/flashtool.py -i can0 -u yourtooolheaduuid -f ~/klipper/out/klipper.bin
+```
 
 One the flash has been completed you can run the `python3 ~/katapult/scripts/flashtool.py -i can0 -q` command again. This time you should see the same UUID but with "Application: Klipper" instead of "Application: Katapult"
 
 ![image](https://user-images.githubusercontent.com/124253477/221346236-5633f522-97b6-43e7-a675-82f3e483e3a4.png)
 
-If you can't connect to your tooolhead after these steps (assuming all the ouputs look similar in success to the screenshots) then there is a good chance your klipper.bin settings were incorrect. Go back to Step 1 and check *all* the settings in the `make menuconfig` screen then recompile with `make clean` and `make`.
+**If** you can't connect to your tooolhead after these steps (assuming all the ouputs look similar in success to the screenshots) then there is a good chance your klipper.bin settings were incorrect. Go back to Step 1 and check *all* the settings in the `make menuconfig` screen then recompile with `make clean` and `make`, and then double-click the reset button on your toolhead to kick it back to katapult mode then go from Step 3.
 
-Then double-click the reset button on your toolhead to kick it back to katapult mode then go from Step 3.
-
+However, **if** the CAN query *does* return your UUID with "Application: Klipper" then start the Klipper service on the Pi again with `sudo service klipper start` and then do a firmware_restart and confirm that Klipper starts without errors.
