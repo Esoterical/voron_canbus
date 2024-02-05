@@ -107,6 +107,12 @@ Once you have the firmware configured, run a `make clean` to make sure there are
 
 ## Using Katapult to flash Klipper
 
+Stop the Klipper service on the Pi by running:
+
+```
+sudo service klipper stop
+```
+
 Run an `ls /dev/serial/by-id/` and take note of the Katapult device that it shows:
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/f836fa8d-fb26-4ccd-b1e1-50f010596852)
@@ -150,6 +156,12 @@ You can now run the Klipper canbus query to retrieve the canbus_uuid of your mai
 ![image](https://user-images.githubusercontent.com/124253477/221332914-c612d996-f9c3-444d-aa41-22b8eda96eba.png)
 
 Use this UUID in the [mcu] section of your printer.cfg in order for Klipper (on Pi) to connect to the mainboard.
+
+Start the Klipper service on the Pi again by running:
+
+```
+sudo service klipper start
+```
 
 # Next Step
 
