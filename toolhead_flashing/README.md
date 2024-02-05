@@ -103,9 +103,13 @@ Katapult is now installed, [click here](#katapult-is-now-installed) for the next
 
 ## Katapult is now installed
 
-Katapult should now be successfully flashed. Take your toolhead out of DFU mode (it might require removing jumpers and rebooting, or just rebooting).
+Katapult should now be successfully flashed. 
 
-Wire up your toolhead power (24v and gnd) and CAN (CANH/CANL) wires, then the following command to see if the toolhead board is on the CAN network and waiting in Katapult mode
+Shut down your Pi (`sudo shutdown now`) and then power off your entire printer. 
+
+Take out any DFU jumpers on your toolhead (if it needed them) and then wire up your toolhead power (24v and gnd) and CAN (CANH/CANL) wires, then power your printer back up.
+
+Run the following command to see if the toolhead board is on the CAN network and waiting in Katapult mode
 
 ```
 python3 ~/katapult/scripts/flashtool.py -i can0 -q
