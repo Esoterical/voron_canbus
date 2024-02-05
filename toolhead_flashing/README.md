@@ -21,7 +21,7 @@ As mentioned in the main guide, you can either use Katapult on your toolhead to 
 First you need to clone the Katapult repo onto your pi. Run the following commands to clone (or update) the repo:
 
 ```
-cd ~ && ls katapult &> /dev/null && (cd ~/katapult && git pull) || git clone https://github.com/Arksine/katapult
+cd ~ && [[ -e ~/katapult ]] && (cd ~/katapult && git pull) || git clone https://github.com/Arksine/katapult
 ```
 
 This will clone the Katapult repo into a new folder in your home directory called "katapult" if you don't already have it, or it will update your Katapult folder to the latest version if you did already have it.
