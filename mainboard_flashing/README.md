@@ -1,4 +1,4 @@
-![image](https://github.com/Esoterical/voron_canbus/assets/124253477/782a44b4-9684-4e99-9aac-e8efa0d68c8b)# General Info
+# General Info
 
 The following should be taken as an overall guide on what you are going to be achieving.
 
@@ -18,8 +18,6 @@ pip3 install pyserial
 As mentioned in the main guide, you can either use Katapult on your mainboard to facilitate flashing over CAN, or you can go without and have the board boot straight into klipper.
 
 # Installing Katapult
-
-(The following is a lot of copy-paste from MastahFR's excellent ["Octopus and SB2040" install guide](https://github.com/akhamar/voron_canbus_octopus_sb2040). Give all kudus to them)
 
 First you need to clone the Katapult repo onto your pi. Run the following commands to clone the repo:
 
