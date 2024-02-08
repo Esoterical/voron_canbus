@@ -62,13 +62,13 @@ If you don't have the UUID (or something has gone wrong with the klipper firmwar
 
 You can verify it is in the proper mode by running `ls /dev/serial/by-id`. If you see a "usb-katapult-......" device then it is good to go.
 
-![image](https://user-images.githubusercontent.com/124253477/223303596-f7709d3c-d652-401c-959d-560381a39cff.png)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/1e9f0f7c-ada3-490b-bd62-bde25b67c362)
 
 **Step4**
 
 Once you are at this stage you can flash the deployer.bin by running:
 
-`python3 ~/katapult/scripts/flashtool.py -f ~/katapult/out/deployer.bin -d /dev/serial/by-id/usb-katapult_stm32f446xx_37001A001851303439363932-if00`
+`python3 ~/katapult/scripts/flashtool.py -f ~/katapult/out/deployer.bin -d /dev/serial/by-id/usb-katapult_your_mainboard_usb_id`
 
 and your Katapult should update.
 
@@ -115,7 +115,7 @@ If you don't have the UUID (or something has gone wrong with the klipper firmwar
 
 You can verify it is in the proper mode by running `ls /dev/serial/by-id`. If you see a "usb-katapult-......" device then it is good to go.
 
-![image](https://user-images.githubusercontent.com/124253477/223303596-f7709d3c-d652-401c-959d-560381a39cff.png)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/1e9f0f7c-ada3-490b-bd62-bde25b67c362)
 
 **Step4**
 
@@ -169,7 +169,7 @@ If you don't have the UUID (or something has gone wrong with the klipper firmwar
 
 You can verify it is in the proper mode by running `python3 ~/katapult/scripts/flashtool.py -q`. If you see a "Detected UUID: xxxxxxxxx, Application: Katapult" device then it is good to go.
 
-![image](https://user-images.githubusercontent.com/124253477/223307593-b96dc642-9fa0-494b-93b8-a155d14bb535.png)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/ff9dcbb3-0456-4d87-8091-41d5d6050c02)
 
 **Step4**
 
@@ -220,7 +220,7 @@ If you don't have the UUID (or something has gone wrong with the klipper firmwar
 
 You can verify it is in the proper mode by running `python3 ~/katapult/scripts/flashtool.py -q`. If you see a "Detected UUID: xxxxxxxxx, Application: Katapult" device then it is good to go.
 
-![image](https://user-images.githubusercontent.com/124253477/223307593-b96dc642-9fa0-494b-93b8-a155d14bb535.png)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/ff9dcbb3-0456-4d87-8091-41d5d6050c02)
 
 **Step4**
 
@@ -230,9 +230,10 @@ Then you can run the same command you used to initially flash Klipper:
 python3 ~/katapult/scripts/flashtool.py -i can0 -u yourtooolheaduuid -f ~/klipper/out/klipper.bin
 ```
 
-One the flash has been completed you can run the `python3 ~/katapult/scripts/flashtool.py -i can0 -q` command again. This time you should see the same UUID but with "Application: Klipper" instead of "Application: Katapult"
+Once the flash has been completed you can run the `python3 ~/katapult/scripts/flashtool.py -i can0 -q` command again. This time you should see the same UUID but with "Application: Klipper" instead of "Application: Katapult"
 
-![image](https://user-images.githubusercontent.com/124253477/221346236-5633f522-97b6-43e7-a675-82f3e483e3a4.png)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/1e01f858-71f3-45b4-a69f-1f704dce80d4)
+
 
 **If** you can't connect to your tooolhead after these steps (assuming all the ouputs look similar in success to the screenshots) then there is a good chance your klipper.bin settings were incorrect. Go back to Step 1 and check *all* the settings in the `make menuconfig` screen then recompile with `make clean` and `make`, and then double-click the reset button on your toolhead to kick it back to katapult mode then go from Step 3.
 
