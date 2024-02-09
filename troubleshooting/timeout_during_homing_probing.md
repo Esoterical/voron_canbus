@@ -51,4 +51,44 @@ I've found a 50ms timeout window got rid of all my "timeout during homing probe"
 **Note** as I said this is still a bit of a hacky workaround. Doing this will mark your klipper install as "dirty" in your mainsail update manager (all it means is there is a file that is different to what is in github, which is true because we just changed it) and whenever you update klipper it will overwrite this to default. So if you update klipper and find the timeouts returning just run `sed -i 's\TRSYNC_TIMEOUT = 0.025\TRSYNC_TIMEOUT = 0.05\g' ~/klipper/klippy/mcu.py` and reboot.
 
 
+# Experimental
+
+Something that still requires further testing is manually assigning CPU cores to processes. The following steps will force everything *except* klipper to run on the first 3 cores (cores 0, 1, 2) of a quad-core CPU (any Pi newer than a Pi2) and then force Klipper to run by itself on the fourth core. This *may* help with timing issues or scheduling conflicts or whatever could be interrupting Klipper from hitting the proper timing windows.
+
+Create the system.conf.d folder with:
+```
+sudo mkdir /etc/systemd/system.conf.d/
+```
+(Don't worry if it says the folder already exists)
+
+then edit (or create) the cpuaffinity.conf file by running:
+```
+sudo nano /etc/systemd/system.conf.d/cpuaffinity.conf
+```
+and putting in:
+```
+[Manager]
+CPUAffinity=0-2
+```
+then press ctrl+X to save and quit. This will force everything to run on the first three cpu cores only.
+
+To make Klipper run on the now-unused fourth core, create the klipper.service.d folder with:
+```
+sudo mkdir /etc/systemd/system/klipper.service.d
+```
+(Don't worry if it says the folder already exists)
+
+then edit (or create) the override.conf file by running:
+```
+sudo nano /etc/systemd/system/klipper.service.d/override.conf
+```
+and putting in:
+```
+[Service]
+CPUAffinity=3
+```
+then press ctrl+X to save and quit, and run `sudo reboot now` to reboot the Pi.
+
+Once it starts again it should have the Klipper service running by itself on the fourth core of the CPU and hopefully let it not get interrupted by other non-Klipper processes.
+
 [Return to Troubleshooting](./)
