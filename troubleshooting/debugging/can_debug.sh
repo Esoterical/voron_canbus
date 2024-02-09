@@ -107,7 +107,7 @@ fi
 
 KLIPPY_LOG="$HOME/printer_data/logs/klippy.log"
 
-tac $KLIPPY_LOG | grep -m 1 "^Stats" |
+ADC=$(tac $KLIPPY_LOG | grep -m 1 "^Stats" |
         awk '{
                 for (i=1; i<=split($0, arr, ":"); i++) {
                         if (arr[i] ~ /temp=/) {
@@ -118,7 +118,7 @@ tac $KLIPPY_LOG | grep -m 1 "^Stats" |
                                 printf "\n";
                         }
                 }
-        }'
+        }')
 # Retrieving mcu info from klippy log
 if [ -d ${PRNTDATA} ]; then
     if [ -f ${PRNTDATA}/klippy.log ]; then
