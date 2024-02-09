@@ -197,7 +197,7 @@ command again. This time you should see the same UUID but with "Application: Kli
   <img src="https://github.com/Esoterical/voron_canbus/assets/124253477/36065239-009c-4195-8e13-a43959acac7b" />
 </p>
 
-If you do *not* see "Application:Katapult" for the **same** UUID that was previously showing as "Application:Katapult" then the Klipper didn't flash properly or you had the wrong settings for the Klipper firmware.
+If you do *not* see "Application:Klipper" for the **same** UUID that was previously showing as "Application:Katapult" then the Klipper didn't flash properly or you had the wrong settings for the Klipper firmware.
 
 Double-click the RESET button on your toolhead to force it back into DFU mode then go back to [Installing Klipper](#installing-klipper) section and try again, making sure the Klipper `make menuconfig` settings are *absolutely* correct for your toolhead board.
 
