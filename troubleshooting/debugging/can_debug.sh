@@ -101,6 +101,23 @@ if [ -d ${KLIPPERDIR} ]; then
     fi
 fi
 
+# Outputs temperature values from the last "Stats" line of the current klippy.log
+
+KLIPPY_LOG="$HOME/printer_data/logs/klippy.log"
+
+ADC= "tac $KLIPPY_LOG | grep -m 1 "^Stats" |
+        awk '{
+                for (i=1; i<=split($0, arr, ":"); i++) {
+                        if (arr[i] ~ /temp=/) {
+                                printf "%s: ", head[split(arr[i-1],head," ")];
+                                for (j=1; j<=split(arr[i], keyval, " "); j++) {
+                                        printf "%s", ((keyval[j] ~ /temp=/) ? keyval[j] : "");
+                                }
+                                printf "\n";
+                        }
+                }
+        }'"
+
 # Retrieving mcu info from klippy log
 if [ -d ${PRNTDATA} ]; then
     if [ -f ${PRNTDATA}/klippy.log ]; then
@@ -123,6 +140,7 @@ TXT_CANQ="\n\n${PRETTY_LINE_BRK}\nCANQuery\n${PRETTY_LINE_BRK}\n\nCANBus Query:\
 TXT_LOG="\n\n${PRETTY_LINE_BRK}\nMCU\n${PRETTY_LINE_BRK}\n\nMCUInfo:\n${PRNTDATAFND}"
 TXT_CAN="\n\n${PRETTY_LINE_BRK}\nKatapult\n${PRETTY_LINE_BRK}\n\nKatapult Directory: ${CANFND}"
 TXT_KLP="\n\n${PRETTY_LINE_BRK}\nKlipper\n${PRETTY_LINE_BRK}\n\nKlipper Directory: ${KLIPPERFND}"
+TXT_ADC="\n\n${PRETTY_LINE_BRK}\nTemperature Check\n${PRETTY_LINE_BRK}\n\nLast Stats Line: ${ADC}"
 TXT_CFG="\n\n${PRETTY_LINE_BRK}\nKlipperConfig\n${PRETTY_LINE_BRK}\n\n${KLIPPERCFG}"
 
 
@@ -130,4 +148,4 @@ TXT_CFG="\n\n${PRETTY_LINE_BRK}\nKlipperConfig\n${PRETTY_LINE_BRK}\n\n${KLIPPERC
 echo "The following link will have your information:"
 
 # Sending to termbin and obtaining link.
-echo "${TXT_OS} ${TXT_NET} ${TXT_SYSD} ${TXT_RCL} ${TXT_USB} ${TXT_BYID} ${TXT_CANQ} ${TXT_LOG} ${TXT_CAN} ${TXT_KLP} ${TXT_CFG}" | nc termbin.com 9999
+echo "${TXT_OS} ${TXT_NET} ${TXT_SYSD} ${TXT_RCL} ${TXT_USB} ${TXT_BYID} ${TXT_CANQ} ${TXT_LOG} ${TXT_CAN} ${TXT_KLP} ${TXT_ADC} ${TXT_CFG}" | nc termbin.com 9999
