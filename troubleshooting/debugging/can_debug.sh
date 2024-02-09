@@ -141,7 +141,7 @@ TXT_CANQ="\n\n${PRETTY_LINE_BRK}\nCANQuery\n${PRETTY_LINE_BRK}\n\nCANBus Query:\
 TXT_LOG="\n\n${PRETTY_LINE_BRK}\nMCU\n${PRETTY_LINE_BRK}\n\nMCUInfo:\n${PRNTDATAFND}"
 TXT_CAN="\n\n${PRETTY_LINE_BRK}\nKatapult\n${PRETTY_LINE_BRK}\n\nKatapult Directory: ${CANFND}"
 TXT_KLP="\n\n${PRETTY_LINE_BRK}\nKlipper\n${PRETTY_LINE_BRK}\n\nKlipper Directory: ${KLIPPERFND}"
-TXT_ADC="\n\n${PRETTY_LINE_BRK}\nTemperature Check\n${PRETTY_LINE_BRK}\n\nLast Stats Line: ${ADC}"
+TXT_ADC="\n\n${PRETTY_LINE_BRK}\nTemperature Check\n${PRETTY_LINE_BRK}\n\n${ADC}"
 TXT_CFG="\n\n${PRETTY_LINE_BRK}\nKlipperConfig\n${PRETTY_LINE_BRK}\n\n${KLIPPERCFG}"
 
 
