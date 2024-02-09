@@ -101,12 +101,24 @@ if [ -d ${KLIPPERDIR} ]; then
     fi
 fi
 
+
+
 # Outputs temperature values from the last "Stats" line of the current klippy.log
 
 KLIPPY_LOG="$HOME/printer_data/logs/klippy.log"
 
-ADC="tac $KLIPPY_LOG | grep -m 1 "^Stats" | awk '{for (i=1; i<=split($0, arr, ":"); i++) {if (arr[i] ~ /temp=/) {printf "%s: ", head[split(arr[i-1],head," ")];for (j=1; j<=split(arr[i], keyval, " "); j++) {printf "%s", ((keyval[j] ~ /temp=/) ? keyval[j] : "");}printf "\n";}}}'"
-
+tac $KLIPPY_LOG | grep -m 1 "^Stats" |
+        awk '{
+                for (i=1; i<=split($0, arr, ":"); i++) {
+                        if (arr[i] ~ /temp=/) {
+                                printf "%s: ", head[split(arr[i-1],head," ")];
+                                for (j=1; j<=split(arr[i], keyval, " "); j++) {
+                                        printf "%s", ((keyval[j] ~ /temp=/) ? keyval[j] : "");
+                                }
+                                printf "\n";
+                        }
+                }
+        }'
 # Retrieving mcu info from klippy log
 if [ -d ${PRNTDATA} ]; then
     if [ -f ${PRNTDATA}/klippy.log ]; then
