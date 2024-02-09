@@ -103,11 +103,12 @@ fi
 
 
 
-# Outputs temperature values from the last "Stats" line of the current klippy.log
-
-KLIPPY_LOG="$HOME/printer_data/logs/klippy.log"
-
-ADC=$(tac $KLIPPY_LOG | grep -m 1 "^Stats" |
+# Retrieving info from klippy.log
+if [ -d ${PRNTDATA} ]; then
+    if [ -f ${PRNTDATA}/klippy.log ]; then
+        PRNTDATAFND="Found\n\nKlippy Log:\n$(grep "MCU 'mcu' config" ~/printer_data/logs/klippy.log | tail -1)"
+        KLIPPERCFG="$(tac ~/printer_data/logs/klippy.log | awk '/=======================/&&++k==1,/===== Config file =====/' | tac)"
+        ADC=$(tac ~/printer_data/logs/klippy.log | grep -m 1 "^Stats" |
         awk '{
                 for (i=1; i<=split($0, arr, ":"); i++) {
                         if (arr[i] ~ /temp=/) {
@@ -119,14 +120,10 @@ ADC=$(tac $KLIPPY_LOG | grep -m 1 "^Stats" |
                         }
                 }
         }')
-# Retrieving mcu info from klippy log
-if [ -d ${PRNTDATA} ]; then
-    if [ -f ${PRNTDATA}/klippy.log ]; then
-        PRNTDATAFND="Found\n\nKlippy Log:\n$(grep "MCU 'mcu' config" ~/printer_data/logs/klippy.log | tail -1)"
-        KLIPPERCFG="$(tac ~/printer_data/logs/klippy.log | awk '/=======================/&&++k==1,/===== Config file =====/' | tac)"
     else
         PRNTDATAFND="Found\n\nKlippy Log: Not Found"
         KLIPPERCFG="Found\n\nKlippy Log: Not Found"
+        ADC="Found\n\nKlippy Log: Not Found"
     fi
 fi
 # Formatting outpur
