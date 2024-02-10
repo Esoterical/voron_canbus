@@ -101,14 +101,29 @@ if [ -d ${KLIPPERDIR} ]; then
     fi
 fi
 
-# Retrieving mcu info from klippy log
+
+
+# Retrieving info from klippy.log
 if [ -d ${PRNTDATA} ]; then
     if [ -f ${PRNTDATA}/klippy.log ]; then
         PRNTDATAFND="Found\n\nKlippy Log:\n$(grep "MCU 'mcu' config" ~/printer_data/logs/klippy.log | tail -1)"
         KLIPPERCFG="$(tac ~/printer_data/logs/klippy.log | awk '/=======================/&&++k==1,/===== Config file =====/' | tac)"
+        ADC=$(tac ~/printer_data/logs/klippy.log | grep -m 1 "^Stats" |
+        awk '{
+                for (i=1; i<=split($0, arr, ":"); i++) {
+                        if (arr[i] ~ /temp=/) {
+                                printf "%s: ", head[split(arr[i-1],head," ")];
+                                for (j=1; j<=split(arr[i], keyval, " "); j++) {
+                                        printf "%s", ((keyval[j] ~ /temp=/) ? keyval[j] : "");
+                                }
+                                printf "\n";
+                        }
+                }
+        }')
     else
         PRNTDATAFND="Found\n\nKlippy Log: Not Found"
         KLIPPERCFG="Found\n\nKlippy Log: Not Found"
+        ADC="Found\n\nKlippy Log: Not Found"
     fi
 fi
 # Formatting outpur
@@ -121,6 +136,7 @@ TXT_USB="\n\n${PRETTY_LINE_BRK}\nUSB\n${PRETTY_LINE_BRK}\n\nlsusb:\n${LSUSB}"
 TXT_BYID="\n\n${PRETTY_LINE_BRK}\nDev Serial By-ID\n${PRETTY_LINE_BRK}\n\nDev Serial By-ID:\n${BYID}"
 TXT_CANQ="\n\n${PRETTY_LINE_BRK}\nCANQuery\n${PRETTY_LINE_BRK}\n\nCANBus Query:\n${CANQUERY}"
 TXT_LOG="\n\n${PRETTY_LINE_BRK}\nMCU\n${PRETTY_LINE_BRK}\n\nMCUInfo:\n${PRNTDATAFND}"
+TXT_ADC="\n\n${PRETTY_LINE_BRK}\nTemperature Check\n${PRETTY_LINE_BRK}\n\n${ADC}"
 TXT_CAN="\n\n${PRETTY_LINE_BRK}\nKatapult\n${PRETTY_LINE_BRK}\n\nKatapult Directory: ${CANFND}"
 TXT_KLP="\n\n${PRETTY_LINE_BRK}\nKlipper\n${PRETTY_LINE_BRK}\n\nKlipper Directory: ${KLIPPERFND}"
 TXT_CFG="\n\n${PRETTY_LINE_BRK}\nKlipperConfig\n${PRETTY_LINE_BRK}\n\n${KLIPPERCFG}"
@@ -130,4 +146,4 @@ TXT_CFG="\n\n${PRETTY_LINE_BRK}\nKlipperConfig\n${PRETTY_LINE_BRK}\n\n${KLIPPERC
 echo "The following link will have your information:"
 
 # Sending to termbin and obtaining link.
-echo "${TXT_OS} ${TXT_NET} ${TXT_SYSD} ${TXT_RCL} ${TXT_USB} ${TXT_BYID} ${TXT_CANQ} ${TXT_LOG} ${TXT_CAN} ${TXT_KLP} ${TXT_CFG}" | nc termbin.com 9999
+echo "${TXT_OS} ${TXT_NET} ${TXT_SYSD} ${TXT_RCL} ${TXT_USB} ${TXT_BYID} ${TXT_CANQ} ${TXT_LOG} ${TXT_ADC} ${TXT_CAN} ${TXT_KLP} ${TXT_CFG}" | nc termbin.com 9999
