@@ -126,6 +126,31 @@ if [ -d ${PRNTDATA} ]; then
         ADC="Found\n\nKlippy Log: Not Found"
     fi
 fi
+if [ -d ${PRNTDATA} ]; then
+    if [ -f ${PRNTDATA}/klippy.log ]; then
+        KLIPPY_LOG=$HOME/printer_data/logs/klippy.log
+        #KLIPPY_LOG=$HOME/dev/klippytemp/new.log
+        MIN_TEMP=30
+        MAX_TEMP=40
+        
+        TEMPERATURECHECK=$(tac ~/printer_data/logs/klippy.log | grep -m 1 "^Stats" | sed 's/\([a-zA-Z0-9_.]*\)\:/\n\1:/g' |
+                awk -v mintemp="$MIN_TEMP" -v maxtemp="$MAX_TEMP" '/temp=/ {
+                        printf "%18s ", $1;
+                        for (i=2; i<=split($0, stat, " "); i++) {
+                                if (sub(/temp=/, "", stat[i])) {
+                                        printf "%6s", stat[i];
+                                        if (stat[i] + 0 < mintemp ) {
+                                                printf "%s", " <=min placeholder==";
+                                        } else if (stat[i] + 0 > maxtemp) {
+                                                printf "%s", " ==max placeholder=>";
+                                        }
+                                        break;
+                                }
+                        }
+                        printf "\n";
+                }')
+    fi
+fi
 # Formatting outpur
 #TXT_OS="${PRETTY_LINE_BRK}\nOS\n${PRETTY_LINE_BRK}\n\nDistro:\n${DISTRO}\n\nKernel:\n${KERNEL}\n\nBits:\n${BITVERSION}"
 TXT_OS="${PRETTY_LINE_BRK}\nOS\n${PRETTY_LINE_BRK}\n\nModel:\n${MODEL}\n\nDistro:\n${DISTRO}\n\nKernel:\n${KERNEL}\n\nUptime:\n${UPTIME}"
@@ -137,6 +162,7 @@ TXT_BYID="\n\n${PRETTY_LINE_BRK}\nDev Serial By-ID\n${PRETTY_LINE_BRK}\n\nDev Se
 TXT_CANQ="\n\n${PRETTY_LINE_BRK}\nCANQuery\n${PRETTY_LINE_BRK}\n\nCANBus Query:\n${CANQUERY}"
 TXT_LOG="\n\n${PRETTY_LINE_BRK}\nMCU\n${PRETTY_LINE_BRK}\n\nMCUInfo:\n${PRNTDATAFND}"
 TXT_ADC="\n\n${PRETTY_LINE_BRK}\nTemperature Check\n${PRETTY_LINE_BRK}\n\n${ADC}"
+TXT_TCHECK="\n\n${PRETTY_LINE_BRK}\nTest Temperature Check\n${PRETTY_LINE_BRK}\n\n${TEMPERATURECHECK}"
 TXT_CAN="\n\n${PRETTY_LINE_BRK}\nKatapult\n${PRETTY_LINE_BRK}\n\nKatapult Directory: ${CANFND}"
 TXT_KLP="\n\n${PRETTY_LINE_BRK}\nKlipper\n${PRETTY_LINE_BRK}\n\nKlipper Directory: ${KLIPPERFND}"
 TXT_CFG="\n\n${PRETTY_LINE_BRK}\nKlipperConfig\n${PRETTY_LINE_BRK}\n\n${KLIPPERCFG}"
@@ -146,4 +172,4 @@ TXT_CFG="\n\n${PRETTY_LINE_BRK}\nKlipperConfig\n${PRETTY_LINE_BRK}\n\n${KLIPPERC
 echo "The following link will have your information:"
 
 # Sending to termbin and obtaining link.
-echo "${TXT_OS} ${TXT_NET} ${TXT_SYSD} ${TXT_RCL} ${TXT_USB} ${TXT_BYID} ${TXT_CANQ} ${TXT_LOG} ${TXT_ADC} ${TXT_CAN} ${TXT_KLP} ${TXT_CFG}" | nc termbin.com 9999
+echo "${TXT_OS} ${TXT_NET} ${TXT_SYSD} ${TXT_RCL} ${TXT_USB} ${TXT_BYID} ${TXT_CANQ} ${TXT_LOG} ${TXT_ADC} ${TXT_TCHECK} ${TXT_CAN} ${TXT_KLP} ${TXT_CFG}" | nc termbin.com 9999
