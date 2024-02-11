@@ -44,11 +44,6 @@ UPTIME="$(uptime)"
 IFACESERVICE="$(ls /etc/network)"
 IPA="$(ip a)"
 
-LSUSB="$(lsusb)"
-BYID="$(ls -l /dev/serial/by-id | awk -F' ' '{print $9,$10,$11}')"
-# BITVERSION="$(getconf LONG_BIT)"
-
-
 if ip a | grep -q -E "can0"; then
     CANSTATS="$(ip -d -s link show can0)"
     CANQUERY="$(~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0)"
@@ -56,6 +51,17 @@ else
     CANSTATS="No can0 interface"
     CANQUERY="No can0 interface"    
 fi
+
+LSUSB="$(lsusb)"
+
+if [ -d /dev/serial/by-id]; then
+    BYID="$(ls -l /dev/serial/by-id | awk -F' ' '{print $9,$10,$11}')"
+fi
+
+# BITVERSION="$(getconf LONG_BIT)"
+
+
+
 
 
 # List of systemd filess.
