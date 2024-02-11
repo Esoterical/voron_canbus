@@ -49,6 +49,10 @@ BYID="$(ls -l /dev/serial/by-id | awk -F' ' '{print $9,$10,$11}')"
 # BITVERSION="$(getconf LONG_BIT)"
 CANQUERY="$(~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0)"
 
+if [[ $IPA == *"can0"* ]]; then
+  echo "It's there!"
+fi
+
 
 # List of systemd filess.
 SYSTEMD="$(ls /etc/systemd/network)"
