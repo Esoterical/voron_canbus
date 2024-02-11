@@ -54,8 +54,10 @@ fi
 
 LSUSB="$(lsusb)"
 
-if [ -d /dev/serial/by-id]; then
+if [ -d /dev/serial/by-id ]; then
     BYID="$(ls -l /dev/serial/by-id | awk -F' ' '{print $9,$10,$11}')"
+else
+    BYID="No /dev/serial/by-id found"
 fi
 
 # BITVERSION="$(getconf LONG_BIT)"
