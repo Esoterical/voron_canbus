@@ -130,8 +130,8 @@ if [ -d ${PRNTDATA} ]; then
     if [ -f ${PRNTDATA}/klippy.log ]; then
         KLIPPY_LOG=$HOME/printer_data/logs/klippy.log
         #KLIPPY_LOG=$HOME/dev/klippytemp/new.log
-        MIN_TEMP=30
-        MAX_TEMP=40
+        MIN_TEMP=-10
+        MAX_TEMP=400
         
         TEMPERATURECHECK=$(tac ~/printer_data/logs/klippy.log | grep -m 1 "^Stats" | sed 's/\([a-zA-Z0-9_.]*\)\:/\n\1:/g' |
                 awk -v mintemp="$MIN_TEMP" -v maxtemp="$MAX_TEMP" '/temp=/ {
@@ -140,9 +140,9 @@ if [ -d ${PRNTDATA} ]; then
                                 if (sub(/temp=/, "", stat[i])) {
                                         printf "%6s", stat[i];
                                         if (stat[i] + 0 < mintemp ) {
-                                                printf "%s", " <=min placeholder==";
+                                                printf "%s", "*** Check Sensor ***";
                                         } else if (stat[i] + 0 > maxtemp) {
-                                                printf "%s", " ==max placeholder=>";
+                                                printf "%s", "*** Check Sensor ***";
                                         }
                                         break;
                                 }
