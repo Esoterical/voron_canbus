@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #Credit to @bolliostu for the original idea and script
-#Credit to @dormouse for the disclaimer and spelling
+#Credit to @dormausian for the disclaimer and temperauture sections
 
 echo "*************"
 echo "* Attention *"
