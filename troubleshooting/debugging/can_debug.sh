@@ -43,11 +43,27 @@ KERNEL="$(uname -a)"
 UPTIME="$(uptime)"
 IFACESERVICE="$(ls /etc/network)"
 IPA="$(ip a)"
-CANSTATS="$(ip -d -s link show can0)"
+
+if ip a | grep -q -E "can0"; then
+    CANSTATS="$(ip -d -s link show can0)"
+    CANQUERY="$(~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0)"
+else
+    CANSTATS="No can0 interface"
+    CANQUERY="No can0 interface"    
+fi
+
 LSUSB="$(lsusb)"
-BYID="$(ls -l /dev/serial/by-id | awk -F' ' '{print $9,$10,$11}')"
+
+if [ -d /dev/serial/by-id ]; then
+    BYID="$(ls -l /dev/serial/by-id | awk -F' ' '{print $9,$10,$11}')"
+else
+    BYID="No /dev/serial/by-id found"
+fi
+
 # BITVERSION="$(getconf LONG_BIT)"
-CANQUERY="$(~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0)"
+
+
+
 
 
 # List of systemd filess.
@@ -108,24 +124,57 @@ if [ -d ${PRNTDATA} ]; then
     if [ -f ${PRNTDATA}/klippy.log ]; then
         PRNTDATAFND="Found\n\nKlippy Log:\n$(grep "MCU 'mcu' config" ~/printer_data/logs/klippy.log | tail -1)"
         KLIPPERCFG="$(tac ~/printer_data/logs/klippy.log | awk '/=======================/&&++k==1,/===== Config file =====/' | tac)"
-        ADC=$(tac ~/printer_data/logs/klippy.log | grep -m 1 "^Stats" |
-        awk '{
-                for (i=1; i<=split($0, arr, ":"); i++) {
-                        if (arr[i] ~ /temp=/) {
-                                printf "%s: ", head[split(arr[i-1],head," ")];
-                                for (j=1; j<=split(arr[i], keyval, " "); j++) {
-                                        printf "%s", ((keyval[j] ~ /temp=/) ? keyval[j] : "");
+       
+        # ADC temp check
+        MIN_TEMP=-10
+        MAX_TEMP=400
+        ADC=$(tac ~/printer_data/logs/klippy.log | grep -m 1 "^Stats" | sed 's/\([a-zA-Z0-9_.]*\)\:/\n\1:/g' |
+                awk -v mintemp="$MIN_TEMP" -v maxtemp="$MAX_TEMP" '/temp=/ {
+                        printf "%18s ", $1;
+                        for (i=2; i<=split($0, stat, " "); i++) {
+                                if (sub(/temp=/, "", stat[i])) {
+                                        printf "%6s", stat[i];
+                                        if (stat[i] + 0 < mintemp ) {
+                                                printf "%s", "    *** Check Sensor ***";
+                                        } else if (stat[i] + 0 > maxtemp) {
+                                                printf "%s", "    *** Check Sensor ***";
+                                        }
+                                        break;
                                 }
-                                printf "\n";
                         }
-                }
-        }')
+                        printf "\n";
+                }')
     else
         PRNTDATAFND="Found\n\nKlippy Log: Not Found"
         KLIPPERCFG="Found\n\nKlippy Log: Not Found"
         ADC="Found\n\nKlippy Log: Not Found"
     fi
 fi
+# if [ -d ${PRNTDATA} ]; then
+#     if [ -f ${PRNTDATA}/klippy.log ]; then
+#         KLIPPY_LOG=$HOME/printer_data/logs/klippy.log
+#         #KLIPPY_LOG=$HOME/dev/klippytemp/new.log
+#         MIN_TEMP=-10
+#         MAX_TEMP=400
+        
+#         TEMPERATURECHECK=$(tac ~/printer_data/logs/klippy.log | grep -m 1 "^Stats" | sed 's/\([a-zA-Z0-9_.]*\)\:/\n\1:/g' |
+#                 awk -v mintemp="$MIN_TEMP" -v maxtemp="$MAX_TEMP" '/temp=/ {
+#                         printf "%18s ", $1;
+#                         for (i=2; i<=split($0, stat, " "); i++) {
+#                                 if (sub(/temp=/, "", stat[i])) {
+#                                         printf "%6s", stat[i];
+#                                         if (stat[i] + 0 < mintemp ) {
+#                                                 printf "%s", "*** Check Sensor ***";
+#                                         } else if (stat[i] + 0 > maxtemp) {
+#                                                 printf "%s", "*** Check Sensor ***";
+#                                         }
+#                                         break;
+#                                 }
+#                         }
+#                         printf "\n";
+#                 }')
+#     fi
+# fi
 # Formatting outpur
 #TXT_OS="${PRETTY_LINE_BRK}\nOS\n${PRETTY_LINE_BRK}\n\nDistro:\n${DISTRO}\n\nKernel:\n${KERNEL}\n\nBits:\n${BITVERSION}"
 TXT_OS="${PRETTY_LINE_BRK}\nOS\n${PRETTY_LINE_BRK}\n\nModel:\n${MODEL}\n\nDistro:\n${DISTRO}\n\nKernel:\n${KERNEL}\n\nUptime:\n${UPTIME}"
