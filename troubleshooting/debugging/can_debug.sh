@@ -112,8 +112,15 @@ fi
 if [ -d ${KLIPPERDIR} ]; then
     if [ -f ${KLIPPERDIR}/.config ]; then
         KLIPPERFND="Found\n\nKlipper Config:\n$(cat ${KLIPPERDIR}/.config)"
+        git --version 2>&1 >/dev/null
+        #test $? -eq 0 && cd ~/klipper && KLIPPERVER="$(git describe --tags)"  # tests if the exit status ($?) of the previous command wasn't an error (0 means not error) and then gets klipper version
+        if [ $? -eq 0 ]; then                # check that exit status ($?) of previous command wasn't an error (0 means successful)
+            cd ~/klipper
+            KLIPPERVER="$(git describe --tags)"
+        fi
     else
         KLIPPERFND="Found\n\nKlipper Make Config: Not Found"
+        KLIPPERVER="Klipper not installed"
     fi
 fi
 
@@ -177,7 +184,7 @@ fi
 # fi
 # Formatting outpur
 #TXT_OS="${PRETTY_LINE_BRK}\nOS\n${PRETTY_LINE_BRK}\n\nDistro:\n${DISTRO}\n\nKernel:\n${KERNEL}\n\nBits:\n${BITVERSION}"
-TXT_OS="${PRETTY_LINE_BRK}\nOS\n${PRETTY_LINE_BRK}\n\nModel:\n${MODEL}\n\nDistro:\n${DISTRO}\n\nKernel:\n${KERNEL}\n\nUptime:\n${UPTIME}"
+TXT_OS="${PRETTY_LINE_BRK}\nOS\n${PRETTY_LINE_BRK}\n\nModel:\n${MODEL}\n\nDistro:\n${DISTRO}\n\nKernel:\n${KERNEL}\n\nKlipper Version:\n${KLIPPERVER}\n\nUptime:\n${UPTIME}"
 TXT_NET="\n\n${PRETTY_LINE_BRK}\nNetwork\n${PRETTY_LINE_BRK}\n\nInterface Services:\n${IFACESERVICE}\n\ncan0:\n${NETWORK}\n\nip a:\n${IPA}\n\ncan0 ifstats:\n${CANSTATS}" 
 TXT_SYSD="\n\n${PRETTY_LINE_BRK}\nSystemd Network Files\n${PRETTY_LINE_BRK}\n\n${SYSTEMD}"
 TXT_RCL="\n\n${PRETTY_LINE_BRK}\nrc.local contents\n${PRETTY_LINE_BRK}\n\n${RCLOCAL}"
