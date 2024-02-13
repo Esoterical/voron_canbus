@@ -114,7 +114,7 @@ if [ -d ${KLIPPERDIR} ]; then
         KLIPPERFND="Found\n\nKlipper Config:\n$(cat ${KLIPPERDIR}/.config)"
         git --version 2>&1 >/dev/null
         #test $? -eq 0 && cd ~/klipper && KLIPPERVER="$(git describe --tags)"  # tests if the exit status ($?) of the previous command wasn't an error (0 means not error) and then gets klipper version
-        if [ $? -eq 0 ]; then                # check that exit status ($?) of previous command wasn't an error (0 means successful)
+        if [ $? -eq 1 ]; then                # check that exit status ($?) of previous command wasn't an error (0 means successful)
             cd ~/klipper
             KLIPPERVER="$(git describe --tags)"
         fi
