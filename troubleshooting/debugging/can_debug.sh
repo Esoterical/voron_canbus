@@ -59,7 +59,7 @@ checknc() {
 }
 
 
-# Formatting fuction for output sections
+# Formatting function for output sections
 # Usage: prepout <HEADER> [SUBSECTION...]
 
 prepout() {
@@ -133,9 +133,9 @@ if [ -d ${KLIPPERDIR} ]; then
 	if [ -f ${KLIPPERDIR}/.config ]; then
 		KLIPPERFND="\n$(cat ${KLIPPERDIR}/.config)"
 		if command -v git > /dev/null 2>&1; then
-            cd ~/klipper
-            KLIPPERVER="$(git describe --tags)"
-        fi
+			cd ~/klipper
+			KLIPPERVER="$(git describe --tags)"
+		fi
 	fi
 fi
 
@@ -152,8 +152,7 @@ if [ -f $KLIPPYLOG ]; then
 		awk -v mintemp="$MIN_TEMP" -v maxtemp="$MAX_TEMP" '/temp=/ {
 			printf "%18s ", $1;
 			for (i=2; i<=split($0, stat, " "); i++) {
-				#printf "%s", stat;
-				if (sub(/temp=/, "", stat[i])) {
+				if (sub(/^.*temp=/, "", stat[i])) {
 					printf "%6s", stat[i];
 					if (stat[i] + 0 < mintemp ) {
 						printf "%s", "    *** Check Sensor ***";
