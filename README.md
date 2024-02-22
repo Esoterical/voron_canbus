@@ -43,7 +43,7 @@ These denote sections where you need to do a final check before proceeding. If y
 
 # New build
 
-If this is a fresh build click [here](./Getting_Started) to start your journey.
+If this is a fresh build click [here](./Getting_Started.md) to start your journey.
 
 # Updating
 
