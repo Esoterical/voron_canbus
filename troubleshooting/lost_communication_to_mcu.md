@@ -1,3 +1,10 @@
+---
+layout: default 
+title: Lost Communications to mcu
+nav_order: 50
+parent: Troubleshooting
+---
+
 # Lost Communication to mcu
 
 So you're happily printing, everythings great, you're thinking "oh, this whole CANbus thing is easy" when all of a sudden your print stops with an error `Lost communication with MCU 'EBBCan'` or similar (whatever your CAN toolhead name is). You restart, it works fine again but sooner or later it happens again. Or maybe after the first time you can't even get klipper to start again as it just can't connect to your toolhead UUID.

@@ -1,3 +1,10 @@
+---
+layout: default 
+title: Makerbase UTC 1.0
+parent: Common CAN Adapters
+grand_parent: Dedicated USB CAN Device
+---
+
 **Big thanks to @terranx#9681 on the Voron Discord for investigating this issue and writing up these instructions**
 
 # Fixing the Makerbase UTC 1.0

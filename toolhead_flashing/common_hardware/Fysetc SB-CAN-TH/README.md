@@ -1,3 +1,10 @@
+---
+layout: default 
+title: Fysetc SB-CAN-TH
+parent: Common Toolhead Hardware
+grand_parent: Toolhead Flashing
+---
+
 # 120 ohm Termination Resistor
 
 The Fysetc SB-CAN-TH v1.1 has no resistor nor any provisions for adding one.

@@ -1,7 +1,14 @@
+---
+layout: default 
+title: No UUID
+nav_order: 20
+parent: Troubleshooting
+---
+
 
 So you're can0 interface is online, but a query returns nothing:
 
-![image](https://github.com/Esoterical/voron_canbus/assets/124253477/ccf58a7f-c886-4302-8d9c-e4d190744e3f)
+![image](https://user-images.githubusercontent.com/124253477/235122048-e39c4fb0-6163-4469-b1fa-aa9dddfe69b2.png)
 
 First up, if you previously _could_ see UUID's returned, and then put them into your printer.cfg file, but now you can't see anything from a canbus query **don't panic**. Once a UUID has been "grabbed" by klipper-on-pi then it won't show up to a query. This is normal.
 

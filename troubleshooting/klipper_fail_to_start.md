@@ -1,3 +1,10 @@
+---
+layout: default 
+title: Klipper Fails to Start
+nav_order: 30
+parent: Troubleshooting
+---
+
 # Klipper fails to start
 
 You have everything flashed up, you were able to get the UUID's of all your devices, you thought it was smooth sailing from this point. Then you booted the printer only go find the big red warning box of Klipper failing to start.

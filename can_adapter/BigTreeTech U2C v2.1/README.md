@@ -1,3 +1,11 @@
+---
+layout: default 
+title: BigTreeTech U2C v2.1
+parent: Common CAN Adapters
+grand_parent: Dedicated USB CAN Device
+---
+
+
 # 120 ohm Termination Resistor
 
 The header for the 120R termination resistor is circled in purple

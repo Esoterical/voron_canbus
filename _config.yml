@@ -1,0 +1,21 @@
+title: Esoterical's CANBus Guide
+description: A guide for setting up CANBus hardware on 3D printers
+theme: just-the-docs
+color_scheme: eso-dark
+markdown: kramdown
+url: https://jtd.esoterical.online
+logo: "/assets/esoterical-canbus-green.png"
+favicon_ico: "/assets/favicon.ico"
+
+callouts:
+  warning:
+    title: Warning
+    color: red
+  stop:
+    color: red
+
+plugins:
+  - jekyll-relative-links
+
+#aux_links:
+#  CANBus Guide on Github: https://github.com/Esoterical/voron_canbus

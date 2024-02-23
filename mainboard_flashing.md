@@ -1,3 +1,11 @@
+---
+layout: default 
+title: Mainboard Flashing
+has_children: true
+nav_order: 41
+has_toc: false
+---
+
 # General Info
 
 The following should be taken as an overall guide on what you are going to be achieving.
@@ -35,7 +43,7 @@ make menuconfig
 ```
 
 
-You will need to adapt the below instructions so they cover _your_ board's specicific configuration. You can find screenshots of settings for comomon toolheads in the [commmon_hardware](./common_hardware) folder.
+You will need to adapt the below instructions so they cover _your_ board's specicific configuration. You can find screenshots of settings for common toolheads in the [Common Mainboard Hardware](./mainboard_flashing/common_hardware) section.
 
 If your board doesn't exist in the common_hardware folder already, then you want the Processor, Clock Reference, and Application Start offset to be set as per whatever board you are running. Set the "Build Katapult deployment application" (this is really only for updating but doesn't hurt having it enabled at this stage), and make sure "Communication Interface" is set to USB. Also make sure the "Support bootloader entry on rapid double click of reset button" is marked. It makes it so a double press of the reset button will force the board into Katapult mode. Makes re-flashing after a mistake a lot easier. Lastly, setting the Status LED GPIO Pin won't affect how katapult functions, but it will give a nice visual indicator (of an LED flashing on and off once a second) on the toolhead to show the board is sitting in Katapult mode.
 
@@ -78,14 +86,15 @@ ls /dev/serial/by-id
 
 You should see a "usb-katapult_..." device there.
 
----------
-<p align="center">
-  <img src="https://github.com/Esoterical/voron_canbus/assets/124253477/36065239-009c-4195-8e13-a43959acac7b" />
-</p>
+{: .stop }
+>
+><p align="center">
+>  <img src="https://github.com/Esoterical/voron_canbus/assets/124253477/36065239-009c-4195-8e13-a43959acac7b" />
+></p>
+>
+>If you do *not* see a Katapult device listed in your /dev/serial/by-id, or if you get a `cannot access '/dev/serial/by-id': No such file or directory` then your mainboard *isn't* currently sitting in Katapult mode. Double-click the reset button on your mainboard then `ls /dev/serial/by-id` again. If you still don't see a Katapult device then either the flash didn't work or you had incorrect settings in the Katapult `make menuconfig` screen. Go [back](#installing-katapult) and try again.
 
-If you do *not* see a Katapult device listed in your /dev/serial/by-id, or if you get a `cannot access '/dev/serial/by-id': No such file or directory` then your mainboard *isn't* currently sitting in Katapult mode. Double-click the reset button on your mainboard then `ls /dev/serial/by-id` again. If you still don't see a Katapult device then either the flash didn't work or you had incorrect settings in the Katapult `make menuconfig` screen. Go [back](#installing-katapult) and try again.
 
----------
 
 
 As you are installing Katapult onto the mainboard that you are also going to use for USB-CAN-Bridge mode klipper, you still will _not_ have a working CAN network at this stage. You can flash klipper to your mainboard via Katapult, but in reality it is flashing over USB and not flashing over CAN.
@@ -99,7 +108,7 @@ Move into the klipper directory on the Pi by running:
 Then go into the klipper configuration menu by running:
 `make menuconfig`
 
-Again, if your mainboard is already in [commmon_hardware](./common_hardware) then you can copy the Klipper settings from there. 
+Again, if your mainboard is already in [Common Mainboard Hardware](./mainboard_flashing/common_hardware) then you can copy the Klipper settings from there. 
 
 Otherwise, you want the Processor and Clock Reference to be set as per whatever board you are running. Set Communication interface to 'USB to CAN bus bridge' then set the CAN Bus interface to use the pins that are specific to your mainboard. Also set the CAN bus speed to the same as the speed in your can0 file. In this guide it is set to 1000000.
 
@@ -137,17 +146,16 @@ Check that the can0 interface is up by running `ip -s -d link show can0` . If ev
 You see a can0 interface, the "qlen" will be 1024, and the bitrate will be 1000000
 
 
----------
-<p align="center">
-  <img src="https://github.com/Esoterical/voron_canbus/assets/124253477/36065239-009c-4195-8e13-a43959acac7b" />
-</p>
+{: .stop }
+>
+><p align="center">
+>  <img src="https://github.com/Esoterical/voron_canbus/assets/124253477/36065239-009c-4195-8e13-a43959acac7b" />
+></p>
+>
+>If the `ip -s -d link show can0` command returns an error (eg. "Device can0 does not exist) then reboot your Pi with `sudo reboot now` and once the Pi is back up check `ip -s -d link show can0` again. If you still get the error then your mainboard isn't showing as a CAN adapter and you need to go back to the [Installing USB-CAN-Bridge Klipper](#installing-usb-can-bridge-klipper) and try again, making sure the Klipper `make menuconfig` settings are absolutely correct.
+>
+>If the can0 network shows up, but the qlen *isn't* 1024 or the bitrate *isn't* 1000000 then go back to [Getting_Started](./Getting_Started.md) and check the can0 file settigns in both the ifupdown section and the netplan section.
 
-If the `ip -s -d link show can0` command returns an error (eg. "Device can0 does not exist) then reboot your Pi with `sudo reboot now` and once the Pi is back up check `ip -s -d link show can0` again. If you still get the error then your mainboard isn't showing as a CAN adapter and you need to go back to the [Installing USB-CAN-Bridge Klipper](#installing-usb-can-bridge-klipper) and try again, making sure the Klipper `make menuconfig` settings are absolutely correct.
-
-
-If the can0 network shows up, but the qlen *isn't* 1024 or the bitrate *isn't* 1000000 then go back to [Getting_Started](./Getting_Started.md) and check the can0 file settigns in both the ifupdown section and the netplan section.
-
----------
 
 You can now run the Klipper canbus query to retrieve the canbus_uuid of your mainboard:
 

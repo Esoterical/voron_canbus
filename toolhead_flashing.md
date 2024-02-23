@@ -1,3 +1,11 @@
+---
+layout: default 
+title: Toolhead Flashing
+has_children: true
+nav_order: 51
+has_toc: false
+---
+
 # General Info
 
 The following should be taken as an overall guide on what you are going to be achieving.
@@ -33,7 +41,7 @@ cd ~/katapult
 make menuconfig
 ```
 
-You will need to adapt the below instructions so they cover _your_ board's specicific configuration. You can find screenshots of settings for common toolheads in the [commmon_hardware](./common_hardware) folder.
+You will need to adapt the below instructions so they cover _your_ board's specicific configuration. You can find screenshots of settings for common toolheads in the [Common Toolhead Hardware](./toolhead_flashing/common_hardware) section.
 
 If your board doesn't exist in the common_hardware folder already, then you want the Processor, Clock Reference, and Application Start offset to be set as per whatever board you are running. You can leave the  "Build Katapult deployment application" set or not set (it makes not difference at this flashing stage, it's only for updating), and make sure "Communication Interface" is set to "CAN Bus" with the correct pins for your toolhead board. Also make sure the "Support bootloader entry on rapid double click of reset button" is marked. It makes it so a double press of the reset button will force the board into Katapult mode. Makes re-flashing after a mistake a lot easier. Lastly, setting the Status LED GPIO Pin won't affect how katapult functions, but it will give a nice visual indicator (of an LED flashing on and off once a second) on the toolhead to show the board is sitting in Katapult mode.
 
@@ -121,18 +129,18 @@ You should see a "Found UUID" with "Application: Katapult"
 
 If you see the above, take note of the UUID and move on to flashing Klipper to the toolhead board.
 
----------
-<p align="center">
-  <img src="https://github.com/Esoterical/voron_canbus/assets/124253477/36065239-009c-4195-8e13-a43959acac7b" />
-</p>
+{: .stop }
+>
+><p align="center">
+>  <img src="https://github.com/Esoterical/voron_canbus/assets/124253477/36065239-009c-4195-8e13-a43959acac7b" />
+></p>
+>
+>If you do *not* see a UUID here with "Application: Katapult" (if you are using usb-can-bridge mainboard then you may see your Mainboard UUID with "application:klipper", **this is different and not what we are looking for**) then go back to the [Installing Katapult](#installing-katapult) section and try again, making sure the Katapult `make menuconfig` settings are *absolutely* correct for your toolhead board.
+>
+>If you still don't see the "Application:Katapult" after going through the Katapult flashing steps again, check the [no_uuid troubleshooting](./troubleshooting/no_uuid.md) page for things to try.
+>
+>**DO NOT CONTINUE** until you can see your toolhead UUID with "application:katapult" when running `python3 ~/katapult/scripts/flashtool.py -i can0 -q`
 
-If you do *not* see a UUID here with "Application: Katapult" (if you are using usb-can-bridge mainboard then you may see your Mainboard UUID with "application:klipper", **this is different and not what we are looking for**) then go back to the [Installing Katapult](#installing-katapult) section and try again, making sure the Katapult `make menuconfig` settings are *absolutely* correct for your toolhead board.
-
-If you still don't see the "Application:Katapult" after going through the Katapult flashing steps again, check the [no_uuid troubleshooting](../troubleshooting/no_uuid.md) page for things to try.
-
-**DO NOT CONTINUE** until you can see your toolhead UUID with "application:katapult" when running `python3 ~/katapult/scripts/flashtool.py -i can0 -q`
-
----------
 
 # Installing Klipper
 
@@ -145,7 +153,7 @@ Then go into the klipper configuration menu by running:
 make menuconfig
 ```
 
-Again, if your toolhead is already in [commmon_hardware](./common_hardware) then you can copy the Klipper settings from there. 
+Again, if your toolhead is already in [Common Toolhead Hardware](./toolhead_flashing/common_hardware) then you can copy the Klipper settings from there. 
 
 
 Otherwise, you want the Processor and Clock Reference to be set as per whatever board you are running. Set Communication interface to"CAN Bus" with the correct pins for your toolhead board. Also set the CAN bus speed to the same as the speed in your can0 file. In this guide it is set to 1000000.
@@ -192,18 +200,19 @@ command again. This time you should see the same UUID but with "Application: Kli
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/1e01f858-71f3-45b4-a69f-1f704dce80d4)
 
----------
-<p align="center">
-  <img src="https://github.com/Esoterical/voron_canbus/assets/124253477/36065239-009c-4195-8e13-a43959acac7b" />
-</p>
+{: .stop }
+>
+><p align="center">
+>  <img src="https://github.com/Esoterical/voron_canbus/assets/124253477/36065239-009c-4195-8e13-a43959acac7b" />
+></p>
+>
+>If you do *not* see "Application:Klipper" for the **same** UUID that was previously showing as "Application:Katapult" then the Klipper didn't flash properly or you had the wrong settings for the Klipper firmware.
+>
+>Double-click the RESET button on your toolhead to force it back into DFU mode then go back to [Installing Klipper](#installing-klipper) section and try again, making sure the Klipper `make menuconfig` settings are *absolutely* correct for your toolhead board.
+>
+>If your toolhead board doesn't *have* a RESET button then you'll have to go all the way back to the [Installing Katapult](#installing-katapult) sections and reflash Katapult via USB again, then try the [Installing Klipper](#installing-klipper) steps.
 
-If you do *not* see "Application:Klipper" for the **same** UUID that was previously showing as "Application:Katapult" then the Klipper didn't flash properly or you had the wrong settings for the Klipper firmware.
 
-Double-click the RESET button on your toolhead to force it back into DFU mode then go back to [Installing Klipper](#installing-klipper) section and try again, making sure the Klipper `make menuconfig` settings are *absolutely* correct for your toolhead board.
-
-If your toolhead board doesn't *have* a RESET button then you'll have to go all the way back to the [Installing Katapult](#installing-katapult) sections and reflash Katapult via USB again, then try the [Installing Klipper](#installing-klipper) steps.
-
----------
 
 # Klipper is now installed
 
@@ -225,5 +234,5 @@ sudo service klipper start
 
 # Next Step
 
-Congratulations! Everything is now flashed. Time to move on to the [final steps](../Final_Steps.md).
+Congratulations! Everything is now flashed. Time to move on to the [final steps](./Final_Steps.md).
 
