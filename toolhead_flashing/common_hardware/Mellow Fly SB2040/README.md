@@ -1,3 +1,10 @@
+---
+layout: default 
+title: Mellow Fly SB2040
+parent: Common Toolhead Hardware
+grand_parent: Toolhead Flashing
+---
+
 # 120 ohm Termination Resistor
 
 The header for the 120R termination resistor is circled in purple

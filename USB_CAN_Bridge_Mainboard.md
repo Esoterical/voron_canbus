@@ -1,3 +1,9 @@
+---
+layout: default 
+title: USB CAN Bridge Mainboard
+nav_order: 40
+---
+
 # Klipper USB to CAN bus bridge
 
 The second way of setting up a CAN network is to use the printer mainboard itself as a CAN adapter.

@@ -1,3 +1,10 @@
+---
+layout: default 
+title: Debug Script
+nav_order: 100
+parent: Troubleshooting
+---
+
 # Debug Script
 
 If you are still running into trouble you can run this can_debug.sh script on your Pi. It will pull a bunch of config and diagnostic data which can give whomever is helping you a lot of info for diagnosing your issue.

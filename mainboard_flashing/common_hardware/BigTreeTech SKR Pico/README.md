@@ -1,3 +1,10 @@
+---
+layout: default 
+title: BigTreeTech SKR Pico
+parent: Common Mainboard Hardware
+grand_parent: Mainboard Flashing
+---
+
 # 120 ohm Termination Resistor
 
 As the SKR Pico requires an [external CAN transciever](#transceiver) there is no built in 120ohm resistor on the Pico itself. The transceiver you use will likely have the 120r resistor hard soldered already, but some may have jumpers or solder pads to add/remove it from the circuit.

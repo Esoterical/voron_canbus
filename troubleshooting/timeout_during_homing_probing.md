@@ -1,3 +1,10 @@
+---
+layout: default 
+title: Timeout During Homing/Probing
+nav_order: 40
+parent: Troubleshooting
+---
+
 # Timeout during homing and/or probing
 
 I'm going to make a couple of assumptions right at the start for this section as this 'symptom' could be from different causes. So to narrow it down this section is if:

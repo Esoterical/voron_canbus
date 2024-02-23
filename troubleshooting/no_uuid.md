@@ -1,3 +1,10 @@
+---
+layout: default 
+title: No UUID
+nav_order: 20
+parent: Troubleshooting
+---
+
 
 So you're can0 interface is online, but a query returns nothing:
 

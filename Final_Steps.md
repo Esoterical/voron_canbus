@@ -1,3 +1,9 @@
+---
+layout: default 
+title: Final Steps
+nav_order: 60
+---
+
 # Final Steps
 
 So your CAN network is now running and you can see the CAN boards on it, everything is coming up Milhouse.

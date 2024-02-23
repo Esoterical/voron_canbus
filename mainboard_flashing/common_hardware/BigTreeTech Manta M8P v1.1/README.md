@@ -1,3 +1,10 @@
+---
+layout: default 
+title: BigTreeTech Manta M8P V1.1
+parent: Common Mainboard Hardware
+grand_parent: Mainboard Flashing
+---
+
 # 120 ohm Termination Resistor
 
 The header for the 120R termination resistor is circled in purple

@@ -1,3 +1,11 @@
+---
+layout: default 
+title: Troubleshooting
+nav_order: 80
+has_children: true
+has_toc: false
+---
+
 # Troubleshooting
 
 So, you've followed the instructions but things just aren't working they way they should. Hopefully there will be some nuggets of wisdom here that help out with your build. Note that this page is still very much a work in progress and I will be treating it as a living document. Expect it to be less structured than the rest of the guide, just look around for something that sounds like your problem and see what is there.

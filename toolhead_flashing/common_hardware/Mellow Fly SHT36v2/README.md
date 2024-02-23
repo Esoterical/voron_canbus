@@ -1,3 +1,10 @@
+---
+layout: default 
+title: Mellow Fly SHT36v2
+parent: Common Toolhead Hardware
+grand_parent: Toolhead Flashing
+---
+
 *Note, SHT-36 V2 units shipped before 2022-10-18 will use the GD32F103 CPU, later shipments will use the APM32F072 CPU. The settings are exactly the same except for the processor model. Make sure the chosen processor model STM32F072 or STM32F103 matches with your board*
 
 # 120 ohm Termination Resistor

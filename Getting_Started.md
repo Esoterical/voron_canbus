@@ -1,3 +1,9 @@
+---
+layout: default 
+title: Getting Started 
+nav_order: 20
+---
+
 # Getting Started
 
 # can0 file, CAN Speeds, and Transmit Queue Length
@@ -78,13 +84,13 @@ Some boards (Like the BTT Octopus) have the 120 ohm resistor permenantly conncet
 
 The same can be said for dedicated USB CAN adapters (like the U2C). Most will have a a header that you can put a jumper on to enable the resistor.
 
-You can find information and diagrams on the 120 ohm termination resistor placement for boards in the mainbard [common_hardware](./mainboard_flashing/common_hardware) folder.
+You can find information and diagrams on the 120 ohm termination resistor placement for boards in the [mainbard common hardware](./mainboard_flashing/common_hardware) section.
 
 ## Toolhead
 
 Nearly all Toolheads will have a two-pin header (sometimes labelled 120R) that you can put a jumper on to bring the 120 ohm resistor into the circuit.
 
-You can find information and diagrams on the 120 ohm termination resistor placement for boards in the toolhead [common_hardware](./toolhead_flashing/common_hardware) folder.
+You can find information and diagrams on the 120 ohm termination resistor placement for boards in the [toolhead common hardware](./toolhead_flashing/common_hardware) section.
   
 
 # Next Step
@@ -93,7 +99,7 @@ Now that the can0 interface files are set up, you need to choose how you are goi
 
 To actually create a CAN network in your system, your Pi needs some sort of device to act as a CAN adapter (think of it like a USB network card, or USB wifi dongle). The simplest plug-and-play option is to use a dedicated USB to Can device such as the BigTreeTech U2C, Mellow Fly UTOC, Fysetc UCAN, etc. (other devices exist as well). The second "cheaper" option is to actually utilise your printer mainboard (ie. Octopus or Spider board) to function as a usb-can bridge for klipper. We'll cover both options, but you only need to choose one.
 
-[Click here for Dedicated USB-CAN Adapter](./Dedicated_USB_Can_Device.md)
+[Click here for Dedicated USB-CAN Adapter](./Dedicated_USB_Can_Device.html)
 
-[Click here for USB-CAN-Bridge Klipper on your Mainboard](./USB_CAN_Bridge_Mainboard.md)
+[Click here for USB-CAN-Bridge Klipper on your Mainboard](./USB_CAN_Bridge_Mainboard.html)
 

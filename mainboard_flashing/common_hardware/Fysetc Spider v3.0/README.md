@@ -1,3 +1,10 @@
+---
+layout: default 
+title: Fysetc Spider v3.0
+parent: Common Mainboard Hardware
+grand_parent: Mainboard Flashing
+---
+
 # 120 ohm Termination Resistor
 
 There is a permanent 120 ohm termination resistor soldered to the board, no need to add a jumper to enable it and also no ability to disable it.

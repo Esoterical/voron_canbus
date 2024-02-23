@@ -1,3 +1,10 @@
+---
+layout: default 
+title: Mellow Fly UTOC
+parent: Common CAN Adapters
+grand_parent: Dedicated USB CAN Device
+---
+
 # 120 ohm Termination Resistor
 
 There is a permanent 120 ohm termination resistor soldered to the board, no need to add a jumper to enable it and also no ability to disable it.

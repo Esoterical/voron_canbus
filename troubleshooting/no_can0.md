@@ -1,3 +1,10 @@
+---
+layout: default 
+title: No can0 Interface
+nav_order: 10
+parent: Troubleshooting
+---
+
 ## No CAN network when running a query or flash attempt
 
 If you run a `python3 ~/katapult/scripts/flashtool.py -i can0 -q` or `~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0` or are trying to flash a device with a command like `python3 ~/katapult/scripts/flashtool.py -i can0 -u b6d9de35f24f -f ~/klipper/out/klipper.bin` but you are seeing an error along the lines of "unable to bind socket to can0" or "failed to transmit, network is down" then your can0 "interface" on your Pi isn't running.
