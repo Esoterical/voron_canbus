@@ -14,28 +14,28 @@ There won't be any particular order to the sections. Maybe I'll make it flow bet
 
 ### No can0 network when flashing
 
-If you see something like "unable to bind socket to can0" when attempting to flash, read [here](./no_can0.md)
+If you see something like "unable to bind socket to can0" when attempting to flash, read [here](./troubleshooting/no_can0.md)
 
 
 ### No UUIDs show up to a query
 
-So you're can0 interface is online, but a query returns no UUIDs? read [here](./no_uuid.md)
+So you're can0 interface is online, but a query returns no UUIDs? read [here](./troubleshooting/no_uuid.md)
 
 
 ### Klipper won't start
 
-You have everything flashed fine, and the UUID's all showed up, but klipper refuses to start, read [here](./klipper_fail_to_start.md)
+You have everything flashed fine, and the UUID's all showed up, but klipper refuses to start, read [here](./troubleshooting/klipper_fail_to_start.md)
 
 
 ### Timeout during homing/probing
 
-Klipper starts, but sometimes during a homing command or levelling/bed mesh Klipper will halt with "Timeout during homing/probing", read [here](./timeout_during_homing_probing.md)
+Klipper starts, but sometimes during a homing command or levelling/bed mesh Klipper will halt with "Timeout during homing/probing", read [here](./troubleshooting/timeout_during_homing_probing.md)
 
 ### Lost connection to MCU
 
-Klipper was running, maybe even printing for a while, but all of a sudden it failed mid print with "Lost connection to MCU" error, read [here](./lost_communication_to_mcu.md)
+Klipper was running, maybe even printing for a while, but all of a sudden it failed mid print with "Lost connection to MCU" error, read [here](./troubleshooting/lost_communication_to_mcu.md)
 
 
 ### Timer too close
 
-Sometimes it prints fine, sometimes it fails with "Timer too close" error, read [here](./timer_too_close.md)
+Sometimes it prints fine, sometimes it fails with "Timer too close" error, read [here](./troubleshooting/timer_too_close.md)
