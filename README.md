@@ -1,3 +1,6 @@
-testing for canbus repo.
-Actual repo at https://github.com/Esoterical/voron_canbus/tree/main
-a
+---
+layout: default
+title: README
+nav_exclude: true
+---
+The CANBus guide is now an actual website, find it at https://canbus.esoterical.online
