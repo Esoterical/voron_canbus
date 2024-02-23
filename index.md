@@ -5,16 +5,10 @@ nav_order: 1
 ---
 
 
-Before we start a big thanks has to go to the #mcu_toolhead_boards thread on the Voron discord. A wealth of information from some very clever people.
-If you have any of the following combinations of hardware, please look at these existing specific guides:
+Before we start a big thanks has to go to the #can-and-usb_toolhead_boards thread on the Voron discord. A wealth of information from some very clever people.
+Plus a specific thanks to @MastahFR and @eschlenz for their [early](https://github.com/akhamar/voron_canbus_octopus_sb2040) [canbus](https://github.com/eschlenz/3D-Printing-Public/blob/main/skr_pico_canboot_canbus.md) guides, and @EricZimmerman for his still-very-relevant [BTT U2C and EBB36](https://github.com/EricZimmerman/VoronTools/blob/main/EBB_CAN.md) guide.
 
-[Octopus (in CAN bridge mode) and SB2040](https://github.com/akhamar/voron_canbus_octopus_sb2040) by @MastahFR
-
-[BTT U2C and EBB36](https://github.com/EricZimmerman/VoronTools/blob/main/EBB_CAN.md) by @EricZimmerman
-
-[SKR Pico in can bridge mode](https://github.com/eschlenz/3D-Printing-Public/blob/main/skr_pico_canboot_canbus.md) by @eschlenz
-
-and many others.
+And a huge thanks to @dormausian who was instrumental in lifting this just-a-github page into an actual website.
 
 ## Generalised CANBus guide
 
