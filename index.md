@@ -56,7 +56,7 @@ If you are just updating an existing already-working CANBus system, click [here]
 
 # HELP!
 
-If you are just getting stuck, or you had a working CANBus system that is now not working, have a look at the [troubleshooting section](./troubleshooting) for information that may help.
+If you are just getting stuck, or you had a working CANBus system that is now not working, have a look at the [troubleshooting section](troubleshooting) for information that may help.
 
 
 
