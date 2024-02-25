@@ -50,7 +50,7 @@ You can verify it is in the proper mode by running `python3 ~/katapult/scripts/f
 
 Once you are at this stage you can flash the deployer.bin by running:
 
-`python3 ~/katapult/scripts/flashtool.py -i can0 -u b6d9de35f24f -f ~/katapult/out/deployer.bin`
+`python3 ~/katapult/scripts/flashtool.py -i can0 -u yourtoolheaduuid -f ~/katapult/out/deployer.bin`
 
 and your Katapult should update.
 
