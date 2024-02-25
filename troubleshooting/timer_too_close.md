@@ -24,4 +24,8 @@ They also observed this problem was more likely on short distances (IE smaller p
 
 `I can't remember the specifics on this one, but a bad/dying SD card can definitely cause TTC errors as well as the base linux system starts freaking out/having errors and this extra load transferrs into messing with klipper`
 
+`Seemingly random TTC's, SD card was full`
+
+`TTC when Exclude Object was used on a large/complex model. Possibly the host overloaded trying to skip the bazillion lines of gcode`
+
 [Return to Troubleshooting](./)
