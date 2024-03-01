@@ -20,10 +20,10 @@ To set everything up, SSH into your pi and run the commands needed for your netw
 
 This will open (or create if it doesn't exist) a file called 'can0' in which you need to enter the following information:
   ```
-  allow-hotplug can0
-  iface can0 can static
-    bitrate 1000000
-    up ip link set can0 txqueuelen 1024
+allow-hotplug can0
+iface can0 can static
+  bitrate 1000000
+  up ip link set can0 txqueuelen 1024
   ```
 
 ![image](https://user-images.githubusercontent.com/124253477/221378593-9a0fcdb5-082c-454e-94bd-08a6dc449d34.png)
