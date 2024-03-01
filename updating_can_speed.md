@@ -9,7 +9,7 @@ nav_order: 30
 
 If you are trying to modify the speed of your existing CAN network then there is an order of operations to make it as seamless as possible. If you don't use this order then you can get in to a state where you need to hook things up with USB cables and flash them as if it was the first time again.
 
-**UNLESS YOU ARE CHANGING YOUR CANBUS SPEED YOU DON"T NEED TO USE THESE STEPS. FOR NORMAL UPDATING GO TO [TOOLHEAD UPDATING](./toolhead_updating.md) OR [MAINBOARD UPDATING](./mainboard_updating.md)**
+**UNLESS YOU ARE CHANGING YOUR CANBUS SPEED YOU DON'T NEED TO USE THESE STEPS. FOR NORMAL UPDATING GO TO [TOOLHEAD UPDATING](./toolhead_updating.md) OR [MAINBOARD UPDATING](./mainboard_updating.md)**
 
 I am going to use the scenario of changing from a speed of 500K to a speed of 1M. The steps are slightly different depending on if you are using a dedicated CAN adapter (U2C/UTOC/etc) or if you are using a USB-CAN-BRIDGE Mainboard. Make sure to choose the proper steps for your setup.
 
