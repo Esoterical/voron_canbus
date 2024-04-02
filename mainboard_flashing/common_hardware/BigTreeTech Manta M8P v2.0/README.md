@@ -11,6 +11,11 @@ The header for the 120R termination resistor is circled in purple
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/aa44e56e-bb80-4b38-9dbc-5d17fffe5903)
 
+# DFU Mode
+
+To put the M8P V2 into DFU mode, hold the BOOT0 button and while still holding press and release the RESET button. Then count to 5 and release the BOOT0 button.
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/be5a7f3e-98e7-491c-8f00-beb343e82cad)
 
 
 # Katapult Config
