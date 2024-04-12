@@ -47,7 +47,7 @@ We are now going to update your usb-can-bridge mainboard. Note that you **do not
 
 6. Put your Mainboard into katapult mode `python3 ~/katapult/scripts/flashtool.py -i can0 -u yourmainboarduuid -r` and confirm you can see it in katapult mode with `ls /dev/serial/by-id`
 7. `cd ~/klipper` and `make menuconfig` and put the settings for your mainboard usb-can-bridge mode with the new speed selected. Q to save and quit, then `make` to compile
-8. Flash the new klipper.bin to your mainboard with `python3 ~/katapult/scripts/flashtool.py -f ~/katapult/out/firmware.bin -d /dev/serial/by-id/usb-katapult_your_mainboard_usb_id`
+8. Flash the new klipper.bin to your mainboard with `python3 ~/katapult/scripts/flashtool.py -f ~/klipper/out/klipper.bin -d /dev/serial/by-id/usb-katapult_your_mainboard_usb_id`
 9. Temporarily change your CAN network speed by running `sudo ip link set can0 down type can` to drop the network and then `sudo ip link set can0 up type can bitrate 1000000` to bring it back up with your new desired speed.
 10. Run `python3 ~/katapult/scripts/flashtool.py -i can0 -q` and you should see your toolhead in katapult mode as your CAN network is now running on the new speed.
 11. If you can see your toolhead in katapult mode, you can `cd ~/klipper` and `make menuconfig` a new klipper firmware with your new speed, then Q to save and quit and `make` to compile, then flash this klipper.bin to your toolhead via katapult.
