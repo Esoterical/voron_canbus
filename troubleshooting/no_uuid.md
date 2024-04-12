@@ -41,6 +41,7 @@ If it's sitting in Katapult but you still can't see a UUID then your problem is 
 
 - If you suspect that CAN_L or CAN_H might be broken, measure in resistance mode (not continuity!) between CAN_L on one board with CAN_L on the other board. If you get 240 Ohms, then there's a break in CAN_L.       Repeat the measurement for CAN_H
 
+- Some users have encountered issues despite following the guide guide here. Everything seemed fine until attempting to flash Klipper on the SB2209. They could locate the board in DFU mode over USB, but the CAN UUID wasn't visible. Consequently, they were unable to flash Klipper onto the SB2209. It was discovered that the CAN wire provided with the BTT EBB SB2209 had the high and low data wire colors swapped compared to the picture in their documentation. By swapping the high and low data wires in the adapter, they were able to locate the CAN signal and successfully flash Klipper on the SB2209.
 
 ### can0 Interface
 
