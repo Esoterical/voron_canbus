@@ -10,18 +10,18 @@ KLIPPERDIR="$HOME/klipper"
 KLIPPYLOG="$HOME/printer_data/logs/klippy.log"
 
 # Default responses 
-CANSTATS="No can0 interface"
-CANQUERY="No can0 interface"    
-BYID="/dev/serial/by-id Not Found"
+CAN0STATS="No can0 interface"
+CAN0QUERY="No can0 interface"    
 CAN0IFACE="/etc/network/interfaces.d/can0 Not Found"
+BYID="/dev/serial/by-id Not Found"
 
 BOOTLOADERDIRFND="Not Found"
-BOOTLDRFND="Not Found"
+BOOTLOADERFND="Not Found"
+BOOTLOADERVER="Unknown"
 KLIPPERDIRFND="Not Found"
 KLIPPERFND="Not Found"
-KLIPPERVER="Klipper not installed"
+KLIPPERVER="Unknown"
 
-MCUINFOFND="Not Found"
 PRNTDATAFND="Not Found"
 KLIPPERCFG="Not Found"
 ADC="Data Unavailable"
@@ -84,56 +84,66 @@ MODEL="$(cat /sys/firmware/devicetree/base/model)"
 DISTRO="$(cat /etc/*-release)"
 KERNEL="$(uname -a)"
 UPTIME="$(uptime)"
+
 IFACESERVICE="$(ls /etc/network)"
+SYSTEMD="$(ls /etc/systemd/network)"
 IPA="$(ip a)"
 
-if ip a | grep -q -E "can0"; then
-	CANSTATS="$(ip -d -s link show can0)"
-	CANQUERY="$(~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0)"
-fi
-
-LSUSB="$(lsusb)"
-
-if [ -d /dev/serial/by-id ]; then
-	BYID="$(ls -l /dev/serial/by-id | awk '{print $9,$10,$11}')"
-fi
-
-# BITVERSION="$(getconf LONG_BIT)"
-
-# List of systemd filess.
-SYSTEMD="$(ls /etc/systemd/network)"
-
-# Contents of rc.local
-RCLOCAL="$(cat /etc/rc.local)"
-
-#grep "MCU 'mcu' config" $KLIPPYLOG | tail -1
-
-# Checking Linux Network configuration.
+# Checking can0 interface configuration.
 if [ -f /etc/network/interfaces.d/can0 ]; then
 	CAN0IFACE=$(cat /etc/network/interfaces.d/can0)
 fi
 
+if ip l l can0 > /dev/null 2>&1; then
+	CAN0STATS="$(ip -d -s l l can0)"
+	CAN0UPDOWN="$(echo "$CAN0STATS" | grep -m 1 -o 'state [A-Z]*')"
+	CAN0STATE="$(echo "$CAN0STATS" | grep -m 1 -o 'can state [A-Z-]*')"
+	CAN0BITRATE="$(echo "$CAN0STATS" | grep -m 1 -o 'bitrate [0-9]*')"
+	CAN0QLEN="$(echo "$CAN0STATS" | grep -m 1 -o 'qlen [0-9]*')"
+	CAN0STATUS="$(echo "  $CAN0UPDOWN"; echo "  $CAN0STATE"; echo "  $CAN0BITRATE"; echo "  $CAN0QLEN";)"
+
+	if [ "$CAN0UPDOWN" = "state UP" ]; then
+		CAN0QUERY="$(~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0)"
+	else
+		CAN0QUERY="Unable to query can0 - DOWN"
+	fi
+fi
+
+# Contents of rc.local
+RCLOCAL="$(cat /etc/rc.local)"
+
+LSUSB="$(lsusb)"
+
+if [ -d /dev/serial/by-id ]; then
+	BYID="$(ls -l /dev/serial/by-id | tail -n +2 | awk '{print $9,$10,$11}')"
+fi
+
 # Retrieving katapult bootloader compilation configuration.
 if [ -d ${KATAPULTDIR} ]; then
-    BOOTLOADERDIRFND="Found";
+    BOOTLOADERDIRFND="${KATAPULTDIR}";
 	if [ -f ${KATAPULTDIR}/.config ]; then
 		BOOTLOADERFND="\n$(cat ${KATAPULTDIR}/.config)"
+		cd ${KATAPULTDIR}
+		BOOTLOADERVER="$(git describe --tags)"
 	fi
+
 # Retrieving CanBoot bootloader compilation configuration if katapult not there.
 elif [ -d ${CANBOOTDIR} ]; then
-	BOOTLOADERDIRFND="Found"
+	BOOTLOADERDIRFND="${CANBOOTDIR}"
 	if [ -f ${CANBOOTDIR}/.config ]; then
 		BOOTLOADERFND="\n$(cat ${CANBOOTDIR}/.config)"
+		cd ${CANBOOTDIR}
+		BOOTLOADERVER="$(git describe --tags)"
 	fi
 fi;
 
 # Retrieving klipper firmware compilation configuration.
 if [ -d ${KLIPPERDIR} ]; then
-    KLIPPERDIRFND="Found";
+    KLIPPERDIRFND="${KLIPPERDIR}";
 	if [ -f ${KLIPPERDIR}/.config ]; then
 		KLIPPERFND="\n$(cat ${KLIPPERDIR}/.config)"
 		if command -v git > /dev/null 2>&1; then
-			cd ~/klipper
+			cd ${KLIPPERDIR}
 			KLIPPERVER="$(git describe --tags)"
 		fi
 	fi
@@ -141,8 +151,7 @@ fi
 
 # Retrieving info from klippy.log
 if [ -f $KLIPPYLOG ]; then
-	MCUINFOFND="Found"
-	PRNTDATAFND="$(grep "MCU 'mcu' config" $KLIPPYLOG | tail -1)"
+	PRNTDATAFND="$(tac $KLIPPYLOG | grep -m 1 "MCU 'mcu' config" $KLIPPYLOG)"
 	KLIPPERCFG="$(tac $KLIPPYLOG | awk '/=======================/&&++k==1,/===== Config file =====/' | tac)"
        
 	# ADC temp check
@@ -169,16 +178,14 @@ fi
 
 # Sending to termbin and obtaining link.
 echo "Uploading...\n"
-echo "$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Klipper Version:\n${KLIPPERVER}" "Uptime:\n${UPTIME}") 
-$(prepout "Network" "Interface Services:\n${IFACESERVICE}" "can0:\n${CAN0IFACE}" "ip a:\n${IPA}" "can0 ifstats:\n${CANSTATS}")
-$(prepout "Systemd Network Files" "${SYSTEMD}")
+echo "$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Uptime:\n${UPTIME}") 
+$(prepout "Network" "Interface Services:\n${IFACESERVICE}" "Systemd Network Files:\n${SYSTEMD}" "ip a:\n${IPA}")
+$(prepout "can0" "status:\n${CAN0STATUS}" "file:\n${CAN0IFACE}" "ifstats:\n${CAN0STATS}" "Query:\n${CAN0QUERY}")
 $(prepout "rc.local contents" "${RCLOCAL}")
-$(prepout "USB" "lsusb:\n${LSUSB}")
-$(prepout "Dev Serial By-ID" "Dev Serial By-ID:\n${BYID}")
-$(prepout "CANQuery" "CANBus Query:\n${CANQUERY}")
-$(prepout "MCU" "MCUInfo:\n${MCUINFOFND}" "Klippy Log:\n${PRNTDATAFND}")
+$(prepout "USB / Serial" "lsusb:\n${LSUSB}" "/dev/serial/by-id:\n${BYID}")
+$(prepout "MCU" "MCUInfo:\n${PRNTDATAFND}")
 $(prepout "Temperature Check" "${ADC}")
-$(prepout "Bootloader" "Bootloader Directory: ${BOOTLOADERDIRFND}" "Bootloader Make Config: ${BOOTLOADERFND}")
-$(prepout "Klipper" "Klipper Directory: ${KLIPPERDIRFND}" "Klipper Make Config: $KLIPPERFND")
+$(prepout "Bootloader" "Directory: ${BOOTLOADERDIRFND}" "Version: ${BOOTLOADERVER}" "Make Config: ${BOOTLOADERFND}")
+$(prepout "Klipper" "Directory: ${KLIPPERDIRFND}" "Version: ${KLIPPERVER}" "Make Config: $KLIPPERFND")
 $(prepout "KlipperConfig" "${KLIPPERCFG}")" |
 	nc termbin.com 9999 | { read url; echo "Information available at the following URL:"; echo "$url"; }
