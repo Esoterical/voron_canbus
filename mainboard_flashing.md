@@ -14,7 +14,7 @@ The following should be taken as an overall guide on what you are going to be ac
 
 Before doing anything it is good to have some dependencies installed. Do this by running these on your Pi:
 
-```
+```bash
 sudo apt update
 sudo apt upgrade
 sudo apt install python3 python3-pip python3-can
