@@ -41,7 +41,9 @@ If the above still doesn't fix it (and by "fix it" I mean "never happens" not ju
 
 By default, Klipper uses a 25ms window for homing actions. This is set by the `TRSYNC_TIMEOUT` entry in the klipper `mcu.py` file. To check if yours is still the default run:
 
-`cat klipper/klippy/mcu.py | grep "TRSYNC_TIMEOUT ="`
+```bash
+cat klipper/klippy/mcu.py | grep "TRSYNC_TIMEOUT ="
+```
 
 if it shows TRSYNC_TIMEOUT=0.025 then it is still the default setting.
 
@@ -49,7 +51,9 @@ if it shows TRSYNC_TIMEOUT=0.025 then it is still the default setting.
 
 To change this to 50ms run the command:
 
-`sed -i 's\TRSYNC_TIMEOUT = 0.025\TRSYNC_TIMEOUT = 0.05\g' ~/klipper/klippy/mcu.py`
+```bash
+sed -i 's\TRSYNC_TIMEOUT = 0.025\TRSYNC_TIMEOUT = 0.05\g' ~/klipper/klippy/mcu.py
+```
 
 Then confirm it by running `cat klipper/klippy/mcu.py | grep "TRSYNC_TIMEOUT ="` again. If the change has been set reboot the Pi with `sudo reboot`.
 
@@ -63,34 +67,34 @@ I've found a 50ms timeout window got rid of all my "timeout during homing probe"
 Something that still requires further testing is manually assigning CPU cores to processes. The following steps will force everything *except* klipper to run on the first 3 cores (cores 0, 1, 2) of a quad-core CPU (any Pi newer than a Pi2) and then force Klipper to run by itself on the fourth core. This *may* help with timing issues or scheduling conflicts or whatever could be interrupting Klipper from hitting the proper timing windows.
 
 Create the system.conf.d folder with:
-```
+```bash
 sudo mkdir /etc/systemd/system.conf.d/
 ```
 (Don't worry if it says the folder already exists)
 
 then edit (or create) the cpuaffinity.conf file by running:
-```
+```bash
 sudo nano /etc/systemd/system.conf.d/cpuaffinity.conf
 ```
 and putting in:
-```
+```bash
 [Manager]
 CPUAffinity=0-2
 ```
 then press ctrl+X to save and quit. This will force everything to run on the first three cpu cores only.
 
 To make Klipper run on the now-unused fourth core, create the klipper.service.d folder with:
-```
+```bash
 sudo mkdir /etc/systemd/system/klipper.service.d
 ```
 (Don't worry if it says the folder already exists)
 
 then edit (or create) the override.conf file by running:
-```
+```bash
 sudo nano /etc/systemd/system/klipper.service.d/override.conf
 ```
 and putting in:
-```
+```bash
 [Service]
 CPUAffinity=3
 ```
