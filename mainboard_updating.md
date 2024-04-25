@@ -36,7 +36,9 @@ So to update your Katapult, you just need to flash this deployer.bin file via yo
 
 If you already have a functioning CAN setup, and your [mcu] canbus_uuid is in your printer.cfg, then you can force Katapult to reboot into Katapult mode by running:
 
-`python3 ~/katapult/scripts/flashtool.py -i can0 -u yourmainboarduuid -r`
+```bash
+python3 ~/katapult/scripts/flashtool.py -i can0 -u yourmainboarduuid -r
+```
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/eda51419-6ab4-49c5-9c33-a581b08d085c)
 
@@ -54,7 +56,9 @@ You can verify it is in the proper mode by running `ls /dev/serial/by-id`. If yo
 
 Once you are at this stage you can flash the deployer.bin by running:
 
-`python3 ~/katapult/scripts/flashtool.py -f ~/katapult/out/deployer.bin -d /dev/serial/by-id/usb-katapult_your_mainboard_usb_id`
+```bash
+python3 ~/katapult/scripts/flashtool.py -f ~/katapult/out/deployer.bin -d /dev/serial/by-id/usb-katapult_your_mainboard_usb_id
+```
 
 and your Katapult should update.
 
@@ -82,13 +86,13 @@ Once you have the firmware configured, hit Q to save and quit from the makemenu 
 
 First, stop the Klipper service on the Pi by running:
 
-```
+```bash
 sudo service klipper stop
 ````
 
 If you already have a functioning CAN setup, and your [mcu] canbus_uuid is in your printer.cfg, then you can force Katapult to reboot into Katapult mode by running:
 
-```
+```bash
 python3 ~/katapult/scripts/flashtool.py -i can0 -u yourmainboarduuid -r
 ```
 
@@ -108,7 +112,7 @@ You can verify it is in the proper mode by running `ls /dev/serial/by-id`. If yo
 
 Then you can run the same command you used to initially flash Klipper:
 
-```
+```bash
 python3 ~/katapult/scripts/flashtool.py -f ~/klipper/out/klipper.bin -d /dev/serial/by-id/usb-katapult_yourmainboardusbid
 ```
 
