@@ -13,13 +13,13 @@ In order to dictate the speed at which your CAN network runs at you will need to
 To set everything up, SSH into your pi and run the commands needed for your network setup:
 
 ## ifupdown
-```
+```bash
 sudo nano /etc/network/interfaces.d/can0
 ```
   ![image](https://user-images.githubusercontent.com/124253477/221327674-fad20589-1a5b-4d68-b2d9-2596553f64ab.png)
 
 This will open (or create if it doesn't exist) a file called 'can0' in which you need to enter the following information:
-```
+```bash
 allow-hotplug can0
 iface can0 can static
   bitrate 1000000
@@ -37,11 +37,11 @@ To complement a high bitrate, setting a high transmit queue length "txqueuelen" 
 Once the can0 file is created just reboot the Pi with a `sudo reboot` and move on to the next step.
 
 ## systemd-networkd (netplan)
-```
+```bash
 sudo nano /etc/systemd/network/10-can.link
 ```
 This will open (or create if it doesn't exist) a file called `10-can.link` in which you need to enter the following information:
-```
+```bash
 [Match]
 Type=can
 
@@ -51,12 +51,12 @@ TransmitQueueLength=1024
 Press Ctrl+X to save the file.
 
 To set the bitrate, we need to create another file in the same directory:
-```
+```bash
 sudo nano /etc/systemd/network/25-can.network
 ```
 This creates a network file, that networkd will then use to automatically set up the network with. Because of how networkd works, "hotplugging" is baked in.
 Enter the following in the network-file and close it with Ctrl+X:
-```
+```bash
 [Match]
 Name=can*
 
