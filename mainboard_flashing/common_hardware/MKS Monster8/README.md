@@ -5,9 +5,18 @@ parent: Common Mainboard Hardware
 grand_parent: Mainboard Flashing
 ---
 
+
+
+
 # 120 ohm Termination Resistor
 
 There is a permanent 120 ohm termination resistor soldered to the board, no need to add a jumper to enable it and also no ability to disable it.
+
+# DFU Mode
+
+To put the Monster8 into DFU mode, hold the BOOT0 button and while still holding press and release the RESET button. Then count to 5 and release the BOOT0 button.
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/0682086b-f507-430b-96fc-dfbe1812bef9)
 
 # Katapult Config
 
