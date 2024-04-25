@@ -75,13 +75,13 @@ Once you have the firmware configured, hit Q to save and quit from the makemenu 
 
 First, stop the Klipper service on the Pi by running:
 
-```
+```bash
 sudo service klipper stop
-````
+```
 
 If you already have a functioning CAN setup, and your [mcu toolhead] canbus_uuid is in your printer.cfg, then you can force Katapult to reboot into Katapult mode by running:
 
-```
+```bash
 python3 ~/katapult/scripts/flashtool.py -i can0 -u yourtoolheaduuid -r
 ```
 
@@ -101,7 +101,7 @@ You can verify it is in the proper mode by running `python3 ~/katapult/scripts/f
 
 Then you can run the same command you used to initially flash Klipper:
 
-```
+```bash
 python3 ~/katapult/scripts/flashtool.py -i can0 -u yourtooolheaduuid -f ~/klipper/out/klipper.bin
 ```
 
