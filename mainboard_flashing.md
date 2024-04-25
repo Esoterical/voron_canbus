@@ -29,7 +29,7 @@ As mentioned in the main guide, you can either use Katapult on your mainboard to
 
 First you need to clone the Katapult repo onto your pi. Run the following commands to clone (or update) the repo:
 
-```
+```bash
 test -e ~/katapult && (cd ~/katapult && git pull) || (cd ~ && git clone https://github.com/Arksine/katapult) ; cd ~
 ```
 
@@ -37,7 +37,7 @@ This will clone the Katapult repo into a new folder in your home directory calle
 
 To configure the Katapult firmware, run these commands to change into the katapult directory and then modify the firmware menu:
 
-```
+```bash
 cd ~/katapult
 make menuconfig
 ```
@@ -64,7 +64,7 @@ To confirm it's in DFU mode you can run the command `sudo dfu-util -l` and it wi
 
 You can then flash the Katapult firmware to your mainboard by running
 
-```
+```bash
 cd ~/katapult
 make
 sudo dfu-util -R -a 0 -s 0x08000000:leave -D ~/katapult/out/katapult.bin -d 0483:df11
@@ -78,7 +78,7 @@ If the result shows an "Error during download get_status" or something, but abov
 
 Katapult should now be successfully flashed. Take your mainboard out of DFU mode (it might require removing jumpers and rebooting, or just rebooting). Check that Katapult is installed and by running 
 
-```
+```bash
 ls /dev/serial/by-id
 ```
 
@@ -104,9 +104,16 @@ Flashing klipper via Katapult will be covered shortly.
 # Installing USB-CAN-Bridge Klipper
 
 Move into the klipper directory on the Pi by running:
-`cd ~/klipper`
+
+```bash
+cd ~/klipper
+```
+
 Then go into the klipper configuration menu by running:
-`make menuconfig`
+
+```bash
+make menuconfig
+```
 
 Again, if your mainboard is already in [Common Mainboard Hardware](./mainboard_flashing/common_hardware) then you can copy the Klipper settings from there. 
 
@@ -118,7 +125,7 @@ Once you have the firmware configured, run a `make clean` to make sure there are
 
 Stop the Klipper service on the Pi by running:
 
-```
+```bash
 sudo service klipper stop
 ```
 
@@ -130,7 +137,9 @@ If the above command didn't show a 'katapult' device, or threw a "no such file o
 
 Run this command to install klipper firmware via Katapult via USB. Use the device ID you just retrieved in the above ls command.
 
-`python3 ~/katapult/scripts/flashtool.py -f ~/klipper/out/klipper.bin -d /dev/serial/by-id/usb-katapult_your_board_id`
+```bash
+python3 ~/katapult/scripts/flashtool.py -f ~/klipper/out/klipper.bin -d /dev/serial/by-id/usb-katapult_your_board_id
+```
 
 
 ## Klipper is now installed
@@ -159,7 +168,9 @@ You see a can0 interface, the "qlen" will be 1024, and the bitrate will be 10000
 
 You can now run the Klipper canbus query to retrieve the canbus_uuid of your mainboard:
 
-`~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0`
+```bash
+~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0
+```
 
 ![image](https://user-images.githubusercontent.com/124253477/221332914-c612d996-f9c3-444d-aa41-22b8eda96eba.png)
 
@@ -167,7 +178,7 @@ Use this UUID in the [mcu] section of your printer.cfg in order for Klipper (on 
 
 Start the Klipper service on the Pi again by running:
 
-```
+```bash
 sudo service klipper start
 ```
 
