@@ -32,7 +32,9 @@ So to update your Katapult, you just need to flash this deployer.bin file via yo
 
 If you already have a functioning CAN setup, and your [mcu toolhead] canbus_uuid is in your printer.cfg, then you can force Katapult to reboot into Katapult mode by running:
 
-`python3 ~/katapult/scripts/flashtool.py -i can0 -u yourtoolheaduuid -r`
+```bash
+python3 ~/katapult/scripts/flashtool.py -i can0 -u yourtoolheaduuid -r
+```
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/eda51419-6ab4-49c5-9c33-a581b08d085c)
 
@@ -50,7 +52,9 @@ You can verify it is in the proper mode by running `python3 ~/katapult/scripts/f
 
 Once you are at this stage you can flash the deployer.bin by running:
 
-`python3 ~/katapult/scripts/flashtool.py -i can0 -u yourtoolheaduuid -f ~/katapult/out/deployer.bin`
+```bash
+python3 ~/katapult/scripts/flashtool.py -i can0 -u yourtoolheaduuid -f ~/katapult/out/deployer.bin
+```
 
 and your Katapult should update.
 
@@ -61,9 +65,13 @@ and your Katapult should update.
 To update Klipper, you first need to compile a new klipper.bin with the correct settings.
 
 Move into the klipper directory on the Pi by running:
-`cd ~/klipper`
+```bash
+cd ~/klipper
+```
 Then go into the klipper configuration menu by running:
-`make menuconfig`
+```bash
+make menuconfig
+```
 
 You can find screenshots of settings for common toolheads in the [Common Toolhead Hardware](./toolhead_flashing/common_hardware) section.
 
