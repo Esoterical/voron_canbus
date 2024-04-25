@@ -15,7 +15,7 @@ Did you update the Klipper on your Pi, and now it is yelling at you about MCU ve
 
 Before doing anything, you need to pull the latest Katapult down from Git so just so all the following tools are *definitely* available. You may already have the latest Katapult stuff, but running the Git commands again won't hurt.
 
-```
+```bash
 test -e ~/katapult && (cd ~/katapult && git pull) || (cd ~ && git clone https://github.com/Arksine/katapult) ; cd ~
 ```
 
