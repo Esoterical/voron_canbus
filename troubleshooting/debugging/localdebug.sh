@@ -190,7 +190,7 @@ echo "Uploading...\n"
 # $(prepout "KlipperConfig" "${KLIPPERCFG}")" |
 	# nc termbin.com 9999 | { read url; echo "Information available at the following URL:"; echo "$url"; }
 logfile=/tmp/testlog.txt
-exec 3>> "$logfile"
+exec 2>> "$logfile"
 echo "$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Uptime:\n${UPTIME}") 
 $(prepout "Network" "Interface Services:\n${IFACESERVICE}" "Systemd Network Files:\n${SYSTEMD}" "ip a:\n${IPA}")
 $(prepout "can0" "status:\n${CAN0STATUS}" "file:\n${CAN0IFACE}" "ifstats:\n${CAN0STATS}" "Query:\n${CAN0QUERY}")
