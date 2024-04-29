@@ -198,5 +198,4 @@ $(prepout "MCU" "MCUInfo:\n${PRNTDATAFND}")
 $(prepout "Temperature Check" "${ADC}")
 $(prepout "Bootloader" "Directory: ${BOOTLOADERDIRFND}" "Version: ${BOOTLOADERVER}" "Make Config: ${BOOTLOADERFND}")
 $(prepout "Klipper" "Directory: ${KLIPPERDIRFND}" "Version: ${KLIPPERVER}" "Make Config: $KLIPPERFND")
-$(prepout "KlipperConfig" "${KLIPPERCFG}")" | 
-	tee -a ~\file.txt 
+$(prepout "KlipperConfig" "${KLIPPERCFG}")" >> ~\file.txt 
