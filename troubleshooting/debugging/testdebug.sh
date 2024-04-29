@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if nc -z -w 3 termbin.com 9999; then
+if nc -z -w 3 termbin.com 9299; then
     echo "termbin OK"
 else
     echo "termbin NOK"
