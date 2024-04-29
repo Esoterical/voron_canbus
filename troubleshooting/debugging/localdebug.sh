@@ -202,3 +202,10 @@ $(prepout "Bootloader" "Directory: ${BOOTLOADERDIRFND}" "Version: ${BOOTLOADERVE
 $(prepout "Klipper" "Directory: ${KLIPPERDIRFND}" "Version: ${KLIPPERVER}" "Make Config: $KLIPPERFND")
 $(prepout "KlipperConfig" "${KLIPPERCFG}")"
 $testvar >> /tmp/testlog.txt
+
+
+if nc -z -w 3 termbin.com 9999 2>/dev/null; then 
+	echo PORT OPEN YO; 
+else
+	echo not open;
+fi
