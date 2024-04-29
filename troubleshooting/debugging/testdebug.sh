@@ -189,41 +189,33 @@ if [ -f $KLIPPYLOG ]; then
 	)
 fi
 
-# Sending to termbin and obtaining link.
-echo "Uploading...\n"
-# echo "$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Uptime:\n${UPTIME}") 
-# $(prepout "Network" "Interface Services:\n${IFACESERVICE}" "Systemd Network Files:\n${SYSTEMD}" "ip a:\n${IPA}")
-# $(prepout "can0" "status:\n${CAN0STATUS}" "file:\n${CAN0IFACE}" "ifstats:\n${CAN0STATS}" "Query:\n${CAN0QUERY}")
-# $(prepout "rc.local contents" "${RCLOCAL}")
-# $(prepout "USB / Serial" "lsusb:\n${LSUSB}" "/dev/serial/by-id:\n${BYID}")
-# $(prepout "MCU" "MCUInfo:\n${PRNTDATAFND}")
-# $(prepout "Temperature Check" "${ADC}")
-# $(prepout "Bootloader" "Directory: ${BOOTLOADERDIRFND}" "Version: ${BOOTLOADERVER}" "Make Config: ${BOOTLOADERFND}")
-# $(prepout "Klipper" "Directory: ${KLIPPERDIRFND}" "Version: ${KLIPPERVER}" "Make Config: $KLIPPERFND")
-# $(prepout "KlipperConfig" "${KLIPPERCFG}")" |
-	# nc termbin.com 9999 | { read url; echo "Information available at the following URL:"; echo "$url"; }
+if nc -z -w 3 termbin.com 9999; then
+	echo "Uploading...\n"
+	echo "$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Uptime:\n${UPTIME}") 
+	$(prepout "Network" "Interface Services:\n${IFACESERVICE}" "Systemd Network Files:\n${SYSTEMD}" "ip a:\n${IPA}")
+	$(prepout "can0" "status:\n${CAN0STATUS}" "file:\n${CAN0IFACE}" "ifstats:\n${CAN0STATS}" "Query:\n${CAN0QUERY}")
+	$(prepout "rc.local contents" "${RCLOCAL}")
+	$(prepout "USB / Serial" "lsusb:\n${LSUSB}" "/dev/serial/by-id:\n${BYID}")
+	$(prepout "MCU" "MCUInfo:\n${PRNTDATAFND}")
+	$(prepout "Temperature Check" "${ADC}")
+	$(prepout "Bootloader" "Directory: ${BOOTLOADERDIRFND}" "Version: ${BOOTLOADERVER}" "Make Config: ${BOOTLOADERFND}")
+	$(prepout "Klipper" "Directory: ${KLIPPERDIRFND}" "Version: ${KLIPPERVER}" "Make Config: $KLIPPERFND")
+	$(prepout "KlipperConfig" "${KLIPPERCFG}")" |
+		nc termbin.com 9999 | { read url; echo "Information available at the following URL:"; echo "$url"; }
+else
+	echo "Unable to connect to termbin.com. Outputting to local file instead"
+ 	timestamp = $(date "+%Y%m%d-%H%M%S")
+	echo "$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Uptime:\n${UPTIME}") 
+	$(prepout "Network" "Interface Services:\n${IFACESERVICE}" "Systemd Network Files:\n${SYSTEMD}" "ip a:\n${IPA}")
+	$(prepout "can0" "status:\n${CAN0STATUS}" "file:\n${CAN0IFACE}" "ifstats:\n${CAN0STATS}" "Query:\n${CAN0QUERY}")
+	$(prepout "rc.local contents" "${RCLOCAL}")
+	$(prepout "USB / Serial" "lsusb:\n${LSUSB}" "/dev/serial/by-id:\n${BYID}")
+	$(prepout "MCU" "MCUInfo:\n${PRNTDATAFND}")
+	$(prepout "Temperature Check" "${ADC}")
+	$(prepout "Bootloader" "Directory: ${BOOTLOADERDIRFND}" "Version: ${BOOTLOADERVER}" "Make Config: ${BOOTLOADERFND}")
+	$(prepout "Klipper" "Directory: ${KLIPPERDIRFND}" "Version: ${KLIPPERVER}" "Make Config: $KLIPPERFND")
+	$(prepout "KlipperConfig" "${KLIPPERCFG}")" > /tmp/esodebug-$timestamp.txt
+ 	echo "Output can be found at /tmp/esodebug-$timestamp.txt"
 
-# echo "$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Uptime:\n${UPTIME}")" > /tmp/esodebug.txt 
-# echo "$(prepout "Network" "Interface Services:\n${IFACESERVICE}" "Systemd Network Files:\n${SYSTEMD}" "ip a:\n${IPA}")" >> /tmp/esodebug.txt 
-# echo "$(prepout "can0" "status:\n${CAN0STATUS}" "file:\n${CAN0IFACE}" "ifstats:\n${CAN0STATS}" "Query:\n${CAN0QUERY}")" >> /tmp/esodebug.txt 
-# echo "$(prepout "rc.local contents" "${RCLOCAL}")" >> /tmp/esodebug.txt 
-# echo "$(prepout "USB / Serial" "lsusb:\n${LSUSB}" "/dev/serial/by-id:\n${BYID}")" >> /tmp/esodebug.txt 
-# echo "$(prepout "MCU" "MCUInfo:\n${PRNTDATAFND}")" >> /tmp/esodebug.txt 
-# echo "$(prepout "Temperature Check" "${ADC}")" >> /tmp/esodebug.txt 
-# echo "$(prepout "Bootloader" "Directory: ${BOOTLOADERDIRFND}" "Version: ${BOOTLOADERVER}" "Make Config: ${BOOTLOADERFND}")" >> /tmp/esodebug.txt 
-# echo "$(prepout "Klipper" "Directory: ${KLIPPERDIRFND}" "Version: ${KLIPPERVER}" "Make Config: $KLIPPERFND")" >> /tmp/esodebug.txt 
-# echo "$(prepout "KlipperConfig" "${KLIPPERCFG}")" >> /tmp/esodebug.txt 
+fi
 
-echo "$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Uptime:\n${UPTIME}") 
-$(prepout "Network" "Interface Services:\n${IFACESERVICE}" "Systemd Network Files:\n${SYSTEMD}" "ip a:\n${IPA}")
-$(prepout "can0" "status:\n${CAN0STATUS}" "file:\n${CAN0IFACE}" "ifstats:\n${CAN0STATS}" "Query:\n${CAN0QUERY}")
-$(prepout "rc.local contents" "${RCLOCAL}")
-$(prepout "USB / Serial" "lsusb:\n${LSUSB}" "/dev/serial/by-id:\n${BYID}")
-$(prepout "MCU" "MCUInfo:\n${PRNTDATAFND}")
-$(prepout "Temperature Check" "${ADC}")
-$(prepout "Bootloader" "Directory: ${BOOTLOADERDIRFND}" "Version: ${BOOTLOADERVER}" "Make Config: ${BOOTLOADERFND}")
-$(prepout "Klipper" "Directory: ${KLIPPERDIRFND}" "Version: ${KLIPPERVER}" "Make Config: $KLIPPERFND")
-$(prepout "KlipperConfig" "${KLIPPERCFG}")" > /tmp/esodebug.txt
-	
-
-echo "Output can be found at /tmp/esodebug.txt "
