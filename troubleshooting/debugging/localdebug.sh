@@ -204,8 +204,8 @@ $(prepout "KlipperConfig" "${KLIPPERCFG}")"
 $testvar >> /tmp/testlog.txt
 
 
-if nc -z -w 3 tesadarmbin.com 9399 2>/dev/null; then 
-	echo PORT OPEN YO; 
+if nc -z -w 3 tesadarmbin.com 9399 ; then 
+	echo not open; 
 else
-	echo not open;
+	echo is open;
 fi
