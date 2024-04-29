@@ -201,5 +201,5 @@ $(prepout "Klipper" "Directory: ${KLIPPERDIRFND}" "Version: ${KLIPPERVER}" "Make
 $(prepout "KlipperConfig" "${KLIPPERCFG}")"
 $debugoutput >> /tmp/esodebug.txt
 
-echo "Output can be found at /tmp/esodebug.txt"
+echo "Output can be found at "
 
