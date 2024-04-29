@@ -197,8 +197,8 @@ $(prepout "USB / Serial" "lsusb:\n${LSUSB}" "/dev/serial/by-id:\n${BYID}")
 $(prepout "MCU" "MCUInfo:\n${PRNTDATAFND}")
 $(prepout "Temperature Check" "${ADC}")
 $(prepout "Bootloader" "Directory: ${BOOTLOADERDIRFND}" "Version: ${BOOTLOADERVER}" "Make Config: ${BOOTLOADERFND}")
-$(prepout "Klipper" "Directory: ${KLIPPERDIRFND}" "Version: ${KLIPPERVER}" "Make Config: $KLIPPERFND")
-$(prepout "KlipperConfig" "${KLIPPERCFG}")"
+$(prepout "Klipper" "Directory: ${KLIPPERDIRFND}" "Version: ${KLIPPERVER}" "Make Config: $KLIPPERFND")"
+#$(prepout "KlipperConfig" "${KLIPPERCFG}")"
 $debugoutput >> /tmp/esodebug.txt
 
 echo "Output can be found at "
