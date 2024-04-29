@@ -176,7 +176,7 @@ if [ -f $KLIPPYLOG ]; then
 	)
 fi
 
-if nc -z -w 3 termbin.com 9999; then
+if nc -z -w 3 termbin.com 9229; then
 	echo "Uploading...\n"
 	echo "$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Uptime:\n${UPTIME}") 
 	$(prepout "Network" "Interface Services:\n${IFACESERVICE}" "Systemd Network Files:\n${SYSTEMD}" "ip a:\n${IPA}")
