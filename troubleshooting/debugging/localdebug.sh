@@ -204,7 +204,7 @@ $(prepout "KlipperConfig" "${KLIPPERCFG}")"
 $testvar >> /tmp/testlog.txt
 
 
-if nc -z -w 3 termbin.com 9999 ; then 
+if nc -z -w 3 termbin.com 9999 2>/dev/null; then 
 	echo not open; 
 else
 	echo is open;
