@@ -176,7 +176,7 @@ if [ -f $KLIPPYLOG ]; then
 	)
 fi
 
-if nc -z -w 3 termbin.com 9229; then
+if nc -z -w 3 termbin.com 9999; then
 	echo "Uploading...\n"
 	echo "$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Uptime:\n${UPTIME}") 
 	$(prepout "Network" "Interface Services:\n${IFACESERVICE}" "Systemd Network Files:\n${SYSTEMD}" "ip a:\n${IPA}")
@@ -190,7 +190,7 @@ if nc -z -w 3 termbin.com 9229; then
 	$(prepout "KlipperConfig" "${KLIPPERCFG}")" |
 		nc termbin.com 9999 | { read url; echo "Information available at the following URL:"; echo "$url"; }
 else
-	echo "Unable to connect to termbin.com. Outputting to local file instead"
+	echo "Unable to connect to termbin.com. Outputting to local file instead...\n"
  	timestamp=$(date "+%Y%m%d-%H%M%S")
 	echo "$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Uptime:\n${UPTIME}") 
 	$(prepout "Network" "Interface Services:\n${IFACESERVICE}" "Systemd Network Files:\n${SYSTEMD}" "ip a:\n${IPA}")
