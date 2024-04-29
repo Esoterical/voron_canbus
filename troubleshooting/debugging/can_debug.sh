@@ -176,16 +176,35 @@ if [ -f $KLIPPYLOG ]; then
 	)
 fi
 
-# Sending to termbin and obtaining link.
-echo "Uploading...\n"
-echo "$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Uptime:\n${UPTIME}") 
-$(prepout "Network" "Interface Services:\n${IFACESERVICE}" "Systemd Network Files:\n${SYSTEMD}" "ip a:\n${IPA}")
-$(prepout "can0" "status:\n${CAN0STATUS}" "file:\n${CAN0IFACE}" "ifstats:\n${CAN0STATS}" "Query:\n${CAN0QUERY}")
-$(prepout "rc.local contents" "${RCLOCAL}")
-$(prepout "USB / Serial" "lsusb:\n${LSUSB}" "/dev/serial/by-id:\n${BYID}")
-$(prepout "MCU" "MCUInfo:\n${PRNTDATAFND}")
-$(prepout "Temperature Check" "${ADC}")
-$(prepout "Bootloader" "Directory: ${BOOTLOADERDIRFND}" "Version: ${BOOTLOADERVER}" "Make Config: ${BOOTLOADERFND}")
-$(prepout "Klipper" "Directory: ${KLIPPERDIRFND}" "Version: ${KLIPPERVER}" "Make Config: $KLIPPERFND")
-$(prepout "KlipperConfig" "${KLIPPERCFG}")" |
-	nc termbin.com 9999 | { read url; echo "Information available at the following URL:"; echo "$url"; }
+# Testing for connection to termbin.com:9999
+if nc -z -w 3 termbin.com 9999; then
+	# Uploading to termbin.com
+	echo "Uploading...\n"
+	echo "$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Uptime:\n${UPTIME}") 
+	$(prepout "Network" "Interface Services:\n${IFACESERVICE}" "Systemd Network Files:\n${SYSTEMD}" "ip a:\n${IPA}")
+	$(prepout "can0" "status:\n${CAN0STATUS}" "file:\n${CAN0IFACE}" "ifstats:\n${CAN0STATS}" "Query:\n${CAN0QUERY}")
+	$(prepout "rc.local contents" "${RCLOCAL}")
+	$(prepout "USB / Serial" "lsusb:\n${LSUSB}" "/dev/serial/by-id:\n${BYID}")
+	$(prepout "MCU" "MCUInfo:\n${PRNTDATAFND}")
+	$(prepout "Temperature Check" "${ADC}")
+	$(prepout "Bootloader" "Directory: ${BOOTLOADERDIRFND}" "Version: ${BOOTLOADERVER}" "Make Config: ${BOOTLOADERFND}")
+	$(prepout "Klipper" "Directory: ${KLIPPERDIRFND}" "Version: ${KLIPPERVER}" "Make Config: $KLIPPERFND")
+	$(prepout "KlipperConfig" "${KLIPPERCFG}")" |
+		nc termbin.com 9999 | { read url; echo "Information available at the following URL:"; echo "$url"; }
+else
+	# Saving to local tmp file
+	echo "Unable to connect to termbin.com. Outputting to local file instead...\n"
+ 	timestamp=$(date "+%Y%m%d-%H%M%S")
+	echo "$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Uptime:\n${UPTIME}") 
+	$(prepout "Network" "Interface Services:\n${IFACESERVICE}" "Systemd Network Files:\n${SYSTEMD}" "ip a:\n${IPA}")
+	$(prepout "can0" "status:\n${CAN0STATUS}" "file:\n${CAN0IFACE}" "ifstats:\n${CAN0STATS}" "Query:\n${CAN0QUERY}")
+	$(prepout "rc.local contents" "${RCLOCAL}")
+	$(prepout "USB / Serial" "lsusb:\n${LSUSB}" "/dev/serial/by-id:\n${BYID}")
+	$(prepout "MCU" "MCUInfo:\n${PRNTDATAFND}")
+	$(prepout "Temperature Check" "${ADC}")
+	$(prepout "Bootloader" "Directory: ${BOOTLOADERDIRFND}" "Version: ${BOOTLOADERVER}" "Make Config: ${BOOTLOADERFND}")
+	$(prepout "Klipper" "Directory: ${KLIPPERDIRFND}" "Version: ${KLIPPERVER}" "Make Config: $KLIPPERFND")
+	$(prepout "KlipperConfig" "${KLIPPERCFG}")" > /tmp/esodebug-$timestamp.txt
+ 	echo "Output can be found at /tmp/esodebug-$timestamp.txt"
+
+fi
