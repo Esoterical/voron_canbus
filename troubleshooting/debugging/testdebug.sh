@@ -1,18 +1,5 @@
 #!/bin/sh
 
-if nc -z -w 3 termbin.com 9299; then
-    echo "termbin OK"
-else
-    echo "termbin NOK"
-fi
-
-if nc -z -w 3 foobar.com 9999; then
-    echo "foobar OK"
-else
-    echo "foobar NOK"
-fi
-
-
 #Credit to @bolliostu for the original idea and script
 #Credit to @dormouse for a whole lot, including making the script not look like hot garbage
 
@@ -189,7 +176,7 @@ if [ -f $KLIPPYLOG ]; then
 	)
 fi
 
-if nc -z -w 3 termbin.com 9999; then
+if nc -z -w 3 termbin.com 9929; then
 	echo "Uploading...\n"
 	echo "$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Uptime:\n${UPTIME}") 
 	$(prepout "Network" "Interface Services:\n${IFACESERVICE}" "Systemd Network Files:\n${SYSTEMD}" "ip a:\n${IPA}")
