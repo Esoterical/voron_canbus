@@ -185,8 +185,9 @@ fi
 if [ -f $KLIPPYLOG ]; then
 	SESSIONLOG=$(tac $KLIPPYLOG | sed '/Start printer at /q' | tac)
 	KLIPPERCFG=$(echo "$SESSIONLOG" | awk '/^===== Config file/{m=1;next}/^[=]+$/{m=0}m')
-	KLIPPYMSGS=$(echo "$SESSIONLOG" | awk '/^[=]+$/,EOF')
+	KLIPPYMSGS=$(echo "$SESSIONLOG" | awk '/^[=]+$/,EOF' | tail +2)
 	MCUCONFIGS=$(echo "$SESSIONLOG" | awk '/^Loaded MCU/,/^MCU/')
+	STARTUPMSGS=$(echo "$KLIPPYMSGS" | grep -E -v '^MCU|^Loaded MCU|^Stats' | head -100)
 
 	# ADC temp check
 	MIN_TEMP=-10
@@ -210,7 +211,7 @@ if [ -f $KLIPPYLOG ]; then
 	)
 fi
 
-LOGVIEW="$(prepout "Klippy Messages" "$KLIPPYMSGS")\n$(prepout "Klipper Config" "$KLIPPERCFG")"
+LOG="$(prepout "Klippy Messages" "$KLIPPYMSGS")\n$(prepout "Klipper Config" "$KLIPPERCFG")"
 
 DEBUG="$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Uptime:\n${UPTIME}") 
 	$(prepout "Network" "Interface Services:\n${IFACESERVICE}" "Systemd Network Files:\n${SYSTEMD}" "ip a:\n${IPA}")
@@ -219,24 +220,29 @@ DEBUG="$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL
 	$(prepout "USB / Serial" "lsusb:\n${LSUSB}" "/dev/serial/by-id:\n${BYID}")
 	$(prepout "MCU Configs" "${MCUCONFIGS}")
 	$(prepout "Temperature Check" "${ADC}")
+	$(prepout "Startup Messages" "${STARTUPMSGS}")
 	$(prepout "Bootloader" "Directory: ${BOOTLOADERDIRFND}" "Version: ${BOOTLOADERVER}" "Make Config: ${BOOTLOADERFND}")
 	$(prepout "Klipper" "Directory: ${KLIPPERDIRFND}" "Version: ${KLIPPERVER}" "Make Config: $KLIPPERFND")"
 
 if nc -z -w 3 termbin.com 9999; then
-#if false; then
 	echo "Uploading...\n"
-	LOGURL=$(echo "$LOGVIEW" | nc termbin.com 9999)
+	LOGURL=$(echo "$LOG" | nc termbin.com 9999)
 	sleep 1
 	DEBUGURL=$(echo "$DEBUG\n$(prepout "Klippy Log Details" "$LOGURL")" | nc termbin.com 9999)
 	echo "Information available at the following URL:"
 	echo "$DEBUGURL" 
 else
+	if [ -d $HOME/printer_data/logs ]; then
+		LOGPATH=$HOME/printer_data/logs
+	else
+		LOGPATH=/tmp
+	fi
 	TIMESTAMP=$(date "+%Y%m%d-%H%M%S")
-	DEBUGFILE="/tmp/esodebug-$TIMESTAMP.txt"
-	LOGFILE="/tmp/esolog-$TIMESTAMP.txt"
+	DEBUGFILE="$LOGPATH/esodebug-$TIMESTAMP.txt"
+	LOGFILE="$LOGPATH/esolog-$TIMESTAMP.txt"
 	echo "Unable to connect to termbin.com. Outputting to local file instead..."
 	echo "$DEBUG" > $DEBUGFILE
-	echo "$LOGVIEW" > $LOGFILE
+	echo "$LOG" > $LOGFILE
  	echo "debug: $DEBUGFILE"
 	echo "log: $LOGFILE"
 fi
