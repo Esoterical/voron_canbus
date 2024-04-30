@@ -35,7 +35,8 @@ KLIPPERFND="Not Found"
 KLIPPERVER="Unknown"
 
 KLIPPERCFG="Not Found"
-STARTUPMSGS="Not Found"
+KLIPPYMSGS="Not Found"
+MCUCONFIGS="Not Found"
 ADC="Data Unavailable"
 
 disclaimer() {
@@ -184,8 +185,9 @@ fi
 if [ -f $KLIPPYLOG ]; then
 	SESSIONLOG=$(tac $KLIPPYLOG | sed '/Start printer at /q' | tac)
 	KLIPPERCFG=$(echo "$SESSIONLOG" | awk '/^===== Config file/{m=1;next}/^[=]+$/{m=0}m')
-	STARTUPMSGS=$(echo "$SESSIONLOG" | awk '/^[=]+$/{m=1;next}/^Starting heater checks/{m=0}m' | head -100)
-       
+	KLIPPYMSGS=$(echo "$SESSIONLOG" | awk '/^[=]+$/,EOF')
+	MCUCONFIGS=$(echo "$SESSIONLOG" | awk '/^Loaded MCU/,/^MCU/')
+
 	# ADC temp check
 	MIN_TEMP=-10
 	MAX_TEMP=400
@@ -208,24 +210,33 @@ if [ -f $KLIPPYLOG ]; then
 	)
 fi
 
-OUTPUT="$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Uptime:\n${UPTIME}") 
+LOGVIEW="$(prepout "Klippy Messages" "$KLIPPYMSGS")\n$(prepout "Klipper Config" "$KLIPPERCFG")"
+
+DEBUG="$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Uptime:\n${UPTIME}") 
 	$(prepout "Network" "Interface Services:\n${IFACESERVICE}" "Systemd Network Files:\n${SYSTEMD}" "ip a:\n${IPA}")
 	$(prepout "can0" "status:\n${CAN0STATUS}" "file:\n${CAN0IFACE}" "ifstats:\n${CAN0STATS}" "Query:\n${CAN0QUERY}")
 	$(prepout "rc.local contents" "${RCLOCAL}")
 	$(prepout "USB / Serial" "lsusb:\n${LSUSB}" "/dev/serial/by-id:\n${BYID}")
-	$(prepout "Startup Messages" "${STARTUPMSGS}")
+	$(prepout "MCU Configs" "${MCUCONFIGS}")
 	$(prepout "Temperature Check" "${ADC}")
 	$(prepout "Bootloader" "Directory: ${BOOTLOADERDIRFND}" "Version: ${BOOTLOADERVER}" "Make Config: ${BOOTLOADERFND}")
-	$(prepout "Klipper" "Directory: ${KLIPPERDIRFND}" "Version: ${KLIPPERVER}" "Make Config: $KLIPPERFND")
-	$(prepout "KlipperConfig" "${KLIPPERCFG}")"
+	$(prepout "Klipper" "Directory: ${KLIPPERDIRFND}" "Version: ${KLIPPERVER}" "Make Config: $KLIPPERFND")"
 
 if nc -z -w 3 termbin.com 9999; then
+#if false; then
 	echo "Uploading...\n"
-	echo "$OUTPUT" | nc termbin.com 9999 | { read url; echo "Information available at the following URL:"; echo "$url"; }
+	LOGURL=$(echo "$LOGVIEW" | nc termbin.com 9999)
+	sleep 1
+	DEBUGURL=$(echo "$DEBUG\n$(prepout "Klippy Log Details" "$LOGURL")" | nc termbin.com 9999)
+	echo "Information available at the following URL:"
+	echo "$DEBUGURL" 
 else
-	OUTFILE="/tmp/esodebug-$(date "+%Y%m%d-%H%M%S").txt"
+	TIMESTAMP=$(date "+%Y%m%d-%H%M%S")
+	DEBUGFILE="/tmp/esodebug-$TIMESTAMP.txt"
+	LOGFILE="/tmp/esolog-$TIMESTAMP.txt"
 	echo "Unable to connect to termbin.com. Outputting to local file instead..."
-	echo "$OUTPUT" > $OUTFILE
- 	echo "Output can be found at $OUTFILE"
-
+	echo "$DEBUG" > $DEBUGFILE
+	echo "$LOGVIEW" > $LOGFILE
+ 	echo "debug: $DEBUGFILE"
+	echo "log: $LOGFILE"
 fi
