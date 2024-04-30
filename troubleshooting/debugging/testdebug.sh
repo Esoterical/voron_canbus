@@ -10,9 +10,21 @@ KLIPPERDIR="$HOME/klipper"
 KLIPPYLOG="$HOME/printer_data/logs/klippy.log"
 
 # Default responses 
+MODEL="Unknown"
+DISTRO="Unknown"
+KERNEL="Unknown"
+UPTIME="Unknown"
+
+IFACESERVICE="Directory Not Found"
+SYSTEMD="Directory Not Found"
+IPA="Interfaces Not Found"
+
+CAN0STATUS="Unknown"
+CAN0IFACE="/etc/network/interfaces.d/can0 Not Found"
 CAN0STATS="No can0 interface"
 CAN0QUERY="No can0 interface"    
-CAN0IFACE="/etc/network/interfaces.d/can0 Not Found"
+
+RCLOCAL="/etc/rc.local Not Found"
 BYID="/dev/serial/by-id Not Found"
 
 BOOTLOADERDIRFND="Not Found"
@@ -22,8 +34,8 @@ KLIPPERDIRFND="Not Found"
 KLIPPERFND="Not Found"
 KLIPPERVER="Unknown"
 
-PRNTDATAFND="Not Found"
 KLIPPERCFG="Not Found"
+STARTUPMSGS="Not Found"
 ADC="Data Unavailable"
 
 disclaimer() {
@@ -80,13 +92,30 @@ checknc;
 echo "\nGathering Data...\n"
 
 # Definition of commands to be be run to obtain relevant information regarding CAN bus configuration.
-MODEL="$(cat /sys/firmware/devicetree/base/model)"
-DISTRO="$(cat /etc/*-release)"
+
+if [ -f /sys/firmware/devicetree/base/model ]; then
+	MODEL="$(cat /sys/firmware/devicetree/base/model)"
+fi
+
+if [ -f /etc/*-release ]; then
+	DISTRO="$(cat /etc/*-release)"
+fi
+
 KERNEL="$(uname -a)"
 UPTIME="$(uptime)"
 
-IFACESERVICE="$(ls /etc/network)"
-SYSTEMD="$(ls /etc/systemd/network)"
+if [ -d /etc/network ]; then
+	IFACESERVICE="$(ls /etc/network)"
+fi
+
+if [ -d /etc/systemd/network ]; then
+	if [ ! -z "$(ls /etc/systemd/network)" ]; then
+		SYSTEMD="$(ls /etc/systemd/network)"
+	else
+		SYSTEMD="Empty Directory"
+	fi
+fi
+
 IPA="$(ip a)"
 
 # Checking can0 interface configuration.
@@ -110,7 +139,9 @@ if ip l l can0 > /dev/null 2>&1; then
 fi
 
 # Contents of rc.local
-RCLOCAL="$(cat /etc/rc.local)"
+if [ -f /etc/rc.local ]; then 
+	RCLOCAL="$(cat /etc/rc.local)"
+fi
 
 LSUSB="$(lsusb)"
 
@@ -151,13 +182,14 @@ fi
 
 # Retrieving info from klippy.log
 if [ -f $KLIPPYLOG ]; then
-	PRNTDATAFND="$(tac $KLIPPYLOG | grep -m 1 "MCU 'mcu' config" $KLIPPYLOG)"
-	KLIPPERCFG="$(tac $KLIPPYLOG | awk '/=======================/&&++k==1,/===== Config file =====/' | tac)"
+	SESSIONLOG=$(tac $KLIPPYLOG | sed '/Start printer at /q' | tac)
+	KLIPPERCFG=$(echo "$SESSIONLOG" | awk '/^===== Config file/{m=1;next}/^[=]+$/{m=0}m')
+	STARTUPMSGS=$(echo "$SESSIONLOG" | awk '/^[=]+$/{m=1;next}/^Starting heater checks/{m=0}m' | head -100)
        
 	# ADC temp check
 	MIN_TEMP=-10
 	MAX_TEMP=400
-	ADC=$(tac $KLIPPYLOG | grep -m 1 "^Stats" | sed 's/\([a-zA-Z0-9_.]*\)\:/\n\1:/g' |
+	ADC=$(echo "$SESSIONLOG" | tac | grep -m 1 "^Stats" | sed 's/\([a-zA-Z0-9_.]*\)\:/\n\1:/g' |
 		awk -v mintemp="$MIN_TEMP" -v maxtemp="$MAX_TEMP" '/temp=/ {
 			printf "%18s ", $1;
 			for (i=2; i<=split($0, stat, " "); i++) {
@@ -176,33 +208,24 @@ if [ -f $KLIPPYLOG ]; then
 	)
 fi
 
+OUTPUT="$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Uptime:\n${UPTIME}") 
+	$(prepout "Network" "Interface Services:\n${IFACESERVICE}" "Systemd Network Files:\n${SYSTEMD}" "ip a:\n${IPA}")
+	$(prepout "can0" "status:\n${CAN0STATUS}" "file:\n${CAN0IFACE}" "ifstats:\n${CAN0STATS}" "Query:\n${CAN0QUERY}")
+	$(prepout "rc.local contents" "${RCLOCAL}")
+	$(prepout "USB / Serial" "lsusb:\n${LSUSB}" "/dev/serial/by-id:\n${BYID}")
+	$(prepout "Startup Messages" "${STARTUPMSGS}")
+	$(prepout "Temperature Check" "${ADC}")
+	$(prepout "Bootloader" "Directory: ${BOOTLOADERDIRFND}" "Version: ${BOOTLOADERVER}" "Make Config: ${BOOTLOADERFND}")
+	$(prepout "Klipper" "Directory: ${KLIPPERDIRFND}" "Version: ${KLIPPERVER}" "Make Config: $KLIPPERFND")
+	$(prepout "KlipperConfig" "${KLIPPERCFG}")"
+
 if nc -z -w 3 termbin.com 9999; then
 	echo "Uploading...\n"
-	echo "$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Uptime:\n${UPTIME}") 
-	$(prepout "Network" "Interface Services:\n${IFACESERVICE}" "Systemd Network Files:\n${SYSTEMD}" "ip a:\n${IPA}")
-	$(prepout "can0" "status:\n${CAN0STATUS}" "file:\n${CAN0IFACE}" "ifstats:\n${CAN0STATS}" "Query:\n${CAN0QUERY}")
-	$(prepout "rc.local contents" "${RCLOCAL}")
-	$(prepout "USB / Serial" "lsusb:\n${LSUSB}" "/dev/serial/by-id:\n${BYID}")
-	$(prepout "MCU" "MCUInfo:\n${PRNTDATAFND}")
-	$(prepout "Temperature Check" "${ADC}")
-	$(prepout "Bootloader" "Directory: ${BOOTLOADERDIRFND}" "Version: ${BOOTLOADERVER}" "Make Config: ${BOOTLOADERFND}")
-	$(prepout "Klipper" "Directory: ${KLIPPERDIRFND}" "Version: ${KLIPPERVER}" "Make Config: $KLIPPERFND")
-	$(prepout "KlipperConfig" "${KLIPPERCFG}")" |
-		nc termbin.com 9999 | { read url; echo "Information available at the following URL:"; echo "$url"; }
+	echo "$OUTPUT" | nc termbin.com 9999 | { read url; echo "Information available at the following URL:"; echo "$url"; }
 else
-	echo "Unable to connect to termbin.com. Outputting to local file instead...\n"
- 	timestamp=$(date "+%Y%m%d-%H%M%S")
-	echo "$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Uptime:\n${UPTIME}") 
-	$(prepout "Network" "Interface Services:\n${IFACESERVICE}" "Systemd Network Files:\n${SYSTEMD}" "ip a:\n${IPA}")
-	$(prepout "can0" "status:\n${CAN0STATUS}" "file:\n${CAN0IFACE}" "ifstats:\n${CAN0STATS}" "Query:\n${CAN0QUERY}")
-	$(prepout "rc.local contents" "${RCLOCAL}")
-	$(prepout "USB / Serial" "lsusb:\n${LSUSB}" "/dev/serial/by-id:\n${BYID}")
-	$(prepout "MCU" "MCUInfo:\n${PRNTDATAFND}")
-	$(prepout "Temperature Check" "${ADC}")
-	$(prepout "Bootloader" "Directory: ${BOOTLOADERDIRFND}" "Version: ${BOOTLOADERVER}" "Make Config: ${BOOTLOADERFND}")
-	$(prepout "Klipper" "Directory: ${KLIPPERDIRFND}" "Version: ${KLIPPERVER}" "Make Config: $KLIPPERFND")
-	$(prepout "KlipperConfig" "${KLIPPERCFG}")" > /tmp/esodebug-$timestamp.txt
- 	echo "Output can be found at /tmp/esodebug-$timestamp.txt"
+	OUTFILE="/tmp/esodebug-$(date "+%Y%m%d-%H%M%S").txt"
+	echo "Unable to connect to termbin.com. Outputting to local file instead..."
+	echo "$OUTPUT" > $OUTFILE
+ 	echo "Output can be found at $OUTFILE"
 
 fi
-
