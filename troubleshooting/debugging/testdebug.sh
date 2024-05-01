@@ -98,7 +98,7 @@ if [ -f /sys/firmware/devicetree/base/model ]; then
 	MODEL="$(cat /sys/firmware/devicetree/base/model)"
 fi
 
-if [ -f /etc/*-release ]; then
+if [ ! -z "$(ls /etc/*-release)" ]; then
 	DISTRO="$(cat /etc/*-release)"
 fi
 
