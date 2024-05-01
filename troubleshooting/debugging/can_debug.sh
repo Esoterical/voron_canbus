@@ -37,7 +37,7 @@ KLIPPERVER="Unknown"
 KLIPPERCFG="Not Found"
 KLIPPYMSGS="Not Found"
 MCUCONFIGS="Not Found"
-ADC="Data Unavailable"
+ADC="Klipper Log Not Found"
 
 disclaimer() {
 	echo "*************"
@@ -98,7 +98,7 @@ if [ -f /sys/firmware/devicetree/base/model ]; then
 	MODEL="$(cat /sys/firmware/devicetree/base/model)"
 fi
 
-if [ -f /etc/*-release ]; then
+if [ ! -z "$(ls /etc/*-release)" ]; then
 	DISTRO="$(cat /etc/*-release)"
 fi
 
@@ -195,6 +195,7 @@ if [ -f $KLIPPYLOG ]; then
 	ADC=$(echo "$SESSIONLOG" | tac | grep -m 1 "^Stats" | sed 's/\([a-zA-Z0-9_.]*\)\:/\n\1:/g' |
 		awk -v mintemp="$MIN_TEMP" -v maxtemp="$MAX_TEMP" '/temp=/ {
 			printf "%18s ", $1;
+			j=0;
 			for (i=2; i<=split($0, stat, " "); i++) {
 				if (sub(/^.*temp=/, "", stat[i])) {
 					printf "%6s", stat[i];
@@ -203,11 +204,12 @@ if [ -f $KLIPPYLOG ]; then
 					} else if (stat[i] + 0 > maxtemp) {
 						printf "%s", "    *** Check Sensor ***";
 					}
+					j++;
 					break;
 				}
 			}
 			printf "\n";
-		}'
+		} END { if (j == 0) { printf "No Temperature Data Available\n"; } }'
 	)
 fi
 
