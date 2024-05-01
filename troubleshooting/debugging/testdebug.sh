@@ -37,7 +37,7 @@ KLIPPERVER="Unknown"
 KLIPPERCFG="Not Found"
 KLIPPYMSGS="Not Found"
 MCUCONFIGS="Not Found"
-ADC="Data Unavailable"
+ADC="Klipper Log Not Found"
 
 disclaimer() {
 	echo "*************"
@@ -207,7 +207,7 @@ if [ -f $KLIPPYLOG ]; then
 				}
 			}
 			printf "\n";
-		}'
+		} END { if (j == 0) { printf "No Temperature Data Available\n"; } }'
 	)
 fi
 
