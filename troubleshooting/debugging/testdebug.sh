@@ -195,6 +195,7 @@ if [ -f $KLIPPYLOG ]; then
 	ADC=$(echo "$SESSIONLOG" | tac | grep -m 1 "^Stats" | sed 's/\([a-zA-Z0-9_.]*\)\:/\n\1:/g' |
 		awk -v mintemp="$MIN_TEMP" -v maxtemp="$MAX_TEMP" '/temp=/ {
 			printf "%18s ", $1;
+			j=0;
 			for (i=2; i<=split($0, stat, " "); i++) {
 				if (sub(/^.*temp=/, "", stat[i])) {
 					printf "%6s", stat[i];
@@ -203,6 +204,7 @@ if [ -f $KLIPPYLOG ]; then
 					} else if (stat[i] + 0 > maxtemp) {
 						printf "%s", "    *** Check Sensor ***";
 					}
+					j++;
 					break;
 				}
 			}
