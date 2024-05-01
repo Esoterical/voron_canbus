@@ -9,8 +9,8 @@ disclaimer() {
 	echo "* Attention *"
 	echo "*************"
 	echo
-	echo "This script pulls the tail end of the klippy log beginning with the last"
-	echo "klipper restart and uploads to a public site where it may be viewed by others."
+	echo "This script pulls the log data since the most recent klipper restart and"
+       	echo "uploads the information to a public site where it may be viewed by others."
 	echo "It may also be necessary to install an additional package to help facilitate"
 	echo "this task. No personal or identifying information is included in the upload."
 	echo "This script is available for review at: "
