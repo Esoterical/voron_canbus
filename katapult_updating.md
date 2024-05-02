@@ -8,7 +8,7 @@ nav_order: 30
 
 Updating Katapult isn't something you should need to do regularly, if at all. If Katapult is currently working on your board (toolhead or mainboard or other) then just leave it as is.
 
-The only time you should really need to update Katapult is if you are changing CAN speeds, and even then that's only on the toolhead. If you need to do this please refer to [Updating CAN Speed]([TOOLHEAD UPDATING](./updating_can_speed.md)
+The only time you should really need to update Katapult is if you are changing CAN speeds, and even then that's only on the toolhead. If you need to do this please refer to [Updating CAN Speed](./updating_can_speed.md)
 
 You should never really have to update your Katapult on the mainboard. Even if you wish to change your CanBUS speeds you don't need to change Katapult **On the Mainboard** as it only communicates via USB and not via CAN.
 
