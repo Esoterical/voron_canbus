@@ -1,6 +1,6 @@
 ---
 layout: default  
-title: CAN-Bridge Mainboard Updating
+title: Updating Katapult
 parent: Updating
 nav_order: 30
 ---
