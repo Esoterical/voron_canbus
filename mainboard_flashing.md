@@ -84,7 +84,7 @@ ls /dev/serial/by-id
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/1e9f0f7c-ada3-490b-bd62-bde25b67c362)
 
-You should see a "usb-katapult_..." device there.
+You should see a "usb-katapult_..." device there. If you don't, then double-click the RESET button on your board and `ls /dev/serial/by-id` again.
 
 {: .stop }
 >
