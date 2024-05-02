@@ -1,6 +1,6 @@
 ---
 layout: default 
-title: Mellow Fly Super8
+title: Mellow Fly-Super8
 parent: Common Mainboard Hardware
 grand_parent: Mainboard Flashing
 ---
@@ -11,7 +11,7 @@ There is a permanent 120 ohm termination resistor soldered to the board, no need
 
 # DFU Mode
 
-To put the octopus into DFU mode you need to put in the boot jumper at BT0 and press the reset button. 
+To put the Fly-Super8 into DFU mode you need to put in the boot jumper at BT0 and press the reset button. 
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/10a4fc29-b546-498e-b819-dd47370b151f)
 
