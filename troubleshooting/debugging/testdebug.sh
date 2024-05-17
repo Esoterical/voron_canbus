@@ -134,8 +134,8 @@ if ip l l can0 > /dev/null 2>&1; then
 
 	if [ "$CAN0UPDOWN" = "state UP" ]; then
 		CAN0QUERY="$(~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0)"
-		if [ -z $CAN0QUERY ]; then
-			$CAN0QUERY="No UUIDs returned"
+		if [ -z "$CAN0QUERY" ]; then
+			CAN0QUERY="Total 0 uuids found"
 		fi	
 	else
 		CAN0QUERY="Unable to query can0 - DOWN"
