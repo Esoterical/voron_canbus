@@ -134,6 +134,9 @@ if ip l l can0 > /dev/null 2>&1; then
 
 	if [ "$CAN0UPDOWN" = "state UP" ]; then
 		CAN0QUERY="$(~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0)"
+		if [ -z $CAN0QUERY ]; then
+			$CAN0QUERY="No UUIDs returned"
+		fi	
 	else
 		CAN0QUERY="Unable to query can0 - DOWN"
 	fi
@@ -154,7 +157,7 @@ fi
 if [ -d ${KATAPULTDIR} ]; then
     BOOTLOADERDIRFND="${KATAPULTDIR}";
 	if [ -f ${KATAPULTDIR}/.config ]; then
-		BOOTLOADERFND="\n$(cat ${KATAPULTDIR}/.config)"
+		BOOTLOADERFND="\n$(grep -v "^#" ${KATAPULTDIR}/.config)"
 		cd ${KATAPULTDIR}
 		BOOTLOADERVER="$(git describe --tags)"
 	fi
@@ -163,7 +166,7 @@ if [ -d ${KATAPULTDIR} ]; then
 elif [ -d ${CANBOOTDIR} ]; then
 	BOOTLOADERDIRFND="${CANBOOTDIR}"
 	if [ -f ${CANBOOTDIR}/.config ]; then
-		BOOTLOADERFND="\n$(cat ${CANBOOTDIR}/.config)"
+		BOOTLOADERFND="\n$(grep -v "^#" ${CANBOOTDIR}/.config)"
 		cd ${CANBOOTDIR}
 		BOOTLOADERVER="$(git describe --tags)"
 	fi
@@ -173,7 +176,7 @@ fi;
 if [ -d ${KLIPPERDIR} ]; then
     KLIPPERDIRFND="${KLIPPERDIR}";
 	if [ -f ${KLIPPERDIR}/.config ]; then
-		KLIPPERFND="\n$(cat ${KLIPPERDIR}/.config)"
+		KLIPPERFND="\n$(grep -v "^#" ${KLIPPERDIR}/.config)"
 		if command -v git > /dev/null 2>&1; then
 			cd ${KLIPPERDIR}
 			KLIPPERVER="$(git describe --tags)"
