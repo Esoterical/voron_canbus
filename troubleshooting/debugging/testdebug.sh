@@ -299,6 +299,8 @@ if [ ! "$BOOTLOADERFND" = "Not Found" ]; then
 	else
 		BL_VIEW="${BL_VIEW:+${BL_VIEW}}Quickview Unavailable"
 	fi
+else
+	BL_VIEW="${BL_VIEW:+${BL_VIEW}}No Config Data"
 fi
 
 # Retrieving klipper firmware compilation configuration. 
@@ -395,6 +397,8 @@ if [ ! "$KLIPPERFND" = "Not Found" ]; then
 	else
 		FW_VIEW="${FW_VIEW:+${FW_VIEW}}Quickview Unavailable"
 	fi
+else
+	FW_VIEW="${FW_VIEW:+${FW_VIEW}}No Config Data"
 fi
 
 # Retrieving info from klippy.log
