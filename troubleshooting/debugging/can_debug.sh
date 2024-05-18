@@ -10,21 +10,34 @@ KLIPPERDIR="$HOME/klipper"
 KLIPPYLOG="$HOME/printer_data/logs/klippy.log"
 
 # Default responses 
-CANSTATS="No can0 interface"
-CANQUERY="No can0 interface"    
-BYID="/dev/serial/by-id Not Found"
+MODEL="Unknown"
+DISTRO="Unknown"
+KERNEL="Unknown"
+UPTIME="Unknown"
+
+IFACESERVICE="Directory Not Found"
+SYSTEMD="Directory Not Found"
+IPA="Interfaces Not Found"
+
+CAN0STATUS="Unknown"
 CAN0IFACE="/etc/network/interfaces.d/can0 Not Found"
+CAN0STATS="No can0 interface"
+CAN0QUERY="No can0 interface"    
+
+RCLOCAL="/etc/rc.local Not Found"
+BYID="/dev/serial/by-id Not Found"
 
 BOOTLOADERDIRFND="Not Found"
-BOOTLDRFND="Not Found"
+BOOTLOADERFND="Not Found"
+BOOTLOADERVER="Unknown"
 KLIPPERDIRFND="Not Found"
 KLIPPERFND="Not Found"
-KLIPPERVER="Klipper not installed"
+KLIPPERVER="Unknown"
 
-MCUINFOFND="Not Found"
-PRNTDATAFND="Not Found"
 KLIPPERCFG="Not Found"
-ADC="Data Unavailable"
+KLIPPYMSGS="Not Found"
+MCUCONFIGS="Not Found"
+ADC="Klipper Log Not Found"
 
 disclaimer() {
 	echo "*************"
@@ -80,60 +93,89 @@ checknc;
 echo "\nGathering Data...\n"
 
 # Definition of commands to be be run to obtain relevant information regarding CAN bus configuration.
-MODEL="$(cat /sys/firmware/devicetree/base/model)"
-DISTRO="$(cat /etc/*-release)"
+
+if [ -f /sys/firmware/devicetree/base/model ]; then
+	MODEL="$(cat /sys/firmware/devicetree/base/model)"
+fi
+
+if [ ! -z "$(ls /etc/*-release)" ]; then
+	DISTRO="$(cat /etc/*-release)"
+fi
+
 KERNEL="$(uname -a)"
 UPTIME="$(uptime)"
-IFACESERVICE="$(ls /etc/network)"
+
+if [ -d /etc/network ]; then
+	IFACESERVICE="$(ls /etc/network)"
+fi
+
+if [ -d /etc/systemd/network ]; then
+	if [ ! -z "$(ls /etc/systemd/network)" ]; then
+		SYSTEMD="$(ls /etc/systemd/network)"
+	else
+		SYSTEMD="Empty Directory"
+	fi
+fi
+
 IPA="$(ip a)"
 
-if ip a | grep -q -E "can0"; then
-	CANSTATS="$(ip -d -s link show can0)"
-	CANQUERY="$(~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0)"
+# Checking can0 interface configuration.
+if [ -f /etc/network/interfaces.d/can0 ]; then
+	CAN0IFACE=$(cat /etc/network/interfaces.d/can0)
+fi
+
+if ip l l can0 > /dev/null 2>&1; then
+	CAN0STATS="$(ip -d -s l l can0)"
+	CAN0UPDOWN="$(echo "$CAN0STATS" | grep -m 1 -o 'state [A-Z]*')"
+	CAN0STATE="$(echo "$CAN0STATS" | grep -m 1 -o 'can state [A-Z-]*')"
+	CAN0BITRATE="$(echo "$CAN0STATS" | grep -m 1 -o 'bitrate [0-9]*')"
+	CAN0QLEN="$(echo "$CAN0STATS" | grep -m 1 -o 'qlen [0-9]*')"
+	CAN0STATUS="$(echo "  $CAN0UPDOWN"; echo "  $CAN0STATE"; echo "  $CAN0BITRATE"; echo "  $CAN0QLEN";)"
+
+	if [ "$CAN0UPDOWN" = "state UP" ]; then
+		CAN0QUERY="$(~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0)"
+	else
+		CAN0QUERY="Unable to query can0 - DOWN"
+	fi
+fi
+
+# Contents of rc.local
+if [ -f /etc/rc.local ]; then 
+	RCLOCAL="$(cat /etc/rc.local)"
 fi
 
 LSUSB="$(lsusb)"
 
 if [ -d /dev/serial/by-id ]; then
-	BYID="$(ls -l /dev/serial/by-id | awk '{print $9,$10,$11}')"
-fi
-
-# BITVERSION="$(getconf LONG_BIT)"
-
-# List of systemd filess.
-SYSTEMD="$(ls /etc/systemd/network)"
-
-# Contents of rc.local
-RCLOCAL="$(cat /etc/rc.local)"
-
-#grep "MCU 'mcu' config" $KLIPPYLOG | tail -1
-
-# Checking Linux Network configuration.
-if [ -f /etc/network/interfaces.d/can0 ]; then
-	CAN0IFACE=$(cat /etc/network/interfaces.d/can0)
+	BYID="$(ls -l /dev/serial/by-id | tail -n +2 | awk '{print $9,$10,$11}')"
 fi
 
 # Retrieving katapult bootloader compilation configuration.
 if [ -d ${KATAPULTDIR} ]; then
-    BOOTLOADERDIRFND="Found";
+    BOOTLOADERDIRFND="${KATAPULTDIR}";
 	if [ -f ${KATAPULTDIR}/.config ]; then
 		BOOTLOADERFND="\n$(cat ${KATAPULTDIR}/.config)"
+		cd ${KATAPULTDIR}
+		BOOTLOADERVER="$(git describe --tags)"
 	fi
+
 # Retrieving CanBoot bootloader compilation configuration if katapult not there.
 elif [ -d ${CANBOOTDIR} ]; then
-	BOOTLOADERDIRFND="Found"
+	BOOTLOADERDIRFND="${CANBOOTDIR}"
 	if [ -f ${CANBOOTDIR}/.config ]; then
 		BOOTLOADERFND="\n$(cat ${CANBOOTDIR}/.config)"
+		cd ${CANBOOTDIR}
+		BOOTLOADERVER="$(git describe --tags)"
 	fi
 fi;
 
 # Retrieving klipper firmware compilation configuration.
 if [ -d ${KLIPPERDIR} ]; then
-    KLIPPERDIRFND="Found";
+    KLIPPERDIRFND="${KLIPPERDIR}";
 	if [ -f ${KLIPPERDIR}/.config ]; then
 		KLIPPERFND="\n$(cat ${KLIPPERDIR}/.config)"
 		if command -v git > /dev/null 2>&1; then
-			cd ~/klipper
+			cd ${KLIPPERDIR}
 			KLIPPERVER="$(git describe --tags)"
 		fi
 	fi
@@ -141,16 +183,19 @@ fi
 
 # Retrieving info from klippy.log
 if [ -f $KLIPPYLOG ]; then
-	MCUINFOFND="Found"
-	PRNTDATAFND="$(grep "MCU 'mcu' config" $KLIPPYLOG | tail -1)"
-	KLIPPERCFG="$(tac $KLIPPYLOG | awk '/=======================/&&++k==1,/===== Config file =====/' | tac)"
-       
+	SESSIONLOG=$(tac $KLIPPYLOG | sed '/Start printer at /q' | tac)
+	KLIPPERCFG=$(echo "$SESSIONLOG" | awk '/^===== Config file/{m=1;next}/^[=]+$/{m=0}m')
+	KLIPPYMSGS=$(echo "$SESSIONLOG" | awk '/^[=]+$/,EOF' | tail +2)
+	MCUCONFIGS=$(echo "$SESSIONLOG" | awk '/^Loaded MCU/,/^MCU/')
+	STARTUPMSGS=$(echo "$KLIPPYMSGS" | grep -E -v '^MCU|^Loaded MCU|^Stats' | head -100)
+
 	# ADC temp check
 	MIN_TEMP=-10
 	MAX_TEMP=400
-	ADC=$(tac $KLIPPYLOG | grep -m 1 "^Stats" | sed 's/\([a-zA-Z0-9_.]*\)\:/\n\1:/g' |
+	ADC=$(echo "$SESSIONLOG" | tac | grep -m 1 "^Stats" | sed 's/\([a-zA-Z0-9_.]*\)\:/\n\1:/g' |
 		awk -v mintemp="$MIN_TEMP" -v maxtemp="$MAX_TEMP" '/temp=/ {
 			printf "%18s ", $1;
+			j=0;
 			for (i=2; i<=split($0, stat, " "); i++) {
 				if (sub(/^.*temp=/, "", stat[i])) {
 					printf "%6s", stat[i];
@@ -159,26 +204,47 @@ if [ -f $KLIPPYLOG ]; then
 					} else if (stat[i] + 0 > maxtemp) {
 						printf "%s", "    *** Check Sensor ***";
 					}
+					j++;
 					break;
 				}
 			}
 			printf "\n";
-		}'
+		} END { if (j == 0) { printf "No Temperature Data Available\n"; } }'
 	)
 fi
 
-# Sending to termbin and obtaining link.
-echo "Uploading...\n"
-echo "$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Klipper Version:\n${KLIPPERVER}" "Uptime:\n${UPTIME}") 
-$(prepout "Network" "Interface Services:\n${IFACESERVICE}" "can0:\n${CAN0IFACE}" "ip a:\n${IPA}" "can0 ifstats:\n${CANSTATS}")
-$(prepout "Systemd Network Files" "${SYSTEMD}")
-$(prepout "rc.local contents" "${RCLOCAL}")
-$(prepout "USB" "lsusb:\n${LSUSB}")
-$(prepout "Dev Serial By-ID" "Dev Serial By-ID:\n${BYID}")
-$(prepout "CANQuery" "CANBus Query:\n${CANQUERY}")
-$(prepout "MCU" "MCUInfo:\n${MCUINFOFND}" "Klippy Log:\n${PRNTDATAFND}")
-$(prepout "Temperature Check" "${ADC}")
-$(prepout "Bootloader" "Bootloader Directory: ${BOOTLOADERDIRFND}" "Bootloader Make Config: ${BOOTLOADERFND}")
-$(prepout "Klipper" "Klipper Directory: ${KLIPPERDIRFND}" "Klipper Make Config: $KLIPPERFND")
-$(prepout "KlipperConfig" "${KLIPPERCFG}")" |
-	nc termbin.com 9999 | { read url; echo "Information available at the following URL:"; echo "$url"; }
+LOG="$(prepout "Klippy Messages" "$KLIPPYMSGS")\n$(prepout "Klipper Config" "$KLIPPERCFG")"
+
+DEBUG="$(prepout "OS" "Model:\n${MODEL}" "Distro:\n${DISTRO}" "Kernel:\n${KERNEL}" "Uptime:\n${UPTIME}") 
+	$(prepout "Network" "Interface Services:\n${IFACESERVICE}" "Systemd Network Files:\n${SYSTEMD}" "ip a:\n${IPA}")
+	$(prepout "can0" "status:\n${CAN0STATUS}" "file:\n${CAN0IFACE}" "ifstats:\n${CAN0STATS}" "Query:\n${CAN0QUERY}")
+	$(prepout "rc.local contents" "${RCLOCAL}")
+	$(prepout "USB / Serial" "lsusb:\n${LSUSB}" "/dev/serial/by-id:\n${BYID}")
+	$(prepout "MCU Configs" "${MCUCONFIGS}")
+	$(prepout "Temperature Check" "${ADC}")
+	$(prepout "Startup Messages" "${STARTUPMSGS}")
+	$(prepout "Bootloader" "Directory: ${BOOTLOADERDIRFND}" "Version: ${BOOTLOADERVER}" "Make Config: ${BOOTLOADERFND}")
+	$(prepout "Klipper" "Directory: ${KLIPPERDIRFND}" "Version: ${KLIPPERVER}" "Make Config: $KLIPPERFND")"
+
+if nc -z -w 3 termbin.com 9999; then
+	echo "Uploading...\n"
+	LOGURL=$(echo "$LOG" | nc termbin.com 9999)
+	sleep 1
+	DEBUGURL=$(echo "$DEBUG\n$(prepout "Klippy Log Details" "$LOGURL")" | nc termbin.com 9999)
+	echo "Information available at the following URL:"
+	echo "$DEBUGURL" 
+else
+	if [ -d $HOME/printer_data/logs ]; then
+		LOGPATH=$HOME/printer_data/logs
+	else
+		LOGPATH=/tmp
+	fi
+	TIMESTAMP=$(date "+%Y%m%d-%H%M%S")
+	DEBUGFILE="$LOGPATH/esodebug-$TIMESTAMP.txt"
+	LOGFILE="$LOGPATH/esolog-$TIMESTAMP.txt"
+	echo "Unable to connect to termbin.com. Outputting to local file instead..."
+	echo "$DEBUG" > $DEBUGFILE
+	echo "$LOG" > $LOGFILE
+ 	echo "debug: $DEBUGFILE"
+	echo "log: $LOGFILE"
+fi

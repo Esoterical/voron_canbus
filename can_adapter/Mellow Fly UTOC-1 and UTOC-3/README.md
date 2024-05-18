@@ -32,10 +32,19 @@ On your Pi run the command:
 
 `lsusb`
 
-It should return
+If it shows something like:
 
 `Bus 001 Device 004: ID 0483:df11 STMicroelectronics STM Device in DFU Mode`
 
-Run the following command to flash the UTOC.
+With the ID of the DFU device as 0483:df11, then run the following command to flash the UTOC.
 
-`sudo dfu-util --dfuse-address -d 0483:df11 -c 1 -i 0 -a 0 -s 0x08000000 -D ~/utoc_firmware.bin`
+`sudo dfu-util -d 0483:df11 -c 1 -i 0 -a 0 -s 0x08000000 -D ~/utoc_firmware.bin`
+
+Otherwise if it shows something like:
+
+`Bus 001 Device 004: ID 314b:0106 Geehy APM32 DFU ISP Mode`
+
+With the DFU device ID as 314b:0106, run this command instead:
+
+`sudo dfu-util -d 314b:0106 -c 1 -i 0 -a 0 -s 0x08000000 -D ~/utoc_firmware.bin`
+

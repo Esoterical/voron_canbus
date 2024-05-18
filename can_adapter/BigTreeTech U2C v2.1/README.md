@@ -22,7 +22,7 @@ The header for the 120R termination resistor is circled in purple
 The U2C came stock with bad firmware that would cause flashing problems down the line. This was mainly back in early 2023 so if you have purchased a board *recently* this may not be an issue, but flashing this firmware can't hurt anyway and is very simple to do.
 
 I have copied a fixed version of the firmware here, you can download it to your pi by running:
-```
+```bash
 cd ~/
 wget https://github.com/Esoterical/voron_canbus/raw/main/can_adapter/BigTreeTech%20U2C%20v2.1/G0B1_U2C_V2.bin
 ```
@@ -39,7 +39,9 @@ Confirm it is connected in DFU mode by running `sudo dfu-util -l`. You should se
 
 If you can see it there then just run this command to flash the fixed firmware to the U2C:
 
-`sudo dfu-util -D ~/G0B1_U2C_V2.bin -a 0 -s 0x08000000:leave`
+```bash
+sudo dfu-util -D ~/G0B1_U2C_V2.bin -a 0 -s 0x08000000:leave
+```
 
 ![image](https://user-images.githubusercontent.com/124253477/221552152-89f14967-b807-4e54-9159-003b19eed784.png)
 

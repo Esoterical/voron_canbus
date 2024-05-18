@@ -20,19 +20,19 @@ The mainboard of your printer is always just called `[mcu]`, and any subsequent 
 
 If you are using a standalone CAN adapter (eg. a U2C or UTOC or similar) then it is likely that your mainboard should be left completely alone and still be set as per manufacturer instructions. Probably something like:
 
-```
+```bash
 [mcu]
 serial: /dev/serial/by-id/usb-Klipper_stm32f446xx_37001A001851303439363932-if00
 ```
 However, if you are using USB-CAN-Bridge mode on your mainboard then you need to make sure this has now been changed to show your **mainboard's** canbus UUID. Something like:
-```
+```bash
 [mcu]
 canbus_uuid: a396d68a95a3
 ```
 In either case, you will need to set a secondary MCU for your toolhead board. This will *always* be a canbus_uuid as that is the whole point of this guide.
 Again, the name you give it is arbitrary, but it's probably easier to stick to whatever the manufacturer sample config has set.
 eg:
-```
+```bash
 [mcu EBBCan]
 canbus_uuid: ec60cf516124
 ```

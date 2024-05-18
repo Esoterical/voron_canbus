@@ -17,5 +17,10 @@ callouts:
 plugins:
   - jekyll-relative-links
 
+<<<<<<< HEAD
 #aux_links:
 #  CANBus Guide on Github: https://github.com/Esoterical/voron_canbus
+=======
+aux_links:
+  CANBus Guide on Github: https://github.com/Esoterical/voron_canbus
+>>>>>>> 35669695cd14b97e28b5cbff1787234bc9ad4e56

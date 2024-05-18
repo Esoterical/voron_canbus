@@ -14,7 +14,7 @@ The following should be taken as an overall guide on what you are going to be ac
 
 Before doing anything it is good to have some dependencies installed. Do this by running these on your Pi:
 
-```
+```bash
 sudo apt update
 sudo apt upgrade
 sudo apt install python3 python3-pip python3-can
@@ -28,7 +28,7 @@ As mentioned in the main guide, you can either use Katapult on your toolhead to 
 
 First you need to clone the Katapult repo onto your pi. Run the following commands to clone (or update) the repo:
 
-```
+```bash
 test -e ~/katapult && (cd ~/katapult && git pull) || (cd ~ && git clone https://github.com/Arksine/katapult) ; cd ~
 ```
 
@@ -36,7 +36,7 @@ This will clone the Katapult repo into a new folder in your home directory calle
 
 To configure the Katapult firmware, run these commands to change into the katapult directory and then modify the firmware menu:
 
-```
+```bash
 cd ~/katapult
 make menuconfig
 ```
@@ -60,7 +60,7 @@ If your toolhead board uses an RP2040 MCU, use [these flashing steps](#rp2040-ba
 ## STM32 based boards
 
 To confirm it's in DFU mode you can run the command 
-```
+```bash
 sudo dfu-util -l
 ```
  and it will show any devices connected to your Pi in DFU mode.
@@ -73,7 +73,7 @@ sudo dfu-util -l
 
 You can then flash the Katapult firmware to your toolhead board by running
 
-```
+```bash
 sudo dfu-util -R -a 0 -s 0x08000000:force:mass-erase:leave -D ~/katapult/out/katapult.bin -d 0483:df11
 ```
 
@@ -96,7 +96,7 @@ To confirm it's in BOOT mode, run an `lsusb` command and you should see the devi
 
 You can then flash the Katapult firmware to your toolhead board by running
 
-```
+```bash
 cd ~/katapult
 make flash FLASH_DEVICE=2e8a:0003
 ```
@@ -119,7 +119,7 @@ Take out any DFU jumpers on your toolhead (if it needed them) and then wire up y
 
 Run the following command to see if the toolhead board is on the CAN network and waiting in Katapult mode
 
-```
+```bash
 python3 ~/katapult/scripts/flashtool.py -i can0 -q
 ```
 
@@ -145,11 +145,11 @@ If you see the above, take note of the UUID and move on to flashing Klipper to t
 # Installing Klipper
 
 Move into the klipper directory on the Pi by running:
-```
+```bash
 cd ~/klipper
 ```
 Then go into the klipper configuration menu by running:
-```
+```bash
 make menuconfig
 ```
 
@@ -160,11 +160,11 @@ Otherwise, you want the Processor and Clock Reference to be set as per whatever 
 
 
 Once you have the firmware configured, run a 
-```
+```bash
 make clean
 ```
 to make sure there are no old files hanging around, then 
-```
+```bash
 make
 ```
 to compile the firmware. It will save the firmware to ~/klipper/out/klipper.bin
@@ -173,12 +173,12 @@ to compile the firmware. It will save the firmware to ~/klipper/out/klipper.bin
 
 Stop the Klipper service on the Pi by running:
 
-```
+```bash
 sudo service klipper stop
 ```
 
 Run the following query command and take note of the Katapult device that it shows:
-```
+```bash
 python3 ~/katapult/scripts/flashtool.py -i can0 -q
 ```
 
@@ -186,14 +186,14 @@ python3 ~/katapult/scripts/flashtool.py -i can0 -q
 
 Then run the following command to install klipper firmware via Katapult. Use the UUID you just retrieved in the above query.
 
-```
+```bash
 python3 ~/katapult/scripts/flashtool.py -i can0 -u b6d9de35f24f -f ~/klipper/out/klipper.bin
 ```
 
 where the "-u" ID is what you found from the "flashtool.py -i can0 -q" query.
 
 One the flash has been completed you can run the 
-```
+```bash
 python3 ~/katapult/scripts/flashtool.py -i can0 -q
 ```
 command again. This time you should see the same UUID but with "Application: Klipper" instead of "Application: Katapult"
@@ -218,7 +218,7 @@ command again. This time you should see the same UUID but with "Application: Kli
 
 You can now run the Klipper canbus query to retrieve the canbus_uuid of your toolhead board:
 
-```
+```bash
 ~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0
 ```
 
@@ -228,7 +228,7 @@ Use this UUID in the [mcu] section of your printer.cfg in order for Klipper (on 
 
 Start the Klipper service on the Pi again by running:
 
-```
+```bash
 sudo service klipper start
 ```
 

@@ -24,14 +24,28 @@ The header for the 120R termination resistor is circled in purple
     ```
     Bus 001 Device 005: ID 0483:df11 STMicroelectronics STM Device in DFU Mode
     ```
+**The SHT36v2 comes with two different versions of STM32 MCU chips. Make sure you pick the correct config for the MCU chip you have**
 
-# Katapult Config
+# STM32F103 (GD32F103)
+
+## Katapult Config
 
 ![image](https://user-images.githubusercontent.com/124253477/228767706-e14d572a-b0de-4445-9c7c-11276fc8c4a7.png)
 
-# Klipper Config
+## Klipper Config
 
 ![image](https://user-images.githubusercontent.com/124253477/221396540-52695957-90f7-4f01-9d7d-130a76a81ee8.png)
+
+# STM32F072 (APM32F072)
+
+## Katapult Config
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/63ca392a-16b8-4516-8fa8-bb22b6c9f7a0)
+
+## Klipper Config
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/21f25ff7-a775-4081-a4b0-47e42076f969)
+
 
 # Sample Configuration
 

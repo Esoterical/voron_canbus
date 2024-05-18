@@ -14,7 +14,7 @@ The header for the 120R termination resistor is circled in purple
 
 # Katapult Config
 
-![image](https://github.com/Esoterical/voron_canbus/assets/124253477/2bcacb62-eb25-47ef-818c-de6506d94dee)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/ce6782aa-aaa7-4e95-a664-cf490f82f535)
 
 # Klipper USB-CAN-Bridge Config
 

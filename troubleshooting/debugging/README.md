@@ -11,7 +11,7 @@ If you are still running into trouble you can run this can_debug.sh script on yo
 
 To use the script on your Pi simply run:
 
-```
+```bash
 wget -qO - debug.esoterical.online | sh
 ```
 
