@@ -258,9 +258,9 @@ if [ ! "$BOOTLOADERFND" = "Not Found" ]; then
 		fi
 
 		if [ $BL_USB ]; then
-			BL_COMMS="USB ($BL_STM32_USB)"
+			BL_COMMS="USB: $BL_STM32_USB"
 		elif [ $BL_CANBUS ]; then
-			BL_COMMS="CANBus Pins: $BL_STM32_CANBUS - Bitrate: $BL_CANBUS_FREQUENCY"
+			BL_COMMS="CAN: $BL_STM32_CANBUS ($BL_CANBUS_FREQUENCY bps)"
 		else
 			BL_COMMS="UNKNOWN"
 		fi
@@ -287,7 +287,7 @@ if [ ! "$BOOTLOADERFND" = "Not Found" ]; then
 		if [ $BL_USB ]; then
 			BL_COMMS="USB"
 		elif [ $BL_CANBUS ]; then
-			BL_COMMS="CAN RX/TX: ${BL_RP2040_CANBUS_GPIO} ($BL_CANBUS_FREQUENCY bps)"
+			BL_COMMS="CAN RX/TX: $BL_RP2040_CANBUS_GPIO ($BL_CANBUS_FREQUENCY bps)"
 		else
 			BL_COMMS="UNKNOWN"
 		fi
@@ -353,11 +353,11 @@ if [ ! "$KLIPPERFND" = "Not Found" ]; then
 		fi
 
 		if [ $FW_USBCANBUS ]; then
-			FW_COMMS="Bridge USB ($FW_STM32_USBCANBUS} CAN ($FW_STM32_CANBUS)"
+			FW_COMMS="Bridge USB: $FW_STM32_USBCANBUS CAN: $FW_STM32_CANBUS ($FW_CANBUS_FREQUENCY bps)"
 		elif [ $FW_USB ]; then
-			FW_COMMS="USB ($FW_STM32_USB)"
+			FW_COMMS="USB: $FW_STM32_USB"
 		elif [ $FW_CANBUS ]; then
-			FW_COMMS="CANBus Pins: $FW_STM32_CANBUS - Bitrate: $FW_CANBUS_FREQUENCY"
+			FW_COMMS="CAN: $FW_STM32_CANBUS ($FW_CANBUS_FREQUENCY bps)"
 		else
 			FW_COMMS="UNKNOWN"
 		fi
@@ -380,7 +380,7 @@ if [ ! "$KLIPPERFND" = "Not Found" ]; then
 		fi
 
 		if [ $FW_USBCANBUS ]; then
-			FW_COMMS="Bridge USB CAN RX/TX: ${FW_RP2040_CANBUS_GPIO} ($FW_CANBUS_FREQUENCY bps)"
+			FW_COMMS="Bridge USB CAN RX/TX: $FW_RP2040_CANBUS_GPIO ($FW_CANBUS_FREQUENCY bps)"
 		elif [ $FW_USB ]; then
 			FW_COMMS="USB"
 		elif [ $FW_CANBUS ]; then
