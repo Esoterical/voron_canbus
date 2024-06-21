@@ -20,7 +20,7 @@ To put the Manta E3EZ into DFU mode, hold the BOOT button and while still holdin
 
 # Katapult Config
 
-![image](https://user-images.githubusercontent.com/124253477/235831073-92c31a1a-d252-4deb-9f94-e4f2e755881d.png)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/074383e9-fd53-4672-ae33-c9fd9d37e513)
 
 # Klipper USB-CAN-Bridge Config
 
