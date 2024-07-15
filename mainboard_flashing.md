@@ -54,13 +54,9 @@ Press Q to quit the menu (it will ask to save, choose yes).
 Compile the firmware with `make`. You will now have a katapult.bin at in your ~/katapult/out/katapult.bin.
 
 To flash, connect your mainboard to the Pi via USB then put the mainboard into DFU mode (your mainboard user manual should have instructions on doing this).
-To confirm it's in DFU mode you can run the command `sudo dfu-util -l` and it will show any devices connected to your Pi in DFU mode.
+To confirm it's in DFU mode you can run the command `lsusb` and look for an entry of "STMicroelectronics STM Device in DFU mode"
 
-![image](https://user-images.githubusercontent.com/124253477/221337550-560128dd-b5fd-41ba-8881-48d24b2215ef.png)
-
-> Note the address of _Internal Flash_ => 0x08000000
->
-> Note the address of the usb device => 0483:df11
+![image](https://github.com/user-attachments/assets/cde7138d-588b-4381-82ad-699cde37e0a8)
 
 You can then flash the Katapult firmware to your mainboard by running
 
