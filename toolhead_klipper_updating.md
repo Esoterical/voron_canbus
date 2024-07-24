@@ -67,4 +67,46 @@ Once the flash has been completed you can run the `python3 ~/katapult/scripts/fl
 
 **If** you can't connect to your tooolhead after these steps (assuming all the ouputs look similar in success to the screenshots) then there is a good chance your klipper.bin settings were incorrect. Go back to Step 1 and check *all* the settings in the `make menuconfig` screen then recompile with `make clean` and `make`, and then double-click the reset button on your toolhead to kick it back to katapult mode then go from Step 3.
 
-However, **if** the CAN query *does* return your UUID with "Application: Klipper" then start the Klipper service on the Pi again with `sudo service klipper start` and then do a firmware_restart and confirm that Klipper starts without errors.
+However, **if** the CAN query *does* return your UUID with "Application: Klipper" then start the Klipper service on the Pi again with `sudo service klipper start` and then do a 
+
+firmware_restart and confirm that Klipper starts without errors.
+
+## Updating Toolhead Klipper on USB
+
+There is an option to flash the USB boards in a manner similar to CAN devices: `flashtool.py -i can0 -u yourtoolheaduuid -r`
+
+First, obtain the serial ID of the board receiving the update:
+```bash
+ls /dev/serial/by-id
+```
+It should return `usb-Klipper_rp2040_YourBoardId-if00`. Next, run Klipper's "make flash" as follows: (replace `YourBoardId` with the output of `ls /dev/serial/by-id`)
+```bash
+make flash FLASH_DEVICE=/dev/serial/by-id/usb-Klipper_rp2040_YourBoardId-if00
+```
+If all goes well, the output on the screen should be similar to this:
+```
+~/klipper $ make flash FLASH_DEVICE=/dev/serial/by-id/usb-Klipper_rp2040_YourBoardId-if00 KCONFIG_CONFIG=config.skrpico
+  Flashing out/klipper.bin to /dev/serial/by-id/usb-Klipper_rp2040_YourBoardId-if00
+Entering bootloader on /dev/serial/by-id/usb-Klipper_rp2040_YourBoardId-if00
+Device reconnect on /sys/devices/platform/axi/1000120000.pcie/1f00300000.usb/xhci-hcd.1/usb3/3-2
+/usr/bin/python3 lib/canboot/flash_can.py -d /dev/serial/by-path/platform-xhci-hcd.1-usb-0:2:1.0 -f out/klipper.bin
+
+Attempting to connect to bootloader
+CanBoot Connected
+Protocol Version: 1.0.0
+Block Size: 64 bytes
+Application Start: 0x10004000
+MCU type: rp2040
+Flashing '/home/username/klipper/out/klipper.bin'...
+
+[##################################################]
+
+Write complete: 132 pages
+Verifying (block count = 528)...
+
+[##################################################]
+
+Verification Complete: SHA = 605441E7D51932AE153FEA1E7716AADA6457043A
+CAN Flash Success
+```
+If it doesn't work initially, try rebooting your board. The technical part: Klipper's `make flash` with FLASH_DEVICE=/dev/serial/by-id options invokes the Katapult on USB boards, similar to the `-r` option of flash_can.py used for CAN boards.
