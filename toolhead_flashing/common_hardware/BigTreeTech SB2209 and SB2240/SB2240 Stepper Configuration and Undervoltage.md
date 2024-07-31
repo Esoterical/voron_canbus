@@ -1,5 +1,13 @@
 # SB2240 Steppers
 
+**UPDATE 31/07/2024**
+There may be some eveidence that this undervoltage error is caused by static discharge, and the TMC2240 is more sensitive to this ESD compared to the TMC2209.
+
+Before trying the below information (or in addition to it), please have a look at grounding the motor as per <https://canbus.esoterical.online/troubleshooting/tmc_reset_undervoltage.html>
+
+----------------------------
+
+
 The SB2240 has a TMC 2240 stepper driver for the extruder. This commonly does not work correctly in the Klipper default configuration, and causes an "undervoltage" errror: `uv_cp=1(Undervoltage!)`.
 
 Undervoltage is a misnomer; this error actually occurs because of too much fluctuation in supply voltage due to back-EMF from the motor and voltage rail fluctuations from other devices, and may well happen because the supply voltage is momentarily too high.
