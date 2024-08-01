@@ -39,3 +39,8 @@ Klipper was running, maybe even printing for a while, but all of a sudden it fai
 ### Timer too close
 
 Sometimes it prints fine, sometimes it fails with "Timer too close" error, read [here](./troubleshooting/timer_too_close.md)
+
+
+### TMC Driver reset/undervoltage
+
+If your extruder TMC driver is reporting "reset" or undervoltage errors,, read [here](./troubleshooting/tmc_reset_undervoltage.md)
