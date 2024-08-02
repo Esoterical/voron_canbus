@@ -51,7 +51,7 @@ If your board doesn't exist in the common_hardware folder already, then you want
 
 Press Q to quit the menu (it will ask to save, choose yes).
 
-Compile the firmware with `make`. You will now have a katapult.bin at in your ~/katapult/out/katapult.bin.
+Compile the firmware with `make`. You will now have a katapult.bin at ~/katapult/out/katapult.bin.
 
 To flash, connect your mainboard to the Pi via USB then put the mainboard into DFU mode (your mainboard user manual should have instructions on doing this).
 To confirm it's in DFU mode you can run the command `lsusb` and look for an entry of "STMicroelectronics STM Device in DFU mode"
@@ -68,7 +68,7 @@ sudo dfu-util -R -a 0 -s 0x08000000:leave -D ~/katapult/out/katapult.bin -d 0483
 
 where the --dfuse-address is the _Internal Flash_ and the -d is the USB Device ID is the that you grabbed from the `sudo dfu-util -l` command.
 
-If the result shows an "Error during download get_status" or something, but above it it still has "File downloaded successfullY" then it still flashed OK and you can ignore that error.
+If the result shows an "Error during download get_status" or something, but above it it still has "File downloaded successfully" then it still flashed OK and you can ignore that error.
 
 ![image](https://user-images.githubusercontent.com/124253477/225469341-46f3478a-aa96-4378-8d73-96faa90d561c.png)
 
