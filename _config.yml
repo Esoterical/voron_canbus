@@ -3,7 +3,7 @@ description: A guide for setting up CANBus hardware on 3D printers
 theme: just-the-docs
 color_scheme: eso-dark
 markdown: kramdown
-url: https://jtd.esoterical.online
+url: https://canbus.esoterical.online
 logo: "/assets/esoterical-canbus-green.png"
 favicon_ico: "/assets/favicon.ico"
 
