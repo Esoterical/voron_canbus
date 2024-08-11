@@ -23,14 +23,21 @@ If you are running a USB-CAN-Bridge Mainboard, then you will need to now set you
 
 Note that the mainboard **must** be simply called [mcu]. And also note that there is no `restart_method` or anything else in this section, just the `canbus_uuid`.
 
-For your toolhead, you will need to add a new mcu section but as this is a ["extra" mcu](https://www.klipper3d.org/Config_Reference.html#mcu-my_extra_mcu) you need to give it a name. The name is arbitrary, but keeping it similar to what the manufacturer uses in their sample config files makes it easier later.
+For your toolhead, the best first step is to look for a sample config from your manufacturer (links in the [Toolhead Common Hardware](./toolhead_flashing/common_hardware) section). You can simply copy this sample file to the config folder on your Pi, then in your printer.cfg add a line [include samplefilename.cfg] so klipper loads in any settings from this additional file as well as the settings in the main printer.cfg file.
+
+![image](https://github.com/user-attachments/assets/6f322043-b750-48d2-a4fb-25c6e2bed6ee)
+
+You will need to add (or modify) the new mcu section but as this is a ["extra" mcu](https://www.klipper3d.org/Config_Reference.html#mcu-my_extra_mcu) you need to give it a name. The name is arbitrary, but keeping it similar to what the manufacturer uses in their sample config files makes it easier later.
 
 eg. if I called my board "EBBCan", then I would have the [mcu EBBCan] section with the UUID of my toolhead (that you found in [this step](./toolhead_flashing#klipper-is-now-installed))
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/4f3d2478-490b-41d9-8ee1-322d4a7f8117)
 
+You will need to adjust a few things from the sample config file. Make sure to change any temperature sensor types so it matches what your *actual* temperature sensor in your printer. Also adjust any motor and extruder specific settings (motor run current, extruder rotation_distance, etc.) as the default values in the sample config may not match what is in your printer.
 
-If you have completed the above and have the canbus uuid of your CAN device in your printer.cfg, then everything else is just a case of setting up the required pins with the toolhead MCU name prefixed to the pin name. 
+Once the sample config file matches your *actual* hardware, you need to go back to your printer.cfg and delete or comment out any section that is now in your sample config file. Things like the [extruder] section (including the [tmc2209 extruder] motor section), Fans, Probe, endstops, etc.
 
-Most toolheads will have a sample.cfg on their github, so it's usually a simple case of copy-pasting the required information from the sample into your own printer.cfg.
+If you have the same section ative in both your printer.cfg and the sample config file, then Klipper will only "read" it once which means it may start looking at the wrong pins for your hardware. Having the hotend temperature sensor still set to the old mainboard pin is a common mistake, and this manifests as an "ADC out of range" error when Klipper tries to start (because it is looking at a pin on the mainboard that no longer has the temperature sensor plugged in to it).
+
+
 
