@@ -1,6 +1,6 @@
 ---
 layout: default 
-title: Mellow Fly SB2040
+title: Mellow Fly SB2040v1/v2
 parent: Common Toolhead Hardware
 grand_parent: Toolhead Flashing
 ---
