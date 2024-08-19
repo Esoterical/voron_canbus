@@ -12,9 +12,13 @@ There are some last things you need to complete before your Klipper (on pi) will
 
 # Update Config
 
-You will need to add some settings to your printer.cfg in order for Klipper (on the Pi) to actually talk to your new CAN nodes.
+You will need to add some settings to your printer.cfg in order for Klipper (on the Pi) to actually talk to your new CAN nodes. Just skip to the [Toolhead section](./Final_Steps#toolhead)
 
-If you are running a dedicated USB Can adapter (like a U2C) then you don't need to do anything for this device, it won't be used/seen in the printer.cfg.
+## Dedicated CAN adapter
+
+If you are running a dedicated USB Can adapter (like a U2C) then you don't need to do anything for this device, it won't be used/seen in the printer.cfg. 
+
+## USB-CAN-Bridge Mainboard
 
 If you are running a USB-CAN-Bridge Mainboard, then you will need to now set your main [mcu] section to use the UUID of your mainboard (that you found in [this step](./mainboard_flashing#klipper-is-now-installed))
 
@@ -22,6 +26,8 @@ If you are running a USB-CAN-Bridge Mainboard, then you will need to now set you
 
 
 Note that the mainboard **must** be simply called [mcu]. And also note that there is no `restart_method` or anything else in this section, just the `canbus_uuid`.
+
+## Toolhead
 
 For your toolhead, the best first step is to look for a sample config from your manufacturer (links in the [Toolhead Common Hardware](./toolhead_flashing/common_hardware) section). You can simply copy this sample file to the config folder on your Pi, then in your printer.cfg add a line [include samplefilename.cfg] so klipper loads in any settings from this additional file as well as the settings in the main printer.cfg file.
 
