@@ -12,7 +12,7 @@ There are some last things you need to complete before your Klipper (on pi) will
 
 # Update Config
 
-You will need to add some settings to your printer.cfg in order for Klipper (on the Pi) to actually talk to your new CAN nodes. Just skip to the [Toolhead section](./Final_Steps#toolhead)
+You will need to add some settings to your printer.cfg in order for Klipper (on the Pi) to actually talk to your new CAN nodes. Just skip to the [Toolhead section](#toolhead)
 
 ## Dedicated CAN adapter
 
