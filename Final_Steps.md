@@ -12,11 +12,11 @@ There are some last things you need to complete before your Klipper (on pi) will
 
 # Update Config
 
-You will need to add some settings to your printer.cfg in order for Klipper (on the Pi) to actually talk to your new CAN nodes. Just skip to the [Toolhead section](#toolhead)
+You will need to add some settings to your printer.cfg in order for Klipper (on the Pi) to actually talk to your new CAN nodes. 
 
 ## Dedicated CAN adapter
 
-If you are running a dedicated USB Can adapter (like a U2C) then you don't need to do anything for this device, it won't be used/seen in the printer.cfg. 
+If you are running a dedicated USB Can adapter (like a U2C) then you don't need to do anything for this device, it won't be used/seen in the printer.cfg, Just skip to the [Toolhead section](#toolhead).
 
 ## USB-CAN-Bridge Mainboard
 
