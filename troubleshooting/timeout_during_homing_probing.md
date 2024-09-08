@@ -23,9 +23,8 @@ Something I've had success with lately is assigning CPU cores to processes. The 
 
 Create the system.conf.d folder with:
 ```bash
-sudo mkdir /etc/systemd/system.conf.d/
+sudo mkdir -p /etc/systemd/system.conf.d/
 ```
-(Don't worry if it says the folder already exists)
 
 then edit (or create) the cpuaffinity.conf file by running:
 ```bash
@@ -40,9 +39,8 @@ then press ctrl+X to save and quit. This will force everything to run on the fir
 
 To make Klipper run on the now-unused fourth core, create the klipper.service.d folder with:
 ```bash
-sudo mkdir /etc/systemd/system/klipper.service.d
+sudo mkdir -p /etc/systemd/system/klipper.service.d
 ```
-(Don't worry if it says the folder already exists)
 
 then edit (or create) the override.conf file by running:
 ```bash
