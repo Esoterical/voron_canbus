@@ -17,8 +17,7 @@ Before doing anything it is good to have some dependencies installed. Do this by
 ```bash
 sudo apt update
 sudo apt upgrade
-sudo apt install python3 python3-pip python3-can
-pip3 install pyserial
+sudo apt install python3 python3-serial
 ```
 **It looks like the pip3 command may not be needed on latest versions of raspiOS (Bookworm). If you get "error: externally-managed-environment" then just move on and it'll probably be fine**
 
@@ -59,25 +58,15 @@ If your toolhead board uses an RP2040 MCU, use [these flashing steps](#rp2040-ba
 
 ## STM32 based boards
 
-To confirm it's in DFU mode you can run the command 
-```bash
-sudo dfu-util -l
-```
- and it will show any devices connected to your Pi in DFU mode.
+To confirm it’s in DFU mode you can run the command lsusb and look for an entry of “STMicroelectronics STM Device in DFU mode”
 
-![image](https://user-images.githubusercontent.com/124253477/221337550-560128dd-b5fd-41ba-8881-48d24b2215ef.png)
-
-> Note the address of _Internal Flash_ => 0x08000000
->
-> Note the address of the usb device => 0483:df11
+![image](https://github.com/user-attachments/assets/0c63ba83-08fa-4a59-9a49-5d2cca97eddd)
 
 You can then flash the Katapult firmware to your toolhead board by running
 
 ```bash
 sudo dfu-util -R -a 0 -s 0x08000000:force:mass-erase:leave -D ~/katapult/out/katapult.bin -d 0483:df11
 ```
-
-where the --dfuse-address is the _Internal Flash_ and the -d is the USB Device ID is the that you grabbed from the `sudo dfu-util -l` command.
 
 If the result shows an "Error during download get_status" or something, but above it it still has "File downloaded successfullY" then it still flashed OK and you can ignore that error.
 
