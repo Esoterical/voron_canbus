@@ -28,7 +28,7 @@ To enter BOOT mode, unplug USB and XT30 cables from the SHT36v3, then hold the B
 
 # Katapult Config
 
-![image](https://github.com/user-attachments/assets/a63a33b3-8a65-4266-9d0f-1a3a58bab5ec)
+![image](https://github.com/user-attachments/assets/f5bb4e0c-cac2-4e88-8f73-463e69e6379c)
 
 
 # Klipper Config
