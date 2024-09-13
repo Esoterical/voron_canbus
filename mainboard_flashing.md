@@ -17,8 +17,7 @@ Before doing anything it is good to have some dependencies installed. Do this by
 ```bash
 sudo apt update
 sudo apt upgrade
-sudo apt install python3 python3-pip python3-can
-pip3 install pyserial
+sudo apt install python3 python3-serial
 ```
 
 **It looks like the pip3 command may not be needed on latest versions of raspiOS (Bookworm). If you get "error: externally-managed-environment" then just move on and it'll probably be fine**
