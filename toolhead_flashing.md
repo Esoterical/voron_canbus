@@ -176,7 +176,7 @@ python3 ~/katapult/scripts/flashtool.py -i can0 -q
 Then run the following command to install klipper firmware via Katapult. Use the UUID you just retrieved in the above query.
 
 ```bash
-python3 ~/katapult/scripts/flashtool.py -i can0 -u b6d9de35f24f -f ~/klipper/out/klipper.bin
+python3 ~/katapult/scripts/flashtool.py -i can0 -u youruuid -f ~/klipper/out/klipper.bin
 ```
 
 where the "-u" ID is what you found from the "flashtool.py -i can0 -q" query.
