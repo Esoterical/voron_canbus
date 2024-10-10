@@ -92,6 +92,44 @@ Nearly all Toolheads will have a two-pin header (sometimes labelled 120R) that y
 
 You can find information and diagrams on the 120 ohm termination resistor placement for boards in the [toolhead common hardware](./toolhead_flashing/common_hardware) section.
   
+# Cabling
+
+There is a high likelyhood that with your changeover to canbus you will also change to some sort of umbilical system for your toolhead. This isn't absolutely necessary, but extremely common. Some boards even come with a premade cable which may or may not work well in cable chains anyway.
+
+Before getting too swept up in what the absolute best gold plated gucci cabling would be for your system, keep the following things in mind. They are the most
+important factors when it comes to canbus toolhead board cabling. Nearly every single time someone has issues (after the initial install) it is because a wire has
+cracked or connector crimp is failing or similar, so take extra careful to follow these steps:
+
+1. **Good Crimps**
+
+    If you are making your own cable then be extra sure your wire crimps are properly done. A loose crimp can fall off, a bent crimp can crack. And make sure the
+    pins are fully seated into the connector housing. Do a pull test to be sure, it's very easy for a pin to look inserted but not actually clicked in and they can
+    get pushed out the back during use.
+  
+    This also applies to premade cables. I've seen some where the H/L connectors get pushed back slightly in the housing, enough that it causes intermittent connection
+    issues.
+   
+2. **Strain Relief**
+
+    No matter what you do **not** want the cable having any sort of movement at/near the connector to the toolhead board. If the wires at those crimp points start 
+    moving then it's only a matter of time before they'll crack.
+
+    Have the cable run away from the toolhead for a short distance and then secure it down so no matter what the rest of the umbilical is doing there is no movement
+    transmitted directly to the connector.
+
+3. **Flexible Cable**
+   
+    I know I said not to get worked up about über cables, and that's still true, but also don't go using old solid core mains wiring you ripped from the walls.
+    You want the cable/wires to be flexible enough to withstand the constant movement of a printer. That means don't go *too* thick on the wire gauge, and also make
+    sure it is decently stranded wire (not 7-strand high current wire).
+    
+    22AWG or thicker (smaller number is thicker wire) is usually fine for the power wires. The CAN H/L can be thinner, 24 or 26AWG is common, but you can also just 
+    do four 22AWG wires or something without trouble as well.
+
+A common method of supporting and strain relieving the umbilcal is to use PG7 glands, and although these work really well they also tend to mean people have to cut
+or repin the premade cables that come with some boards. Because of this I prefer using the printable [P.U.G](https://www.printables.com/model/378567-pug-parametric-umbilical-gland) umbilical gland. It does the same job as a PG7 but comes in two halves so you can clamp it over any cable without needing to cut/depin anything.
+There are a lot of mods on Printables for mounting a PUG on various printers/toolheads.
+   
 
 # Next Step
 
