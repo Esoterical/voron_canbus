@@ -14,6 +14,19 @@ The header for the 120R termination resistor is circled in purple
 
 # Wiring
 
+Connect a USB cable from our Pi to the usb-c port of the U2C. This provides the data connection and power to the U2C.
+
+Do *not* connect your mainboard (Octopus, etc.) to the USB-A ports on the U2C. They are not a simple USB hub, they are canbus ports using a USB-A connector.
+You want to connect your mainboard directly to your Pi via USB.
+
+Connect the CanH and CanL from your canbus boards to any of the H/L connections on the U2C. All of these connections are tied together so it doesn't matter
+which ones you choose.
+
+If you *also* run the 24v and GND wires from your canbus board to the U2C then you have to connect the 24v and GND pins (usually the screw terminals) to the V+ and V- of your PSU. This doesn't power the U2C at all, it's just pass through to your canbus board for ease of wiring.
+
+![image](https://github.com/user-attachments/assets/f3e6e632-7456-4825-afbf-fe0f6d0f37e6)
+
+
 ![CANbus_U2C_Pinout_on_Power_Connector](https://github.com/Esoterical/voron_canbus/assets/124253477/57a4a525-31ea-4565-ad69-6bb50510c090)
 
 
