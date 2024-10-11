@@ -1,4 +1,4 @@
----
+![image](https://github.com/user-attachments/assets/b48c03f7-b6d5-44a5-a8e3-fc8ff358ad12)---
 layout: default 
 title: Fysetc Spider v3.0 H7
 parent: Common Mainboard Hardware
@@ -16,7 +16,8 @@ To put the Spider 3.0 H7 into DFU mode, hold the BT0 button and while still hold
 
 # Katapult Config
 
-![image](https://github.com/user-attachments/assets/7ff8adba-4fd0-4794-99f2-1a9251676916)
+![image](https://github.com/user-attachments/assets/a95ecd50-7d4c-4edb-b2b3-9a7cc6f056a9)
+
 
 
 # Klipper USB-CAN-Bridge Config
