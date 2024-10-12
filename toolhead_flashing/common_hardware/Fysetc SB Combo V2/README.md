@@ -19,6 +19,13 @@ To put the SB Combo V2 board into CAN mode (instead of USB mode) make sure the t
 
 ![image](https://github.com/user-attachments/assets/a5be3ceb-fa40-41a5-a245-058a7c04f866)
 
+# 120 ohm Termination Resistor
+
+The SB Combo V2 board has a 120 ohm termination resistor enabled by default. If you need to disable this you need to cut the trace between these two solder pads.
+
+![image](https://github.com/user-attachments/assets/fc060894-251a-4fd5-8dbb-4dd5854c5019)
+
+
 
 
 # DFU Mode
