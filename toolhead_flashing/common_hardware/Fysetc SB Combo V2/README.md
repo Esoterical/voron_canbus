@@ -30,7 +30,7 @@ The SB Combo V2 board has a 120 ohm termination resistor enabled by default. If 
 
 # DFU Mode
 
-To put the SB Combo V2 into DFU mode, connect it via USB to the Pi (either by the main cable, or by the USB-C port) then hold the BOOT0 button, press and release the RESET button, then count to 5 and release the BOOT0 button.
+To put the SB Combo V2 into DFU mode, connect it via USB to the Pi using the USB-C port then hold the BOOT0 button, press and release the RESET button, then count to 5 and release the BOOT0 button.
 
 ![image](https://github.com/user-attachments/assets/922c0f4f-9b4a-44d5-b636-77b9678f62f1)
 
