@@ -99,7 +99,7 @@ Katapult is now installed, [click here](#katapult-is-now-installed) for the next
 
 ## Katapult is now installed
 
-Katapult should now be successfully flashed. Take out any DFU jumpers on your toolhead (if it needed them) and double-click the reset button on your board. Check that Katapult is installed and by running 
+Katapult should now be successfully flashed. Take out any DFU jumpers on your toolhead (if it needed them) and double-click the reset button on your board. Check that the board is in Katapult mode by running 
 
 ```bash
 ls /dev/serial/by-id
