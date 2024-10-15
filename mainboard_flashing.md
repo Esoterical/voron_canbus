@@ -20,8 +20,6 @@ sudo apt upgrade
 sudo apt install python3 python3-serial
 ```
 
-As mentioned in the main guide, you can either use Katapult on your mainboard to facilitate flashing over CAN, or you can go without and have the board boot straight into klipper.
-
 # Installing Katapult
 
 First you need to clone the Katapult repo onto your pi. Run the following commands to clone (or update) the repo:
