@@ -48,7 +48,14 @@ Press Q to quit the menu (it will ask to save, choose yes).
 
 Compile the firmware with `make`. You will now have a katapult.bin at ~/katapult/out/katapult.bin.
 
-To flash, connect your mainboard to the Pi via USB then put the mainboard into DFU mode (your mainboard user manual should have instructions on doing this).
+To flash, connect your mainboard to the Pi via USB then put the mainboard into DFU/BOOT mode (your mainboard user manual should have instructions on doing this).
+
+If your toolhead board uses an STM32 based MCU use [these flashing steps](#stm32-based-boards)
+
+If your toolhead board uses an RP2040 MCU, use [these flashing steps](#rp2040-based-boards)
+
+## STM32 based boards
+
 To confirm it's in DFU mode you can run the command `lsusb` and look for an entry of "STMicroelectronics STM Device in DFU mode"
 
 ![image](https://github.com/user-attachments/assets/cde7138d-588b-4381-82ad-699cde37e0a8)
@@ -65,7 +72,34 @@ If the result shows an "Error during download get_status" or something, but abov
 
 ![image](https://user-images.githubusercontent.com/124253477/225469341-46f3478a-aa96-4378-8d73-96faa90d561c.png)
 
-Katapult should now be successfully flashed. Take your mainboard out of DFU mode (it might require removing jumpers and rebooting, or just rebooting). Check that Katapult is installed and by running 
+Katapult is now installed, [click here](#katapult-is-now-installed) for the next steps.
+
+## RP2040 based boards
+
+To confirm it's in BOOT mode, run an `lsusb` command and you should see the device as a "Raspberry Pi boot" device (or similar)
+
+![image](https://user-images.githubusercontent.com/124253477/221344712-500b3c36-8e96-4f23-88ed-5e13ee79535f.png)
+
+> Note the address of the usb device => 2e8a:0003
+
+You can then flash the Katapult firmware to your toolhead board by running
+
+```bash
+cd ~/katapult
+make flash FLASH_DEVICE=2e8a:0003
+```
+
+where the FLASH_DEVICE ID is what you noted down from the `lsusb` command.
+
+It should look something like this if the download was successfull
+
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/34c4ca36-d03d-4eb3-a426-8be7751602fc)
+
+Katapult is now installed, [click here](#katapult-is-now-installed) for the next steps.
+
+## Katapult is now installed
+
+Katapult should now be successfully flashed. Take out any DFU jumpers on your toolhead (if it needed them) and double-click the reset button on your board. Check that Katapult is installed and by running 
 
 ```bash
 ls /dev/serial/by-id
