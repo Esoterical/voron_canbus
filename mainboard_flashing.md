@@ -128,6 +128,8 @@ Flashing klipper via Katapult will be covered shortly.
 
 Move into the klipper directory on the Pi by running:
 
+<<<<<<< HEAD
+=======
 ```bash
 cd ~/klipper
 ```
@@ -138,6 +140,7 @@ Then go into the klipper configuration menu by running:
 make menuconfig
 ```
 
+>>>>>>> 35669695cd14b97e28b5cbff1787234bc9ad4e56
 Again, if your mainboard is already in [Common Mainboard Hardware](./mainboard_flashing/common_hardware) then you can copy the Klipper settings from there. 
 
 Otherwise, you want the Processor and Clock Reference to be set as per whatever board you are running. Set Communication interface to 'USB to CAN bus bridge' then set the CAN Bus interface to use the pins that are specific to your mainboard. Also set the CAN bus speed to the same as the speed in your can0 file. In this guide it is set to 1000000.
