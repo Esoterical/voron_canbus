@@ -13,6 +13,8 @@ callouts:
     color: red
   stop:
     color: red
+  highlight:
+    color: yellow
 
 plugins:
   - jekyll-relative-links
