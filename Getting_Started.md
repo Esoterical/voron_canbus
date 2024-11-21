@@ -18,6 +18,7 @@ To set everything up, SSH into your pi and run the commands needed for your netw
 >As of the Nov 13 2024 release of RaspiOS, ifupdown is disabled by default and the NetworkManager service doesn't handle canbus interfaces.
 >
 >To check if you have the service, run `systemctl | grep ifupdown` and you should see the "ifupdown-pre.service" listed.
+>
 >![image](https://github.com/user-attachments/assets/f4b7dd15-2ee6-44d5-9ad0-8d2a303059e2)
 >
 >If you don't (or the command returns nothing) *and* you are running RaspiOS, reinstall ifupdown by running `sudo apt-get install ifupdown`
