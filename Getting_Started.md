@@ -24,18 +24,20 @@ To set everything up, SSH into your pi and run the commands needed for your netw
 >If you don't (or the command returns nothing) *and* you are running RaspiOS, reinstall ifupdown by running `sudo apt-get install ifupdown`
 >
 
+Open (or create if it doesn't exist) a file called 'can0` by running:
 
 ```bash
 sudo nano /etc/network/interfaces.d/can0
 ```
   ![image](https://user-images.githubusercontent.com/124253477/221327674-fad20589-1a5b-4d68-b2d9-2596553f64ab.png)
 
-This will open (or create if it doesn't exist) a file called 'can0' in which you need to enter the following information:
+And enter the following information:
+
 ```bash
 allow-hotplug can0
 iface can0 can static
   bitrate 1000000
-  up ip link set can0 txqueuelen 1024
+  up ip link set can0 txqueuelen 128
 ```
 
 ![image](https://user-images.githubusercontent.com/124253477/221378593-9a0fcdb5-082c-454e-94bd-08a6dc449d34.png)
