@@ -13,6 +13,15 @@ In order to dictate the speed at which your CAN network runs at you will need to
 To set everything up, SSH into your pi and run the commands needed for your network setup:
 
 ## ifupdown
+
+{: .highlight }
+As of the Nov 13 2024 release of RaspiOS, ifupdown is disabled by default and the NetworkManager service doesn't handle canbus interfaces.
+To check if you have the service, run `systemctl | grep ifupdown` and you should see the "ifupdown-pre.service" listed.
+![image](https://github.com/user-attachments/assets/235effe1-a723-44ca-a3c0-531e525719ee)
+If you don't (or the command returns nothing) *and* you are running RaspiOS, reinstall ifupdown by running `sudo apt-get install ifupdown`
+
+
+
 ```bash
 sudo nano /etc/network/interfaces.d/can0
 ```
