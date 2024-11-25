@@ -40,21 +40,26 @@ python3 ~/katapult/scripts/flashtool.py -i can0 -u yourmainboarduuid -r
 
 If will probably say "Flash success" **THIS IS NOT ACTUALLY FLASHING ANYTHING, YOU NEED TO CONTINUE WITH THE STEPS BELOW**
 
-**Step 3**
-
 If you don't have the UUID (or something has gone wrong with the klipper firmware and your mainboard is hung) then you can also double-press the RESET button on your mainboard to force Katapult to reboot into Katapult mode.
 
-You can verify it is in the proper mode by running `ls /dev/serial/by-id`. If you see a "usb-katapult-......" device then it is good to go.
 
-![image](https://github.com/Esoterical/voron_canbus/assets/124253477/1e9f0f7c-ada3-490b-bd62-bde25b67c362)
+**Step 3**
+
+You can verify it is in the proper mode by running `ls /dev/serial/by-id/*`. If you see a "usb-katapult-......" device then it is good to go.
+
+![image](https://github.com/user-attachments/assets/2ed240e4-1347-403f-be18-d55327049708)
+
 
 **Step4**
 
-Then you can run the same command you used to initially flash Klipper:
+Then you can run the same command you used to initially flash Klipper, using the out from the `ls /dev/serial/by-id/*` command you ran above:
 
 ```bash
 python3 ~/katapult/scripts/flashtool.py -f ~/klipper/out/klipper.bin -d /dev/serial/by-id/usb-katapult_yourmainboardusbid
 ```
+
+![image](https://github.com/user-attachments/assets/8fb111ae-2b52-4d75-b7bf-0e565c239ed2)
+
 
 **If** an `lsusb` doesn't show up your mainboard as a CAN adapter (or if `ip a` doesn't show your can0 network), or if the can0 network shows fine but you can't connect to your tooolhead that was previously working (and that you haven't flashed anything new to yet) then there is a good chance your klipper.bin settings were incorrect. Go back to Step 1 and check *all* the settings in the `make menuconfig` screen then recompile with `make clean` and `make`, and hen double-click the reset button on your toolhead to kick it back to katapult mode then go from Step 3.
 
