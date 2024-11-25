@@ -41,7 +41,7 @@ python3 ~/katapult/scripts/flashtool.py -i can0 -u yourmainboarduuid -r
 It will probably say "Flash success" **THIS IS NOT ACTUALLY FLASHING ANYTHING, YOU NEED TO CONTINUE WITH THE STEPS BELOW**
 
 {: .highlight }
->If you don't have the UUID (or something has gone wrong with the klipper firmware and your mainboard is hung) then you can also double-press the RESET button on your mainboard to force >Katapult to reboot into Katapult mode.
+>If you don't have the UUID (or something has gone wrong with the klipper firmware and your mainboard is hung) then you can also double-press the RESET button on your mainboard to force Katapult to reboot into Katapult mode.
 
 
 **Step 3**
