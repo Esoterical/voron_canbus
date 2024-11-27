@@ -1,6 +1,6 @@
 ---
 layout: default 
-title: BigTreeTech Octopus Pro v1.1
+title: BigTreeTech OctopusPro v1.1
 parent: Common Mainboard Hardware
 grand_parent: Mainboard Flashing
 ---
