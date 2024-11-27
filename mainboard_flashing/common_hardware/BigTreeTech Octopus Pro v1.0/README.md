@@ -1,4 +1,3 @@
-
 ---
 layout: default 
 title: BigTreeTech Octopus Pro v1.0
