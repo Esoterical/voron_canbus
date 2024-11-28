@@ -98,7 +98,7 @@ Some boards (Like the BTT Octopus) have the 120 ohm resistor permenantly conncet
 
 The same can be said for dedicated USB CAN adapters (like the U2C). Most will have a a header that you can put a jumper on to enable the resistor.
 
-You can find information and diagrams on the 120 ohm termination resistor placement for boards in the [mainbard common hardware](./mainboard_flashing/common_hardware) section.
+You can find information and diagrams on the 120 ohm termination resistor placement for boards in the [mainboard common hardware](./mainboard_flashing/common_hardware) section.
 
 ## Toolhead
 
