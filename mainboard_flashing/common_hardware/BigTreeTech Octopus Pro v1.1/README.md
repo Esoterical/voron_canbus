@@ -1,6 +1,6 @@
 ---
 layout: default 
-title: BigTreeTech OctopusPro v1.1
+title: BigTreeTech Octopus Pro v1.1
 parent: Common Mainboard Hardware
 grand_parent: Mainboard Flashing
 ---
@@ -20,12 +20,13 @@ To put the octopus into DFU mode you need to put in the boot jumper and press th
 
 
 
+
 ## Katapult Config
 
-![image](https://github.com/Esoterical/voron_canbus/assets/124253477/673ce3c6-5bd7-48a8-bcd4-99aeefb0f0a2)
+![image](https://github.com/Esoterical/voron_canbus/assets/124253477/e9850f4a-d4d9-438b-8b95-3fd21cd790d8)
 
 ## Klipper USB-CAN-Bridge Config
 
-![image](https://user-images.githubusercontent.com/124253477/221378034-ac82a51e-6ba7-4288-8186-91a6733dbd2f.png)
+![image](https://user-images.githubusercontent.com/124253477/221378502-d3aee8c7-c4ba-42da-838b-3e64cfc6262d.png)
 
 
