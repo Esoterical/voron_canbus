@@ -12,6 +12,10 @@ So you're can0 interface is online, but a query returns nothing:
 
 First up, if you previously _could_ see UUID's returned, and then put them into your printer.cfg file, but now you can't see anything from a canbus query **don't panic**. Once a UUID has been "grabbed" by klipper-on-pi then it won't show up to a query. This is normal.
 
+{: .highlight }
+> Note: If your board is meant to be in Katapult mode, and you have a blinking LED on the toolhead indicating the board *is* in katapult mode (if the status LED is supported)
+> then the Klipper service on the pi *won't* be grabbing the UUID. It will only grab `application: klipper` UUID's.
+
 
 
 ### Firmware
