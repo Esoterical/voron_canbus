@@ -6,12 +6,13 @@ parent: Troubleshooting
 
 # Termination Resistor Info
 
-The 120 ohm termination resistors facilitate two different jobs in a CANBus system. 
+The 120 ohm termination resistors facilitate two different jobs in a CANBus system.
+ 
 The first is that they provide the proper resistance for the CAN Transceivers to be able to pull the signal high/low.
-The second is that they are there to mitigate reflections when the signal hits the "end" of the wire.
 
-Ideally, the 120ohm resistors will be at the physical "ends" of the CAN cable, and each node will be direcly "on" this main cable in a nice straight line. This thinking has caused much
-confusion for users, especially as their CAN setups get more complicated than a single toolhead.
+The second is that they mitigate reflections when the signal hits the "end" of the wire.
+
+Ideally, the 120ohm resistors will be at the physical "ends" of the CAN cable, and each node will be on this main cable in a nice straight line. This thinking has caused much confusion for users, especially as their CAN setups get more complicated than a single toolhead.
 
 For example: In a system that has a U2C CAN adapter in the electronics bay, a CAN toolhead board on the toolhead, and a CAN control board on a ERCF situated outside of the printer.
 In this case, it is simple enough to have a CAN cable going from U2C to toolhead, and another going from U2C to ERCF, and have the 120r resistor/jumper in place on the toolhead 
