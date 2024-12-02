@@ -80,17 +80,14 @@ BitRate=1M
   
 # 120R Termination Resistors
 
-A CANBus expects both ends of the CanH/CanL wire run to be terminated with a 120 ohm resistor bridging the High and Low wires. Your CAN board will almost certainly have provisions for this somewhere.
-
-**Note**
+A CANBus expects both ends of the CanH/CanL wire run to be terminated with a 120 ohm resistor bridging the High and Low wires. Your CAN board will almost certainly have provisions for this somewhere. 
 
 You want to have **two** of these termination resistors in your CANBus circuit. **No more, No less**. Running with too many connected can be just as bad as running with none.
 
-Now, ideally these resistors are placed at the very start and end of your CAN network, but in reality the scale we are working with on 3d printers is so small compared to what CANBus is designed for it ends up not really mattering in practice.
+Put these at the physical "end" of the CAN wires.
 
-If you only have a single USB CAN adapter (or usb-can-bridge mainboard) and a single toolhead, then just have the 120R on each. If you are running multiple toolheads (eg. in an IDEX setup) running back to the same source (eg. a U2C), then have the jumpers on each toolhead and **not** on the "source" board.
+If you want a more in depth breakdown of the termination resistors, or you have a CAN setup that seems more complicated than what is outlined above, have a read of the [termination resistors](./termination_resistors.md) page.
 
-If your setup is all randomly connected, then just pick the two "most edge" boards in the system to have the 120 ohm resistors on.
 
 ## CAN Adapter/Mainboard
 
