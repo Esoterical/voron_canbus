@@ -86,7 +86,7 @@ You want to have **two** of these termination resistors in your CANBus circuit. 
 
 Put these at the physical "end" of the CAN wires.
 
-If you want a more in depth breakdown of the termination resistors, or you have a CAN setup that seems more complicated than what is outlined above, have a read of the [termination resistors](./termination_resistors.md) page.
+If you want a more in depth breakdown of the termination resistors, or you have a CAN setup that seems more complicated than what is outlined above, have a read of the [termination resistors](./troubleshooting/termination_resistor_info.md) page.
 
 
 ## CAN Adapter/Mainboard
