@@ -6,7 +6,7 @@ parent: Troubleshooting
 
 # Termination Resistor Info
 
-The 120 ohm termination resistors facility two different jobs in a CANBus system. 
+The 120 ohm termination resistors facilitate two different jobs in a CANBus system. 
 The first is that they provide the proper resistance for the CAN Transceivers to be able to pull the signal high/low.
 The second is that they are there to mitigate reflections when the signal hits the "end" of the wire.
 
