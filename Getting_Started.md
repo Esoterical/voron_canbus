@@ -6,7 +6,7 @@ nav_order: 20
 
 # Getting Started
 
-# can0 file, CAN Speeds, and Transmit Queue Length
+# Network Service, CAN Speeds, and Transmit Queue Length
 
 In order to dictate the speed at which your CAN network runs at you will need make sure there is a service on the Pi that can configure a CANBus interface, and also the necessary information in configuration files so this service knows what settings you want to use.
 
