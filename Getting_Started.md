@@ -58,7 +58,7 @@ and it should look like this:
 
 ![image](https://github.com/user-attachments/assets/cfefcc5a-a4d7-4eca-86a0-a5ff2a867228)
 
-{: .highlight }
+{: .info }
 > **Didn't this use to be a txqueuelen of 1024?**
 >
 > Yes, for a long time it was recommended to use 1024 for the transmit queue length, and if that is working for you then power on. But
