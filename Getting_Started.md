@@ -58,6 +58,14 @@ and it should look like this:
 
 ![image](https://github.com/user-attachments/assets/cfefcc5a-a4d7-4eca-86a0-a5ff2a867228)
 
+{: .highlight }
+> **Didn't this use to be a txqueuelen of 1024?**
+>
+> Yes, for a long time it was recommended to use 1024 for the transmit queue length, and if that is working for you then power on. But
+> it is recommended directly from Kevin O'Connor (of Klipper fame) to use a lower queue length of 128 and in my testing I've found no
+> issues doing so. Also it should *theoretically* help with some timeout issues using a smaller queue though I haven't seen real evidence
+> one way or another. Still, seems good to align with the recommended Klipper docs on the matter.
+
 Now finally, to enable the can0 interface and set the speed run the following command:
 
 ```bash
