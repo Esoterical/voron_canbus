@@ -17,9 +17,10 @@ If you want to use a dedicated USB CAN devcice, then it should be as  simple as 
 
 A better check is by running `ip -s -d link show can0` . If everything is correct you will see something like this:
 
-![image](https://github.com/Esoterical/voron_canbus/assets/124253477/1c1c807f-5654-44fb-b0a9-c59e3e43f60a)
+![image](https://github.com/user-attachments/assets/f9366698-d1f8-44ed-8f8b-33c5b924dc37)
 
-You see a can0 interface, the "qlen" will be 1024, and the bitrate will be 1000000
+
+You see a can0 interface, the "qlen" will be 128, and the bitrate will be 1000000
 
 
 {: .stop }
@@ -30,7 +31,7 @@ You see a can0 interface, the "qlen" will be 1024, and the bitrate will be 10000
 >
 >If the `ip -s -d link show can0` command returns an error then go back to ths top of this page and check that your USB CAN adapter is properly showing up to an `lsusb` command.
 >
->If the can0 network shows up, but the qlen *isn't* 1024 or the bitrate *isn't* 1000000 then go back to [Getting_Started](./Getting_Started.md) and check the can0 file settigns in both the ifupdown section and the netplan section.
+>If the can0 network shows up, but the qlen *isn't* 128 or the bitrate *isn't* 1000000 then go back to [Getting_Started](./Getting_Started.md) and check the can0 file settigns in both the ifupdown section and the netplan section.
 
 
 
