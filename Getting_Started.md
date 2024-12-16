@@ -45,18 +45,18 @@ and make sure it shows as "loaded active running"
 Then configure the txqueuelen for the interface by running the following command (copy the line entirely and paste it into your SSH session)
 
 ```bash
-echo -e "[Match]\nType=can\n\n[Link]\nTransmitQueueLength=128" | sudo tee /etc/systemd/network/10-can.link > /dev/null
+echo -e 'SUBSYSTEM=="net", ACTION=="change|add", KERNEL=="can0"  ATTR{tx_queue_len}="128"' | sudo tee /etc/udev/rules.d/10-can0.rules > /dev/null
 ```
 
 To confirm it has applied correctly, run
 
 ```bash
-cat /etc/systemd/network/10-can.link
+cat /etc/udev/rules.d/10-can0.rules
 ```
 
 and it should look like this:
 
-![image](https://github.com/user-attachments/assets/cfefcc5a-a4d7-4eca-86a0-a5ff2a867228)
+![image](https://github.com/user-attachments/assets/aa11cf7d-b16e-4625-aa0b-601414db4632)
 
 {: .note }
 > **Didn't this use to be a txqueuelen of 1024?**
