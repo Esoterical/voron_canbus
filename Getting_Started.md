@@ -12,71 +12,68 @@ In order to dictate the speed at which your CAN network runs at you will need to
 
 To set everything up, SSH into your pi and run the commands needed for your network setup:
 
-## ifupdown
-
 {: .highlight }
->As of the Nov 13 2024 release of RaspiOS, ifupdown is disabled by default and the NetworkManager service doesn't handle canbus interfaces.
+>**Wait, wasn't this section different before?**
 >
->To check if you have the service, run `systemctl | grep ifupdown` and you should see the "ifupdown-pre.service" listed.
->
->![image](https://github.com/user-attachments/assets/f4b7dd15-2ee6-44d5-9ad0-8d2a303059e2)
->
->If you don't (or the command returns nothing) *and* you are running RaspiOS, reinstall ifupdown by running `sudo apt-get install ifupdown`
->
+>Yes, originally the "default" method of configuring the CAN network was using a can0 file and the ifupdown network service. However, ifupdown is being phased out by newer
+>linux distributions. The more universal option seems to be using the systemd-networkd service instead. The good news is that this seems to be installed (if not enabled)
+>on most linux distros we'd see on 3d printers. So streamlining the process down should make it better for everyone.
 
-Open (or create if it doesn't exist) a file called 'can0` by running:
+Make sure the systemd-networkd service is enabled by running
 
 ```bash
-sudo nano /etc/network/interfaces.d/can0
+sudo systemctl enable systemd-networkd
 ```
-  ![image](https://user-images.githubusercontent.com/124253477/221327674-fad20589-1a5b-4d68-b2d9-2596553f64ab.png)
 
-And enter the following information:
+then check it has been enabled by running 
 
 ```bash
-allow-hotplug can0
-iface can0 can static
-  bitrate 1000000
-  up ip link set can0 txqueuelen 1024
+sudo systemctl start systemd-networkd
 ```
 
-![image](https://user-images.githubusercontent.com/124253477/221378593-9a0fcdb5-082c-454e-94bd-08a6dc449d34.png)
+then
 
-Press Ctrl+X to save the can0 file.
-
-The "allow-hotplug" helps the CAN nodes come back online when doing a "firmware_restart" within Klipper.
-"bitrate" dictates the speed at which your CAN network runs at. Kevin O'Connor (of Klipper fame) recommends a 1M speed for this to help with high-bandwidth and timing-critical operations (ADXL Shaper calibration and mesh probing for example).
-To complement a high bitrate, setting a high transmit queue length "txqueuelen" of 1024 helps minimise "Timer too close" errors.
-
-Once the can0 file is created just reboot the Pi with a `sudo reboot` and move on to the next step.
-
-## systemd-networkd (netplan)
 ```bash
-sudo nano /etc/systemd/network/10-can.link
+systemctl | grep systemd-networkd
 ```
-This will open (or create if it doesn't exist) a file called `10-can.link` in which you need to enter the following information:
-```bash
-[Match]
-Type=can
 
-[Link]
-TransmitQueueLength=1024
-```
-Press Ctrl+X to save the file.
+and make sure it shows as "loaded active running"
 
-To set the bitrate, we need to create another file in the same directory:
-```bash
-sudo nano /etc/systemd/network/25-can.network
-```
-This creates a network file, that networkd will then use to automatically set up the network with. Because of how networkd works, "hotplugging" is baked in.
-Enter the following in the network-file and close it with Ctrl+X:
-```bash
-[Match]
-Name=can*
+![image](https://github.com/user-attachments/assets/901096ef-29c8-4abc-8191-8d6c6aec9010)
 
-[CAN]
-BitRate=1M
+
+Then configure the txqueuelen for the interface by running the following command (copy the line entirely and paste it into your SSH session)
+
+```bash
+echo -e "[Match]\nType=can\n\n[Link]\nTransmitQueueLength=128" | sudo tee /etc/systemd/network/10-can.link > /dev/null
 ```
+
+To confirm it has applied correctly, run
+
+```bash
+cat /etc/systemd/network/10-can.link
+```
+
+and it should look like this:
+
+![image](https://github.com/user-attachments/assets/cfefcc5a-a4d7-4eca-86a0-a5ff2a867228)
+
+Now finally, to enable the can0 interface and set the speed run the following command:
+
+```bash
+echo -e "[Match]\nName=can*\n\n[CAN]\nBitRate=1M" | sudo tee /etc/systemd/network/25-can.network > /dev/null
+```
+
+To confirm it has applied correctly, run
+
+```bash
+cat /etc/systemd/network/25-can.network
+```
+
+and it should look like this:
+
+![image](https://github.com/user-attachments/assets/a78829fd-1b53-460d-aa80-715d50289b52)
+
   
 # 120R Termination Resistors
 
