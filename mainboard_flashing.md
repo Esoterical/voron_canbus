@@ -175,7 +175,7 @@ Check that the can0 interface is up by running `ip -s -d link show can0` . If ev
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/1c1c807f-5654-44fb-b0a9-c59e3e43f60a)
 
-You see a can0 interface, the "qlen" will be 1024, and the bitrate will be 1000000
+You see a can0 interface, the "qlen" will be 128, and the bitrate will be 1000000
 
 
 {: .stop }
@@ -186,7 +186,7 @@ You see a can0 interface, the "qlen" will be 1024, and the bitrate will be 10000
 >
 >If the `ip -s -d link show can0` command returns an error (eg. "Device can0 does not exist) then reboot your Pi with `sudo reboot now` and once the Pi is back up check `ip -s -d link show can0` again. If you still get the error then your mainboard isn't showing as a CAN adapter and you need to go back to the [Installing USB-CAN-Bridge Klipper](#installing-usb-can-bridge-klipper) and try again, making sure the Klipper `make menuconfig` settings are absolutely correct.
 >
->If the can0 network shows up, but the qlen *isn't* 1024 or the bitrate *isn't* 1000000 then go back to [Getting_Started](./Getting_Started.md) and check the can0 file settigns in both the ifupdown section and the netplan section.
+>If the can0 network shows up, but the qlen *isn't* 128 or the bitrate *isn't* 1000000 then go back to [Getting_Started](./Getting_Started.md) and check the can0 file settigns in both the ifupdown section and the netplan section.
 
 
 You can now run the Klipper canbus query to retrieve the canbus_uuid of your mainboard:
