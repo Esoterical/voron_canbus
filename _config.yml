@@ -15,7 +15,7 @@ callouts:
     color: red
   highlight:
     color: yellow
-  info:
+  note:
     color: blue
 
 plugins:
