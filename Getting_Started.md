@@ -25,13 +25,13 @@ Make sure the systemd-networkd service is enabled by running
 sudo systemctl enable systemd-networkd
 ```
 
-then check it has been enabled by running 
+then start the service with:
 
 ```bash
 sudo systemctl start systemd-networkd
 ```
 
-then
+then check it is running properly with:
 
 ```bash
 systemctl | grep systemd-networkd
