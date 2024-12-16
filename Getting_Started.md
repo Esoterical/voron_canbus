@@ -82,6 +82,13 @@ and it should look like this:
 
 ![image](https://github.com/user-attachments/assets/a78829fd-1b53-460d-aa80-715d50289b52)
 
+Then finally reboot the Pi (so the systemd-networkd service has started properly reading from the config files) with a:
+
+```bash
+sudo reboot now
+```
+
+
   
 # 120R Termination Resistors
 
