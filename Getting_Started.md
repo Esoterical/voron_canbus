@@ -8,7 +8,7 @@ nav_order: 20
 
 # can0 file, CAN Speeds, and Transmit Queue Length
 
-In order to dictate the speed at which your CAN network runs at you will need to create (or modify) a "can0" file on your Pi. This is what will tell linux "Hey, you now have a new network interface called can0 that you can send CAN traffic over". The approach needed here heavily depends on the network stack of your Pi. Raspbian and older version of Debian typically use ifupdown, but some newer distros (Ubuntu, other single-board-computer distros) use netplan, which by default uses systemd-networkd under the hood. To be safe it's easiest to just follow both the "ifupdown" **and** the "systemd-networkd" instructions. You can have both set up and your Pi will just use the configuration that is relevant to your system.
+In order to dictate the speed at which your CAN network runs at you will need make sure there is a service on the Pi that can configure a CANBus interface, and also the necessary information in configuration files so this service knows what settings you want to use.
 
 To set everything up, SSH into your pi and run the commands needed for your network setup:
 
