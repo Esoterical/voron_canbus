@@ -173,7 +173,7 @@ This should have now installed klipper firmware to your mainboard. You can verif
 
 Check that the can0 interface is up by running `ip -s -d link show can0` . If everything is correct you will see somethign like this:
 
-![image](https://github.com/Esoterical/voron_canbus/assets/124253477/1c1c807f-5654-44fb-b0a9-c59e3e43f60a)
+![image](https://github.com/user-attachments/assets/c211da71-a0e3-4c47-b4a2-fdef3b717999)
 
 You see a can0 interface, the "qlen" will be 128, and the bitrate will be 1000000
 
