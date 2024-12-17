@@ -158,9 +158,10 @@ There are a lot of mods on Printables for mounting a PUG on various printers/too
 
 Now that the can0 interface files are set up, you need to choose how you are going to connect your Pi to the CANBus network.
 
-To actually create a CAN network in your system, your Pi needs some sort of device to act as a CAN adapter (think of it like a USB network card, or USB wifi dongle). The simplest plug-and-play option is to use a dedicated USB to Can device such as the BigTreeTech U2C, Mellow Fly UTOC, Fysetc UCAN, etc. (other devices exist as well). The second "cheaper" option is to actually utilise your printer mainboard (ie. Octopus or Spider board) to function as a usb-can bridge for klipper. We'll cover both options, but you only need to choose one.
+To actually create a CAN network in your system, your Pi needs some sort of device to act as a CAN adapter (think of it like a USB network card, or USB wifi dongle). 
 
-[Click here for Dedicated USB-CAN Adapter](./Dedicated_USB_Can_Device.md)
+The simplest plug-and-play option is to use a dedicated USB to Can device such as the BigTreeTech U2C, Mellow Fly UTOC, Fysetc UCAN, etc. (other devices exist as well). [Click here if you have a Dedicated USB-CAN Adapter](./Dedicated_USB_Can_Device.md) to continue the guide.
 
-[Click here for USB-CAN-Bridge Klipper on your Mainboard](./USB_CAN_Bridge_Mainboard.md)
+The second "cheaper" option is to actually utilise your printer mainboard (ie. Octopus, Manta, Spider, etc.) to function as a usb-can bridge for klipper. [Click here if you have are using your mainboard as the CAN interface](./USB_CAN_Bridge_Mainboard.md) to continue the guide.
+
 
