@@ -45,18 +45,18 @@ and make sure it shows as "loaded active running"
 Then configure the txqueuelen for the interface by running the following command (copy the line entirely and paste it into your SSH session)
 
 ```bash
-echo -e 'SUBSYSTEM=="net", ACTION=="change|add", KERNEL=="can0"  ATTR{tx_queue_len}="128"' | sudo tee /etc/udev/rules.d/10-can0.rules > /dev/null
+echo -e 'SUBSYSTEM=="net", ACTION=="change|add", KERNEL=="can*"  ATTR{tx_queue_len}="128"' | sudo tee /etc/udev/rules.d/10-can.rules > /dev/null
 ```
 
 To confirm it has applied correctly, run
 
 ```bash
-cat /etc/udev/rules.d/10-can0.rules
+cat /etc/udev/rules.d/10-can.rules
 ```
 
 and it should look like this:
 
-![image](https://github.com/user-attachments/assets/aa11cf7d-b16e-4625-aa0b-601414db4632)
+![image](https://github.com/user-attachments/assets/da566d41-8737-4847-8b63-9b4ce2821b53)
 
 {: .note }
 > **Didn't this use to be a txqueuelen of 1024?**
