@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/b48c03f7-b6d5-44a5-a8e3-fc8ff358ad12)---
+---
 layout: default 
 title: Fysetc Spider v3.0 H7
 parent: Common Mainboard Hardware
