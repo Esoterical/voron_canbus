@@ -48,7 +48,7 @@ If it's sitting in Katapult but you still can't see a UUID then your problem is 
 
 ### can0 Interface
 
-There are guides floating around on the internet (I can't find them now but I swear I've seen them in the past) that instruct users to add post-boot tasks to modify the CAN speed or txqueuelen to something different than is stated in the `/etc/network/interfaces.d/can0` file. If your firmware/wiring/everything looks fine yet you still can't get a UUID then this is a good thing to check.
+There are guides floating around on the internet (I can't find them now but I swear I've seen them in the past) that instruct users to add post-boot tasks to modify the CAN speed or txqueuelen to something different than is stated in the `/etc/systemd/network/25-can.network` file. If your firmware/wiring/everything looks fine yet you still can't get a UUID then this is a good thing to check.
 
 To test this hypothesis, make sure you are **absolutely sure** of the CAN speed you set when compiling the katapult/klipper firmware for your device (if you are using this guide then that will be one million, 1000000) then run the following commands to manually take down the can0 interface then bring it back up with the "known correct" speed
 
@@ -62,7 +62,7 @@ To **start** the can0 interface (replace the bitrate to whatever you are using i
 
 To confirm the network is back up and running at the correct speeds run `ip -details -statistics link show can0` and look for the following:
 
-![image](https://github.com/Esoterical/voron_canbus/assets/124253477/62ad3926-8524-4e73-a8db-130893908799)
+![image](https://github.com/user-attachments/assets/c211da71-a0e3-4c47-b4a2-fdef3b717999)
 
 If it looks good then re-run a canbus query to see if the UUID shows up now.
 
