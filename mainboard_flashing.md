@@ -171,7 +171,7 @@ This should have now installed klipper firmware to your mainboard. You can verif
 
 ![image](https://user-images.githubusercontent.com/124253477/221329262-d8758abd-62cb-4bb6-9b4f-7bc0f615b5de.png)
 
-Check that the can0 interface is up by running `ip -s -d link show can0` . If everything is correct you will see somethign like this:
+Check that the can0 interface is up by running `ip -s -d link show can0` . If everything is correct you will see something like this:
 
 ![image](https://github.com/user-attachments/assets/c211da71-a0e3-4c47-b4a2-fdef3b717999)
 
@@ -204,6 +204,23 @@ Start the Klipper service on the Pi again by running:
 ```bash
 sudo service klipper start
 ```
+
+{: .highlight }
+> ## Dissappearing Mainboard UUID
+> 
+> There is a quirk with USB-CAN-Bridge klipper if you don't have any second/other CAN nodes connected up (either due to not having done that step yet, or if there is
+> something wrong with the toolhead/other CAN device or wiring) where the Mainboard UUID will stop showing up to a query and can cause your web interface/klipper logs
+> to show connection errors to 'mcu'.
+>
+>![image](https://github.com/user-attachments/assets/cf5be037-c1ae-445a-81b4-f667d6105455)
+>
+> If you are still at this stage early of your flashing journey, where you haven't yet set up/connected the toolhead, all it means is if you keep doing a CAN
+> query the mainboard UUID will stop showing. Don't be alarmed, it's normal. Once you have the second CAN device connect you won't see this behaviour.
+>
+> However, if you already *had* a working CAN toolhead setup and you see this problem, then the dissappearing UUID is **not** the cause of any errors/issues with
+> your system. It can be a *symptom* of a problem, **not** the cause. Don't get lost trying to troubleshoot why the mainboard UUID dissappears. It's fine. Just hit
+> the reset button on your mainboard (once), or power cycle the printer, and the mainboard UUID will return for at least a bit.
+> 
 
 # Next Step
 
