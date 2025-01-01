@@ -206,7 +206,7 @@ sudo service klipper start
 ```
 
 {: .highlight } 
-## Dissappearing Mainboard UUID
+> ## Dissappearing Mainboard UUID
 > There is a quirk with USB-CAN-Bridge klipper if you don't have any second/other CAN nodes connected up (either due to not having done that step yet, or if there is
 > something wrong with the toolhead/other CAN device or wiring) where the Mainboard UUID will stop showing up to a query and can cause your web interface/klipper logs
 > to show connection errors to 'mcu'.
@@ -219,7 +219,7 @@ sudo service klipper start
 > However, if you already *had* a working CAN toolhead setup and you see this problem, then the dissappearing UUID is **not** the cause of any errors/issues with
 > your system. It can be a *symptom* of a problem, **not** the cause. Don't get lost trying to troubleshoot why the mainboard UUID dissappears. It's fine. Just hit
 > the reset button on your mainboard (once), or power cycle the printer, and the mainboard UUID will return for at least a bit.
-> 
+
 
 # Next Step
 
