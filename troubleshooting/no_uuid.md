@@ -75,4 +75,37 @@ and if you see any lines referecing "can0" then put a # at the start of the line
 
 If the rc.local file *isn't* the problem, but you still get post-boot no UUIDs but you *do* get UUIDs after manually setting the can0 speed with the commands, then the overriding "script" is somewhere else. As linux has a bunch of different ways to change settings after a boot it is hard to cover all of them here. Just take the information you have now figured out (something is changing my can0 speed afterboot, it isn't the rc.local file) and ask your favourite helpers/discord channels/forums/wherever.
 
+### BUS-OFF
+
+There are rare cases where certain circumstances lead to the CAN interface on your Pi going into a BUS-OFF state. You can see this when you run:
+
+```bash
+ip -s -d link show can0
+```
+
+![image](https://github.com/user-attachments/assets/2e07dd50-da8d-4f2b-96cb-b563c3be19a7)
+
+
+This means your can0 interface on your Pi is no longer listening for CAN traffic, even if you have a node (like a toolhead) that you "fix" and it should be detectable.
+
+For example, the wrong Klipper firmware on a toolhead can possibly make the toolhead innaccessible over CAN (no UUID to a query, won't connect in Klipper) but also causes the CAN adapter to
+freak out and go into a BUS-OFF state. Even if you then double-click the reset button on the toolhead and you *know* the Katapult firmware on it is fine so you *should* now see the UUID, you
+won't while the can0 interface itself stays BUS-OFF.
+
+One way to kick the can0 interface out of BUS-OFF is to manually turn the interface off and on again by running:
+
+`sudo ip link set can0 down type can`
+
+then:
+
+`sudo ip link set can0 up type can bitrate 1000000`
+
+It is probably a good idea to have your toolhead/node/whatever in a "It should be working" state before you do this (ie. double-click reset to put the node into Katapult mode). If there is
+an active node already when you do the above off/on of the interface then you should be able to now do a 
+
+`~/katapult/scripts/flashtool.py -q`
+
+and see your node UUID again, and be able to reflash Klipper to it (if needed).
+
+
 [Return to Troubleshooting](./)
