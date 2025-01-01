@@ -11,7 +11,7 @@ If you run a `python3 ~/katapult/scripts/flashtool.py -i can0 -q` or `~/klippy-e
 
 ![image](https://user-images.githubusercontent.com/124253477/235117239-009ab013-d9ba-4524-81d4-a73c8990c2a7.png)
 
-First thing to check is your `/etc/network/interfaces.d/can0` file. Make sure it exists and you have no typos in it.
+First thing to check is your `/etc/systemd/network/25-can.network` file. Make sure it exists and you have no typos in it.
 
 ### Seperate USB-CAN adapter (U2C/UTOC/etc.)
 
