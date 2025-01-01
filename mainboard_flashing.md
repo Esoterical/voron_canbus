@@ -213,8 +213,9 @@ sudo service klipper start
 >
 >![image](https://github.com/user-attachments/assets/cf5be037-c1ae-445a-81b4-f667d6105455)
 >
-> If you are still at this stage early of your flashing journey, where you haven't yet set up/connected the toolhead, all it means is if you keep doing a CAN
-> query the mainboard UUID will stop showing. Don't be alarmed, it's normal. Once you have the second CAN device connect you won't see this behaviour.
+> If you are still at this early stage of your flashing journey where you haven't yet set up/connected the toolhead, all it means is if you keep doing a CAN
+> query the mainboard UUID will stop showing. Don't be alarmed, it's normal. Once you have the second CAN device connect you won't see this behaviour, and it won't
+> stop the mainboard from still acting as a USB-CAN-Bridge for your Pi.
 >
 > However, if you already *had* a working CAN toolhead setup and you see this problem, then the dissappearing UUID is **not** the cause of any errors/issues with
 > your system. It can be a *symptom* of a problem, **not** the cause. Don't get lost trying to troubleshoot why the mainboard UUID dissappears. It's fine. Just hit
