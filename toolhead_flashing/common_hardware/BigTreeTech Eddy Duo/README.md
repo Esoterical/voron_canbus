@@ -1,7 +1,8 @@
 ---
 layout: default 
 title: BigTreeTech Eddy Duo
-parent: Hardware Configurations
+parent: Common Toolhead Hardware
+grand_parent: Toolhead Flashing
 ---
 
 # USB/CAN Mode Switch
