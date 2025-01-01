@@ -205,7 +205,8 @@ Start the Klipper service on the Pi again by running:
 sudo service klipper start
 ```
 
-{: .highlight } ## Dissappearing Mainboard UUID
+{: .highlight } 
+## Dissappearing Mainboard UUID
 > There is a quirk with USB-CAN-Bridge klipper if you don't have any second/other CAN nodes connected up (either due to not having done that step yet, or if there is
 > something wrong with the toolhead/other CAN device or wiring) where the Mainboard UUID will stop showing up to a query and can cause your web interface/klipper logs
 > to show connection errors to 'mcu'.
