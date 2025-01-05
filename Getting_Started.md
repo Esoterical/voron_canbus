@@ -41,6 +41,15 @@ and make sure it shows as "loaded active running"
 
 ![image](https://github.com/user-attachments/assets/901096ef-29c8-4abc-8191-8d6c6aec9010)
 
+Unfortunately, this also enables the systemd-networkd-wait-online service which can cause your system to be "frozen" for around 2 minutes on boot as it waits for
+network interfaces to be online. If the problem was only the CAN interface there would be ways around this but as there are edge cases where the wait would still happen
+I've found it's best to just disable the wait-online servce entirely by running:
+
+```bash
+sudo systemctl disable systemd-networkd-wait-online.service
+```
+
+If disabling this service results in any negative impact on certain linux distros or setups please let me know via an [issue ticket](https://github.com/Esoterical/voron_canbus/issues).
 
 Then configure the txqueuelen for the interface by running the following command (copy the line entirely and paste it into your SSH session)
 
