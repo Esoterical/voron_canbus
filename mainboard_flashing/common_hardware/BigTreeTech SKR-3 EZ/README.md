@@ -7,12 +7,29 @@ grand_parent: Mainboard Flashing
 
 # 120 ohm Termination Resistor
 
-There is a permanent 120 ohm termination resistor soldered to the board, no need to add a jumper to enable it and also no ability to disable it.
+There is *meant* to be a  permanent 120 ohm termination resistor soldered to the board, no need to add a jumper to enable it and also no ability to disable it. 
 
-# Katapult Config
+However, it seems some recent boards have been made without this resitor and instead including a standalone resitor with the connector packet which you can crimp on if required.
 
-![image](https://user-images.githubusercontent.com/124253477/236376883-34ae7805-365a-40ad-a5fc-f613e9d1fc4d.png)
+# STM32H723
 
-# Klipper USB-CAN-Bridge Config
+## Katapult Config
 
-![image](https://user-images.githubusercontent.com/124253477/236376937-172778da-ba61-45af-b64e-ed1b2d79f51b.png)
+![image](https://github.com/user-attachments/assets/d6bc279a-ca5c-48a0-b881-64c52359b66b)
+
+
+## Klipper USB-CAN-Bridge Config
+
+![image](https://github.com/user-attachments/assets/be1a0c88-bb9c-4d9a-9f86-1ae873a88365)
+
+
+# STM32H743
+
+## Katapult Config
+
+![image](https://github.com/user-attachments/assets/e847ca07-2619-48ad-a5c1-781c2ec96264)
+
+
+## Klipper USB-CAN-Bridge Config
+
+![image](https://github.com/user-attachments/assets/64f4d744-6a82-43c0-a5f4-bcca7a4fadc9)
