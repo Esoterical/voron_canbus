@@ -37,4 +37,4 @@ The header for the 120R termination resistor is circled in purple
 
 # Sample Configuration
 
-A sample configuration file can be found at https://github.com/bigtreetech/EBB/tree/master/EBB%20CAN%20V1.1%20(STM32G0B1)
+A sample configuration file can be found at [https://github.com/bigtreetech/EBB/tree/master/EBB%20CAN%20V1.1%20(STM32G0B1)](https://github.com/bigtreetech/EBB/tree/master/EBB%20CAN%20V1.1%20and%20V1.2%20(STM32G0B1))
