@@ -18,8 +18,14 @@ This is only if you need to update katapult as well. If you are just doing a Kli
 
 **Step 1**
 
-Change to your Katapult directory with `cd ~/katapult`
-then go into the Katapult firmware config menu with `make menuconfig`
+Change to your Katapult directory with this command:
+```bash
+cd ~/katapult
+```
+then go into the Katapult firmware config menu by running:
+```bash 
+make menuconfig
+```
 This time **make sure "Build Katapult deployment application" is configured** with the properly bootloader offset (same as the "Application start offset" that is relevant for your toolhead). Make sure all the rest of your settings are correct for your toolhead.
 
 You can find screenshots of settings for common toolheads in the [Common Toolhead Hardware](./toolhead_flashing/common_hardware) section, but once again, **make sure "Build Katapult deployment application" is set**
@@ -28,6 +34,10 @@ You can find screenshots of settings for common toolheads in the [Common Toolhea
 
 
 This time when you run `make`, along with the normal katapult.bin file it will also generate a deployer.bin file. This deployer.bin is a fancy little tool that uses the existing bootloader (Katapult, or stock, or whatever) to "update" itself into the Katapult you just compiled.
+```bash
+make clean
+make menuconfig
+```
 
 So to update your Katapult, you just need to flash this deployer.bin file via your existing Katapult (in a very similar way you would flash klipper via Katapult).
 
@@ -36,18 +46,22 @@ So to update your Katapult, you just need to flash this deployer.bin file via yo
 If you already have a functioning CAN setup, and your [mcu toolhead] canbus_uuid is in your printer.cfg, then you can force Katapult to reboot into Katapult mode by running:
 
 ```bash
-python3 ~/katapult/scripts/flashtool.py -i can0 -u yourtoolheaduuid -r
+python3 ~/katapult/scripts/flashtool.py -i can0 -r -u yourtoolheaduuid
 ```
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/eda51419-6ab4-49c5-9c33-a581b08d085c)
 
-If will probably say "Flash success" **THIS IS NOT ACTUALLY FLASHING ANYTHING, YOU NEED TO CONTINUE WITH THE STEPS BELOW**
+If will probably say "Flash success" 
+**THIS IS NOT ACTUALLY FLASHING ANYTHING, YOU NEED TO CONTINUE WITH THE STEPS BELOW**
 
 **Step 3**
 
 If you don't have the UUID (or something has gone wrong with the klipper firmware and your toolboard is hung) then you can also double-press the RESET button on your toolhead to force Katapult to reboot into Katapult mode.
 
 You can verify it is in the proper mode by running `python3 ~/katapult/scripts/flashtool.py -q`. If you see a "Detected UUID: xxxxxxxxx, Application: Katapult" device then it is good to go.
+```bash
+python3 ~/katapult/scripts/flashtool.py -q
+```
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/ff9dcbb3-0456-4d87-8091-41d5d6050c02)
 
@@ -69,8 +83,14 @@ However, **if** you need to update katapult for whatever reason then follow the 
 
 **Step 1**
 
-Change to your Katapult directory with `cd ~/katapult`
-then go into the Katapult firmware config menu with `make menuconfig`
+Change to your Katapult directory:
+```bash
+cd ~/katapult
+```
+then go into the Katapult firmware config menu by running:
+```bash
+make menuconfig
+```
 
 This time **make sure "Build Katapult deployment application" is configured** with the properly bootloader offset (same as the "Application start offset" that is relevant for your mainboard). Make sure all the rest of your settings are correct for your mainboard.
 
@@ -81,7 +101,10 @@ If your board doesn't exist in the common_hardware folder already, then you want
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/7726b137-0079-4191-bd22-1b084345809f)
 
 This time when you run `make`, along with the normal katapult.bin file it will also generate a deployer.bin file. This deployer.bin is a fancy little tool that uses the existing bootloader (Katapult, or stock, or whatever) to "update" itself into the Katapult you just compiled.
-
+```bash
+make clean
+make menuconfig
+```
 So to update your Katapult, you just need to flash this deployer.bin file via your existing Katapult (in a very similar way you would flash klipper via Katapult).
 
 **Step 2**
@@ -89,7 +112,7 @@ So to update your Katapult, you just need to flash this deployer.bin file via yo
 If you already have a functioning CAN setup, and your [mcu] canbus_uuid is in your printer.cfg, then you can force Katapult to reboot into Katapult mode by running:
 
 ```bash
-python3 ~/katapult/scripts/flashtool.py -i can0 -u yourmainboarduuid -r
+python3 ~/katapult/scripts/flashtool.py -i can0 -r -u yourmainboarduuid
 ```
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/eda51419-6ab4-49c5-9c33-a581b08d085c)
@@ -101,6 +124,9 @@ If will probably say "Flash success" **THIS IS NOT ACTUALLY FLASHING ANYTHING, Y
 If you don't have the UUID (or something has gone wrong with the klipper firmware and your mainboard is hung) then you can also double-press the RESET button on your mainboard to force Katapult to reboot into Katapult mode.
 
 You can verify it is in the proper mode by running `ls /dev/serial/by-id`. If you see a "usb-katapult-......" device then it is good to go.
+```bash
+ls /dev/serial/by-id
+```
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/1e9f0f7c-ada3-490b-bd62-bde25b67c362)
 
