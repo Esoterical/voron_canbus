@@ -48,6 +48,7 @@ Press Q to quit the menu (it will ask to save, choose yes).
 
 Compile the firmware with `make`. You will now have a katapult.bin at ~/katapult/out/katapult.bin.
 ```bash
+make clean
 make
 ```
 

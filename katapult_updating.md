@@ -18,14 +18,12 @@ This is only if you need to update katapult as well. If you are just doing a Kli
 
 **Step 1**
 
-Change to your Katapult directory with this command:
+Change to your Katapult directory, then go into the Katapult firmware config menu by running::
 ```bash
 cd ~/katapult
-```
-then go into the Katapult firmware config menu by running:
-```bash 
 make menuconfig
 ```
+
 This time **make sure "Build Katapult deployment application" is configured** with the properly bootloader offset (same as the "Application start offset" that is relevant for your toolhead). Make sure all the rest of your settings are correct for your toolhead.
 
 You can find screenshots of settings for common toolheads in the [Common Toolhead Hardware](./toolhead_flashing/common_hardware) section, but once again, **make sure "Build Katapult deployment application" is set**
@@ -36,7 +34,7 @@ You can find screenshots of settings for common toolheads in the [Common Toolhea
 This time when you run `make`, along with the normal katapult.bin file it will also generate a deployer.bin file. This deployer.bin is a fancy little tool that uses the existing bootloader (Katapult, or stock, or whatever) to "update" itself into the Katapult you just compiled.
 ```bash
 make clean
-make menuconfig
+make
 ```
 
 So to update your Katapult, you just need to flash this deployer.bin file via your existing Katapult (in a very similar way you would flash klipper via Katapult).
@@ -103,7 +101,7 @@ If your board doesn't exist in the common_hardware folder already, then you want
 This time when you run `make`, along with the normal katapult.bin file it will also generate a deployer.bin file. This deployer.bin is a fancy little tool that uses the existing bootloader (Katapult, or stock, or whatever) to "update" itself into the Katapult you just compiled.
 ```bash
 make clean
-make menuconfig
+make
 ```
 So to update your Katapult, you just need to flash this deployer.bin file via your existing Katapult (in a very similar way you would flash klipper via Katapult).
 
