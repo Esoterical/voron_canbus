@@ -49,8 +49,8 @@ The header for the 120R termination resistor is circled in purple
 
 # Sample Configuration
 
-A sample config file can be found at https://mellow-3d.github.io/fly-sht36_v2_klipper_config.html
+A sample config file can be found at [https://mellow-3d.github.io/fly-sht36_v2_klipper_config.html](https://mellow-3d.github.io/fly-sht36_v2_klipper_config.html)
 
 # More Info
 
-https://mellow-3d.github.io/fly-sht36_v2_general.html
+[https://mellow-3d.github.io/fly-sht36_v2_general.html](https://mellow-3d.github.io/fly-sht36_v2_general.html)
