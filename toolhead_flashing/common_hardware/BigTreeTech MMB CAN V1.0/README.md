@@ -38,4 +38,6 @@ The header for the 120R termination resistor is circled in purple
 
 # Sample Configuration
 
-A sample configuration file can be found at https://github.com/bigtreetech/MMB/tree/master/Firmware
+A sample configuration file can be found at [https://github.com/bigtreetech/MMB/tree/master/Firmware
+](https://github.com/bigtreetech/MMB/tree/master/Firmware
+)
