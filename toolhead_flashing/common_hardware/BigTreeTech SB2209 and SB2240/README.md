@@ -36,4 +36,4 @@ The header for the 120R termination resistor is circled in purple
 
 # Sample Configuration
 
-A sample configuration file can be found at https://github.com/bigtreetech/EBB/tree/master/EBB%20SB2240_2209%20CAN
+A sample configuration file can be found at [https://github.com/bigtreetech/EBB/tree/master/EBB%20SB2240_2209%20CAN](https://github.com/bigtreetech/EBB/tree/master/EBB%20SB2240_2209%20CAN)
