@@ -39,9 +39,11 @@ Plug a USB cable from the pi to the SB2040v3 then hold down the BOOT button, bre
 
 # Sample Config
 
-A sample config file can be found at https://mellow.klipper.cn/#/board/fly_sb2040_v3_pro/cfg
+A sample config file can be found at [https://mellow.klipper.cn/#/board/fly_sb2040_v3_pro/cfg](https://mellow.klipper.cn/#/board/fly_sb2040_v3_pro/cfg)
 
 
 # More Info
 
-https://mellow.klipper.cn/#/board/fly_sb2040_v3_pro/README
+[https://mellow.klipper.cn/#/board/fly_sb2040_v3_pro/README
+](https://mellow.klipper.cn/#/board/fly_sb2040_v3_pro/README
+)
