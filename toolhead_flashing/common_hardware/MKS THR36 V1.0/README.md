@@ -36,6 +36,6 @@ Plug a USB cable from the pi to the THR36 then hold down the BOOT button, breifl
 
 # Sample Config
 
-A sample config file can be found at https://github.com/makerbase-mks/MKS-THR36-THR42-UTC/tree/main
+A sample config file can be found at [https://github.com/makerbase-mks/MKS-THR36-THR42-UTC/tree/main](https://github.com/makerbase-mks/MKS-THR36-THR42-UTC/tree/main)
 
 
