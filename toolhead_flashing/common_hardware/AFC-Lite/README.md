@@ -33,4 +33,6 @@ To put the AFC-Lite into DFU mode, connect it via USB to the Pi using the USB-C 
 
 # Additional Info
 
-Manual and schematic and other info can be found at https://github.com/xbst/AFC-Lite/tree/master
+Manual and schematic and other info can be found at [https://github.com/xbst/AFC-Lite/tree/master
+](https://github.com/xbst/AFC-Lite/tree/master
+)
