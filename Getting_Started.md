@@ -160,7 +160,9 @@ cracked or connector crimp is failing or similar, so take extra careful to follo
 
 A common method of supporting and strain relieving the umbilcal is to use PG7 glands, and although these work really well they also tend to mean people have to cut
 or repin the premade cables that come with some boards. Because of this I prefer using the printable [P.U.G](https://www.printables.com/model/378567-pug-parametric-umbilical-gland) umbilical gland. It does the same job as a PG7 but comes in two halves so you can clamp it over any cable without needing to cut/depin anything.
-There are a lot of mods on Printables for mounting a PUG on various printers/toolheads.
+
+I've got a public Printables "collection" of various PUG mounts for different extruders [here](https://www.printables.com/@Esoterical_306854/collections/2039742) and will hopefully grow
+it over time, so be sure to check there to see if one of them fits your toolboard/extruder.
    
 
 # Next Step
