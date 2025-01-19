@@ -30,8 +30,10 @@ The ERCF should now show up to an `lsusb` command as Pi RP2 Boot device:
 
 # Sample Config
 
-A sample config file can be found at https://mellow.klipper.cn/#/board/fly_ercf/cfg
+A sample config file can be found at [https://mellow.klipper.cn/#/board/fly_ercf/cfg](https://mellow.klipper.cn/#/board/fly_ercf/cfg)
 
 # More Info
 
-https://mellow.klipper.cn/#/board/fly_ercf/
+[https://mellow.klipper.cn/#/board/fly_ercf/
+](https://mellow.klipper.cn/#/board/fly_ercf/
+)
