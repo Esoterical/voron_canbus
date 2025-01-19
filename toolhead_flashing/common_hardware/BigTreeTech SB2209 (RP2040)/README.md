@@ -34,6 +34,6 @@ Plug a USB cable from the pi to the SB2209 then hold down the BOOT button, breif
 
 # Sample Config
 
-A sample config file can be found at https://github.com/bigtreetech/EBB/tree/master/EBB%20SB2209%20CAN%20(RP2040)
+A sample config file can be found at [https://github.com/bigtreetech/EBB/tree/master/EBB%20SB2209%20CAN%20(RP2040)](https://github.com/bigtreetech/EBB/tree/master/EBB%20SB2209%20CAN%20(RP2040))
 
 
