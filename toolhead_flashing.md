@@ -46,6 +46,9 @@ If your board doesn't exist in the common_hardware folder already, then you want
 
 
 Compile the firmware with `make`. You will now have a katapult.bin (or katapult.uf2) in your ~/katapult/out/ directory.
+```bash
+make
+```
 
 To flash, connect your toolhead board to the Pi via USB then put the toolhead board into DFU/BOOT mode (your toolhead board user manual should have instructions on doing this).
 
@@ -56,6 +59,9 @@ If your toolhead board uses an RP2040 MCU, use [these flashing steps](#rp2040-ba
 ## STM32 based boards
 
 To confirm it’s in DFU mode you can run the command lsusb and look for an entry of “STMicroelectronics STM Device in DFU mode”
+```bash
+lsusb
+```
 
 ![image](https://github.com/user-attachments/assets/0c63ba83-08fa-4a59-9a49-5d2cca97eddd)
 
@@ -75,6 +81,9 @@ Katapult is now installed, [click here](#katapult-is-now-installed) for the next
 ## RP2040 based boards
 
 To confirm it's in BOOT mode, run an `lsusb` command and you should see the device as a "Raspberry Pi boot" device (or similar)
+```bash
+lsusb
+```
 
 ![image](https://user-images.githubusercontent.com/124253477/221344712-500b3c36-8e96-4f23-88ed-5e13ee79535f.png)
 
@@ -99,8 +108,10 @@ Katapult is now installed, [click here](#katapult-is-now-installed) for the next
 
 Katapult should now be successfully flashed. 
 
-Shut down your Pi (`sudo shutdown now`) and then power off your entire printer. 
-
+Shut down your Pi (`sudo shutdown now`) and then power off your entire printer.
+```bash
+sudo shutdown now
+```
 Take out any DFU jumpers on your toolhead (if it needed them) and then wire up your toolhead power (24v and gnd) and CAN (CANH/CANL) wires, then power your printer back up.
 
 Run the following command to see if the toolhead board is on the CAN network and waiting in Katapult mode
@@ -173,7 +184,7 @@ python3 ~/katapult/scripts/flashtool.py -i can0 -q
 Then run the following command to install klipper firmware via Katapult. Use the UUID you just retrieved in the above query.
 
 ```bash
-python3 ~/katapult/scripts/flashtool.py -i can0 -u youruuid -f ~/klipper/out/klipper.bin
+python3 ~/katapult/scripts/flashtool.py -i can0 -f ~/klipper/out/klipper.bin -u youruuid
 ```
 
 where the "-u" ID is what you found from the "flashtool.py -i can0 -q" query.

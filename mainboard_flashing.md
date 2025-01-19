@@ -47,6 +47,10 @@ If your board doesn't exist in the common_hardware folder already, then you want
 Press Q to quit the menu (it will ask to save, choose yes).
 
 Compile the firmware with `make`. You will now have a katapult.bin at ~/katapult/out/katapult.bin.
+```bash
+make clean
+make
+```
 
 To flash, connect your mainboard to the Pi via USB then put the mainboard into DFU/BOOT mode (your mainboard user manual should have instructions on doing this).
 
@@ -57,6 +61,9 @@ If your toolhead board uses an RP2040 MCU, use [these flashing steps](#rp2040-ba
 ## STM32 based boards
 
 To confirm it's in DFU mode you can run the command `lsusb` and look for an entry of "STMicroelectronics STM Device in DFU mode"
+```bash
+lsusb
+```
 
 ![image](https://github.com/user-attachments/assets/cde7138d-588b-4381-82ad-699cde37e0a8)
 
@@ -77,6 +84,9 @@ Katapult is now installed, [click here](#katapult-is-now-installed) for the next
 ## RP2040 based boards
 
 To confirm it's in BOOT mode, run an `lsusb` command and you should see the device as a "Raspberry Pi boot" device (or similar)
+```bash
+lsusb
+```
 
 ![image](https://user-images.githubusercontent.com/124253477/221344712-500b3c36-8e96-4f23-88ed-5e13ee79535f.png)
 
@@ -146,6 +156,10 @@ Again, if your mainboard is already in [Common Mainboard Hardware](./mainboard_f
 Otherwise, you want the Processor and Clock Reference to be set as per whatever board you are running. Set Communication interface to 'USB to CAN bus bridge' then set the CAN Bus interface to use the pins that are specific to your mainboard. Also set the CAN bus speed to the same as the speed in your can0 file. In this guide it is set to 1000000.
 
 Once you have the firmware configured, run a `make clean` to make sure there are no old files hanging around, then `make` to compile the firmware. It will save the firmware to ~/klipper/out/klipper.bin
+```bash
+make clean
+make
+```
 
 ## Using Katapult to flash Klipper
 
@@ -156,6 +170,9 @@ sudo service klipper stop
 ```
 
 Run an `ls /dev/serial/by-id/` and take note of the Katapult device that it shows:
+```bash
+ls /dev/serial/by-id/
+```
 
 ![image](https://github.com/Esoterical/voron_canbus/assets/124253477/f836fa8d-fb26-4ccd-b1e1-50f010596852)
 
@@ -175,6 +192,9 @@ This should have now installed klipper firmware to your mainboard. You can verif
 ![image](https://user-images.githubusercontent.com/124253477/221329262-d8758abd-62cb-4bb6-9b4f-7bc0f615b5de.png)
 
 Check that the can0 interface is up by running `ip -s -d link show can0` . If everything is correct you will see something like this:
+```bash
+ip -s -d link show can0
+```
 
 ![image](https://github.com/user-attachments/assets/c211da71-a0e3-4c47-b4a2-fdef3b717999)
 

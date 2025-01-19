@@ -9,6 +9,9 @@ nav_order: 30
 # Dedicated USB CAN device
 
 If you want to use a dedicated USB CAN devcice, then it should be as  simple as plugging it in to your Pi via USB. ***You shouldn't have to flash anything to this U2C/UTOC/etc device first, they are meant to come pre-installed with the necessary firmware. They do NOT run Klipper***. You can test if it is working by running an `lsusb` command (from an SSH terminal to your pi). Most common USB CAN devices will show up as a "Geschwister Schneider CAN adapter" when they are working properly (though some may simply show as an "OpenMoko, Inc" device):
+```bash
+lsusb
+```
 
 ![image](https://user-images.githubusercontent.com/124253477/221329262-d8758abd-62cb-4bb6-9b4f-7bc0f615b5de.png)
 
@@ -16,6 +19,9 @@ If you want to use a dedicated USB CAN devcice, then it should be as  simple as 
 
 
 A better check is by running `ip -s -d link show can0` . If everything is correct you will see something like this:
+```bash
+ip -s -d link show can0
+```
 
 ![image](https://github.com/user-attachments/assets/f9366698-d1f8-44ed-8f8b-33c5b924dc37)
 
