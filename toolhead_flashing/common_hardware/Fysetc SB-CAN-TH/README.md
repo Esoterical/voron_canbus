@@ -51,4 +51,4 @@ The Fysetc SB-Can-TH v1.3B has header for the 120R termination resistor which is
 
 # Sample Configuration
 
-A sample configuration file can be found at https://github.com/FYSETC/FYSETC_SB_CAN_TOOLHEAD
+A sample configuration file can be found at [https://github.com/FYSETC/FYSETC_SB_CAN_TOOLHEAD](https://github.com/FYSETC/FYSETC_SB_CAN_TOOLHEAD)
