@@ -34,4 +34,4 @@ The header for the termination resistor is circled in purple. You need to jumper
 
 # Sample Configuration
 
-A sample config file can be found at https://mellow-3d.github.io/fly-sht36_klipper_config.html
+A sample config file can be found at [https://mellow-3d.github.io/fly-sht36_klipper_config.html](https://mellow-3d.github.io/fly-sht36_klipper_config.html)
