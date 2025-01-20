@@ -27,7 +27,8 @@ To put the M8P V2 into DFU mode, hold the BOOT0 button and while still holding p
 
 # Katapult Config
 
-![image](https://github.com/Esoterical/voron_canbus/assets/124253477/07794a65-0458-4f2a-9eab-35a356eb37ef)
+![image](https://github.com/user-attachments/assets/0fe71954-ab42-4b78-bbb9-0f380ab1e0ed)
+
 
 # Klipper USB-CAN-Bridge Config
 
