@@ -31,6 +31,11 @@ then start the service with:
 sudo systemctl start systemd-networkd
 ```
 
+{: .note }
+> If you get a `Failed to start systemd-networkd.service: Unit systemd-networkd.service is masked` error (or similar), run
+> `sudo systemctl unmask systemd-networkd` first to unmask it, then run `sudo systemctl start systemd-networkd` again
+
+
 then check it is running properly with:
 
 ```bash
