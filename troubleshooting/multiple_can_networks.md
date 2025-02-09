@@ -4,7 +4,7 @@ title: Multiple CAN Networks
 parent: Troubleshooting
 ---
 
-Credit to @fragmon90's post on the Armored Turtle 3D discord for the framework of these instructions.
+Credit to Fragmon (find them on youtube at [https://youtube.com/@crydteamprinting](https://youtube.com/@crydteamprinting)) for their help with the following instructions.
 
 # Multiple CAN Networks
 
@@ -21,12 +21,14 @@ instructions I will assume your adapter is connected via USB as it is the most c
 The next important thing we need to do is make sure that each CAN interface *always* gets applied to the same CAN adapter. If 
 you don't specify this then Linux may change which adapter is running which network and that will give you klipper errors.
 
-## Using UDEV to force CAN interface to specific hardware
+## Finding the Hardware Serial of your CAN Adapter
 
-Connect your first CAN adapter to your printer. We want only one connected at this time so it's easier to get the correct 
-hardware IDs and not to get confused.
+Connect your first CAN adapter to your printer
 
-Run `lsusb` and note down the Bus and Device ID (in the following example it is `Bus 001 Device ID 010`)
+We want only **one** connected at this time so it's easier to get the correct hardware IDs and not to get confused.
+
+Run `lsusb` and note down the Bus and Device ID. For example, if your device is on `Bus 001 Device ID 010` then note down the values 
+001 and 010
 
 ![image](https://github.com/user-attachments/assets/979ce265-cedb-48ab-aa13-5c20f61a5f5a)
 
@@ -34,9 +36,26 @@ Run `lsusb` and note down the Bus and Device ID (in the following example it is 
 Then we'll use "udevadm info -a -n /dev/bus/usb/BUS/DEVICE_ID" using the Bus and Device ID you just found, then pipe it
 to GREP to find the hardware serial of the device.
 
-`udevadm info -a -n /dev/bus/usb/001/010 | grep ATTR{serial}`
+```bash
+udevadm info -a -n /dev/bus/usb/001/010 | grep ATTR{serial}
+```
 
 ![image](https://github.com/user-attachments/assets/07fed863-dd8a-4097-9c68-36e1c27e496d)
+
+{: .note }
+>If you aren't seeing any serial number using the above command, you can try searching by ATTRS{serial} instead of ATTR{serial}
+>
+> `udevadm info -a -n /dev/bus/usb/001/010 | grep ATTRS{serial}`
+>
+>The difference:
+>
+>ATTR{serial} checks only the current device level.
+>
+>ATTRS{serial} searches higher levels in the device hierarchy (e.g., USB hubs or controllers).
+>
+>If your adapter is part of a multi-interface device or connected via a hub, the serial might be stored on a higher level, requiring ATTRS{serial}.
+
+## Create UDEV rule to link hardware ID to CAN interface
 
 Now that we have the hardware serial ID we will use a udev rule to link this hardware to the can0 interface.
 
@@ -58,6 +77,7 @@ Press Ctrl X to save and exit, Then Y when it asks to save modified buffer, then
 (it will already have the correct name).
 
 
+## Repeat steps for second CAN adapter
 
 Now connect the second CAN adapter to your Pi and we'll go through a very similar set of steps.
 
@@ -67,7 +87,9 @@ Run `lsusb` and note down the Bus and Device ID (in the following example it is 
 
 Run udevadmin info with the Bus and Device ID to find the serial ID
 
-`udevadm info -a -n /dev/bus/usb/001/012 | grep ATTR{serial}`
+```bash
+udevadm info -a -n /dev/bus/usb/001/012 | grep ATTR{serial}
+```
 
 ![image](https://github.com/user-attachments/assets/c32129b7-ab27-45ba-8421-432050aa6ce5)
 
@@ -109,4 +131,11 @@ Simply edit your printer.cfg (or whatever .cfg has the required settings) where 
 
 Add `canbus_interface: can1` underneath the canbus_uuid:. This lets Klipper know that this device is on the can1 interface instead of can0.
 
+
 ![image](https://github.com/user-attachments/assets/59afac6b-ef4e-4ad9-a9aa-6eee7023000f)
+
+{: .note }
+>Also take note that any time you need to run the katapult flashtool.py tool you will need to include the parameter `-i can1` 
+>in your command string for any device that is on the can1 network.
+>
+>eg. `~/katapult/scripts/flsahtool.py -u a145c2b0d6d7 -r -i can1`
