@@ -119,8 +119,24 @@ ls /dev/serial/by-id
 
 You should see a "usb-katapult_..." device there. If you don't, then double-click the RESET button on your board and `ls /dev/serial/by-id` again.
 
-If you keep seeing the board, but it shows as "usb-Klipper_..." instead of "usb-katapult_..." even after double-clicking the reset button then you may have a dodgy reset button or aren't getting the double-click
-timing correct. Either way, another method to kick the board into Katapult mode (assuming the Katapult install from further above was successful) is to run `~/katapult/scripts/flashtool.py -r -d /dev/serial/by-id/usb-Klipper_....` putting in the usb_Klipper full path name that your board is showing up as.
+{:. note }
+>If you keep seeing the board, but it shows as "usb-Klipper_..." instead of "usb-katapult_..." even after double-clicking the reset button then you may have a dodgy reset button or aren't getting the double-click
+>timing correct. Either way, another method to kick the board into Katapult mode (assuming the Katapult install from further above was successful) is to run:
+>
+>```bash
+>cd ~/klipper/scripts
+>```
+>
+>then
+>
+>```bash
+>~/klippy-env/bin/python -c 'import flash_usb as u; u.enter_bootloader("<serialID>")'
+>```
+>
+>replacing `<serialID>` with the usb_Klipper full path name that your board is showing up as.
+>eg: 
+>`~/klippy-env/bin/python -c 'import flash_usb as u; u.enter_bootloader("/dev/serial/by-id/usb-Klipper_stm32h723xx_110032000D51323532393433-if00")'
+
 
 {: .stop }
 >
