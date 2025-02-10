@@ -119,7 +119,7 @@ ls /dev/serial/by-id
 
 You should see a "usb-katapult_..." device there. If you don't, then double-click the RESET button on your board and `ls /dev/serial/by-id` again.
 
-{:. note }
+{: .note }
 > If you keep seeing the board, but it shows as "usb-Klipper_..." instead of "usb-katapult_..." even after double-clicking the reset button then you may have a dodgy reset button or aren't getting the double-click
 > timing correct. Either way, another method to kick the board into Katapult mode (assuming the Katapult install from further above was successful) is to run:
 > 
