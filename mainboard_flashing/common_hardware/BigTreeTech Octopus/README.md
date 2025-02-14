@@ -9,6 +9,15 @@ grand_parent: Mainboard Flashing
 
 There is a permanent 120 ohm termination resistor soldered to the board, no need to add a jumper to enable it and also no ability to disable it.
 
+# CAN port
+
+The Octopus v1/v1.1 and the Octopus Pro v1 all use an RJ12 port for their CANBUS connection. It only uses the middle two pins, the rest are unused. 
+
+The "bottom" middle pin is CAN-H, the "top" middle pin is CAN-L.
+
+![image](https://github.com/user-attachments/assets/d03e250a-7c06-437c-aa29-36bf6a5d7020)
+
+
 # DFU Mode
 
 To put the octopus into DFU mode you need to put in the boot jumper (purple) and press the reset button (green). The blue is for the "power over USB" jumper and isn't needed if you already have 24v hooked up to the octopus.
