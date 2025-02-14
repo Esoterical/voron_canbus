@@ -11,6 +11,12 @@ The header for the 120R termination resistor is located next to the CAN port.
 
 ![image](https://github.com/user-attachments/assets/74ddb87b-1cda-4837-9d18-136b77ee165c)
 
+# CAN port
+
+The Octopus Pro v1.1 CAN port is a JST-XH connector located at the bottom-right corner of the board.
+
+![image](https://github.com/user-attachments/assets/3b378dcb-4727-464c-9b76-c1e67632a513)
+
 
 # DFU Mode
 
