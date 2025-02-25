@@ -25,6 +25,9 @@ The SB Combo V2 board has a 120 ohm termination resistor enabled by default. If 
 
 ![image](https://github.com/user-attachments/assets/fc060894-251a-4fd5-8dbb-4dd5854c5019)
 
+{: .note }
+> Please note, due to the USB/CAN switching ability of the Combo V2, when it is unpowered you are unable to measure the 120 ohm termination resistor if you just measure across the H and L wires.
+> This has no effect in use, but can make troubleshooting a broken wire a little more difficult. Something to keep in mind.
 
 
 
