@@ -17,7 +17,9 @@ The H36 board has a 120 ohm termination resistor enabled by default. If you need
 
 ![image](https://github.com/user-attachments/assets/3505af56-8d9d-49ba-8dbe-2e897df7f66e)
 
-
+{: .note }
+> Please note, due to the USB/CAN switching ability of the H36, when it is unpowered you are unable to measure the 120 ohm termination resistor if you just measure across the H and L wires.
+> This has no effect in use, but can make troubleshooting a broken wire a little more difficult. Something to keep in mind.
 
 
 # DFU Mode
