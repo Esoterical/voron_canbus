@@ -8,6 +8,13 @@ grand_parent: Mainboard Flashing
 
 There is a permanent 120 ohm termination resistor soldered to the board, no need to add a jumper to enable it and also no ability to disable it.
 
+# CAN Port
+
+The CAN port is a JST-XH header located here:
+
+![image](https://github.com/user-attachments/assets/d676c2ab-0f04-4a0d-8881-1ef1e9b91680)
+
+
 # DFU Mode
 
 To put the Spider 3.0 H7 into DFU mode, hold the BT0 button and while still holding press and release the RST button. Then count to 5 and release the BT0 button.
