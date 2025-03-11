@@ -9,6 +9,12 @@ grand_parent: Mainboard Flashing
 
 There is a permanent 120 ohm termination resistor soldered to the board, no need to add a jumper to enable it and also no ability to disable it.
 
+# CAN Port
+
+The CAN port is a JST-XH header located here:
+
+![image](https://github.com/user-attachments/assets/89058e8c-9576-428a-bb84-7fc21fce313f)
+
 
 # DFU Mode
 
