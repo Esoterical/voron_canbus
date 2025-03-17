@@ -26,9 +26,10 @@ To put the Spider Pro into DFU mode, hold the BOOT0 button and while still holdi
 
 # Katapult Config
 
-![image](https://github.com/user-attachments/assets/e91309cf-56a2-411d-954d-c844f361b9de)
+![image](https://github.com/user-attachments/assets/b72c48d7-dea6-4483-a20c-b7f3b9fa0bf8)
 
 
 # Klipper USB-CAN-Bridge Config
 
-![image](https://github.com/user-attachments/assets/cdbf9fe7-17ba-4daa-a8f3-eed4a57813fa)
+![image](https://github.com/user-attachments/assets/b6185a32-e808-4903-9073-efdc528023d3)
+
