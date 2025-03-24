@@ -135,7 +135,7 @@ You should see a "usb-katapult_..." device there. If you don't, then double-clic
 > 
 > replacing `<serialID>` with the usb_Klipper full path name that your board is showing up as.
 > eg: 
-> `~/klippy-env/bin/python -c 'import flash_usb as u; u.enter_bootloader("/dev/serial/by-id/usb-Klipper_stm32h723xx_110032000D51323532393433-if00")`
+> `~/klippy-env/bin/python -c 'import flash_usb as u; u.enter_bootloader("/dev/serial/by-id/usb-Klipper_stm32h723xx_110032000D51323532393433-if00")'`
 
 
 {: .stop }
