@@ -17,11 +17,11 @@ To enable CAN mode you must add a jumper between these two pins.
 
 If you don't have a jumper in place then the board will default to CAN-FD mode which Klipper does not support.
 
-# DFU Mode
+# BOOT Mode
 
 To put the PITB V2.0 into BOOT mode for initial flashing, unplug the main CAN cable then connect a USB cable from your Pi to the USB-C port of the PITB V2.0.
 
-Then hold the BT0 button, press and release the RST button, count to five then release teh BT0 button.
+Then hold the BT0 button, press and release the RST button, count to five then release the BT0 button.
 
 ![image](https://github.com/user-attachments/assets/0a0f4cd2-68ce-4eb5-a412-7444df0cff82)
 
