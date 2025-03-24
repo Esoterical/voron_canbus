@@ -10,7 +10,7 @@ grand_parent: Toolhead Flashing
 There is a permanent 120 ohm termination resistor soldered to the board, no need to add a jumper to enable it and also no ability to disable it.
 
 
-# DFU Mode
+# BOOT Mode
 
 To put the PITB V1.0 into BOOT mode for initial flashing, unplug the main CAN cable then connect a USB cable from your Pi to the USB-C port of the PITB V1.0.
 
