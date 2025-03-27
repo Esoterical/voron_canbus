@@ -20,6 +20,17 @@ sudo apt upgrade
 sudo apt install python3 python3-serial
 ```
 
+{: .note }
+> If you get an error along the lines of "unable to locate package python3-serial" then you may be on an older version of linux.
+> 
+> In that case, run:
+> 
+> `sudo apt install python3-pip`
+> 
+> then
+> 
+> `pip3 install pyserial`
+
 # Installing Katapult
 
 First you need to clone the Katapult repo onto your pi. Run the following commands to clone (or update) the repo:
