@@ -83,7 +83,7 @@ and it should look like this:
 Now finally, to enable the can0 interface and set the speed run the following command:
 
 ```bash
-echo -e "[Match]\nName=can*\n\n[CAN]\nBitRate=1M" | sudo tee /etc/systemd/network/25-can.network > /dev/null
+echo -e "[Match]\nName=can*\n\n[CAN]\nBitRate=1M\nRestartSec=0.1s\n\n[Link]\nRequiredForOnline=no" | sudo tee /etc/systemd/network/25-can.network > /dev/null
 ```
 
 To confirm it has applied correctly, run
@@ -94,7 +94,7 @@ cat /etc/systemd/network/25-can.network
 
 and it should look like this:
 
-![image](https://github.com/user-attachments/assets/a78829fd-1b53-460d-aa80-715d50289b52)
+![image](https://github.com/user-attachments/assets/e17218fa-103c-4cc6-a769-2b58cff0e026)
 
 Then finally reboot the Pi (so the systemd-networkd service has started properly reading from the config files) with a:
 
