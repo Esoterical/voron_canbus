@@ -200,7 +200,7 @@ python3 ~/katapult/scripts/flashtool.py -i can0 -f ~/klipper/out/klipper.bin -u 
 
 where the "-u" ID is what you found from the "flashtool.py -i can0 -q" query.
 
-One the flash has been completed you can run the 
+Once the flash has been completed you can run the 
 ```bash
 python3 ~/katapult/scripts/flashtool.py -i can0 -q
 ```
