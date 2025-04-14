@@ -51,4 +51,4 @@ A sample config file can be found at [https://github.com/FYSETC/H36_Combo/tree/m
 
 # More Info
 
-More information can be found at the [H36 wiki](https://wiki.fysetc.com/H36_Combo/)
+More information can be found at the [H36 wiki](https://wiki.fysetc.com/docs/H36-Combo)
