@@ -57,4 +57,4 @@ A sample config file can be found at https://github.com/FYSETC/SB_Combo_V2/tree/
 
 # More Info
 
-More information can be found at the [SB Combo V2 wiki](https://wiki.fysetc.com/SB_Combo_V2/)
+More information can be found at the [SB Combo V2 wiki](https://wiki.fysetc.com/docs/SBComboV2)
