@@ -7,7 +7,20 @@ grand_parent: Mainboard Flashing
 
 # 120 ohm Termination Resistor
 
-As the Spider v1.0 requires an [external CAN transciever](#transceiver) there is no built in 120ohm resistor on the Spider itself. The transceiver you use will likely have the 120r resistor hard soldered already, but some may have jumpers or solder pads to add/remove it from the circuit.
+As the Spider v2.3 requires an [external CAN transciever](#transceiver) there is no built in 120ohm resistor on the Spider itself. The transceiver you use will likely have the 120r resistor hard soldered already, but some may have jumpers or solder pads to add/remove it from the circuit.
+
+# DFU mode
+
+To put the Spider v2.3 into DFU mode, connect the Spider to the Pi with a USB cable, then place a jumper on the `3.3v` and `BT0` pins:
+
+![image](https://github.com/user-attachments/assets/491e2e1c-7b56-419b-a0ec-e08707820030)
+
+
+
+Then press the RST button on the side of the board:
+
+![image](https://github.com/user-attachments/assets/05a5354b-e578-4655-b0db-fd5021f3efbb)
+
 
 # Katapult Config
 
