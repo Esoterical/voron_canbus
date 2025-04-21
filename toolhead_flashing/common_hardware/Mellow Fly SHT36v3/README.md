@@ -39,8 +39,8 @@ To enter BOOT mode, unplug USB and XT30 cables from the SHT36v3, then hold the B
 
 # Sample Configuration
 
-A sample config file can be found at [https://mellow.klipper.cn/#/board/fly_sht36_v3/cfg](https://mellow.klipper.cn/#/board/fly_sht36_v3/cfg)
+A sample config file can be found at [https://mellow.klipper.cn/en/docs/ProductDoc/ToolBoard/fly-sht36/sht36_v3/cfg](https://mellow.klipper.cn/en/docs/ProductDoc/ToolBoard/fly-sht36/sht36_v3/cfg)
 
 # More Info
 
-[https://mellow.klipper.cn/#/board/fly_sht36_v3/README](https://mellow.klipper.cn/#/board/fly_sht36_v3/README)
+[https://mellow.klipper.cn/en/docs/category/fly-sht36-v3](https://mellow.klipper.cn/en/docs/category/fly-sht36-v3)
