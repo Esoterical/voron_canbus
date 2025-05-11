@@ -1,11 +1,11 @@
 ---
 layout: default 
-title: BigTreeTech MMB CAN
+title: BigTreeTech MMB v1.0
 parent: Common Toolhead Hardware
 grand_parent: Toolhead Flashing
 ---
 
-The following settings are valid for the MMB v1.0, v1.1, and v2.0
+The following settings are valid for the MMB v1.0 and v1.1
 
 # 120 ohm Termination Resistor
 
