@@ -6,6 +6,24 @@ nav_order: 20
 
 # Getting Started
 
+# Raspberry Pi Operating System
+
+As stated on the "Home" page of this guide, it is assumed that you are running a Raspberry Pi as your main computer for your printer. If you are not then this information may be worth reading, but also may not be directly relavent.
+
+There is a known issue with Raspberry Pi operating systems where "Bullseye" based distros (version 6.1.something) and 64bit can cause very strange timing issues which can then lead to Timer Too Close, Missed Scheduling, or other errors. A simple way to check what version operating system you have is to SSH in and then run:
+
+```bash
+uname -a
+```
+
+This will give you information about your OS. You are looking for the version number and the architecture.
+
+![image](https://github.com/user-attachments/assets/e631ffca-ea4a-4bca-8b27-c5d9f76168da)
+
+If you have 6.1.something as the version and aarc64 as the architecture, then it would be best to backup any existing Klipper data (config files and maybe moonraker history if you want to keep that) and then reflashing the SD card with the latest Raspberry Pi OS. Eric Zimmerman has fantastic instructions for doing both of those steps [here.](https://github.com/EricZimmerman/VoronTools/blob/main/OSUpgrade.md)
+
+If you find your version is 6.6.something, or 5.something, then it is fine. Also, if your architecture is `armv7l` then it means you are running a 32bit OS and this is also unaffected.
+
 # Network Service, CAN Speeds, and Transmit Queue Length
 
 In order to dictate the speed at which your CAN network runs at you will need make sure there is a service on the Pi that can configure a CANBus interface, and also the necessary information in configuration files so this service knows what settings you want to use.
