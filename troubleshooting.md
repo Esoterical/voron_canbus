@@ -43,4 +43,8 @@ Sometimes it prints fine, sometimes it fails with "Timer too close" error, read 
 
 ### TMC Driver reset/undervoltage
 
-If your extruder TMC driver is reporting "reset" or undervoltage errors,, read [here](./troubleshooting/tmc_reset_undervoltage.md)
+If your extruder TMC driver is reporting "reset" or undervoltage errors, read [here](./troubleshooting/tmc_reset_undervoltage.md)
+
+## Other Errors and Reading the Log
+
+If you have errors not previously mentioned then it is worth learning to check your klippy.log file [here](./troubleshooting/other_errors.md)
