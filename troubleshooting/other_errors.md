@@ -51,7 +51,7 @@ Invalid bytes are data packets that arrived to the mcu perfectly fine, no errors
 
 This is **not** something that is caused by a bad cable/wire/other physical thing. This is a software issue.
 
-There have been instances where bad firmware on a CAN adapter (the only one I really know of is the BTT U2C but it could happen to others) and the fix for that is simply to flash the correct firmware on it (see [here](../can_adapter/BigTreeTech%20U2C%20v2.1#bad-firmware) 
+There have been instances where bad firmware on a CAN adapter (the only one I really know of is the BTT U2C but it could happen to others) and the fix for that is simply to flash the correct firmware on it (see [here](../can_adapter/BigTreeTech%20U2C%20v2.1/README.md#bad-firmware) 
 for the BTT U2C fix specifically).
 
 The other more common cause is the operating system of the Pi itself. It may be getting overloaded or have some rogue process (in which case the [timer_too_close](./timer_too_close.md) page may help) or you may have a bad version of
