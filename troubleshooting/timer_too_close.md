@@ -27,7 +27,7 @@ best to just [uninstall it](https://github.com/julianschill/klipper-led_effect?t
 
 ## Anecdata
 
-Because the problems are so many I'm just going to start cataloguing real-world examples of where users have had TTC erros and what the cause ended up being.
+Because the problems are so many I'm just going to start cataloguing real-world examples of where users have had TTC errors and what the cause ended up being.
 
 This section will be expanded as I add more examples.
 
