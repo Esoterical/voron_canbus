@@ -1,6 +1,6 @@
 ---
 layout: default 
-title: LDO Leviathan 
+title: LDO Leviathan v1.2
 parent: Common Mainboard Hardware
 grand_parent: Mainboard Flashing
 ---
