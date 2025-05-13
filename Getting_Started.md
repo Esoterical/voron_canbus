@@ -20,7 +20,7 @@ This will give you information about your OS. You are looking for the version nu
 
 ![image](https://github.com/user-attachments/assets/e631ffca-ea4a-4bca-8b27-c5d9f76168da)
 
-If you have 6.1.something as the version and aarc64 as the architecture, then it would be best to backup any existing Klipper data (config files and maybe moonraker history if you want to keep that) and then reflashing the SD card with the latest Raspberry Pi OS. Eric Zimmerman has fantastic instructions for doing both of those steps [here.](https://github.com/EricZimmerman/VoronTools/blob/main/OSUpgrade.md)
+If you have 6.1.something as the version and aarch64 as the architecture, then it would be best to backup any existing Klipper data (config files and maybe moonraker history if you want to keep that) and then reflashing the SD card with the latest Raspberry Pi OS. Eric Zimmerman has fantastic instructions for doing both of those steps [here.](https://github.com/EricZimmerman/VoronTools/blob/main/OSUpgrade.md)
 
 If you find your version is 6.6.something, or 5.something, then it is fine. Also, if your architecture is `armv7l` then it means you are running a 32bit OS and this is also unaffected.
 
