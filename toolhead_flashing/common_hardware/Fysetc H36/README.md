@@ -13,9 +13,12 @@ To put the H36 board into CAN mode (instead of USB mode) you simply need to make
 
 # 120 ohm Termination Resistor
 
-The H36 board has a 120 ohm termination resistor enabled by default. If you need to disable this you need desolder the bridge on the back of the board
+The H36 board has a 120 ohm termination resistor enabled by default. If you need to disable this you need to cut between these two solder pads to sever the trace between them.
 
-![image](https://github.com/user-attachments/assets/3505af56-8d9d-49ba-8dbe-2e897df7f66e)
+![image](https://github.com/user-attachments/assets/8c8848e7-527a-43ef-9403-e13547804793)
+
+If you need to reenable the 120 ohm resistor again after cutting simply solder the two pads together.
+
 
 {: .note }
 > Please note, due to the USB/CAN switching ability of the H36, when it is unpowered you are unable to measure the 120 ohm termination resistor if you just measure across the H and L wires.
