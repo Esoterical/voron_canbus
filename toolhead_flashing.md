@@ -87,7 +87,7 @@ If the result shows an "Error during download get_status" or something, but abov
 {: .highlight }
 > If you get a different error and do **not** see a "File downloaded successfully" then try:
 >
-> 'sudo dfu-util -R -a 0 -s 0x08000000:leave -D ~/katapult/out/katapult.bin -d 0483:df11'
+> `sudo dfu-util -R -a 0 -s 0x08000000:leave -D ~/katapult/out/katapult.bin -d 0483:df11`
 >
 
 
