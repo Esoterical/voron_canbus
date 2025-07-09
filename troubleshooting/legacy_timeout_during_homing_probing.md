@@ -1,8 +1,3 @@
----
-layout: default 
-title: Legacy Timeout During Homing/Probing
----
-
 # Legacy Timeout During Homing/Probing Options
 
 These are older potential things to try to help with a "Timeout during homing/probing" error. The current "Niceness" method is a much cleaner way of doing it, but I'll keep the older options here in case they need to be referenced.
