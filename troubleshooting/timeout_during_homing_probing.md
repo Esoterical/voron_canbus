@@ -43,4 +43,4 @@ I've moved the older methods that used to be listed here to the ["Legacy Timeout
 older methods are required for reference you can find them there.
 
 
-[Return to Troubleshooting](./)
+[Return to Troubleshooting](../troubleshooting.md)
