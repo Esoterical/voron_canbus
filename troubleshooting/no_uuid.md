@@ -108,4 +108,4 @@ an active node already when you do the above off/on of the interface then you sh
 and see your node UUID again, and be able to reflash Klipper to it (if needed).
 
 
-[Return to Troubleshooting](./)
+[Return to Troubleshooting](../troubleshooting.md)
