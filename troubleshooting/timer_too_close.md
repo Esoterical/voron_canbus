@@ -48,4 +48,4 @@ They also observed this problem was more likely on short distances (IE smaller p
 
 `TTC when Exclude Object was used on a large/complex model. Possibly the host overloaded trying to skip the bazillion lines of gcode`
 
-[Return to Troubleshooting](./)
+[Return to Troubleshooting](../troubleshooting.md)
