@@ -77,5 +77,4 @@ If your toolhead UUID shows up but it says `Application: Katapult` (or `Applicat
 
 If all your devices show up fine, and show `Application: Klipper` as they should, then rename your `printer.old` file back to `printer.cfg` and do a firmware restart. It might be that it all just works now and it needed a power cycle. If it still doesn't work then you may have an error in your printer.cfg (the mainboard UUID and toolhead UUID being swapped around is a common one). Go back to the **MCU** section above.
 
-
-[Return to Troubleshooting](./)
+[Return to Troubleshooting](../troubleshooting.md)
