@@ -96,4 +96,4 @@ I've found a 50ms timeout window got rid of all my "timeout during homing probe"
 
 
 
-[Return to Troubleshooting](./)
+[Return to Troubleshooting](./troubleshooting.md)
