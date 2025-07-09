@@ -28,5 +28,5 @@ Before you say "I've checked and it all looks good, it must be something else" j
 ![broken_wire](https://github.com/Esoterical/voron_canbus/assets/124253477/d5d466cf-27af-48b7-93f0-62a8991b784a)
 
 
-[Return to Troubleshooting](./)
+[Return to Troubleshooting](../troubleshooting.md)
 
