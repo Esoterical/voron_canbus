@@ -15,7 +15,7 @@ First thing to check is your `/etc/systemd/network/25-can.network` file. Make su
 
 ### Seperate USB-CAN adapter (U2C/UTOC/etc.)
 
-If you are using a seprate USB to CAN adapter (U2C/UTOC/etc.) then double check that the USB cable connecting the devices is plugged in and not loose. If you _never_ get a response to a query (ie. the can0 interface has never shown at all) then you may have a dodgy USB cable. I have personally seen a handful of usb-c cables that don't actually have the data pins hooked up (they are power only). If the adapter doesn't show to an `lsusb` then your cable is probably dodgy.
+If you are using a separate USB to CAN adapter (U2C/UTOC/etc.) then double check that the USB cable connecting the devices is plugged in and not loose. If you _never_ get a response to a query (ie. the can0 interface has never shown at all) then you may have a dodgy USB cable. I have personally seen a handful of usb-c cables that don't actually have the data pins hooked up (they are power only). If the adapter doesn't show to an `lsusb` then your cable is probably dodgy.
 
 If it shows up to an `lsusb` but an `ip link show can0` shows "Device can0 does not exist" then you might have a bad firmware, something wrong on your device, or problems with your CAN adapter drivers.
 
