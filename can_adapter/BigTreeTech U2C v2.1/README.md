@@ -61,3 +61,16 @@ sudo dfu-util -D ~/G0B1_U2C_V2.bin -a 0 -s 0x08000000:leave
 You may see an "error during download get-status" down the bottom. You can ignore that as long as everything else is successful.
 
 Once flashed, unplug the U2C from the Pi then plug it back in. Run an `ifconfig` and you should see a "can0" interface (assuming you have already set the /etc/network/interfaces.d/can0 file). If so, then congratulations your U2C is succesfully flashed with the fixed firmware.
+
+# Missing drivers
+
+Check whether appropriate Linux driver for the adapter is available:
+```bash
+lsmod | grep can
+```
+
+Expected output should contain `gs_usb` (which is a driver for "Geschwister Schneider CAN adapter" based adapters).
+
+If the output does not mention `gs_usb` anywhere, it is likely that you are missing an appropriate driver. This may happen when using less common SBCs and their respective OS image has that module disabled (eg. certain builds of Armbian might have this module disabled during build-time).
+
+With the required driver missing, you may need to use a different OS image, recompile the image, contact the OS image maintainers to include that module, or compile the module stand-alone and then install it.
