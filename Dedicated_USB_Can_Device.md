@@ -35,7 +35,7 @@ You see a can0 interface, the "qlen" will be 128, and the bitrate will be 100000
 >  <img src="https://github.com/Esoterical/voron_canbus/assets/124253477/36065239-009c-4195-8e13-a43959acac7b" />
 ></p>
 >
->If the `ip -s -d link show can0` command returns an error then go back to ths top of this page and check that your USB CAN adapter is properly showing up to an `lsusb` command.
+>If the `ip -s -d link show can0` command returns an error then go back to ths top of this page and check that your USB CAN adapter is properly showing up to an `lsusb` command. Alternatively, take a look at other identified issues in [Troubleshooting > No can0 Interface](./troubleshooting/no_can0.md).
 >
 >If the can0 network shows up, but the qlen *isn't* 128 or the bitrate *isn't* 1000000 then go back to [Getting_Started](./Getting_Started.md) and check the can0 file settigns in both the ifupdown section and the netplan section.
 
