@@ -39,4 +39,5 @@ To put the DragonDinghy into DFU mode:
 
 # Additional Info
 
-Manual, schematics and troubleshooting guides can be found at [https://drachenkaetzchen.github.io/DragonDinghy/](https://drachenkaetzchen.github.io/DragonDinghy/)
+[Manual](https://dgnkty.de/dinghy){: .btn .btn-purple }
+[GitHub Projects](https://github.com/Drachenkaetzchen/DragonDinghy){: .btn .btn-purple }
