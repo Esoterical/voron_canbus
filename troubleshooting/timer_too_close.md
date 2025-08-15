@@ -9,6 +9,8 @@ parent: Troubleshooting
 
 This error tends to be a "catch all" for a bunch of different causes. It can often be caused by the Pi itself getting overloaded (or overheating and throttling), or the mcu in question (toolhead/mainboard/whatever) also getting overloaded. Or a different thing entirely.
 
+You can find more info about it in [this Klipper discourse post](https://klipper.discourse.group/t/timer-too-close/6634)
+
 Some things to check:
 
 ## Pi CPU load
