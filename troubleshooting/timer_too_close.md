@@ -27,6 +27,86 @@ Another common resource hog that can use up cycles on both the Pi *and* the MCU 
 order to send neopixel commands once you start trying to send animation effects at 12fps or whatever the load on the MCU really adds up. So if you are getting TTC errors and have the LED Effects plugin installed it's
 best to just [uninstall it](https://github.com/julianschill/klipper-led_effect?tab=readme-ov-file#uninstall) to see if it helps with the error.
 
+## Raspberry Pi OS (Bookworm, 64-bit) — CAN Stability Settings
+
+On fresh installs of Raspberry Pi OS, some defaults may be too low for heavy CAN traffic. A common symptom is:
+
+`Got error -1 in can write: (105) No buffer space available`
+
+You’ll also see this clearly in the [debugging script](./debugging/README.md) — it’s worth running because it surfaces lots of useful information.
+
+### Enforce correct `qlen`.
+When the `qlen` is restored to `10` every restart add the following rule:
+
+```shell
+printf 'ACTION=="add", SUBSYSTEM=="net", KERNEL=="can0", RUN+="/usr/sbin/ip link set dev can0 txqueuelen 1024"\n' \
+| sudo tee /etc/udev/rules.d/80-can-qlen.rules
+
+sudo udevadm control --reload
+sudo systemctl stop klipper
+
+# Recreate the interface so the rule runs:
+sudo modprobe -r gs_usb && sudo modprobe gs_usb
+
+# Verify qlen for your can network
+ip -d -s link show can0 | grep qlen
+
+sudo systemctl start klipper
+```
+
+NOTE: If /usr/sbin/ip isn’t the correct path on your system, replace it with the output of command -v ip.
+
+### Disable USB autosuspend for the CAN adapter
+
+Find your adapter’s Vendor/Product IDs:
+
+```shell
+$ lsusb
+# Example output:
+# Bus 005 Device 003: ID 1d50:606f OpenMoko, Inc. Geschwister Schneider CAN adapter
+...
+```
+
+In this example the IDs are 1d50:606f (Vendor ID `1d50`, Product ID `606f`). Create a udev rule:
+
+```shell
+sudo tee /etc/udev/rules.d/99-usb-can-pm.rules >/dev/null <<'EOF'
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="PASTE_VENDOR_ID_HERE", ATTR{idProduct}=="PASTE_PRODUCT_ID_HERE", \
+  TEST=="power/control", ATTR{power/control}="on"
+EOF
+sudo udevadm control --reload
+sudo udevadm trigger -s usb
+```
+
+Replace PASTE_VENDOR_ID_HERE / PASTE_PRODUCT_ID_HERE with your values (e.g., 1d50 and 606f).
+
+### Increase global socket buffer sizes
+
+These control default and maximum socket buffer sizes (bytes):
+
+- `net.core.wmem_max` — max send buffer size
+- `net.core.rmem_max` — max receive buffer size
+- `net.core.wmem_default` — default send buffer size
+- `net.core.rmem_default` — default receive buffer size
+
+Increase them with:
+
+```shell
+sudo tee /etc/sysctl.d/99-socket-buffers.conf >/dev/null <<'EOF'
+net.core.wmem_max=4194304
+net.core.rmem_max=4194304
+net.core.wmem_default=1048576
+net.core.rmem_default=1048576
+EOF
+sudo sysctl --system
+```
+
+(Optional) Verify current values:
+
+```shell
+sysctl net.core.wmem_max net.core.rmem_max net.core.wmem_default net.core.rmem_default
+```
+
 ## Anecdata
 
 Because the problems are so many I'm just going to start cataloguing real-world examples of where users have had TTC errors and what the cause ended up being.
