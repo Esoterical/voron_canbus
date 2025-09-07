@@ -50,4 +50,6 @@ They also observed this problem was more likely on short distances (IE smaller p
 
 `TTC when Exclude Object was used on a large/complex model. Possibly the host overloaded trying to skip the bazillion lines of gcode`
 
+`TTC mentioning the CAN toolhead board. Ended up being broken CAN wiring. If you are using a BigTreeTech EBB board, do not put the supplied cable inside dragchains, it is not rated for that. Discovered using a multimeter by checking the resistance between CAN-L and CAN-H at the base with the power off and slowly moving the carriage by hand, the reading changed between 60ohms (good connection) and 120ohms (meaning the toolhead is disconnected).`
+
 [Return to Troubleshooting](../troubleshooting.md)
