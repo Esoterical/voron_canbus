@@ -94,7 +94,7 @@ If the result shows an "Error during download get_status" or something, but abov
 >  - your USB cable - try to swap cables
 >  - your kernel version
 > 
-> to update the kernel. Usually the problem is gone when a newer version is installed.
+> to update the kernel follow your operating system instructions. Usually the problem is gone when a newer version is installed.
 >
 
 ![image](https://user-images.githubusercontent.com/124253477/225469341-46f3478a-aa96-4378-8d73-96faa90d561c.png)
