@@ -136,7 +136,7 @@ If you want a more in depth breakdown of the termination resistors, or you have 
 
 ## CAN Adapter/Mainboard
 
-Some boards (Like the BTT Octopus) have the 120 ohm resistor permenantly connceted across the CanH/L wires, so nothing you need to do there. Others will have a two-pin header (sometimes labelled "120R") that you can put a jumper on and this will bring the termination resistor into the circuit.
+Some boards (Like the BTT Octopus) have the 120 ohm resistor permanently connected across the CanH/L wires, so nothing you need to do there. Others will have a two-pin header (sometimes labelled "120R") that you can put a jumper on and this will bring the termination resistor into the circuit.
 
 The same can be said for dedicated USB CAN adapters (like the U2C). Most will have a a header that you can put a jumper on to enable the resistor.
 
