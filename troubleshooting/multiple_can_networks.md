@@ -5,6 +5,7 @@ parent: Troubleshooting
 ---
 
 Credit to Fragmon (find them on youtube at [https://youtube.com/@crydteamprinting](https://youtube.com/@crydteamprinting)) for their help with the following instructions.
+Also credit to willpuckett for the klipper discourse post [https://klipper.discourse.group/t/setting-up-udev-rules-for-multiple-canbus-interfaces/16211] for a cleaner implementation.
 
 # Multiple CAN Networks
 
@@ -27,33 +28,27 @@ Connect your first CAN adapter to your printer
 
 We want only **one** connected at this time so it's easier to get the correct hardware IDs and not to get confused.
 
-Run `lsusb` and note down the Bus and Device ID. For example, if your device is on `Bus 001 Device ID 010` then note down the values 
-001 and 010
+On a standard system the first CAN adapter will show up as the can0 interface. Check this by running `ip a` and you
+should see the can0 network interface showing. If you don't then you will need to sort that out first using the
+earlier sections of this guide.
 
-![image](https://github.com/user-attachments/assets/979ce265-cedb-48ab-aa13-5c20f61a5f5a)
+<img width="848" height="308" alt="image" src="https://github.com/user-attachments/assets/0ad4af8d-4709-45c6-8dc8-0515a831ccbc" />
 
 
-Then we'll use "udevadm info -a -n /dev/bus/usb/BUS/DEVICE_ID" using the Bus and Device ID you just found, then pipe it
-to GREP to find the hardware serial of the device.
+
+So to get the hardware serial you run:
 
 ```bash
-udevadm info -a -n /dev/bus/usb/001/010 | grep ATTR{serial}
+udevadm info -a -p $(udevadm info -q path -p /sys/class/net/can0)| grep serial| head -n 1
 ```
 
-![image](https://github.com/user-attachments/assets/07fed863-dd8a-4097-9c68-36e1c27e496d)
+<img width="858" height="54" alt="image" src="https://github.com/user-attachments/assets/24219771-d0be-4842-83a3-25f7bde25901" />
 
-{: .note }
->If you aren't seeing any serial number using the above command, you can try searching by ATTRS{serial} instead of ATTR{serial}
->
-> `udevadm info -a -n /dev/bus/usb/001/010 | grep ATTRS{serial}`
->
->The difference:
->
->ATTR{serial} checks only the current device level.
->
->ATTRS{serial} searches higher levels in the device hierarchy (e.g., USB hubs or controllers).
->
->If your adapter is part of a multi-interface device or connected via a hub, the serial might be stored on a higher level, requiring ATTRS{serial}.
+It will give you something like
+
+`ATTRS{serial}=="110032000D51323532393433"`
+
+This is the hardware ID we will use to "lock" can0 to this specific adapter.
 
 ## Create UDEV rule to link hardware ID to CAN interface
 
@@ -65,13 +60,16 @@ Run:
 sudo nano /etc/udev/rules.d/99-can.rules
 ```
 
-To create a new udev rules file and add:
+to create a new udev rules file and add:
 
-SUBSYSTEM=="net", ACTION=="add", ATTR{serial}=="YOUR_SERIAL", NAME="can0"
+```bash
+SUBSYSTEM=="net", ACTION=="add", ATTRS{serial}=="YOURSERIAL", NAME="can0"
+```
 
 to the top line (making sure to put in the serial ID you just found)
 
-![image](https://github.com/user-attachments/assets/4e78045a-1667-42d5-b842-35d3f2bef8e9)
+<img width="780" height="61" alt="image" src="https://github.com/user-attachments/assets/9d4bc365-c185-4301-a51a-23899f1dfa1a" />
+
 
 Press Ctrl X to save and exit, Then Y when it asks to save modified buffer, then press enter when it asks for the filename to use
 (it will already have the correct name).
@@ -81,32 +79,31 @@ Press Ctrl X to save and exit, Then Y when it asks to save modified buffer, then
 
 Now connect the second CAN adapter to your Pi and we'll go through a very similar set of steps.
 
-Run `lsusb` and note down the Bus and Device ID (in the following example it is `Bus 001 Device ID 012`)
-
-![image](https://github.com/user-attachments/assets/aec211b4-6850-4dbc-8353-631f90bd1861)
-
-Run udevadmin info with the Bus and Device ID to find the serial ID
+Then run
 
 ```bash
-udevadm info -a -n /dev/bus/usb/001/012 | grep ATTR{serial}
+ip a
 ```
 
-![image](https://github.com/user-attachments/assets/c32129b7-ab27-45ba-8421-432050aa6ce5)
+to check that this second CAN Adapter is now showing as the `can1` interface.
 
-We will now add this second ID to the same 99-can.rules file you created earlier.
+Then get the hardware serial of this can1 adapter
 
-Run:
+```bash
+udevadm info -a -p $(udevadm info -q path -p /sys/class/net/can1)| grep serial| head -n 1
+```
+
+and then you can add this hardware serial to the 99-can.rules file by running
 
 ```bash
 sudo nano /etc/udev/rules.d/99-can.rules
 ```
 
-and add a second line the same as the first line but with your new serial ID and with `NAME="can1"` to link this hardware to the
-can1 interface.
+and adding a second line the same as the first one but with this different hardware ATTRS{serial} value
+and with `NAME="can1"` at the end
 
-SUBSYSTEM=="net", ACTION=="add", ATTR{serial}=="YOUR_SERIAL", NAME="can1"
+<img width="768" height="99" alt="image" src="https://github.com/user-attachments/assets/089810a4-7090-4334-b60e-6f63f614de9a" />
 
-![image](https://github.com/user-attachments/assets/cdbd87ab-2f2c-4eb9-acbb-eebe42b8abb8)
 
 Press Ctrl X to save and exit, Then Y when it asks to save modified buffer, then press enter when it asks for the filename to use
 (it will already have the correct name).
