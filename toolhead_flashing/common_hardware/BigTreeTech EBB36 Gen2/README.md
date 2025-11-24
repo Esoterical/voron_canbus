@@ -29,7 +29,7 @@ Then make sure you have power connected to this breakout board as well, and then
 
 We need the EBB36 Gen2 connected via USB at this stage for the DFU mode to work.
 
-Then power up the system and on the EBB36 Gen2 board hold the BOOT button, press and release the RESET button, then count to 5 and release the BOOT button.
+Then power up the system and on the EBB36 Gen2 board hold the BOOT button, press and release the RST button, then count to 5 and release the BOOT button.
 
 <img width="1365" height="671" alt="image" src="https://github.com/user-attachments/assets/2b0bf37d-0bbd-4aa2-8c0c-7b3fe2742544" />
 
