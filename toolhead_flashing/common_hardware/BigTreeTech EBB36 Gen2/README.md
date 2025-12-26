@@ -5,6 +5,19 @@ parent: Common Toolhead Hardware
 grand_parent: Toolhead Flashing
 ---
 
+# Breakout Board
+
+The EBB36 Gen2 comes with a convenient protection/connection breakout board that sits in your electronics bay. 
+When connecting to the EBB36 Gen2 over USB (for initial DFU flashing) you need to make sure a USB cable is connected from your Pi to the USB-C port of the breakout board.
+
+When connecting to the EBB36 Gen2 over CAN (for flashing Klipper via Katapult and for just normal use) make sure there are CAN H/L wires connected from your CAN adapter
+(a dedicated adapter like a U2C, or from your USB-CAN-Bridge mainboard) to the CAN port of the breakout board (shown in orange).
+
+**PLEASE NOTE** The breakout board does **NOT** provide any usb-to-can adapter ability by itself. You still need some other device providing the CAN interface to your pi
+(either a dedicated CAN adapter like a U2C or a mainboard in usb-can-bridge mode).
+
+<img width="1193" height="956" alt="image" src="https://github.com/user-attachments/assets/06b9a2b2-1697-444c-873f-b3f219c6006a" />
+
 # CANBUS Mode
 
 To put the EBB36 Gen2 into CAN mode (instead of USB mode) make sure to **add** a jumper to the USB/CAN header
