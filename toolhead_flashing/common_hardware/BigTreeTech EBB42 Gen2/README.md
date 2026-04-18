@@ -52,12 +52,14 @@ Once you have finished any DFU flashing be sure to **add** the USB/CAN selection
 
 # Katapult Config
 
-<img width="778" height="273" alt="image" src="https://github.com/user-attachments/assets/f1df3f71-13cb-4e01-b82f-26f9565e8aab" />
+<img width="1358" height="512" alt="image" src="https://github.com/user-attachments/assets/7caebfcd-9e23-4203-a007-6d60d739b5e2" />
+
 
 
 # Klipper Config
 
-<img width="724" height="236" alt="image" src="https://github.com/user-attachments/assets/fe7c7584-4c79-4e3a-a950-1cc4322ba55e" />
+<img width="1267" height="386" alt="image" src="https://github.com/user-attachments/assets/9ae68e77-9a94-475b-945f-16cf11771629" />
+
 
 
 # Sample Configuration
