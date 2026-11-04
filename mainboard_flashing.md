@@ -189,11 +189,15 @@ Again, if your mainboard is already in [Common Mainboard Hardware](./mainboard_f
 
 Otherwise, you want the Processor and Clock Reference to be set as per whatever board you are running. Set Communication interface to 'USB to CAN bus bridge' then set the CAN Bus interface to use the pins that are specific to your mainboard. Also set the CAN bus speed to the same as the speed in your can0 file. In this guide it is set to 1000000.
 
-Once you have the firmware configured, run a `make clean` to make sure there are no old files hanging around, then `make` to compile the firmware. It will save the firmware to ~/klipper/out/klipper.bin
+Once you have the firmware configured, run a 
 ```bash
 make clean
+```
+to make sure there are no old files hanging around, then 
+```bash
 make
 ```
+to compile the firmware. It will save the firmware to ~/klipper/out/klipper.bin
 
 ## Using Katapult to flash Klipper
 
